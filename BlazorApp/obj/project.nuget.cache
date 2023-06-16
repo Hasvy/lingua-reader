@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+CMlC9FHRJvNbmc0lfXm5Veca3J8MFNTjhoCXwrDacje39X33qdZ90DwBBGqiOpp0lhatiQh+og3e/cKZnZYcw==",
+  "dgSpecHash": "/ysJqlCXBI7Nw4wCQlWX8hpbX8YIGlzoJX2HE8j+tGWzOY0cf1oTegbxSSwbfxf+X7kkyls6oC/jsFKqzeeI4Q==",
   "success": true,
   "projectFilePath": "C:\\Projects\\LinguaReader\\BlazorApp\\BlazorApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\romzav\\.nuget\\packages\\libsassbuilder\\2.0.1\\libsassbuilder.2.0.1.nupkg.sha512",
     "C:\\Users\\romzav\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.4\\microsoft.aspnetcore.authorization.7.0.4.nupkg.sha512",
     "C:\\Users\\romzav\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.4\\microsoft.aspnetcore.components.7.0.4.nupkg.sha512",
     "C:\\Users\\romzav\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\7.0.4\\microsoft.aspnetcore.components.analyzers.7.0.4.nupkg.sha512",
@@ -28,7 +29,9 @@
     "C:\\Users\\romzav\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\romzav\\.nuget\\packages\\microsoft.jsinterop\\7.0.4\\microsoft.jsinterop.7.0.4.nupkg.sha512",
     "C:\\Users\\romzav\\.nuget\\packages\\microsoft.jsinterop.webassembly\\7.0.4\\microsoft.jsinterop.webassembly.7.0.4.nupkg.sha512",
+    "C:\\Users\\romzav\\.nuget\\packages\\radzen.blazor\\4.13.2\\radzen.blazor.4.13.2.nupkg.sha512",
     "C:\\Users\\romzav\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512",
+    "C:\\Users\\romzav\\.nuget\\packages\\system.linq.dynamic.core\\1.2.22\\system.linq.dynamic.core.1.2.22.nupkg.sha512",
     "C:\\Users\\romzav\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\romzav\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
     "C:\\Users\\romzav\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.4\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.4.nupkg.sha512"

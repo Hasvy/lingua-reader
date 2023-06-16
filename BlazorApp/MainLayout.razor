@@ -1,0 +1,38 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>LinguaReader</PageTitle>
+
+<RadzenLayout>
+    <RadzenHeader>
+        <RadzenRow AlignItems="AlignItems.Center" Style="height: 100%;">
+            <RadzenColumn Size="12" SizeMD="3">
+
+            </RadzenColumn>
+            <RadzenColumn Size="12" SizeMD="6">
+                <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Center" AlignItems="AlignItems.Center">
+                    <NavLink>
+                        <RadzenLink Icon="home" Path="@Routes.Index" Text="Home" />
+                    </NavLink>
+                    <NavLink>
+                        <RadzenLink Path="@Routes.Reading" Text="Reading" />
+                    </NavLink>
+                    <NavLink>
+                        <RadzenLink Path="@Routes.Learning" Text="Learning" />
+                    </NavLink>
+                    <NavLink>
+                        <RadzenLink Path="@Routes.Settings" Text="Settings" />
+                    </NavLink>
+                    <NavLink>
+                        <RadzenLink Path="@Routes.Profile" Text="Profile" />
+                    </NavLink>
+                </RadzenStack>
+            </RadzenColumn>
+            <RadzenColumn Size="12" SizeMD="3">
+
+            </RadzenColumn>
+        </RadzenRow>
+    </RadzenHeader>
+    <RadzenBody>
+        @Body
+    </RadzenBody>
+</RadzenLayout>
