@@ -1,0 +1,44 @@
+﻿@using Objects.Components.Library;
+@using Microsoft.AspNetCore.Hosting;
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+@using Microsoft.AspNetCore.Components.Forms;
+
+@inject IWebAssemblyHostEnvironment Environment;
+@inject NavigationManager NavigationManager
+
+<h3>Library</h3>
+
+@*<RadzenUpload Url="@Environment.BaseAddress" Complete="@LoadFile">
+
+</RadzenUpload>*@
+
+@if (userBooks.Count < 1)
+{
+    <InputFile class="rz-card rz-variant-filled">
+    @*<RadzenCard Style="width: 300px; flex: none" @onclick="AddBook">*@
+        <RadzenStack>
+            <RadzenText Text="Add a new book" />
+        </RadzenStack>
+    @*</RadzenCard>*@
+    </InputFile>
+}
+else
+{
+    <RadzenDataList Count="4" WrapItems="true" AllowPaging="false" Data="userBooks" TItem="BookCover">
+        <Template Context="bookCover">
+            @if (userBooks.IndexOf(bookCover) == 0)
+            {
+                <RadzenCard Style="width: 332px; padding: 0; flex: none; position: relative">
+                    <RadzenText Text="Add a new book" Style="position: relative; margin: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center" />
+                    <InputFile title="" style="width: 100%; height: 100%; opacity: 0; position: absolute; top: 0" OnChange="AddBook" />
+                </RadzenCard>
+            }
+            <RadzenCard Style="width: 300px; flex: none" @onclick="@(() => OpenBook(bookCover))">
+                <RadzenStack>
+                    <RadzenText Text="@bookCover.Title" />
+                    <RadzenText Text="@bookCover.Author" />
+                </RadzenStack>
+            </RadzenCard>
+        </Template>
+    </RadzenDataList>
+}

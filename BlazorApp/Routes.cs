@@ -7,5 +7,6 @@
         public const string Learning = "learning";
         public const string Settings = "settings";
         public const string Profile = "profile";
+        public const string Read = "read/{BookId}";
     }
 }
