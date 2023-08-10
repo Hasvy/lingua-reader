@@ -8,14 +8,11 @@ namespace BlazorApp.Pages.Components
 {
     public partial class Library : ComponentBase
     {
-        EventCallback callback;
-        //[Inject]
-        //IHostingEnvironment Environment { get; set; }
-
-        List<IBrowserFile> file = new();
+        //List<IBrowserFile> file = new();
 
         BookCover bookCover = new BookCover();
         List<BookCover>? userBooks = new List<BookCover>();
+        private long maxFileSize = 1024 * 1024 * 1;
 
         protected override async Task OnInitializedAsync()
         {
@@ -33,17 +30,23 @@ namespace BlazorApp.Pages.Components
             NavigationManager.NavigateTo("read/" + choosenBook.Id.ToString());
         }
 
-        private async Task AddBook()                //How to save books?
+        private async Task AddBook(InputFileChangeEventArgs e)                //How to save books?
         {
             try
             {
-                var path = "C:\\Projects\\LinguaReader";
-                //Dont save files, but translate them to some format, and save it.
+                var file = e.File;
+                var content = new MultipartFormDataContent();
+                content.Add(new StreamContent(file.OpenReadStream()), "file", file.Name);
+                using var httpClient = new HttpClient();
+                var response = await httpClient.PostAsync("/api/files", content);
+                string path = "C:\\Projects\\LinguaReader\\BookStorage\\" + e.File.Name;
+                await using MemoryStream stream = new MemoryStream();
+                await file.OpenReadStream(maxFileSize).CopyToAsync(stream);
+
 
 
                 //await using FileStream fileStream = new(path, FileMode.Create);
-                
-                //await file.First().OpenReadStream().CopyToAsync(fileStream);
+                //await file.OpenReadStream(maxFileSize).CopyToAsync(fileStream);
             }
             catch (Exception)
             {
