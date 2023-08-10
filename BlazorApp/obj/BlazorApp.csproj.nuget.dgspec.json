@@ -44,14 +44,18 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Blazored.LocalStorage": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
-              "version": "[7.0.4, )"
+              "version": "[7.0.10, )"
             },
             "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.4, )"
+              "version": "[7.0.10, )"
             },
             "Microsoft.AspNetCore.Hosting": {
               "target": "Package",
@@ -59,7 +63,7 @@
             },
             "Radzen.Blazor": {
               "target": "Package",
-              "version": "[4.13.2, )"
+              "version": "[4.15.1, )"
             }
           },
           "imports": [
@@ -76,7 +80,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[7.0.4, 7.0.4]"
+              "version": "[7.0.7, 7.0.7]"
             }
           ],
           "frameworkReferences": {
@@ -84,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -144,7 +148,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     }
