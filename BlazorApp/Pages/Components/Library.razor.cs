@@ -1,8 +1,13 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Parser.Listener;
+using iText.Kernel.Pdf.Canvas.Parser;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Hosting;
 using Objects.Components.Library;
 using Radzen;
+using Services;
+using System.IO;
+using System.Text;
 
 namespace BlazorApp.Pages.Components
 {
@@ -12,7 +17,8 @@ namespace BlazorApp.Pages.Components
 
         BookCover bookCover = new BookCover();
         List<BookCover>? userBooks = new List<BookCover>();
-        private long maxFileSize = 1024 * 1024 * 1;
+        private long maxFileSize = 1024 * 1024 * 10;
+        private ElementReference fileInput;
 
         protected override async Task OnInitializedAsync()
         {
@@ -27,32 +33,44 @@ namespace BlazorApp.Pages.Components
 
         private async Task OpenBook(BookCover choosenBook)
         {
-            NavigationManager.NavigateTo("read/" + choosenBook.Id.ToString());
+            //NavigationManager.NavigateTo("read/" + choosenBook.Id.ToString());
         }
 
-        private async Task AddBook(InputFileChangeEventArgs e)                //How to save books?
+        private async Task AddBook(InputFileChangeEventArgs e)
         {
             try
             {
-                var file = e.File;
-                var content = new MultipartFormDataContent();
-                content.Add(new StreamContent(file.OpenReadStream()), "file", file.Name);
-                using var httpClient = new HttpClient();
-                var response = await httpClient.PostAsync("/api/files", content);
-                string path = "C:\\Projects\\LinguaReader\\BookStorage\\" + e.File.Name;
-                await using MemoryStream stream = new MemoryStream();
-                await file.OpenReadStream(maxFileSize).CopyToAsync(stream);
+                //In future, I can use JavaScript Interop to save and then read a file
+                FileStream fileStream = new(Directory.GetCurrentDirectory() + "123.pdf", FileMode.Create);
 
+                await e.File.OpenReadStream(maxFileSize).CopyToAsync(fileStream);
+                var fi = new System.IO.FileInfo("/123.pdf").Length;
 
+                PdfReader pdfReader = new PdfReader("/123.pdf");
+                PdfDocument pdfDoc = new PdfDocument(pdfReader);
+                string pageContent = string.Empty;
+                var pages = pdfDoc.GetNumberOfPages();
+                for (int page = 1; page <= pdfDoc.GetNumberOfPages(); page++)
+                {
+                    //TODO fix processing file to comfort save and read then
+                    ITextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
+                    pageContent += PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(page), strategy);
+                    await SaveBook(pageContent);
+                }
+                pdfDoc.Close();
+                pdfReader.Close();
 
-                //await using FileStream fileStream = new(path, FileMode.Create);
-                //await file.OpenReadStream(maxFileSize).CopyToAsync(fileStream);
             }
             catch (Exception)
             {
 
                 throw;
             }
+        }
+
+        private async Task SaveBook(string content)                 //How to save books?
+        {
+            //TODO Save a book to LocalStorage in browser
         }
     }
 }
