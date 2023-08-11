@@ -10,12 +10,12 @@
     <PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.10" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
-    <PackageReference Include="Radzen.Blazor" Version="4.15.1" />
+    <PackageReference Include="Radzen.Blazor" Version="4.15.2" />
   </ItemGroup>
 
   <ItemGroup>
 	<ProjectReference Include="..\Objects\Objects.csproj" />	
+	<ProjectReference Include="..\Services\Services.csproj" />	
   </ItemGroup>
 	
 </Project>
