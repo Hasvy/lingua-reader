@@ -2,7 +2,8 @@
 @using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 @using Microsoft.AspNetCore.Components.Forms;
 
-@inject IWebAssemblyHostEnvironment Environment;
+@inject IWebAssemblyHostEnvironment Environment
+@inject DialogService DialogService
 @inject NavigationManager NavigationManager
 
 <h3>Library</h3>
@@ -25,14 +26,14 @@ else
                     <InputFile title="" style="width: 100%; height: 100%; opacity: 0; position: absolute; top: 0" OnChange="@AddBook" />
                 </RadzenCard>
             }
-            <RadzenCard Style="width: 300px; flex: none" @onclick="@(() => OpenBook(bookCover))">
+            <RadzenCard Style="width: 300px; flex: none;" @onclick="@(() => OpenBook(bookCover))">
                 <RadzenRow>
                     <RadzenColumn Size="10">
                         <RadzenText Text="@bookCover.Title" />
                         <RadzenText Text="@bookCover.Author" />
                     </RadzenColumn>
                     <RadzenColumn Size="2">
-                        <RadzenButton></RadzenButton>
+                        <RadzenButton Icon="delete" Variant="Variant.Text" ButtonStyle="ButtonStyle.Danger" @onclick:stopPropagation="true" Click="@(() => DeleteBook(bookCover))" />
                     </RadzenColumn>
                 </RadzenRow>
             </RadzenCard>

@@ -56,7 +56,7 @@ namespace BlazorApp.Pages.Components
         {
             try
             {
-                //In future, I can use JavaScript Interop to save and then read a file
+                //In future, I can use JavaScript Interop to save and then read a file. Also I can save all information in file, like drawio.
                 FileStream fileStream = new(Directory.GetCurrentDirectory() + "123.pdf", FileMode.Create);
 
                 await e.File.OpenReadStream(_maxFileSize).CopyToAsync(fileStream);
@@ -71,6 +71,7 @@ namespace BlazorApp.Pages.Components
                     //TODO fix processing file to comfort save and read then
                     ITextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
                     pageContent += PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(page), strategy);
+                    //TODO Add loading, file processing and refresh page after book is added
                 }
                 await SaveBook(pageContent);
                 pdfDoc.Close();
@@ -84,7 +85,7 @@ namespace BlazorApp.Pages.Components
             }
         }
 
-        private async Task SaveBook(string content)                 //How to save books?
+        private async Task SaveBook(string content)
         {
             Book book = new Book();
             book.BookCover = new BookCover();
@@ -94,6 +95,17 @@ namespace BlazorApp.Pages.Components
 
             string cover = JsonConvert.SerializeObject(book.BookCover);
             await localStorage.SetItemAsync(book.BookCover.Id.ToString(), cover);
+        }
+
+        private async Task DeleteBook(BookCover bookCover)
+        {
+            bool? confirm = await DialogService.Confirm("Do you want to delete the book?", "Confirm", new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" });
+
+            if (confirm == true)
+            {
+                _userBooks.Remove(bookCover);
+                await localStorage.RemoveItemAsync(bookCover.Id.ToString());
+            }
         }
     }
 }
