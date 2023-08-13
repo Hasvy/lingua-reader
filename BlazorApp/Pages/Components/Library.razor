@@ -7,10 +7,6 @@
 
 <h3>Library</h3>
 
-@*<RadzenUpload Url="@Environment.BaseAddress" Complete="@LoadFile">
-
-</RadzenUpload>*@
-
 @if (_userBooks.Count < 1)
 {
     <RadzenCard Style="width: 332px; padding: 0; flex: none; position: relative">
@@ -30,10 +26,15 @@ else
                 </RadzenCard>
             }
             <RadzenCard Style="width: 300px; flex: none" @onclick="@(() => OpenBook(bookCover))">
-                <RadzenStack>
-                    <RadzenText Text="@bookCover.Title" />
-                    <RadzenText Text="@bookCover.Author" />
-                </RadzenStack>
+                <RadzenRow>
+                    <RadzenColumn Size="10">
+                        <RadzenText Text="@bookCover.Title" />
+                        <RadzenText Text="@bookCover.Author" />
+                    </RadzenColumn>
+                    <RadzenColumn Size="2">
+                        <RadzenButton></RadzenButton>
+                    </RadzenColumn>
+                </RadzenRow>
             </RadzenCard>
         </Template>
     </RadzenDataList>
