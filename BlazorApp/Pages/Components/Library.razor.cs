@@ -16,34 +16,34 @@ namespace BlazorApp.Pages.Components
     public partial class Library : ComponentBase
     {
         [Inject] ILocalStorageService localStorage { get; set; } = null!;
-        //List<IBrowserFile> file = new();
 
-        BookCover bookCover = new BookCover();
-        List<BookCover>? userBooks = new List<BookCover>();
-        private long maxFileSize = 1024 * 1024 * 10;
-        private ElementReference fileInput;
+        private List<BookCover>? _userBooks = new List<BookCover>();
+        private long _maxFileSize = 1024 * 1024 * 10;
 
         protected override async Task OnInitializedAsync()
         {
             for(int i = 0; i < await localStorage.LengthAsync(); i++)
             {
-                try         //Fix it
+                try
                 {
-                    var cover = JsonConvert.DeserializeObject<BookCover>(await localStorage.KeyAsync(i));
-                    userBooks.Add(cover);
+                    string? key = await localStorage.KeyAsync(i);
+                    Guid result = new Guid();
+
+                    if (string.IsNullOrEmpty(key) || !Guid.TryParse(key, out result))
+                    {
+                        continue;
+                    }
+                    var stringCover = await localStorage.GetItemAsync<string>(key);
+                    var cover = JsonConvert.DeserializeObject<BookCover>(stringCover);
+                    
+                    _userBooks.Add(cover);
                 }
                 catch (Exception)
                 {
-                    continue;
+                    throw;
                 }
             }
-            //bookCover.Title = "Title";
-            //bookCover.Author = "Author";
-            //bookCover.Format = BookFormat.pdf;
-            //localStorage.     Get items from local storage and show them in library, add resolve from all covers that user have and then text of books
-            //userBooks.Add(bookCover);
-            //userBooks.Add(new BookCover() { Title = "Book2" });
-            //userBooks.Add(new BookCover() { Title = "Book3" });
+
             await base.OnInitializedAsync();
         }
 
@@ -59,7 +59,7 @@ namespace BlazorApp.Pages.Components
                 //In future, I can use JavaScript Interop to save and then read a file
                 FileStream fileStream = new(Directory.GetCurrentDirectory() + "123.pdf", FileMode.Create);
 
-                await e.File.OpenReadStream(maxFileSize).CopyToAsync(fileStream);
+                await e.File.OpenReadStream(_maxFileSize).CopyToAsync(fileStream);
                 var fi = new System.IO.FileInfo("/123.pdf").Length;
 
                 PdfReader pdfReader = new PdfReader("/123.pdf");
@@ -93,9 +93,7 @@ namespace BlazorApp.Pages.Components
             book.Text = content;
 
             string cover = JsonConvert.SerializeObject(book.BookCover);
-            await localStorage.SetItemAsync(cover, book.Text);
-
-            //TODO Save a book to LocalStorage in browser
+            await localStorage.SetItemAsync(book.BookCover.Id.ToString(), cover);
         }
     }
 }

@@ -1,8 +1,11 @@
-﻿namespace Objects.Components.Library
+﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
+
+namespace Objects.Components.Library
 {
     public class BookCover
     {
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
         public string? Title { get; set; }
         public string? Author { get; set; }
         public string? Description { get; set; }
