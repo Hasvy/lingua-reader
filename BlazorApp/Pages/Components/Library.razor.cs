@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Objects.Components.Library;
 using Blazored.LocalStorage;
+using Newtonsoft.Json;
 using Radzen;
 using Services;
 using System.IO;
@@ -24,9 +25,21 @@ namespace BlazorApp.Pages.Components
 
         protected override async Task OnInitializedAsync()
         {
-            bookCover.Title = "Title";
-            bookCover.Author = "Author";
-            bookCover.Format = BookFormat.pdf;
+            for(int i = 0; i < await localStorage.LengthAsync(); i++)
+            {
+                try         //Fix it
+                {
+                    var cover = JsonConvert.DeserializeObject<BookCover>(await localStorage.KeyAsync(i));
+                    userBooks.Add(cover);
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+            }
+            //bookCover.Title = "Title";
+            //bookCover.Author = "Author";
+            //bookCover.Format = BookFormat.pdf;
             //localStorage.     Get items from local storage and show them in library, add resolve from all covers that user have and then text of books
             //userBooks.Add(bookCover);
             //userBooks.Add(new BookCover() { Title = "Book2" });
@@ -78,9 +91,10 @@ namespace BlazorApp.Pages.Components
             book.BookCover.Title = "Mars";
             book.BookCover.Author = "Breadbury";
             book.Text = content;
-            await localStorage.SetItemAsync(book.BookCover.Id.ToString(), book.Text);
 
-            //userBooks.Add(book.BookCover);
+            string cover = JsonConvert.SerializeObject(book.BookCover);
+            await localStorage.SetItemAsync(cover, book.Text);
+
             //TODO Save a book to LocalStorage in browser
         }
     }
