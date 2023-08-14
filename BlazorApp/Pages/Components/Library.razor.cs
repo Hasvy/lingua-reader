@@ -29,7 +29,7 @@ namespace BlazorApp.Pages.Components
                     string? key = await localStorage.KeyAsync(i);
                     Guid result = new Guid();
 
-                    if (string.IsNullOrEmpty(key) || !Guid.TryParse(key, out result))
+                    if (string.IsNullOrEmpty(key) || !Guid.TryParseExact(key, "N", out result))
                     {
                         continue;
                     }
@@ -52,7 +52,7 @@ namespace BlazorApp.Pages.Components
 
         private async Task OpenBook(BookCover choosenBook)
         {
-            NavigationManager.NavigateTo("read/" + choosenBook.Id.ToString());
+            NavigationManager.NavigateTo("read/" + choosenBook.Id.ToString("N"));
         }
 
         private async Task AddBook(InputFileChangeEventArgs e)
@@ -99,7 +99,8 @@ namespace BlazorApp.Pages.Components
             _userBooks.Add(book.BookCover);
 
             string cover = JsonConvert.SerializeObject(book.BookCover);
-            await localStorage.SetItemAsync(book.BookCover.Id.ToString(), cover);
+            await localStorage.SetItemAsync(book.BookCover.Id.ToString("N"), cover);
+            await localStorage.SetItemAsync(book.BookCover.TextId.ToString("D"), content);
         }
 
         private async Task DeleteBook(BookCover bookCover)
@@ -110,6 +111,7 @@ namespace BlazorApp.Pages.Components
             {
                 _userBooks.Remove(bookCover);
                 await localStorage.RemoveItemAsync(bookCover.Id.ToString());
+                await localStorage.RemoveItemAsync(bookCover.TextId.ToString());
             }
         }
     }

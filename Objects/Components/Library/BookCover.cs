@@ -10,10 +10,12 @@ namespace Objects.Components.Library
         public string? Author { get; set; }
         public string? Description { get; set; }
         public BookFormat Format { get; set; }
+        public Guid TextId { get; set; }        //Private set?
 
         public BookCover()
         {
             Id = Guid.NewGuid();
+            TextId = Guid.NewGuid();
         }
 
     }
