@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp", "BlazorApp\Blaz
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objects", "Objects\Objects.csproj", "{1211C499-B806-4076-A026-41750AEDB501}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{709C9DFC-B4B0-4E6F-BFB2-B16F22BA5424}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{709C9DFC-B4B0-4E6F-BFB2-B16F22BA5424}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

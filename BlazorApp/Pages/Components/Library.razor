@@ -1,13 +1,15 @@
 ﻿@using Objects.Components.Library;
 @using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 @using Microsoft.AspNetCore.Components.Forms;
+@using Services;
 
 @inject IWebAssemblyHostEnvironment Environment
+@inject ProgressService ProgressService
 @inject DialogService DialogService
 @inject NavigationManager NavigationManager
 
 <h3>Library</h3>
-
+<LoadingProgress />
 @if (_userBooks.Count < 1)
 {
     <RadzenCard Style="width: 332px; padding: 0; flex: none; position: relative">
