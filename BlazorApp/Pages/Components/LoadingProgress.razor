@@ -1,0 +1,21 @@
+﻿@using Services;
+
+@inject ProgressService ProgressService
+
+<p>Processing file progress: @_percentage %</p>
+
+@code {
+    private int _percentage;
+
+    protected override Task OnInitializedAsync()
+    {
+        ProgressService.ProgressChanged += UpdateProgress;
+        return base.OnInitializedAsync();
+    }
+
+    private void UpdateProgress(int progress)
+    {
+        _percentage = progress;
+        StateHasChanged();
+    }
+}

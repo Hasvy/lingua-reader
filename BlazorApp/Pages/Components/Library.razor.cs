@@ -17,8 +17,8 @@ namespace BlazorApp.Pages.Components
     {
         [Inject] ILocalStorageService localStorage { get; set; } = null!;
 
-        private List<BookCover>? _userBooks = new List<BookCover>();
-        private long _maxFileSize = 1024 * 1024 * 10;
+        private List<BookCover> _userBooks = new List<BookCover>();
+        private long _maxFileSize = 1024 * 1024 * 10;       //10Mb
 
         protected override async Task OnInitializedAsync()
         {
@@ -36,7 +36,10 @@ namespace BlazorApp.Pages.Components
                     var stringCover = await localStorage.GetItemAsync<string>(key);
                     var cover = JsonConvert.DeserializeObject<BookCover>(stringCover);
                     
-                    _userBooks.Add(cover);
+                    if (cover != null)
+                    {
+                        _userBooks.Add(cover);
+                    }
                 }
                 catch (Exception)
                 {
@@ -65,22 +68,22 @@ namespace BlazorApp.Pages.Components
                 PdfReader pdfReader = new PdfReader("/123.pdf");
                 PdfDocument pdfDoc = new PdfDocument(pdfReader);
                 string pageContent = string.Empty;
-                var pages = pdfDoc.GetNumberOfPages();
-                for (int page = 1; page <= pdfDoc.GetNumberOfPages(); page++)
+                var pagesCount = pdfDoc.GetNumberOfPages();
+                for (int page = 1; page <= pagesCount; page++)
                 {
                     //TODO fix processing file to comfort save and read then
                     ITextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
                     pageContent += PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(page), strategy);
                     //TODO Add loading, file processing and refresh page after book is added
+                    await Task.Delay(1);
+                    ProgressService.UpdateProgress(page * 100 / pagesCount);
                 }
                 await SaveBook(pageContent);
                 pdfDoc.Close();
                 pdfReader.Close();
-                
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -92,6 +95,8 @@ namespace BlazorApp.Pages.Components
             book.BookCover.Title = "Mars";
             book.BookCover.Author = "Breadbury";
             book.Text = content;
+
+            _userBooks.Add(book.BookCover);
 
             string cover = JsonConvert.SerializeObject(book.BookCover);
             await localStorage.SetItemAsync(book.BookCover.Id.ToString(), cover);
