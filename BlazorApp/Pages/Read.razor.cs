@@ -12,18 +12,23 @@ namespace BlazorApp.Pages
         [Parameter]
         public string? BookId { get; set; }
 
-        private string Text { get; set; } = string.Empty;
+        private List<string> Text { get; set; } = new List<string>();
 
         protected override async Task OnInitializedAsync()
         {
             //Get Book form localStorage
             var stringCover = await localStorage.GetItemAsync<string>(BookId);
             var cover = JsonConvert.DeserializeObject<BookCover>(stringCover);
-
             if (cover != null)
             {
-               Text = await localStorage.GetItemAsync<string>(cover.TextId.ToString());
+                var stringText = await localStorage.GetItemAsync<string>(cover.TextId.ToString());
+                Text = JsonConvert.DeserializeObject<List<string>>(stringText);
             }
+
+            //if (cover != null)
+            //{
+            //   Text = await localStorage.GetItemAsync<string>(cover.TextId.ToString());
+            //}
 
             await base.OnInitializedAsync();
         }
