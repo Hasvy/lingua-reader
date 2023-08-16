@@ -18,6 +18,7 @@ namespace BlazorApp.Pages.Components
         [Inject] ILocalStorageService localStorage { get; set; } = null!;
 
         private List<BookCover> _userBooks = new List<BookCover>();
+        private List<string> _pages = new List<string>();
         private long _maxFileSize = 1024 * 1024 * 10;       //10Mb
 
         protected override async Task OnInitializedAsync()
@@ -67,18 +68,18 @@ namespace BlazorApp.Pages.Components
 
                 PdfReader pdfReader = new PdfReader("/123.pdf");
                 PdfDocument pdfDoc = new PdfDocument(pdfReader);
-                string pageContent = string.Empty;
+                //string pageContent = string.Empty;
                 var pagesCount = pdfDoc.GetNumberOfPages();
                 for (int page = 1; page <= pagesCount; page++)
                 {
                     //TODO fix processing file to comfort save and read then
                     ITextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
-                    pageContent += PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(page), strategy);
+                    _pages.Add(PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(page), strategy));
                     //TODO Add loading, file processing and refresh page after book is added
                     await Task.Delay(1);
                     ProgressService.UpdateProgress(page * 100 / pagesCount);
                 }
-                await SaveBook(pageContent);
+                await SaveBook();
                 pdfDoc.Close();
                 pdfReader.Close();
             }
@@ -88,19 +89,20 @@ namespace BlazorApp.Pages.Components
             }
         }
 
-        private async Task SaveBook(string content)
+        private async Task SaveBook()
         {
             Book book = new Book();
             book.BookCover = new BookCover();
             book.BookCover.Title = "Mars";
             book.BookCover.Author = "Breadbury";
-            book.Text = content;
+            //book.Text = _pages.ToString();
 
             _userBooks.Add(book.BookCover);
 
             string cover = JsonConvert.SerializeObject(book.BookCover);
+            string text = JsonConvert.SerializeObject(_pages);
             await localStorage.SetItemAsync(book.BookCover.Id.ToString("N"), cover);
-            await localStorage.SetItemAsync(book.BookCover.TextId.ToString("D"), content);
+            await localStorage.SetItemAsync(book.BookCover.TextId.ToString("D"), text);
         }
 
         private async Task DeleteBook(BookCover bookCover)
@@ -110,7 +112,7 @@ namespace BlazorApp.Pages.Components
             if (confirm == true)
             {
                 _userBooks.Remove(bookCover);
-                await localStorage.RemoveItemAsync(bookCover.Id.ToString());
+                await localStorage.RemoveItemAsync(bookCover.Id.ToString());        //Covers doesn't remove
                 await localStorage.RemoveItemAsync(bookCover.TextId.ToString());
             }
         }

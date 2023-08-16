@@ -1,3 +1,7 @@
 ﻿@attribute [Route(Routes.Read)]
 
-@Text
+@foreach (var pageText in Text)
+{
+    @pageText
+    <hr/>
+}
