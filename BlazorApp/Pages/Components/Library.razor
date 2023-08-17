@@ -9,6 +9,11 @@
 @inject NavigationManager NavigationManager
 
 <h3>Library</h3>
+@foreach (var item in _pages)
+{
+    @item
+    <hr/>
+}
 <LoadingProgress />
 @if (_userBooks.Count < 1)
 {
