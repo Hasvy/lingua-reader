@@ -68,18 +68,20 @@ namespace BlazorApp.Pages.Components
 
                 PdfReader pdfReader = new PdfReader("/123.pdf");
                 PdfDocument pdfDoc = new PdfDocument(pdfReader);
-                //string pageContent = string.Empty;
                 var pagesCount = pdfDoc.GetNumberOfPages();
                 for (int page = 1; page <= pagesCount; page++)
                 {
-                    //TODO fix processing file to comfort save and read then
-                    ITextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
-                    _pages.Add(PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(page), strategy));
-                    //TODO Add loading, file processing and refresh page after book is added
+                    //TODO parse pdf file with saving format. At least titles and images
+                    ITextExtractionStrategy strategy = new LocationTextExtractionStrategy();
+                    //ITextExtractionStrategy strategy2 = new iText.Kernel.Pdf.Canvas.Parser.Listener.
+                    //_pages.Add(PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(page), strategy));
+                    PdfCanvasProcessor parser = new PdfCanvasProcessor(strategy);
+                    parser.ProcessPageContent(pdfDoc.GetPage(page));
+                    _pages.Add(strategy.GetResultantText());
                     await Task.Delay(1);
                     ProgressService.UpdateProgress(page * 100 / pagesCount);
                 }
-                await SaveBook();
+                //await SaveBook();
                 pdfDoc.Close();
                 pdfReader.Close();
             }
@@ -95,7 +97,6 @@ namespace BlazorApp.Pages.Components
             book.BookCover = new BookCover();
             book.BookCover.Title = "Mars";
             book.BookCover.Author = "Breadbury";
-            //book.Text = _pages.ToString();
 
             _userBooks.Add(book.BookCover);
 
@@ -112,8 +113,8 @@ namespace BlazorApp.Pages.Components
             if (confirm == true)
             {
                 _userBooks.Remove(bookCover);
-                await localStorage.RemoveItemAsync(bookCover.Id.ToString());        //Covers doesn't remove
-                await localStorage.RemoveItemAsync(bookCover.TextId.ToString());
+                await localStorage.RemoveItemAsync(bookCover.Id.ToString("N"));
+                await localStorage.RemoveItemAsync(bookCover.TextId.ToString("D"));
             }
         }
     }
