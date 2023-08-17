@@ -1,7 +1,14 @@
 ﻿@attribute [Route(Routes.Read)]
 
-@foreach (var pageText in Text)
-{
-    @pageText
-    <hr/>
-}
+@_actualPageNumber / @(Text.Count)
+<div style="display: flex; justify-content: center">
+    <RadzenButton Icon="arrow_back_ios" Click="PreviousPage" />     @*TODO Fix icon*@
+    <RadzenButton Icon="arrow_forward_ios" Click="NextPage" />
+</div>
+<div style="display: flex; justify-content: center; align-items: center">
+    <RadzenCard Style="width: 60%; position: center">
+        <RadzenText TextAlign="TextAlign.Justify">
+            @_actualPage
+        </RadzenText>
+    </RadzenCard>
+</div>
