@@ -19,10 +19,4 @@ namespace Objects.Components.Library
         }
 
     }
-
-    //public enum BookFormat
-    //{
-    //    pdf,
-    //    epub
-    //}
 }
