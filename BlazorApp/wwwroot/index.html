@@ -14,6 +14,15 @@
 </head>
 
 <body>
+    <script>
+        window.downloadFile = function (fileName, fileContent) {
+            const blob = new Blob([fileContent]);
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            link.click();
+        }
+    </script>
     <div id="app">Loading...</div>
 
     <div id="blazor-error-ui">

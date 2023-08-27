@@ -7,6 +7,7 @@
 @inject ProgressService ProgressService
 @inject DialogService DialogService
 @inject NavigationManager NavigationManager
+@inject IJSRuntime JS
 
 <h3>Library</h3>
 <LoadingProgress />
@@ -33,6 +34,7 @@ else
                     <RadzenColumn Size="10">
                         <RadzenText Text="@bookCover.Title" />
                         <RadzenText Text="@bookCover.Author" />
+                        <RadzenText Text="@bookCover.Format" />
                     </RadzenColumn>
                     <RadzenColumn Size="2">
                         <RadzenButton Icon="delete" Variant="Variant.Text" ButtonStyle="ButtonStyle.Danger" @onclick:stopPropagation="true" Click="@(() => DeleteBook(bookCover))" />

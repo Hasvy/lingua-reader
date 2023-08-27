@@ -2,12 +2,15 @@
 using Newtonsoft.Json;
 using Blazored.LocalStorage;
 using Objects.Components.Library;
+using Objects;
+using AngleSharp.Html.Parser;
 
 namespace BlazorApp.Pages
 {
     public partial class Read : ComponentBase
     {
         [Inject] ILocalStorageService localStorage { get; set; } = null!;
+        [Inject] HtmlParser htmlParser { get; set; } = null!;
 
         [Parameter]
         public string? BookId { get; set; }
@@ -24,7 +27,14 @@ namespace BlazorApp.Pages
             if (cover != null)
             {
                 var stringText = await localStorage.GetItemAsync<string>(cover.TextId.ToString());
-                Text = JsonConvert.DeserializeObject<List<string>>(stringText);
+                if (cover.Format == ConstBookFormats.pdf)
+                {
+                    Text = JsonConvert.DeserializeObject<List<string>>(stringText);
+                }
+                if (cover.Format == ConstBookFormats.epub)
+                {
+                    Text = await ParseEpubBook(stringText);
+                }
             }
 
             if (Text != null)
@@ -35,6 +45,28 @@ namespace BlazorApp.Pages
             _actualPageNumber = GetIndexOfActualPage() + 1;
 
             await base.OnInitializedAsync();
+        }
+
+        private async Task<List<string>> ParseEpubBook(string htmlContent)
+        {
+            List<string> extractedContent = new List<string>();
+            htmlContent = htmlContent.Replace("<a id=\"p1\"></a>", "<a id=\"p1\">abc</a>");
+            var document = htmlParser.ParseDocument(htmlContent);
+            var currentElement = document.GetElementById("p1");
+
+            //for (int i = 1; i <= length; i++)
+            //{
+            //    if (currentElement != null)
+            //    {
+            //        var nextElement = currentElement.NextElementSibling;
+            //        while (nextElement != null && nextElement.LocalName != "a" && !nextElement.Id.StartsWith("p"))
+            //        {
+            //            extractedContent.Add(nextElement.OuterHtml);
+            //            nextElement = nextElement.NextElementSibling;
+            //        }
+            //    }
+            //}
+            return extractedContent;
         }
 
         private int GetIndexOfActualPage()

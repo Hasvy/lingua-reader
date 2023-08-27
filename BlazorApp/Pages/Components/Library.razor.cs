@@ -11,16 +11,23 @@ using Services;
 using System.IO;
 using System.Text;
 using Objects;
+using System.ComponentModel;
+using Microsoft.JSInterop;
+using iText.Commons.Utils;
+using VersOne.Epub;
 
 namespace BlazorApp.Pages.Components
 {
     public partial class Library : ComponentBase
     {
         [Inject] ILocalStorageService localStorage { get; set; } = null!;
+        [Inject] EpubConverter epubConverter { get; set; } = null!;
 
         private List<BookCover> _userBooks = new List<BookCover>();
         private List<string> _pages = new List<string>();
         private long _maxFileSize = 1024 * 1024 * 10;       //10Mb
+
+        string text = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
@@ -76,9 +83,45 @@ namespace BlazorApp.Pages.Components
             }
         }
 
-        private async Task AddEpubBook(InputFileChangeEventArgs e)
+        private async Task AddEpubBook(InputFileChangeEventArgs e)          //ConvertToHtml
         {
+            string tmpFileName = "123.epub";                                        //Optimize that code{
+            string tmpFilePath = Directory.GetCurrentDirectory() + tmpFileName;
+            //await using FileStream fileStream = new(tmpFilePath, FileMode.Create);
+            //await e.File.OpenReadStream(_maxFileSize).CopyToAsync(fileStream);
 
+            using(var ms = new MemoryStream())
+            {
+                await e.File.OpenReadStream(_maxFileSize).CopyToAsync(ms);
+                byte[] data = ms.ToArray();
+                File.WriteAllBytes(tmpFilePath, data);
+                //await JS.InvokeVoidAsync("downloadFile", tmpFileName, data);      //}
+            }
+
+            EpubBook epubBook = await EpubReader.ReadBookAsync("/123.epub");    //TODO Work with this converted epub book
+            string? htmlFile = epubConverter.Convert("/123.epub");
+
+            if (htmlFile != null)
+            {
+                string text = File.ReadAllText(htmlFile);
+                await SaveEpubBook(text);
+            }
+        }
+
+        private async Task SaveEpubBook(string content)
+        {
+            Book book = new Book();
+            book.BookCover = new BookCover();
+            book.BookCover.Title = "Title";
+            book.BookCover.Author = "Author";
+            book.BookCover.Format = ConstBookFormats.epub;
+
+            _userBooks.Add(book.BookCover);
+
+            string cover = JsonConvert.SerializeObject(book.BookCover);
+            //string text = JsonConvert.SerializeObject(content);
+            await localStorage.SetItemAsync(book.BookCover.Id.ToString("N"), cover);
+            await localStorage.SetItemAsync(book.BookCover.TextId.ToString("D"), content);
         }
 
         private async Task AddPdfBook(InputFileChangeEventArgs e)
@@ -86,7 +129,7 @@ namespace BlazorApp.Pages.Components
             try
             {
                 //In future, I can use JavaScript Interop to save and then read a file. Also I can save all information in file, like drawio.
-                FileStream fileStream = new(Directory.GetCurrentDirectory() + "123.pdf", FileMode.Create);
+                await using FileStream fileStream = new(Directory.GetCurrentDirectory() + "123.pdf", FileMode.Create);
 
                 await e.File.OpenReadStream(_maxFileSize).CopyToAsync(fileStream);
                 var fi = new System.IO.FileInfo("/123.pdf").Length;
