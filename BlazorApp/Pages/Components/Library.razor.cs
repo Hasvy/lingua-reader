@@ -10,6 +10,7 @@ using Radzen;
 using Services;
 using System.IO;
 using System.Text;
+using Objects;
 
 namespace BlazorApp.Pages.Components
 {
@@ -56,7 +57,31 @@ namespace BlazorApp.Pages.Components
             NavigationManager.NavigateTo("read/" + choosenBook.Id.ToString("N"));
         }
 
-        private async Task AddBook(InputFileChangeEventArgs e)
+        private async Task FileTypeSwitch(InputFileChangeEventArgs e)
+        {
+            string? fileExtension = new System.IO.FileInfo(e.File.Name).Extension;
+            switch (fileExtension)
+            {
+                case ConstBookFormats.pdf:
+                    await AddPdfBook(e);
+                    break;
+                case ConstBookFormats.epub:
+                    await AddEpubBook(e);
+                    break;
+                case ConstBookFormats.fb2:
+                    //TODO
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private async Task AddEpubBook(InputFileChangeEventArgs e)
+        {
+
+        }
+
+        private async Task AddPdfBook(InputFileChangeEventArgs e)
         {
             try
             {
@@ -72,16 +97,16 @@ namespace BlazorApp.Pages.Components
                 for (int page = 1; page <= pagesCount; page++)
                 {
                     //TODO parse pdf file with saving format. At least titles and images
-                    ITextExtractionStrategy strategy = new LocationTextExtractionStrategy();
+                    ITextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
                     //ITextExtractionStrategy strategy2 = new iText.Kernel.Pdf.Canvas.Parser.Listener.
-                    //_pages.Add(PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(page), strategy));
+                    _pages.Add(PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(page), strategy));
                     PdfCanvasProcessor parser = new PdfCanvasProcessor(strategy);
                     parser.ProcessPageContent(pdfDoc.GetPage(page));
                     _pages.Add(strategy.GetResultantText());
                     await Task.Delay(1);
                     ProgressService.UpdateProgress(page * 100 / pagesCount);
                 }
-                //await SaveBook();
+                await SaveBook();
                 pdfDoc.Close();
                 pdfReader.Close();
             }

@@ -9,17 +9,12 @@
 @inject NavigationManager NavigationManager
 
 <h3>Library</h3>
-@foreach (var item in _pages)
-{
-    @item
-    <hr/>
-}
 <LoadingProgress />
 @if (_userBooks.Count < 1)
 {
     <RadzenCard Style="width: 332px; padding: 0; flex: none; position: relative">
         <RadzenText Text="Add a new book" Style="position: relative; margin: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center" />
-        <InputFile title="" style="width: 100%; height: 100%; opacity: 0; position: absolute; top: 0" OnChange="@AddBook" />
+        <InputFile title="" style="width: 100%; height: 100%; opacity: 0; position: absolute; top: 0" OnChange="@FileTypeSwitch" />
     </RadzenCard>
 }
 else
@@ -30,7 +25,7 @@ else
             {
                 <RadzenCard Style="width: 332px; padding: 0; flex: none; position: relative">
                     <RadzenText Text="Add a new book" Style="position: relative; margin: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center" />
-                    <InputFile title="" style="width: 100%; height: 100%; opacity: 0; position: absolute; top: 0" OnChange="@AddBook" />
+                    <InputFile title="" style="width: 100%; height: 100%; opacity: 0; position: absolute; top: 0" OnChange="FileTypeSwitch" accept=".pdf, .epub, .fb2"/>
                 </RadzenCard>
             }
             <RadzenCard Style="width: 300px; flex: none;" @onclick="@(() => OpenBook(bookCover))">
