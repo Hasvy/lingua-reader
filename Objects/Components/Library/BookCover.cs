@@ -9,7 +9,8 @@ namespace Objects.Components.Library
         public string? Title { get; set; }
         public string? Author { get; set; }
         public string? Description { get; set; }
-        public BookFormat Format { get; set; }
+        public string Format { get; set; } = null!;
+        //public BookFormat Format { get; set; }
         public Guid TextId { get; set; }        //Private set?
 
         public BookCover()
