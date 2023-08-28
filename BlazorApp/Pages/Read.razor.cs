@@ -4,6 +4,8 @@ using Blazored.LocalStorage;
 using Objects.Components.Library;
 using Objects;
 using AngleSharp.Html.Parser;
+using AngleSharp.Html.Dom;
+using System.Reflection.Metadata;
 
 namespace BlazorApp.Pages
 {
@@ -15,8 +17,10 @@ namespace BlazorApp.Pages
         [Parameter]
         public string? BookId { get; set; }
         private List<string> Text { get; set; } = new List<string>();
+        private List<string> Sections { get; set; } = new List<string>();
         private string _actualPage = null!;
         private int _actualPageNumber;
+        private ElementReference html;
 
         protected override async Task OnInitializedAsync()
         {
@@ -33,11 +37,11 @@ namespace BlazorApp.Pages
                 }
                 if (cover.Format == ConstBookFormats.epub)
                 {
-                    Text = await ParseEpubBook(stringText);
+                    Text = JsonConvert.DeserializeObject<List<string>>(stringText);
                 }
             }
 
-            if (Text != null)
+            if (Text != null && Text.Any())
             {
                 _actualPage = Text.First();
             }
@@ -45,6 +49,24 @@ namespace BlazorApp.Pages
             _actualPageNumber = GetIndexOfActualPage() + 1;
 
             await base.OnInitializedAsync();
+        }
+
+        private async Task ReadHtml(List<string> sections)
+        {
+            var list = new List<IHtmlDocument>();
+            var parser = new HtmlParser();
+            foreach (var section in sections)
+            {
+                list.Add(await parser.ParseDocumentAsync(section));
+            }
+            foreach (var item in list)
+            {
+                if (item.Body != null)
+                {
+                    Text.Add(item.Body.InnerHtml);
+                }
+            }
+            
         }
 
         private async Task<List<string>> ParseEpubBook(string htmlContent)
