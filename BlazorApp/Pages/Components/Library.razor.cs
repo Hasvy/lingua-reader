@@ -25,6 +25,7 @@ namespace BlazorApp.Pages.Components
 
         private List<BookCover> _userBooks = new List<BookCover>();
         private List<string> _pages = new List<string>();
+        private List<string> _contentFiles = new List<string>();
         private long _maxFileSize = 1024 * 1024 * 10;       //10Mb
 
         string text = string.Empty;
@@ -98,30 +99,34 @@ namespace BlazorApp.Pages.Components
                 //await JS.InvokeVoidAsync("downloadFile", tmpFileName, data);      //}
             }
 
-            EpubBook epubBook = await EpubReader.ReadBookAsync("/123.epub");    //TODO Work with this converted epub book
-            string? htmlFile = epubConverter.Convert("/123.epub");
+            EpubBook epubBook = await EpubReader.ReadBookAsync("/123.epub");
+            //string? htmlFile = epubConverter.Convert("/123.epub");
 
-            if (htmlFile != null)
+            if (epubBook != null)
             {
-                string text = File.ReadAllText(htmlFile);
-                await SaveEpubBook(text);
+                await SaveEpubBook(epubBook);
             }
         }
 
-        private async Task SaveEpubBook(string content)
+        private async Task SaveEpubBook(EpubBook epubBook)
         {
             Book book = new Book();
             book.BookCover = new BookCover();
-            book.BookCover.Title = "Title";
-            book.BookCover.Author = "Author";
+            book.BookCover.Title = epubBook.Title;
+            book.BookCover.Author = epubBook.Author;
+            book.BookCover.Description = epubBook.Description;
             book.BookCover.Format = ConstBookFormats.epub;
 
             _userBooks.Add(book.BookCover);
 
+            foreach (var item in epubBook.Content.Html.Local)           //What is remote file?
+            {
+                _contentFiles.Add(item.Content);
+            }
             string cover = JsonConvert.SerializeObject(book.BookCover);
-            //string text = JsonConvert.SerializeObject(content);
+            string text = JsonConvert.SerializeObject(_contentFiles);
             await localStorage.SetItemAsync(book.BookCover.Id.ToString("N"), cover);
-            await localStorage.SetItemAsync(book.BookCover.TextId.ToString("D"), content);
+            await localStorage.SetItemAsync(book.BookCover.TextId.ToString("D"), text);
         }
 
         private async Task AddPdfBook(InputFileChangeEventArgs e)
