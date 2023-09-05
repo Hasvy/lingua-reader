@@ -143,7 +143,7 @@ namespace BlazorApp.Pages
             iframeHtml = iframeDocument.ToHtml();
 
 
-            await JS.InvokeVoidAsync("getTextContainer", iframeHtml);       //TODO work with height of elements, and add page changing
+            await JS.InvokeVoidAsync("getTextContainer", iframeHtml);       //TODO handle page overflow, and add page changing
             //if (_actualPageNumber != Text.Count)
             //{
             //    _actualPage = Text[GetIndexOfActualPage() + 1];
