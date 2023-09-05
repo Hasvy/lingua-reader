@@ -6,6 +6,13 @@ using Objects;
 using AngleSharp.Html.Parser;
 using AngleSharp.Html.Dom;
 using System.Reflection.Metadata;
+using static System.Collections.Specialized.BitVector32;
+using Microsoft.JSInterop;
+using AngleSharp.Common;
+using AngleSharp.Dom;
+using AngleSharp.Text;
+using System.Text;
+using AngleSharp;
 
 namespace BlazorApp.Pages
 {
@@ -13,14 +20,22 @@ namespace BlazorApp.Pages
     {
         [Inject] ILocalStorageService localStorage { get; set; } = null!;
         [Inject] HtmlParser htmlParser { get; set; } = null!;
+        [Inject] IJSRuntime JS { get; set; } = null!;
 
         [Parameter]
         public string? BookId { get; set; }
         private List<string> Text { get; set; } = new List<string>();
+        private List<IElement> AllBodyElements { get; set; } = new List<IElement>();
+        private List<IElement> SelectedBodyElements { get; set; } = new List<IElement>();
         private List<string> Sections { get; set; } = new List<string>();
         private string _actualPage = null!;
+        private string _head = null!;
+        private string _body = null!;
         private int _actualPageNumber;
-        private ElementReference html;
+        private IHtmlDocument _htmlDocument;
+        private IDocument iframeDocument;
+
+        private DotNetObjectReference<JSInterop> _jsReference;
 
         protected override async Task OnInitializedAsync()
         {
@@ -37,18 +52,27 @@ namespace BlazorApp.Pages
                 }
                 if (cover.Format == ConstBookFormats.epub)
                 {
-                    Text = JsonConvert.DeserializeObject<List<string>>(stringText);
+                    Sections = JsonConvert.DeserializeObject<List<string>>(stringText);         //TODO Fix read page size, and show text by pages
                 }
             }
 
-            if (Text != null && Text.Any())
+            //Test
+            if (Sections != null && Sections.Any())
             {
-                _actualPage = Text.First();
+                _actualPage = Sections[3];
+                ParseEpubBookToList();
             }
 
-            _actualPageNumber = GetIndexOfActualPage() + 1;
+            
 
+            //_actualPageNumber = GetIndexOfActualPage() + 1;
             await base.OnInitializedAsync();
+        }
+
+        [JSInvokable]
+        private async Task GetActualPageText(List<string> sections)
+        {
+
         }
 
         private async Task ReadHtml(List<string> sections)
@@ -69,12 +93,23 @@ namespace BlazorApp.Pages
             
         }
 
-        private async Task<List<string>> ParseEpubBook(string htmlContent)
+        private async Task<List<string>> ParseEpubBookToList()
         {
-            List<string> extractedContent = new List<string>();
-            htmlContent = htmlContent.Replace("<a id=\"p1\"></a>", "<a id=\"p1\">abc</a>");
-            var document = htmlParser.ParseDocument(htmlContent);
-            var currentElement = document.GetElementById("p1");
+            var parser = new HtmlParser();
+            _htmlDocument = await parser.ParseDocumentAsync(Sections[3]);
+            _head = _htmlDocument.Head.OuterHtml;
+            //_body = _htmlDocument.Body.OuterHtml;       //Without inner html, only body tag
+            AllBodyElements = _htmlDocument.Body.Children.ToList();
+
+            var config = Configuration.Default.WithDefaultLoader();
+            var context = BrowsingContext.New(config);
+            var contextParser = context.GetService<IHtmlParser>();
+
+            iframeDocument = await context.OpenNewAsync();
+            //List<string> extractedContent = new List<string>();
+            //htmlContent = htmlContent.Replace("<a id=\"p1\"></a>", "<a id=\"p1\">abc</a>");
+            //var document = htmlParser.ParseDocument(htmlContent);
+            //var currentElement = document.GetElementById("p1");
 
             //for (int i = 1; i <= length; i++)
             //{
@@ -88,7 +123,7 @@ namespace BlazorApp.Pages
             //        }
             //    }
             //}
-            return extractedContent;
+            return new List<string>();
         }
 
         private int GetIndexOfActualPage()
@@ -96,13 +131,24 @@ namespace BlazorApp.Pages
             return Text.IndexOf(_actualPage);
         }
 
-        private void NextPage()
+        string? iframeHtml;
+        private async void NextPage()
         {
-            if (_actualPageNumber != Text.Count)
-            {
-                _actualPage = Text[GetIndexOfActualPage() + 1];
+
+            //JS.InvokeVoidAsync("bookPageChange");
+            //Text.Add(_htmlDocument.Body.Children.ToList();
+
+            //SelectedBodyElements.Add(AllBodyElements[_actualPageNumber]);
+            iframeDocument.Body.AppendChild(AllBodyElements[_actualPageNumber]);
+            iframeHtml = iframeDocument.ToHtml();
+
+
+            await JS.InvokeVoidAsync("getTextContainer", iframeHtml);       //TODO work with height of elements, and add page changing
+            //if (_actualPageNumber != Text.Count)
+            //{
+            //    _actualPage = Text[GetIndexOfActualPage() + 1];
                 _actualPageNumber++;
-            }
+            //}
         }
 
         private void PreviousPage()
