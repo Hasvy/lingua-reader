@@ -36,16 +36,11 @@ function bookPageChange() {
 
 function getTextContainer(iframeHtml) {
     var containerElement = document.getElementById("container");
-    var elements = containerElement.querySelectorAll("*");
 
-    elements.forEach(function (element) {
-        totalHeight += element.clientHeight;
-        if (totalHeight >= containerElement.clientHeight) {
-            containerElement.style.background = "red";
-        }
-    });
-
-    totalHeight = 0;
+    var height = containerElement.clientHeight;
+    if (height >= 600) {
+        containerElement.style.background = "red";
+    }
 
     if (containerElement) {
         containerElement.innerHTML = iframeHtml;
