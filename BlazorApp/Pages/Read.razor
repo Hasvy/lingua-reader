@@ -5,10 +5,34 @@
     <RadzenButton Icon="arrow_back_ios" Click="PreviousPage" />     @*TODO Fix icon*@
     <RadzenButton Icon="arrow_forward_ios" Click="NextPage" />
 </div>
+@*<iframe>
+@_head
+<br/>
+@_body
+<br/>
+@foreach (var element in SelectedBodyElements)
+{
+    @element.OuterHtml
+}
+</iframe>*@
+
 <div style="display: flex; justify-content: center; align-items: center">
     <RadzenCard Style="width: 60%; position: center">
-        <RadzenText TextAlign="TextAlign.Justify">
-            @((MarkupString)_actualPage)                @*Possible security problem*@
-        </RadzenText>
+        <div style="width: 100%; height: 600px; overflow: hidden;" id="container">
+           
+            
+            @*@_head
+            <br />
+            @_body
+            <br />
+            @foreach (var element in SelectedBodyElements)
+            {
+                @element.OuterHtml
+            }*@
+            @*<iframe sandbox="allow-same-origin" style="width: 100%; height: 100%; border: none;">*@
+            @*<RadzenText  TextAlign="TextAlign.Justify">*@
+                                @*Possible security problem*@
+            @*</RadzenText>*@
+        </div>
     </RadzenCard>
 </div>
