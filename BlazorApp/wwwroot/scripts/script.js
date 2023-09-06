@@ -4,6 +4,8 @@ var elements = null;
 var iframeDocument;
 var totalHeight = 0;
 const maxHeight = 600;
+var containerElement;
+let backup;
 
 function initializeBookContainer() {
     bookContainer = document.querySelector('#book-container');
@@ -34,17 +36,35 @@ function bookPageChange() {
     //elements[currentIndex].style.top = '0';
 }
 
-function getTextContainer(iframeHtml) {
-    var containerElement = document.getElementById("container");
+function setupReadingPage() {
+    iframe = document.getElementById("iframe-container");
+    var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    //containerElement = document.getElementById("container");
+    iframeDocument.body.style = "margin: 0; overflow: hidden;"
+    containerElement = iframeDocument.createElement("div");
+    containerElement.id = "container";
+    iframeDocument.body.appendChild(containerElement);
+}
 
-    var height = containerElement.clientHeight;
-    if (height >= 600) {
-        containerElement.style.background = "red";
-    }
+function clearContainerElement() {
+    containerElement.innerHTML = "";
+}
+
+function getTextContainer(iframeHtml) {
 
     if (containerElement) {
         containerElement.innerHTML = iframeHtml;
+        if (containerElement.clientHeight < 600) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
+}
+
+function setActualPage(htmlCode) {
+    containerElement.innerHTML = htmlCode;
 }
 
 window.loadIframe = function (content) {
