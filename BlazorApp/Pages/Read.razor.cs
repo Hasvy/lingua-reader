@@ -1,18 +1,14 @@
-﻿using Microsoft.AspNetCore.Components;
-using Newtonsoft.Json;
-using Blazored.LocalStorage;
-using Objects.Components.Library;
-using Objects;
-using AngleSharp.Html.Parser;
-using AngleSharp.Html.Dom;
-using System.Reflection.Metadata;
-using static System.Collections.Specialized.BitVector32;
-using Microsoft.JSInterop;
-using AngleSharp.Common;
+﻿using AngleSharp;
 using AngleSharp.Dom;
-using AngleSharp.Text;
-using System.Text;
-using AngleSharp;
+using AngleSharp.Html.Dom;
+using AngleSharp.Html.Parser;
+using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using Newtonsoft.Json;
+using Objects;
+using Objects.Components.Library;
+using System.Reflection.Metadata;
 
 namespace BlazorApp.Pages
 {
@@ -36,6 +32,7 @@ namespace BlazorApp.Pages
         private IDocument iframeDocument;
         private int elementIndex = 0;
         private string? iframeBodyHtml;
+        private List<string> pages = new List<string>();
 
         private DotNetObjectReference<JSInterop> _jsReference;
 
@@ -54,51 +51,49 @@ namespace BlazorApp.Pages
                 }
                 if (cover.Format == ConstBookFormats.epub)
                 {
-                    Sections = JsonConvert.DeserializeObject<List<string>>(stringText);         //TODO Fix read page size, and show text by pages
+                    Sections = JsonConvert.DeserializeObject<List<string>>(stringText);
                     await JS.InvokeVoidAsync("setupReadingPage");
                 }
             }
 
-            //Test
-            if (Sections != null && Sections.Any())
+            if (Sections != null && Sections.Any())     //TODO fix sections and show whole book.
             {
                 _actualPage = Sections[3];
                 await ParseEpubBookToList();
                 await SplitToPages();
                 _actualPageNumber = 1;
                 await JS.InvokeVoidAsync("setActualPage", pages[_actualPageNumber - 1]);
-                //await SetActualPageText();
             }
 
             await base.OnInitializedAsync();
         }
 
-        private async Task SetActualPageText()
-        {
-            //bool isHeightInBorders = true;
-            //await JS.InvokeVoidAsync("getContainerElement");
-            //while (isHeightInBorders && elementIndex <= AllBodyElements.Count)      //Or change mechanism to set all pages while initializing, and then show them.
-            //{
-            //    iframeDocument.Body.AppendChild(AllBodyElements[elementIndex]);
-            //    iframeBodyHtml = iframeDocument.Body.ToHtml();
-            //    isHeightInBorders = await JS.InvokeAsync<bool>("getTextContainer", iframeBodyHtml);
-            //    if (isHeightInBorders)
-            //    {
-            //        elementIndex++;
-            //    }
-            //    else
-            //    {
-            //        elementIndex--;
-            //    }
-            //}
-            //iframeDocument.Body.InnerHtml = "";
-        }
+        //private async Task SetActualPageText()                //Another variant of paging, setup every page right before display.
+        //{
+        //bool isHeightInBorders = true;
+        //await JS.InvokeVoidAsync("getContainerElement");
+        //while (isHeightInBorders && elementIndex <= AllBodyElements.Count)
+        //{
+        //    iframeDocument.Body.AppendChild(AllBodyElements[elementIndex]);
+        //    iframeBodyHtml = iframeDocument.Body.ToHtml();
+        //    isHeightInBorders = await JS.InvokeAsync<bool>("getTextContainer", iframeBodyHtml);
+        //    if (isHeightInBorders)
+        //    {
+        //        elementIndex++;
+        //    }
+        //    else
+        //    {
+        //        elementIndex--;
+        //    }
+        //}
+        //iframeDocument.Body.InnerHtml = "";
+        //}
 
-        int firstIndex = 0;
-        int lastIndex = 0;
-        private List<string> pages = new List<string>();
-        private async Task SplitToPages()
+        private async Task SplitToPages()       //Cleanup and rename vars
         {
+            int lastIndex = 0;
+            string html;
+
             while (lastIndex < AllBodyElements.Count)
             {
                 bool isHeightInBorders = true;
@@ -108,7 +103,7 @@ namespace BlazorApp.Pages
                 {
                     iframeDocument.Body.AppendChild(AllBodyElements[lastIndex]);
                     iframeBodyHtml = iframeDocument.Body.ToHtml();
-                    isHeightInBorders = await JS.InvokeAsync<bool>("getTextContainer", iframeBodyHtml);
+                    isHeightInBorders = await JS.InvokeAsync<bool>("checkContainerHeight", iframeBodyHtml);
                     if (isHeightInBorders)
                     {
                         page.Add(AllBodyElements[lastIndex]);
@@ -117,7 +112,7 @@ namespace BlazorApp.Pages
                 }
                 iframeDocument.Body.InnerHtml = "";
 
-                string html = string.Empty;
+                html = string.Empty;
                 foreach (var item in page)
                 {
                     html += item.OuterHtml;
@@ -127,41 +122,20 @@ namespace BlazorApp.Pages
             }
         }
 
-        private async Task<List<string>> ParseEpubBookToList()
+        private async Task ParseEpubBookToList()
         {
             var parser = new HtmlParser();
             _htmlDocument = await parser.ParseDocumentAsync(Sections[3]);
             _head = _htmlDocument.Head.OuterHtml;
-            //_body = _htmlDocument.Body.OuterHtml;       //Without inner html, only body tag
             AllBodyElements = _htmlDocument.Body.Children.ToList();
 
             var config = Configuration.Default.WithDefaultLoader();
             var context = BrowsingContext.New(config);
-            var contextParser = context.GetService<IHtmlParser>();
 
             iframeDocument = await context.OpenNewAsync();
-            tempDocument = await context.OpenNewAsync();
             iframeDocument.Head.OuterHtml = _htmlDocument.Head.OuterHtml;
             iframeDocument.Body.OuterHtml = _htmlDocument.Body.OuterHtml;
             iframeDocument.Body.InnerHtml = "";
-            //List<string> extractedContent = new List<string>();
-            //htmlContent = htmlContent.Replace("<a id=\"p1\"></a>", "<a id=\"p1\">abc</a>");
-            //var document = htmlParser.ParseDocument(htmlContent);
-            //var currentElement = document.GetElementById("p1");
-
-            //for (int i = 1; i <= length; i++)
-            //{
-            //    if (currentElement != null)
-            //    {
-            //        var nextElement = currentElement.NextElementSibling;
-            //        while (nextElement != null && nextElement.LocalName != "a" && !nextElement.Id.StartsWith("p"))
-            //        {
-            //            extractedContent.Add(nextElement.OuterHtml);
-            //            nextElement = nextElement.NextElementSibling;
-            //        }
-            //    }
-            //}
-            return new List<string>();
         }
 
         private int GetIndexOfActualPage()
@@ -171,7 +145,6 @@ namespace BlazorApp.Pages
 
         private async void NextPage()
         {
-            await SetActualPageText();
             if (_actualPageNumber != pages.Count)
             {
                 //_actualPage = pages[GetIndexOfActualPage() + 1];
@@ -184,7 +157,7 @@ namespace BlazorApp.Pages
         {
             if (_actualPageNumber != 1)
             {
-                //_actualPage = pages[GetIndexOfActualPage() - 1];
+                //_actualPage = pages[GetIndexOfActualPage()];
                 _actualPageNumber--;
                 await JS.InvokeVoidAsync("setActualPage", pages[_actualPageNumber - 1]);
             }
