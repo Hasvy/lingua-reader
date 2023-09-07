@@ -1,6 +1,7 @@
 ﻿@attribute [Route(Routes.Read)]
 
 @_actualPageNumber / @(pages.Count)
+<RadzenNumeric ShowUpDown="false" Style="width: 30px" TValue="int" Value=@_actualPageNumber Change="@(pageNumber => ChangePage(pageNumber))" />
 <div style="display: flex; justify-content: center">
     <RadzenButton Icon="arrow_back_ios" Click="PreviousPage" />     @*TODO Fix icon*@
     <RadzenButton Icon="arrow_forward_ios" Click="NextPage" />
