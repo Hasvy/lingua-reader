@@ -21,23 +21,23 @@ else
 <LoadingProgress />
 @if (_userBooks.Count < 1)
 {
-    <RadzenCard Style="width: 332px; padding: 0; flex: none; position: relative">
+    <RadzenCard class="add_book_card">
         <RadzenText Text="Add a new book" Style="position: relative; margin: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center" />
         <InputFile title="" style="width: 100%; height: 100%; opacity: 0; position: absolute; top: 0" OnChange="@FileTypeSwitch" />
     </RadzenCard>
 }
 else
 {
-    <RadzenDataList Count="4" WrapItems="true" AllowPaging="false" Data="_userBooks" TItem="BookCover">
+    <RadzenDataList WrapItems="true" AllowPaging="false" Data="_userBooks" TItem="BookCover">
         <Template Context="bookCover">
             @if (_userBooks.IndexOf(bookCover) == 0)
             {
-                <RadzenCard Style="width: 332px; padding: 0; flex: none; position: relative">
+                <RadzenCard class="add_book_card">
                     <RadzenText Text="Add a new book" Style="position: relative; margin: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center" />
                     <InputFile title="" style="width: 100%; height: 100%; opacity: 0; position: absolute; top: 0" OnChange="FileTypeSwitch" accept=".pdf, .epub, .fb2"/>
                 </RadzenCard>
             }
-            <RadzenCard Style="width: 300px; flex: none;" @onclick="@(() => OpenBook(bookCover))">
+            <RadzenCard class="book_card" @onclick="@(() => OpenBook(bookCover))">
                 <RadzenRow>
                     <RadzenColumn Size="10">
                         <RadzenText Text="@bookCover.Title" />
