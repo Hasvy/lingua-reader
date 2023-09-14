@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using Objects;
-using Objects.Components.Library;
+using Objects.Entities;
 using System.Reflection.Metadata;
 
 namespace BlazorApp.Pages
@@ -44,7 +44,7 @@ namespace BlazorApp.Pages
 
             if (cover != null)
             {
-                var stringText = await localStorage.GetItemAsync<string>(cover.TextId.ToString());
+                var stringText = await localStorage.GetItemAsync<string>(cover.ToString());
                 if (cover.Format == ConstBookFormats.pdf)
                 {
                     Text = JsonConvert.DeserializeObject<List<string>>(stringText);

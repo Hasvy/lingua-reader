@@ -3,7 +3,6 @@ using iText.Kernel.Pdf.Canvas.Parser.Listener;
 using iText.Kernel.Pdf.Canvas.Parser;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Objects.Components.Library;
 using Blazored.LocalStorage;
 using Newtonsoft.Json;
 using Radzen;
@@ -15,6 +14,7 @@ using System.ComponentModel;
 using Microsoft.JSInterop;
 using iText.Commons.Utils;
 using VersOne.Epub;
+using Objects.Entities;
 
 namespace BlazorApp.Pages.Components
 {
@@ -22,16 +22,20 @@ namespace BlazorApp.Pages.Components
     {
         [Inject] ILocalStorageService localStorage { get; set; } = null!;
         [Inject] EpubConverter epubConverter { get; set; } = null!;
+        [Inject] BookCoverService BookCoverService { get; set; } = null!;
 
         private List<BookCover> _userBooks = new List<BookCover>();
         private List<string> _pages = new List<string>();
         private List<string> _contentFiles = new List<string>();
         private long _maxFileSize = 1024 * 1024 * 10;       //10Mb
+        private IEnumerable<BookCover> _bookCovers;
 
         string text = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
+            _bookCovers = await BookCoverService.GetBookCovers();
+
             for(int i = 0; i < await localStorage.LengthAsync(); i++)
             {
                 try
@@ -126,7 +130,7 @@ namespace BlazorApp.Pages.Components
             string cover = JsonConvert.SerializeObject(book.BookCover);
             string text = JsonConvert.SerializeObject(_contentFiles);
             await localStorage.SetItemAsync(book.BookCover.Id.ToString("N"), cover);
-            await localStorage.SetItemAsync(book.BookCover.TextId.ToString("D"), text);
+            //await localStorage.SetItemAsync(book.BookCover.TextId.ToString("D"), text);
         }
 
         private async Task AddPdfBook(InputFileChangeEventArgs e)
@@ -176,7 +180,7 @@ namespace BlazorApp.Pages.Components
             string cover = JsonConvert.SerializeObject(book.BookCover);
             string text = JsonConvert.SerializeObject(_pages);
             await localStorage.SetItemAsync(book.BookCover.Id.ToString("N"), cover);
-            await localStorage.SetItemAsync(book.BookCover.TextId.ToString("D"), text);
+            //await localStorage.SetItemAsync(book.BookCover.TextId.ToString("D"), text);
         }
 
         private async Task DeleteBook(BookCover bookCover)
@@ -187,7 +191,7 @@ namespace BlazorApp.Pages.Components
             {
                 _userBooks.Remove(bookCover);
                 await localStorage.RemoveItemAsync(bookCover.Id.ToString("N"));
-                await localStorage.RemoveItemAsync(bookCover.TextId.ToString("D"));
+                //await localStorage.RemoveItemAsync(bookCover.TextId.ToString("D"));
             }
         }
     }

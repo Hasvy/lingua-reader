@@ -10,7 +10,7 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7049/") });
 //Radzen
 builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
@@ -19,6 +19,7 @@ builder.Services.AddScoped<HtmlParser>();
 //My services
 builder.Services.AddScoped<EpubConverter>();
 builder.Services.AddSingleton<ProgressService>();
+builder.Services.AddScoped<BookCoverService>();
 
 builder.Services.AddBlazoredLocalStorage();
 
