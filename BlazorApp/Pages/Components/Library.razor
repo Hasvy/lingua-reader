@@ -1,7 +1,7 @@
-﻿@using Objects.Components.Library;
-@using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+﻿@using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 @using Microsoft.AspNetCore.Components.Forms;
 @using Services;
+@using Objects.Entities;
 
 @inject IWebAssemblyHostEnvironment Environment
 @inject ProgressService ProgressService
@@ -9,7 +9,15 @@
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JS
 
-<h3>Library</h3>
+@if (_bookCovers is null)
+{
+    <h3>Loading...</h3>
+}
+else
+{
+    <h3>Library</h3>
+}
+
 <LoadingProgress />
 @if (_userBooks.Count < 1)
 {
