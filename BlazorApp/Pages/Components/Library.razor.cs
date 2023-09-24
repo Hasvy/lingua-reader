@@ -212,8 +212,9 @@ namespace BlazorApp.Pages.Components
 
             if (confirm == true)
             {
+                await BookOperationsService.DeleteBook(bookCover.BookId);
                 _userBooks.Remove(bookCover);
-                await localStorage.RemoveItemAsync(bookCover.Id.ToString("N"));
+                //await localStorage.RemoveItemAsync(bookCover.Id.ToString("N"));
                 //await localStorage.RemoveItemAsync(bookCover.TextId.ToString("D"));
             }
         }

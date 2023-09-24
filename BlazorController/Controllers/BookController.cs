@@ -44,5 +44,21 @@ namespace BlazorServer.Controllers
 
             return BadRequest();
         }
+
+        [HttpDelete]
+        [Route("api/[controller]/Delete/{Id:Guid}")]
+        public async Task<IActionResult> DeleteBook(Guid id)
+        {
+            var bookToDelete = await _appDbContext.Books.SingleOrDefaultAsync(b => b.Id == id);
+            
+            if (bookToDelete == null)
+            {
+                return NotFound();
+            }
+
+            _appDbContext.Books.Remove(bookToDelete);
+            await _appDbContext.SaveChangesAsync();
+            return Ok();
+        }
     }
 }

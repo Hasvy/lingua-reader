@@ -40,11 +40,17 @@ namespace Services
             }
         }
 
-        public async Task DeleteBook(Book book)
+        public async Task DeleteBook(Guid id)
         {
             try
             {
-                var deletedBook = await _httpClient.DeleteAsync("api/Book/Delete");
+                var response = await _httpClient.DeleteAsync($"api/Book/Delete/{id}");
+
+                //if (response.IsSuccessStatusCode)
+                //{
+                //    return await response.Content.ReadFromJsonAsync<Book>();
+                //}
+                //return null;
             }
             catch (Exception)
             {
