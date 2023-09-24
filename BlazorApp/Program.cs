@@ -19,7 +19,7 @@ builder.Services.AddScoped<HtmlParser>();
 //My services
 builder.Services.AddScoped<EpubConverter>();
 builder.Services.AddSingleton<ProgressService>();
-builder.Services.AddScoped<BookCoverService>();
+builder.Services.AddScoped<BookOperationsService>();
 
 builder.Services.AddBlazoredLocalStorage();
 

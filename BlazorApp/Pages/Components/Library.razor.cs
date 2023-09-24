@@ -15,6 +15,7 @@ using Microsoft.JSInterop;
 using iText.Commons.Utils;
 using VersOne.Epub;
 using Objects.Entities;
+using System.Net;
 
 namespace BlazorApp.Pages.Components
 {
@@ -22,7 +23,7 @@ namespace BlazorApp.Pages.Components
     {
         [Inject] ILocalStorageService localStorage { get; set; } = null!;
         [Inject] EpubConverter epubConverter { get; set; } = null!;
-        [Inject] BookCoverService BookCoverService { get; set; } = null!;
+        [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
 
         private List<BookCover> _userBooks = new List<BookCover>();
         private List<string> _pages = new List<string>();
@@ -34,7 +35,10 @@ namespace BlazorApp.Pages.Components
 
         protected override async Task OnInitializedAsync()
         {
-            _bookCovers = await BookCoverService.GetBookCovers();
+            _bookCovers = await BookOperationsService.GetBookCovers();
+            _userBooks.AddRange(_bookCovers);
+
+            //TODO change saving books to database
 
             for(int i = 0; i < await localStorage.LengthAsync(); i++)
             {
@@ -69,7 +73,7 @@ namespace BlazorApp.Pages.Components
             NavigationManager.NavigateTo("read/" + choosenBook.Id.ToString("N"));
         }
 
-        private async Task FileTypeSwitch(InputFileChangeEventArgs e)
+        private async Task AddBookToDatabase(InputFileChangeEventArgs e)
         {
             string? fileExtension = new System.IO.FileInfo(e.File.Name).Extension;
             switch (fileExtension)
@@ -78,7 +82,7 @@ namespace BlazorApp.Pages.Components
                     await AddPdfBook(e);
                     break;
                 case ConstBookFormats.epub:
-                    await AddEpubBook(e);
+                    await AddNewEpubBook(e);
                     break;
                 case ConstBookFormats.fb2:
                     //TODO
@@ -86,6 +90,25 @@ namespace BlazorApp.Pages.Components
                 default:
                     break;
             }
+        }
+
+        private async Task AddNewEpubBook(InputFileChangeEventArgs e)
+        {
+            Book book = new Book
+            {
+                Text = "NewBookText",
+                BookCover = new BookCover
+                {
+                    Author = "NewAuthor",
+                    Title = "Title3",
+                    Description = "NewDescription",
+                    Format = BookFormat.epub.ToString()
+                }
+            };
+            book.BookCover.BookId = book.Id;
+
+            await BookOperationsService.PostBook(book);
+            NavigationManager.NavigateTo(Routes.Reading, true);
         }
 
         private async Task AddEpubBook(InputFileChangeEventArgs e)          //ConvertToHtml

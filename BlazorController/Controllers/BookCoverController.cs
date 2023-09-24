@@ -5,7 +5,6 @@ using Objects.Entities;
 
 namespace BlazorServer.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class BookCoverController : ControllerBase
     {
@@ -16,6 +15,7 @@ namespace BlazorServer.Controllers
         }
 
         [HttpGet]
+        [Route("api/[controller]/Get")]
         public async Task<ActionResult<IEnumerable<BookCover>>> Get()
         {
             var bookCovers = await _appDbContext.BookCovers.ToListAsync();
