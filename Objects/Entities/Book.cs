@@ -17,6 +17,10 @@ namespace Objects.Entities
         //{
         //    BookCover = new BookCover();
         //}
+        public Book()
+        {
+            Id = Guid.NewGuid();
+        }
     }
 
     public enum BookFormat

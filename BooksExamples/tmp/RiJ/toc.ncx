@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd"><ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:fb="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:xlink="http://www.w3.org/1999/xlink" version="2005-1"><head><meta name="dtb:uid" content="8c3c1916-803a-11e7-8179-0cc47a520474"/><meta name="dtb:depth" content="3"/><meta name="dtb:totalPageCount" content="0"/><meta name="dtb:maxPageNumber" content="0"/></head><docTitle><text>Ромео и Джульетта</text></docTitle><navMap><navPoint id="58" playOrder="1"><navLabel><text>Действующие лица</text></navLabel><content src="content0.html#58"/></navPoint><navPoint id="111" playOrder="2"><navLabel><text>Пролог</text></navLabel><content src="content0.html#111"/></navPoint><navPoint id="136" playOrder="3"><navLabel><text>Акт I</text></navLabel><content src="content0.html#136"/><navPoint id="139" playOrder="4"><navLabel><text>Сцена 1</text></navLabel><content src="content0.html#139"/></navPoint>
+<navPoint id="758" playOrder="5"><navLabel><text>Сцена 2</text></navLabel><content src="content1.html#758"/></navPoint>
+<navPoint id="977" playOrder="6"><navLabel><text>Сцена 3</text></navLabel><content src="content2.html#977"/></navPoint>
+<navPoint id="1243" playOrder="7"><navLabel><text>Сцена 4</text></navLabel><content src="content3.html#1243"/></navPoint>
+<navPoint id="1514" playOrder="8"><navLabel><text>Сцена 5</text></navLabel><content src="content4.html#1514"/></navPoint>
+</navPoint><navPoint id="1986" playOrder="9"><navLabel><text>Акт II</text></navLabel><content src="content5.html#1986"/><navPoint id="1989" playOrder="10"><navLabel><text>Сцена 1</text></navLabel><content src="content5.html#1989"/></navPoint>
+<navPoint id="2087" playOrder="11"><navLabel><text>Сцена 2</text></navLabel><content src="content5.html#2087"/></navPoint>
+<navPoint id="2611" playOrder="12"><navLabel><text>Сцена 3</text></navLabel><content src="content6.html#2611"/></navPoint>
+<navPoint id="2810" playOrder="13"><navLabel><text>Сцена 4</text></navLabel><content src="content6.html#2810"/></navPoint>
+<navPoint id="3240" playOrder="14"><navLabel><text>Сцена 5</text></navLabel><content src="content7.html#3240"/></navPoint>
+<navPoint id="3412" playOrder="15"><navLabel><text>Сцена 6</text></navLabel><content src="content7.html#3412"/></navPoint>
+</navPoint><navPoint id="3506" playOrder="16"><navLabel><text>Акт III</text></navLabel><content src="content8.html#3506"/><navPoint id="3509" playOrder="17"><navLabel><text>Сцена 1</text></navLabel><content src="content8.html#3509"/></navPoint>
+<navPoint id="3946" playOrder="18"><navLabel><text>Сцена 2</text></navLabel><content src="content9.html#3946"/></navPoint>
+<navPoint id="4247" playOrder="19"><navLabel><text>Сцена 3</text></navLabel><content src="content10.html#4247"/></navPoint>
+<navPoint id="4642" playOrder="20"><navLabel><text>Сцена 4</text></navLabel><content src="content11.html#4642"/></navPoint>
+<navPoint id="4730" playOrder="21"><navLabel><text>Сцена 5</text></navLabel><content src="content11.html#4730"/></navPoint>
+</navPoint><navPoint id="5353" playOrder="22"><navLabel><text>Акт IV</text></navLabel><content src="content12.html#5353"/><navPoint id="5356" playOrder="23"><navLabel><text>Сцена 1</text></navLabel><content src="content12.html#5356"/></navPoint>
+<navPoint id="5648" playOrder="24"><navLabel><text>Сцена 2</text></navLabel><content src="content13.html#5648"/></navPoint>
+<navPoint id="5790" playOrder="25"><navLabel><text>Сцена 3</text></navLabel><content src="content13.html#5790"/></navPoint>
+<navPoint id="5889" playOrder="26"><navLabel><text>Сцена 4</text></navLabel><content src="content14.html#5889"/></navPoint>
+<navPoint id="6000" playOrder="27"><navLabel><text>Сцена 5</text></navLabel><content src="content14.html#6000"/></navPoint>
+</navPoint><navPoint id="6326" playOrder="28"><navLabel><text>Акт V</text></navLabel><content src="content15.html#6326"/><navPoint id="6329" playOrder="29"><navLabel><text>Сцена 1</text></navLabel><content src="content15.html#6329"/></navPoint>
+<navPoint id="6517" playOrder="30"><navLabel><text>Сцена 2</text></navLabel><content src="content15.html#6517"/></navPoint>
+<navPoint id="6592" playOrder="31"><navLabel><text>Сцена 3</text></navLabel><content src="content16.html#6592"/></navPoint>
+</navPoint></navMap></ncx>

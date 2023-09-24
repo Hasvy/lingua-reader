@@ -4,6 +4,7 @@ using BlazorServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorServer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230924142128_NullBookAndBookCover")]
+    partial class NullBookAndBookCover
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,6 +37,13 @@ namespace BlazorServer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Books");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a4e70e8a-f88e-44eb-8534-1819f7b94e15"),
+                            Text = "Text"
+                        });
                 });
 
             modelBuilder.Entity("Objects.Entities.BookCover", b =>
@@ -64,6 +74,17 @@ namespace BlazorServer.Migrations
                         .IsUnique();
 
                     b.ToTable("BookCovers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("1ef258bf-f1dc-4a97-be19-37371614b223"),
+                            Author = "Author",
+                            BookId = new Guid("a4e70e8a-f88e-44eb-8534-1819f7b94e15"),
+                            Description = "Description",
+                            Format = "epub",
+                            Title = "Title2"
+                        });
                 });
 
             modelBuilder.Entity("Objects.Entities.BookCover", b =>
@@ -79,8 +100,7 @@ namespace BlazorServer.Migrations
 
             modelBuilder.Entity("Objects.Entities.Book", b =>
                 {
-                    b.Navigation("BookCover")
-                        .IsRequired();
+                    b.Navigation("BookCover");
                 });
 #pragma warning restore 612, 618
         }
