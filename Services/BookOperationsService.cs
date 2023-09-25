@@ -26,12 +26,13 @@ namespace Services
             }
         }
 
-        public async Task PostBook(Book book)
+        public async Task<HttpResponseMessage> PostBook(Book book)
         {
             try
             {
-                var addedBook = await _httpClient.PostAsJsonAsync("api/Book/Post", book);
+                var response = await _httpClient.PostAsJsonAsync("api/Book/Post", book);
                 //TODO Return some info
+                return response;
             }
             catch (Exception)
             {

@@ -23,7 +23,9 @@ namespace BlazorServer.Controllers
             {
                 var newBook = new Book
                 {
-                    Text = book.Text
+                    Sections = book.Sections,
+                    SectionsCount = book.SectionsCount,
+                    PagesCount = book.PagesCount
                 };
 
                 BookCover newBookCover = new BookCover 
@@ -35,7 +37,14 @@ namespace BlazorServer.Controllers
                     Format = book.BookCover.Format
                 };
 
+                List<BookSection> bookSections = new List<BookSection>();
+                List<Page> bookPages = new List<Page>();
+
                 newBook.BookCover = newBookCover;
+                newBook.Sections = new List<BookSection>();
+                bookSections.AddRange(book.Sections);
+                newBook.Sections = bookSections;
+
                 _appDbContext.Books.Add(newBook);
                 await _appDbContext.SaveChangesAsync();
 
