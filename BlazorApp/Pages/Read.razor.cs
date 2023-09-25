@@ -63,7 +63,6 @@ namespace BlazorApp.Pages
                     var elements = await ParseBookSectionToList(section);
                     await SplitToPages(elements);
                 }
-                //_actualPage = Sections[3];
                 
                 _actualPageNumber = 1;
                 await JS.InvokeVoidAsync("setActualPage", pages[_actualPageNumber - 1]);

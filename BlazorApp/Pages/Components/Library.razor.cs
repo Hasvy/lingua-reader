@@ -3,6 +3,10 @@ using iText.Kernel.Pdf.Canvas.Parser.Listener;
 using iText.Kernel.Pdf.Canvas.Parser;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using AngleSharp;
+using AngleSharp.Dom;
+using AngleSharp.Html.Dom;
+using AngleSharp.Html.Parser;
 using Blazored.LocalStorage;
 using Newtonsoft.Json;
 using Radzen;
@@ -16,6 +20,11 @@ using iText.Commons.Utils;
 using VersOne.Epub;
 using Objects.Entities;
 using System.Net;
+using static System.Collections.Specialized.BitVector32;
+using AngleSharp.Html.Dom;
+using AngleSharp.Html.Parser;
+using AngleSharp;
+using System.Threading;
 
 namespace BlazorApp.Pages.Components
 {
@@ -94,66 +103,83 @@ namespace BlazorApp.Pages.Components
 
         private async Task AddNewEpubBook(InputFileChangeEventArgs e)
         {
+            EpubBook epubBook = await GetEpubFormat(e);
             Book book = new Book
             {
-                Text = "NewBookText",
                 BookCover = new BookCover
                 {
-                    Author = "NewAuthor",
-                    Title = "Title3",
-                    Description = "NewDescription",
+                    Author = epubBook.Author,
+                    Title = epubBook.Title,
+                    Description = epubBook.Description,
                     Format = BookFormat.epub.ToString()
                 }
             };
             book.BookCover.BookId = book.Id;
+            book.Sections = await ProcessEpubBook(book, epubBook);
 
-            await BookOperationsService.PostBook(book);
-            NavigationManager.NavigateTo(Routes.Reading, true);
+            var response = await BookOperationsService.PostBook(book);
+
+            if (response.IsSuccessStatusCode)
+            {
+                _userBooks.Add(book.BookCover);
+            }
+            
+            //NavigationManager.NavigateTo(Routes.Reading, true);
         }
 
-        private async Task AddEpubBook(InputFileChangeEventArgs e)          //ConvertToHtml
+        private async Task<EpubBook> GetEpubFormat(InputFileChangeEventArgs e)          //ConvertToHtml
         {
             string tmpFileName = "123.epub";                                        //Optimize that code{
             string tmpFilePath = Directory.GetCurrentDirectory() + tmpFileName;
-            //await using FileStream fileStream = new(tmpFilePath, FileMode.Create);
-            //await e.File.OpenReadStream(_maxFileSize).CopyToAsync(fileStream);
 
             using(var ms = new MemoryStream())
             {
                 await e.File.OpenReadStream(_maxFileSize).CopyToAsync(ms);
                 byte[] data = ms.ToArray();
                 File.WriteAllBytes(tmpFilePath, data);
-                //await JS.InvokeVoidAsync("downloadFile", tmpFileName, data);      //}
             }
 
-            EpubBook epubBook = await EpubReader.ReadBookAsync("/123.epub");
-            //string? htmlFile = epubConverter.Convert("/123.epub");
-
-            if (epubBook != null)
-            {
-                await SaveEpubBook(epubBook);
-            }
+            return await EpubReader.ReadBookAsync("/123.epub");
         }
 
-        private async Task SaveEpubBook(EpubBook epubBook)
+        private async Task<IEnumerable<BookSection>> ProcessEpubBook(Book book, EpubBook epubBook)
         {
-            Book book = new Book();
-            book.BookCover = new BookCover();
-            book.BookCover.Title = epubBook.Title;
-            book.BookCover.Author = epubBook.Author;
-            book.BookCover.Description = epubBook.Description;
-            book.BookCover.Format = ConstBookFormats.epub;
-
-            _userBooks.Add(book.BookCover);
-
+            var list = new List<BookSection>();
+            int index = 0;
             foreach (var item in epubBook.Content.Html.Local)           //What is remote file?
             {
-                _contentFiles.Add(item.Content);
+                var bookSection = new BookSection();
+                bookSection.Text = item.Content;
+                bookSection.OrderNumber = index;
+                bookSection.BookId = book.Id;
+
+                //Pages //Change
+                List<Page> pages = new List<Page> { new Page { Number = 1, SectionId = bookSection.Id, Text = "Text" } };
+                bookSection.Pages = pages;
+
+                list.Add(bookSection);
+                index++;
             }
-            string cover = JsonConvert.SerializeObject(book.BookCover);
-            string text = JsonConvert.SerializeObject(_contentFiles);
-            await localStorage.SetItemAsync(book.BookCover.Id.ToString("N"), cover);
-            //await localStorage.SetItemAsync(book.BookCover.TextId.ToString("D"), text);
+            book.SectionsCount = list.Count;
+            return list;
+        }
+
+        private async Task<List<IElement>> ParseBookSectionToList(string section)
+        {
+            var parser = new HtmlParser();
+            IHtmlDocument _htmlDocument = await parser.ParseDocumentAsync(section);
+            var head = _htmlDocument.Head.OuterHtml;
+            var bodyElements = _htmlDocument.Body.Children.ToList();
+
+            var config = Configuration.Default.WithDefaultLoader();
+            var context = BrowsingContext.New(config);
+
+            IDocument iframeDocument = await context.OpenNewAsync();
+            iframeDocument.Head.OuterHtml = _htmlDocument.Head.OuterHtml;
+            iframeDocument.Body.OuterHtml = _htmlDocument.Body.OuterHtml;
+            iframeDocument.Body.InnerHtml = "";
+
+            return bodyElements;
         }
 
         private async Task AddPdfBook(InputFileChangeEventArgs e)
@@ -213,9 +239,7 @@ namespace BlazorApp.Pages.Components
             if (confirm == true)
             {
                 await BookOperationsService.DeleteBook(bookCover.BookId);
-                _userBooks.Remove(bookCover);
-                //await localStorage.RemoveItemAsync(bookCover.Id.ToString("N"));
-                //await localStorage.RemoveItemAsync(bookCover.TextId.ToString("D"));
+                _userBooks.Remove(bookCover);       //Do something with that
             }
         }
     }

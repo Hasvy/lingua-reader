@@ -10,7 +10,10 @@ namespace Objects.Entities
     {
         public Guid Id { get; set; }
         public virtual BookCover BookCover { get; set; }
-        public string? Text { get; set; }
+        //public string? Text { get; set; }
+        public virtual IEnumerable<BookSection> Sections { get; set; }
+        public int PagesCount { get; set; }
+        public int SectionsCount { get; set; }
         //public List<string> ContentFiles { get; set; }
 
         //public Book()
