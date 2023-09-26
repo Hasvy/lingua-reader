@@ -26,6 +26,20 @@ namespace Services
             }
         }
 
+        public async Task<IEnumerable<BookSection>> GetBookSections(Guid id)
+        {
+            try
+            {
+                var bookSections = await _httpClient.GetFromJsonAsync<IEnumerable<BookSection>>($"api/BookSection/Get/{id}");
+                return bookSections;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public async Task<HttpResponseMessage> PostBook(Book book)
         {
             try

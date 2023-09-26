@@ -8,6 +8,7 @@ using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using Objects;
 using Objects.Entities;
+using Services;
 using System.Reflection.Metadata;
 
 namespace BlazorApp.Pages
@@ -17,13 +18,14 @@ namespace BlazorApp.Pages
         [Inject] ILocalStorageService localStorage { get; set; } = null!;
         [Inject] HtmlParser htmlParser { get; set; } = null!;
         [Inject] IJSRuntime JS { get; set; } = null!;
+        [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
 
         [Parameter]
-        public string? BookId { get; set; }
+        public string BookId { get; set; }
         private List<string> Text { get; set; } = new List<string>();
         private List<IElement> AllBodyElements { get; set; } = new List<IElement>();
         private List<IElement> SelectedBodyElements { get; set; } = new List<IElement>();
-        private List<string> Sections { get; set; } = new List<string>();
+        private IEnumerable<BookSection> Sections { get; set; } = new List<BookSection>();
         private string _actualPage = null!;
         private string _head = null!;
         private string _body = null!;
@@ -38,89 +40,102 @@ namespace BlazorApp.Pages
 
         protected override async Task OnInitializedAsync()
         {
+            Sections = await BookOperationsService.GetBookSections(Guid.Parse(BookId));
             //Get Book form localStorage
-            var stringCover = await localStorage.GetItemAsync<string>(BookId);
-            var cover = JsonConvert.DeserializeObject<BookCover>(stringCover);
+            //var stringCover = await localStorage.GetItemAsync<string>("");
+            //var cover = JsonConvert.DeserializeObject<BookCover>(stringCover);
 
-            if (cover != null)
-            {
-                var stringText = await localStorage.GetItemAsync<string>(cover.ToString());
-                if (cover.Format == ConstBookFormats.pdf)
-                {
-                    Text = JsonConvert.DeserializeObject<List<string>>(stringText);
-                }
-                if (cover.Format == ConstBookFormats.epub)
-                {
-                    Sections = JsonConvert.DeserializeObject<List<string>>(stringText);
-                    await JS.InvokeVoidAsync("setupReadingPage");
-                }
-            }
+            //if (cover != null)
+            //{
+            //    var stringText = await localStorage.GetItemAsync<string>(cover.ToString());
+            //    if (cover.Format == ConstBookFormats.pdf)
+            //    {
+            //        Text = JsonConvert.DeserializeObject<List<string>>(stringText);
+            //    }
+            //    if (cover.Format == ConstBookFormats.epub)
+            //    {
+            //        Sections = await BookOperationsService.GetBookSections(Guid.Parse(BookId));
+            //        await JS.InvokeVoidAsync("setupReadingPage");
+            //    }
+            //}
+            
+            await JS.InvokeAsync<string?>("initializeBookContainer", Sections.First().Text);
+
 
             if (Sections != null && Sections.Any())     //TODO fix sections and show whole book.
             {
                 foreach (var section in Sections)
                 {
-                    var elements = await ParseBookSectionToList(section);
-                    await SplitToPages(elements);
+                    //var elements = await ParseBookSectionToList(section);
+                    //await SplitToPages(elements);
                 }
                 
                 _actualPageNumber = 1;
-                await JS.InvokeVoidAsync("setActualPage", pages[_actualPageNumber - 1]);
+                //await JS.InvokeVoidAsync("setActualPage", pages[_actualPageNumber - 1]);
             }
 
             await base.OnInitializedAsync();
         }
 
-        private async Task<List<IElement>> ParseBookSectionToList(string section)
+        private async Task ParseBookSectio(string section)
         {
             var parser = new HtmlParser();
             _htmlDocument = await parser.ParseDocumentAsync(section);
-            _head = _htmlDocument.Head.OuterHtml;
-            var bodyElements = _htmlDocument.Body.Children.ToList();
-
-            var config = Configuration.Default.WithDefaultLoader();
-            var context = BrowsingContext.New(config);
-
-            iframeDocument = await context.OpenNewAsync();
-            iframeDocument.Head.OuterHtml = _htmlDocument.Head.OuterHtml;
-            iframeDocument.Body.OuterHtml = _htmlDocument.Body.OuterHtml;
-            iframeDocument.Body.InnerHtml = "";
             
-            return bodyElements;
         }
 
-        private async Task SplitToPages(List<IElement> elements)       //Cleanup and rename vars
-        {
-            int lastIndex = 0;
-            string html;
+        //Work with page
 
-            while (lastIndex < elements.Count)      //TODO fix test2.epub sets two times. TODO separate files and classes in ReadPdf, ReadEpub etc. Create diagram
-            {
-                bool isHeightInBorders = true;
-                await JS.InvokeVoidAsync("clearContainerElement");
-                var page = new List<IElement>();
-                while (isHeightInBorders && lastIndex < elements.Count)
-                {
-                    iframeDocument.Body.AppendChild(elements[lastIndex]);
-                    iframeBodyHtml = iframeDocument.Body.ToHtml();
-                    isHeightInBorders = await JS.InvokeAsync<bool>("checkContainerHeight", iframeBodyHtml);
-                    if (isHeightInBorders)          //Is possible infinity cycle here   TODO fix if first element on page is heigher then borders
-                    {
-                        page.Add(elements[lastIndex]);
-                    }
-                    lastIndex++;
-                }
-                iframeDocument.Body.InnerHtml = "";
+        //private async Task<List<IElement>> ParseBookSectionToList(string section)
+        //{
+        //    var parser = new HtmlParser();
+        //    _htmlDocument = await parser.ParseDocumentAsync(section);
+        //    _head = _htmlDocument.Head.OuterHtml;
+        //    var bodyElements = _htmlDocument.Body.Children.ToList();
 
-                html = string.Empty;
-                foreach (var item in page)
-                {
-                    html += item.OuterHtml;
-                }
-                page.Clear();
-                pages.Add(html);
-            }
-        }
+        //    var config = Configuration.Default.WithDefaultLoader();
+        //    var context = BrowsingContext.New(config);
+
+        //    iframeDocument = await context.OpenNewAsync();
+        //    iframeDocument.Head.OuterHtml = _htmlDocument.Head.OuterHtml;
+        //    iframeDocument.Body.OuterHtml = _htmlDocument.Body.OuterHtml;
+        //    iframeDocument.Body.InnerHtml = "";
+            
+        //    return bodyElements;
+        //}
+
+        //private async Task SplitToPages(List<IElement> elements)       //Cleanup and rename vars
+        //{
+        //    int lastIndex = 0;
+        //    string html;
+
+        //    while (lastIndex < elements.Count)      //TODO fix test2.epub sets two times. TODO separate files and classes in ReadPdf, ReadEpub etc. Create diagram
+        //    {
+        //        bool isHeightInBorders = true;
+        //        await JS.InvokeVoidAsync("clearContainerElement");
+        //        var page = new List<IElement>();
+        //        while (isHeightInBorders && lastIndex < elements.Count)
+        //        {
+        //            iframeDocument.Body.AppendChild(elements[lastIndex]);
+        //            iframeBodyHtml = iframeDocument.Body.ToHtml();
+        //            isHeightInBorders = await JS.InvokeAsync<bool>("checkContainerHeight", iframeBodyHtml);
+        //            if (isHeightInBorders)          //Is possible infinity cycle here   TODO fix if first element on page is heigher then borders
+        //            {
+        //                page.Add(elements[lastIndex]);
+        //            }
+        //            lastIndex++;
+        //        }
+        //        iframeDocument.Body.InnerHtml = "";
+
+        //        html = string.Empty;
+        //        foreach (var item in page)
+        //        {
+        //            html += item.OuterHtml;
+        //        }
+        //        page.Clear();
+        //        pages.Add(html);
+        //    }
+        //}
 
         //private async Task SetActualPageText()                //Another variant of paging, setup every page right before display.
         //{
@@ -160,7 +175,7 @@ namespace BlazorApp.Pages
             {
                 //_actualPage = pages[GetIndexOfActualPage() + 1];
                 _actualPageNumber++;
-                await JS.InvokeVoidAsync("setActualPage", pages[_actualPageNumber - 1]);
+                await JS.InvokeVoidAsync("nextPage");
             }
         }
 
@@ -170,9 +185,30 @@ namespace BlazorApp.Pages
             {
                 //_actualPage = pages[GetIndexOfActualPage()];
                 _actualPageNumber--;
-                await JS.InvokeVoidAsync("setActualPage", pages[_actualPageNumber - 1]);
+                await JS.InvokeVoidAsync("previousPage");
             }
         }
+
+        //For list of pages
+        //private async void NextPage()
+        //{
+        //    if (_actualPageNumber != pages.Count)
+        //    {
+        //        _actualPage = pages[GetIndexOfActualPage() + 1];
+        //        _actualPageNumber++;
+        //        await JS.InvokeVoidAsync("setActualPage", pages[_actualPageNumber - 1]);
+        //    }
+        //}
+
+        //private async void PreviousPage()
+        //{
+        //    if (_actualPageNumber != 1)
+        //    {
+        //        _actualPage = pages[GetIndexOfActualPage()];
+        //        _actualPageNumber--;
+        //        await JS.InvokeVoidAsync("setActualPage", pages[_actualPageNumber - 1]);
+        //    }
+        //}
 
         //For pdf
 
