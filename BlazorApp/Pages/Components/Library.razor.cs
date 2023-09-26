@@ -79,7 +79,7 @@ namespace BlazorApp.Pages.Components
 
         private async Task OpenBook(BookCover choosenBook)
         {
-            NavigationManager.NavigateTo("read/" + choosenBook.Id.ToString("N"));
+            NavigationManager.NavigateTo("read/" + choosenBook.BookId);
         }
 
         private async Task AddBookToDatabase(InputFileChangeEventArgs e)
@@ -160,6 +160,11 @@ namespace BlazorApp.Pages.Components
                 list.Add(bookSection);
                 index++;
             }
+            foreach (var item in epubBook.Content.Css.Local)
+            {
+                //Add file storage on server
+            }
+
             book.SectionsCount = list.Count;
             return list;
         }

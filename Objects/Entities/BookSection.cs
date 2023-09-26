@@ -22,5 +22,12 @@ namespace Objects.Entities
         {
             Id = Guid.NewGuid();
         }
+        
+        private BookSection[] arr = new BookSection[100];
+        public BookSection this[int i]
+        {
+            get { return arr[i]; }
+            set { arr[i] = value; }
+        }
     }
 }
