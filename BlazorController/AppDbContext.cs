@@ -25,7 +25,12 @@ namespace BlazorServer
                 .WithOne(s => s.Book)
                 .HasForeignKey(s => s.BookId);
 
-            modelBuilder.Entity<BookSection>()
+            modelBuilder.Entity<Book>()
+                .HasMany(b => b.Content)
+                .WithOne(c => c.Book)
+                .HasForeignKey(s => s.BookId);
+
+            modelBuilder.Entity<BookSection>()          //I dont use it now
                 .HasMany(s => s.Pages)
                 .WithOne(p => p.Section)
                 .HasForeignKey(p => p.SectionId)
@@ -36,5 +41,6 @@ namespace BlazorServer
         public DbSet<BookCover> BookCovers { get; set; }
         public DbSet<BookSection> BookSections { get; set; }
         public DbSet<Page> Pages { get; set; }
+        public DbSet<BookContent> BookContent { get; set; }
     }
 }

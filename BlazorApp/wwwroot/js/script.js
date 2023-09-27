@@ -1,14 +1,15 @@
 ﻿const maxHeight = 560;
 var iframe;
+var iframeDocument;
 
 var containerElement;
 let backup;
 
 function initializeBookContainer(html) {                                        //Another variant of paging with using page dividing by columns like in Yandex browser.
     iframe = document.querySelector('#iframe-container');                       //With using scroll moving when page changes.
-    var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
     var parser = new DOMParser();
-    var doc = parser.parseFromString(html, "text/html");
+    doc = parser.parseFromString(html, "text/html");
     iframeDocument.head.innerHTML = doc.head.innerHTML;
     iframeDocument.body = doc.body;
     elements = iframeDocument.body.querySelectorAll('*');
@@ -26,7 +27,7 @@ function initializeBookContainer(html) {                                        
     iframeBody.style.margin = 0;
     iframeBody.style.width = 900 * pageCount;
     iframeBody.style.height = maxHeight;
-    iframeBody.style.WebkitColumnCount = pageCount;         //Divide html on pages somehow
+    iframeBody.style.WebkitColumnCount = pageCount;         //Dividing html on columns (pages)
 }
 
 function nextPage() {
@@ -35,6 +36,12 @@ function nextPage() {
 
 function previousPage() {
     iframe.contentWindow.scrollBy(-900, 0);
+}
+
+function addStyle(css) {
+    const style = document.createElement('style');
+    style.textContent = css;
+    iframeDocument.head.appendChild(style);
 }
 
 function addSectionToBody() {

@@ -15,7 +15,6 @@ namespace BlazorApp.Pages
 {
     public partial class Read : ComponentBase
     {
-        [Inject] ILocalStorageService localStorage { get; set; } = null!;
         [Inject] HtmlParser htmlParser { get; set; } = null!;
         [Inject] IJSRuntime JS { get; set; } = null!;
         [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
@@ -26,21 +25,20 @@ namespace BlazorApp.Pages
         private List<IElement> AllBodyElements { get; set; } = new List<IElement>();
         private List<IElement> SelectedBodyElements { get; set; } = new List<IElement>();
         private IEnumerable<BookSection> Sections { get; set; } = new List<BookSection>();
+        private IEnumerable<BookContent> Content { get; set; } = new List<BookContent>();
         private string _actualPage = null!;
         private string _head = null!;
         private string _body = null!;
         private int _actualPageNumber = 1;
         private IHtmlDocument _htmlDocument;
         private IDocument iframeDocument;
-        private int elementIndex = 0;
         private string? iframeBodyHtml;
         private List<string> pages = new List<string>();
-
-        private DotNetObjectReference<JSInterop> _jsReference;
 
         protected override async Task OnInitializedAsync()
         {
             Sections = await BookOperationsService.GetBookSections(Guid.Parse(BookId));
+            Content = await BookOperationsService.GetBookContent(Guid.Parse(BookId));
             //Get Book form localStorage
             //var stringCover = await localStorage.GetItemAsync<string>("");
             //var cover = JsonConvert.DeserializeObject<BookCover>(stringCover);
@@ -58,9 +56,14 @@ namespace BlazorApp.Pages
             //        await JS.InvokeVoidAsync("setupReadingPage");
             //    }
             //}
-            
-            await JS.InvokeAsync<string?>("initializeBookContainer", Sections.First().Text);
 
+            await JS.InvokeAsync<string?>("initializeBookContainer", Sections.First().Text);        //TODO fix a bug when open a book right after upload Sequence contains no elements
+            string css = string.Empty;      //TODO Fix it to comfort reading
+            foreach (var item in Content)
+            {
+                css += item.Content;
+            }
+            await JS.InvokeAsync<string?>("addStyle", css);
 
             if (Sections != null && Sections.Any())     //TODO fix sections and show whole book.
             {

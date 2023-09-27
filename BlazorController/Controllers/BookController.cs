@@ -37,13 +37,15 @@ namespace BlazorServer.Controllers
                     Format = book.BookCover.Format
                 };
 
-                List<BookSection> bookSections = new List<BookSection>();
-                List<Page> bookPages = new List<Page>();
+                //List<BookSection> bookSections = new List<BookSection>();
+                //List<Page> bookPages = new List<Page>();
+                //List<BookContent> bookContent = new List<BookContent>();
 
                 newBook.BookCover = newBookCover;
-                newBook.Sections = new List<BookSection>();
-                bookSections.AddRange(book.Sections);
-                newBook.Sections = bookSections;
+                //newBook.Sections = new List<BookSection>();
+                //bookSections.AddRange(book.Sections);
+                newBook.Sections = book.Sections;
+                newBook.Content = book.Content;
 
                 _appDbContext.Books.Add(newBook);
                 await _appDbContext.SaveChangesAsync();
