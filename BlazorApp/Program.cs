@@ -18,8 +18,10 @@ builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<HtmlParser>();
 //My services
 builder.Services.AddScoped<EpubConverter>();
-builder.Services.AddSingleton<ProgressService>();
 builder.Services.AddScoped<BookOperationsService>();
+builder.Services.AddScoped<AddBookService>();
+
+builder.Services.AddSingleton<ProgressService>();
 
 builder.Services.AddBlazoredLocalStorage();
 
