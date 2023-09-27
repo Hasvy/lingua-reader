@@ -1,42 +1,24 @@
 ﻿@using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 @using Microsoft.AspNetCore.Components.Forms;
-@using Services;
 @using Objects.Entities;
 
-@inject IWebAssemblyHostEnvironment Environment
-@inject ProgressService ProgressService
-@inject DialogService DialogService
-@inject NavigationManager NavigationManager
-@inject IJSRuntime JS
-
-@if (_bookCovers is null)
+@if (_isLoading)
 {
     <h3>Loading...</h3>
 }
 else
 {
-    <h3>Library</h3>
-}
+    <LoadingProgress />
 
-<LoadingProgress />
-@if (_userBooks.Count < 1)
-{
-    <RadzenCard class="add_book_card">
-        <RadzenText Text="Add a new book" Style="position: relative; margin: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center" />
-        <InputFile title="" style="width: 100%; height: 100%; opacity: 0; position: absolute; top: 0" OnChange="@AddBookToDatabase" />
-    </RadzenCard>
-}
-else
-{
-    <RadzenDataList WrapItems="true" AllowPaging="false" Data="_userBooks" TItem="BookCover">
-        <Template Context="bookCover">
-            @if (_userBooks.IndexOf(bookCover) == 0)
-            {
-                <RadzenCard class="add_book_card">
-                    <RadzenText Text="Add a new book" Style="position: relative; margin: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center" />
-                    <InputFile title="" style="width: 100%; height: 100%; opacity: 0; position: absolute; top: 0" OnChange="AddBookToDatabase" accept=".pdf, .epub, .fb2"/>
-                </RadzenCard>
-            }
+    <RadzenStack Wrap="FlexWrap.Wrap" Style="flex-direction: row!important">
+
+        <RadzenCard class="add_book_card">
+            <RadzenText Text="Add a new book" Style="position: relative; margin: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center" />
+            <InputFile title="" style="width: 100%; height: 100%; opacity: 0; position: absolute; top: 0" OnChange="AddBookToDatabase" accept=".pdf, .epub, .fb2" />
+        </RadzenCard>
+
+        @foreach (var bookCover in _userBooks)
+        {
             <RadzenCard class="book_card" @onclick="@(() => OpenBook(bookCover))">
                 <RadzenRow>
                     <RadzenColumn Size="10">
@@ -49,6 +31,6 @@ else
                     </RadzenColumn>
                 </RadzenRow>
             </RadzenCard>
-        </Template>
-    </RadzenDataList>
+        }
+    </RadzenStack>
 }
