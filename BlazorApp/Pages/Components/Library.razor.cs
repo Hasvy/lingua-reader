@@ -144,8 +144,23 @@ namespace BlazorApp.Pages.Components
 
         private async Task<IEnumerable<BookSection>> ProcessEpubBook(Book book, EpubBook epubBook)
         {
-            var list = new List<BookSection>();
+            var contentList = new List<BookContent>();
+            var sectionList = new List<BookSection>();
             int index = 0;
+
+            foreach (var item in epubBook.Content.Css.Local)    //TODO Create different method for that and return bookcontent list
+            {
+                var bookContent = new BookContent();
+                bookContent.Type = ContentType.css;
+                bookContent.Content = item.Content;
+                bookContent.BookId = book.Id;
+                contentList.Add(bookContent);
+                //Add file storage on server. What after I upload file on server? How work with it?
+                //BLOB in database then wirte it in memory
+                //csv code to string or json and then apply it to code +
+            }
+            book.Content = contentList;
+
             foreach (var item in epubBook.Content.Html.Local)           //What is remote file?
             {
                 var bookSection = new BookSection();
@@ -157,16 +172,12 @@ namespace BlazorApp.Pages.Components
                 List<Page> pages = new List<Page> { new Page { Number = 1, SectionId = bookSection.Id, Text = "Text" } };
                 bookSection.Pages = pages;
 
-                list.Add(bookSection);
+                sectionList.Add(bookSection);
                 index++;
             }
-            foreach (var item in epubBook.Content.Css.Local)
-            {
-                //Add file storage on server
-            }
 
-            book.SectionsCount = list.Count;
-            return list;
+            book.SectionsCount = sectionList.Count;
+            return sectionList;
         }
 
         private async Task<List<IElement>> ParseBookSectionToList(string section)
