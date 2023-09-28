@@ -1,10 +1,12 @@
 ﻿@attribute [Route(Routes.Read)]
 
-@_actualPageNumber / @(pages.Count)
+@_actualPageNumber / @pagesCount
 <RadzenNumeric ShowUpDown="false" Style="width: 30px" TValue="int" Value=@_actualPageNumber Change="@(pageNumber => ChangePage(pageNumber))" />
 <div style="display: flex; justify-content: center">
-    <RadzenButton Icon="arrow_back_ios" Click="PreviousPage" />     @*TODO Fix icon*@
-    <RadzenButton Icon="arrow_forward_ios" Click="NextPage" />
+    <RadzenStack Gap="0" Wrap="FlexWrap.Wrap" Orientation="Orientation.Horizontal">
+        <RadzenButton Icon="arrow_back_ios_new" Click=@(args => PreviousPage()) />     @*TODO Fix icon*@
+        <RadzenButton Icon="arrow_forward_ios" Click="NextPage" />
+    </RadzenStack>
 </div>
 
 <div style="display: flex; justify-content: center; align-items: center">

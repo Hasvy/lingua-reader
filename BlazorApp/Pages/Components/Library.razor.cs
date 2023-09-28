@@ -10,13 +10,13 @@ namespace BlazorApp.Pages.Components
     public partial class Library : ComponentBase
     {
         [Inject] AddBookService AddBookService { get; set; } = null!;
-        //[Inject] EpubConverter epubConverter { get; set; } = null!;
         [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
         [Inject] DialogService DialogService { get; set; } = null!;
         [Inject] NavigationManager NavigationManager { get; set; } = null!;
 
         private IList<BookCover> _userBooks = new List<BookCover>();
         private bool _isLoading;
+        private bool _isUploading;
 
         protected override async Task OnInitializedAsync()
         {

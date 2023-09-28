@@ -21,34 +21,19 @@ namespace BlazorServer.Controllers
         {
             if (ModelState.IsValid)
             {
-                var newBook = new Book
-                {
-                    Sections = book.Sections,
-                    SectionsCount = book.SectionsCount,
-                    PagesCount = book.PagesCount
-                };
-
-                BookCover newBookCover = new BookCover 
-                {
-                    BookId = book.BookCover.BookId,
-                    Title = book.BookCover.Title,
-                    Author = book.BookCover.Author,
-                    Description = book.BookCover.Description,
-                    Format = book.BookCover.Format
-                };
-
-                //List<BookSection> bookSections = new List<BookSection>();
-                //List<Page> bookPages = new List<Page>();
-                //List<BookContent> bookContent = new List<BookContent>();
-
-                newBook.BookCover = newBookCover;
-                //newBook.Sections = new List<BookSection>();
-                //bookSections.AddRange(book.Sections);
-                newBook.Sections = book.Sections;
-                newBook.Content = book.Content;
-
-                _appDbContext.Books.Add(newBook);
+                _appDbContext.Books.Add(book);
                 await _appDbContext.SaveChangesAsync();
+
+                byte[] bytes = Convert.FromBase64String(book.BookContentFile);
+                string filename = book.Id.ToString();
+                string path = "Uploads\\Users\\user1\\Books\\" + filename;
+
+                //TODO security check before save!!!
+                //TODO save confidence, save files encrypted.   Maybe use File.Encrypt
+                using (var stream = System.IO.File.Create(path))
+                {
+                    stream.Write(bytes, 0, bytes.Length);
+                }
 
                 return Ok();
             }
@@ -61,12 +46,15 @@ namespace BlazorServer.Controllers
         public async Task<IActionResult> DeleteBook(Guid id)
         {
             var bookToDelete = await _appDbContext.Books.SingleOrDefaultAsync(b => b.Id == id);
-            
+            string filename = id.ToString();
+            string path = "Uploads\\Users\\user1\\Books\\" + filename;
+
             if (bookToDelete == null)
             {
                 return NotFound();
             }
 
+            System.IO.File.Delete(path);
             _appDbContext.Books.Remove(bookToDelete);
             await _appDbContext.SaveChangesAsync();
             return Ok();

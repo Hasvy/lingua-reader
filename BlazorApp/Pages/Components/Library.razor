@@ -4,13 +4,18 @@
 
 @if (_isLoading)
 {
-    <h3>Loading...</h3>
+    <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate"/>
+    @* <RadzenIcon Icon="refresh" Style="animation: rotation 500ms linear infinite" /> *@
+
 }
 else
 {
-    <LoadingProgress />
+    @if (_isUploading)
+    {
+        <LoadingProgress />
+    }
 
-    <RadzenStack Wrap="FlexWrap.Wrap" Style="flex-direction: row!important">
+    <RadzenStack Wrap="FlexWrap.Wrap" Orientation="Orientation.Horizontal" Style="margin-top: 3%;">
 
         <RadzenCard class="add_book_card">
             <RadzenText Text="Add a new book" Style="position: relative; margin: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center" />
