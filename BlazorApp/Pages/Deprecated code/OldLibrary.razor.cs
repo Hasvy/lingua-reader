@@ -111,7 +111,7 @@ namespace BlazorApp.Pages.Components
                     Author = epubBook.Author,
                     Title = epubBook.Title,
                     Description = epubBook.Description,
-                    Format = BookFormat.epub.ToString()
+                    Format = ConstBookFormats.epub
                 }
             };
             book.BookCover.BookId = book.Id;

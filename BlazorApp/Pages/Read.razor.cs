@@ -10,6 +10,7 @@ using Objects;
 using Objects.Entities;
 using Services;
 using System.Reflection.Metadata;
+using VersOne.Epub;
 
 namespace BlazorApp.Pages
 {
@@ -17,7 +18,9 @@ namespace BlazorApp.Pages
     {
         [Inject] HtmlParser htmlParser { get; set; } = null!;
         [Inject] IJSRuntime JS { get; set; } = null!;
+        [Inject] ILocalStorageService localStorageService { get; set; } = null!;
         [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
+        [Inject] FilesOperationsService FilesOperationsService { get; set; } = null!;
 
         [Parameter]
         public string BookId { get; set; }
@@ -38,18 +41,24 @@ namespace BlazorApp.Pages
 
         protected override async Task OnInitializedAsync()
         {
+            byte[] bytes = await FilesOperationsService.GetBookFile(Guid.Parse(BookId));
+
+            string tmpFileName = "activeBook.epub";     //Work with the file, get sections from it, show them on page, maybe use MarkupString instead of iframe
+            string tmpFilePath = Directory.GetCurrentDirectory() + tmpFileName;
+            File.WriteAllBytes(tmpFilePath, bytes);
+
             Sections = await BookOperationsService.GetBookSections(Guid.Parse(BookId));
             Content = await BookOperationsService.GetBookContent(Guid.Parse(BookId));
 
             //  await JS.InvokeVoidAsync("setupReadingPage");
-            pagesCount = await JS.InvokeAsync<int>("initializeBookContainer", Sections.First().Text);        //TODO fix a bug when open a book right after upload Sequence contains no elements
                                             //TODO fix sections and show whole book.
             string css = string.Empty;      //TODO Fix it to comfort reading
             foreach (var item in Content)
             {
                 css += item.Content;
             }
-            await JS.InvokeAsync<string?>("addStyle", css);
+            pagesCount = await JS.InvokeAsync<int>("initializeBookContainer", Sections.First().Text, css);
+            //await JS.InvokeAsync<string?>("addStyle", css);
 
             //await JS.InvokeVoidAsync("setActualPage", pages[_actualPageNumber - 1]);
             await base.OnInitializedAsync();

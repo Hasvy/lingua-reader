@@ -6,6 +6,14 @@ body {
     margin: 0;
 }
 
+.rz-button {
+    --rz-button-focus-shadow: var(--rz-shadow-1);
+    --rz-button-focus-gradient: none;
+}
+
+.progress-bar {
+}
+
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
