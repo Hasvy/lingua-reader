@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,12 +32,13 @@ namespace Services
         //    }
         //}
 
-        public async Task<byte[]> GetBookFile(Guid id)
+        public async Task<string> GetBookFile(Guid id)
         {
             try
             {   //Or another variant, return string in Book object, book.BookContentFile parameter
-                var bytes = await _httpClient.GetFromJsonAsync<byte[]>($"api/BookFile/Get/{id}");
-                return bytes;
+                //Or with JsonSerializer.SerializeToUtf8Bytes(bytes)
+                var book = await _httpClient.GetFromJsonAsync<Book>($"api/BookFile/Get/{id}");
+                return book.BookContentFile;
             }
             catch (Exception)
             {

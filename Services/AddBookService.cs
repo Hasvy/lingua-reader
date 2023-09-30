@@ -29,8 +29,8 @@ namespace Services
         public async Task<Book?> AddNewEpubBook(InputFileChangeEventArgs e)
         {
             MemoryStream memoryStream = await GetMemoryStreamFromInput(e);
-            EpubBook epubBook = await EpubReader.ReadBookAsync(memoryStream);
-            Book book = SetBookData(epubBook);      //add memory stream string to book object?
+            EpubBook epubBook = await EpubReader.ReadBookAsync(memoryStream);       //TODO add ePubSharp library like additional try to read a book when versone cant read a book, maybe it will read Sheakspere book file
+            Book book = SetBookData(epubBook);
             book.BookContentFile = Convert.ToBase64String(memoryStream.ToArray());
             //var fileUploadResponse = await _filesOperationsService.PostBookFile(memoryStream.ToArray(), book);
             var response = await _bookOperationsService.PostBook(book);
