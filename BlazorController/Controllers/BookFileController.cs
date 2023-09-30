@@ -51,7 +51,7 @@ namespace BlazorServer.Controllers
             string path = "Uploads\\Users\\user1\\Books\\" + filename;
 
             byte[] bytes = await System.IO.File.ReadAllBytesAsync(path);
-            //string base64 = Convert.ToBase64String(bytes);
+            book.BookContentFile = Convert.ToBase64String(bytes);
             
 
             if (bytes == null)
@@ -60,7 +60,8 @@ namespace BlazorServer.Controllers
             }
             else
             {
-                return Ok(JsonSerializer.SerializeToUtf8Bytes(bytes));
+                return Ok(book);
+                //return Ok(JsonSerializer.SerializeToUtf8Bytes(bytes));
             }
         }
     }

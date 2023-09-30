@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EpubSharp;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SqlServer.Server;
 using Objects.Entities;
+using System.IO.Compression;
 
 namespace BlazorServer.Controllers
 {
@@ -21,6 +23,7 @@ namespace BlazorServer.Controllers
         {
             if (ModelState.IsValid)
             {
+                //await Test();
                 _appDbContext.Books.Add(book);
                 await _appDbContext.SaveChangesAsync();
 
@@ -39,6 +42,35 @@ namespace BlazorServer.Controllers
             }
 
             return BadRequest();
+        }
+
+        private async Task Test()
+        {
+            string epubFilePath = "Uploads\\Users\\user1\\Books\\5ac16609-a1f7-45d3-a749-3349dd368f13";
+            string outputZipFilePath = "Uploads\\Users\\user1\\Books\\Archive.zip";
+
+            using (FileStream zipStream = new FileStream(outputZipFilePath, FileMode.Create))
+            {
+                using (ZipArchive zipArchive = new ZipArchive(zipStream, ZipArchiveMode.Create))
+                {
+                    // Добавляем файлы из EPUB архива в ZIP архив
+                    using (ZipArchive epubArchive = ZipFile.Open(epubFilePath, ZipArchiveMode.Read))
+                    {
+                        foreach (var entry in epubArchive.Entries)
+                        {
+                            // Создаем новую запись в ZIP архиве и копируем содержимое из EPUB архива
+                            var zipEntry = zipArchive.CreateEntry(entry.FullName);
+                            using (var epubStream = entry.Open())
+                            using (var zipEntryStream = zipEntry.Open())
+                            {
+                                epubStream.CopyTo(zipEntryStream);
+                            }
+                        }
+                    }
+                }
+            }
+
+            var aaa = Directory.Exists(outputZipFilePath);
         }
 
         [HttpDelete]
