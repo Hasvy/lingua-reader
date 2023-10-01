@@ -11,39 +11,34 @@ let backup;
 //TODO Write the same optimized code in C# and compare how fast is JS and AngleSharp same code.
 //TODO If image is bigger, than maxHeight or maxWidth I have to make it smaller with proportions saving
 
-function initializeBookContainer(html) {                                        //Variant of paging with using page dividing by columns like in Yandex browser.
-    iframe = document.querySelector("#iframe-container");                       //With using scroll moving when page changes.
+function initializeBookContainer(html) {                                                //Variant of paging with using page dividing by columns like in Yandex browser.
+    //Getting iframeDocument from webpage                                               //With using scroll moving when page changes.
+    iframe = document.querySelector("#iframe-container");
     iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
-    var parser = new DOMParser();           //Separating html on head and body
+    //Parse html of book section (content)
+    var parser = new DOMParser();
     doc = parser.parseFromString(html, "text/html");
     iframeDocument.head.innerHTML = doc.head.innerHTML;
     iframeDocument.body = doc.body;
 
-    //addStyle(css);        
-    
-    //elements = iframeDocument.body.querySelectorAll('*');
-    iframeBody = iframeDocument.getElementsByTagName('body')[0];
-    totalHeight = iframeBody.offsetHeight;
-    pageCount = Math.floor(totalHeight / maxHeight) + 1;
-
-    //var link = document.createElement('link');                    
-    //link.href = 'http://localhost:5284/css/book-style.css';
-    //link.type = 'text/css';
-    //link.rel = 'stylesheet';
-    //iframeDocument.head.appendChild(link);
-
+    //Add class to book section to hide scrollbar
     var link = document.createElement('link');
     link.href = 'http://localhost:5284/css/container.css';
     link.type = 'text/css';
     link.rel = 'stylesheet';
     iframeDocument.head.appendChild(link);
 
-    iframeBody.style.padding = 10; //(optional) prevents clipped letters around the edges
-    iframeBody.style.margin = 0;
-    iframeBody.style.width = 900 * pageCount;
-    iframeBody.style.height = maxHeight;            
-    iframeBody.style.WebkitColumnCount = pageCount;         //Dividing html on columns (pages)
+    //Get offsetHeight of iframeDocument
+    totalHeight = iframeDocument.body.offsetHeight;
+    pageCount = Math.floor(totalHeight / maxHeight) + 1;
+
+    //Dividing html on columns (pages) and setting additional style parameters
+    iframeDocument.body.style.padding = 10;
+    iframeDocument.body.style.margin = 0;
+    iframeDocument.body.style.width = 900 * pageCount;
+    iframeDocument.body.style.height = maxHeight;            
+    iframeDocument.body.style.WebkitColumnCount = pageCount;
 
     return pageCount;
 }
@@ -87,6 +82,31 @@ function addStyle(css) {
     style.textContent = css;
     iframeDocument.head.appendChild(style);
 }
+
+//Methods for C# with AngleSharp
+
+function getElementHtml(element) {
+    return element.innerHTML;
+}
+
+function getIframeDocument() {
+    iframe = document.getElementById("iframe-container");
+    iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    return new XMLSerializer().serializeToString(iframeDocument);;
+}
+
+function setIframeDocument(html) {
+    iframeDocument.documentElement.innerHTML = html;
+    return iframeDocument.body.offsetHeight;
+}
+
+
+function clearIframeDocument() {
+    iframeDocument.documentElement.innerHTML = "";
+}
+//function getIframeBodyOffsetHeight() {
+//    return iframeDocument.body.offsetHeight;
+//}
 
 //Variant with loading pages 
 
