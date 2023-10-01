@@ -1,18 +1,13 @@
 ﻿using AngleSharp;
+using AngleSharp.Css.Dom;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
-using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using Newtonsoft.Json;
-using Objects;
-using Objects.Entities;
 using Services;
-using System.Text.Json;
+using System.Diagnostics;
 using VersOne.Epub;
-using EpubSharp.Format;
-using EpubSharp;
 
 namespace BlazorApp.Pages
 {
@@ -20,28 +15,21 @@ namespace BlazorApp.Pages
     {
         [Inject] HtmlParser htmlParser { get; set; } = null!;
         [Inject] IJSRuntime JS { get; set; } = null!;
-        [Inject] ILocalStorageService localStorageService { get; set; } = null!;
-        [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
+        //[Inject] ILocalStorageService localStorageService { get; set; } = null!;
+        //[Inject] BookOperationsService BookOperationsService { get; set; } = null!;
         [Inject] FilesOperationsService FilesOperationsService { get; set; } = null!;
 
         [Parameter]
         public string BookId { get; set; }
-        private List<string> Text { get; set; } = new List<string>();
-        private List<IElement> AllBodyElements { get; set; } = new List<IElement>();
-        private List<IElement> SelectedBodyElements { get; set; } = new List<IElement>();
-        private IEnumerable<BookSection> Sections { get; set; } = new List<BookSection>();
-        private IEnumerable<BookContent> Content { get; set; } = new List<BookContent>();
+
+        //private IEnumerable<BookSection> Sections { get; set; } = new List<BookSection>();
+        //private IEnumerable<BookContent> Content { get; set; } = new List<BookContent>();
         private string _actualPage = null!;
-        private string _head = null!;
-        private string _body = null!;
-        private string htmlPath = string.Empty;
         private MarkupString html;
+        private int maxHeight = 560;
         private int _actualPageNumber = 1;
-        private IHtmlDocument _htmlDocument;
-        private IDocument iframeDocument;
-        private string? iframeBodyHtml;
-        private int actualSectionPagesCount;
         private int pagesCount;
+        private int actualSectionPagesCount = 0;
         private List<string> pages = new List<string>();
         private bool _isLoading;
         private ElementReference elementReference;
@@ -49,28 +37,20 @@ namespace BlazorApp.Pages
         protected override async Task OnInitializedAsync()
         {
             _isLoading = true;
+
             string base64 = await FilesOperationsService.GetBookFile(Guid.Parse(BookId));
             byte[] bytes = Convert.FromBase64String(base64);
-            string tmpFileName = "activeBook.epub";     //Work with the file, get sections from it, show them on page, maybe use MarkupString instead of iframe
-            //string path = "wwwroot/Uploads/";
-            string tmpFilePath = Directory.GetCurrentDirectory() + tmpFileName;
 
-            //var info = Directory.CreateDirectory(path);
-            File.Create(tmpFilePath);
-            File.WriteAllBytes(tmpFilePath, bytes);
-            EpubConverter converter = new EpubConverter();
-            //converter.Convert(tmpFilePath);
-
-            EpubBookRef? epubBookRef = await VersOne.Epub.EpubReader.OpenBookAsync(tmpFilePath);        //TODO change file to stream
-            //var filepath = epubBookRef.FilePath;
+            EpubBookRef? epubBookRef = await EpubReader.OpenBookAsync(new MemoryStream(bytes));
             var list = await epubBookRef.GetReadingOrderAsync();
-            var bytesHtml = await list.First().ReadContentAsBytesAsync();
 
+            var bytesHtml = await list.First().ReadContentAsBytesAsync();
             var htmlParser = new HtmlParser();
             var sectionHtml = htmlParser.ParseDocument(await list[3].ReadContentAsync());
             var cssEls = sectionHtml.QuerySelectorAll("link[rel='stylesheet']");
             var imgEls = sectionHtml.QuerySelectorAll("img");
-            foreach ( var imgEl in imgEls )
+
+            foreach (var imgEl in imgEls)
             {
                 string src = imgEl.GetAttribute("src");
                 var img = epubBookRef.Content.Images.Local.SingleOrDefault(i => Path.GetFileName(i.FilePath) == Path.GetFileName(src));
@@ -94,83 +74,83 @@ namespace BlazorApp.Pages
             }
 
             var content = sectionHtml.ToHtml();        //TODO move this code to Library and save edited html in database
-            //html = new MarkupString(sectionHtml.ToHtml());
-            //JS to C#
-            var aaa = elementReference.Context;
-            var context = BrowsingContext.New(Configuration.Default);
-            //var document = await context.OpenAsync(req => req.Content());
 
+
+            Stopwatch stopwatch = new Stopwatch();
+
+            //C#
+            stopwatch.Start();
+            Method(content);
+            stopwatch.Stop();
+            Console.WriteLine(stopwatch.ElapsedMilliseconds);
+
+            await JS.InvokeVoidAsync("clearIframeDocument");
+
+            //JS
+            stopwatch.Restart();
             actualSectionPagesCount = await JS.InvokeAsync<int>("initializeBookContainer", content);
-            var listOfStrings = new List<string>();
-            foreach (var item in list)
-            {
-                listOfStrings.Add(await item.ReadContentAsync());
-            }
-            pagesCount = await JS.InvokeAsync<int>("countPagesOfBook", listOfStrings);
+            stopwatch.Stop();
+            Console.WriteLine(stopwatch.ElapsedMilliseconds);
+
+            //pagesCount = await JS.InvokeAsync<int>("countPagesOfBook", listOfStrings);
 
             _isLoading = false;
             await base.OnInitializedAsync();
 
-            //htmlPath = "/tmp/OEBPS/Text/Section0002.xhtml";
-            //htmlPath = "/html.html";
-            //File.Create(htmlPath);
-            //using (var stream = System.IO.File.Create(htmlPath))
-            //{
-            //    stream.Write(bytesHtml, 0, bytesHtml.Length);
-            //}
-
-            //string rootpath = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "wwwroot");
-            //var abc = File.Exists(rootpath + "index.html");
-            //var ccc = File.Exists("/BlazorHostedSample/Server/bin/Release/{TFM}/publish/wwwroot/index.html");
-            //var bb = File.Exists(htmlPath);
-
-            //var dirs = Directory.GetDirectories("../");
-            //var root = Directory.GetDirectoryRoot("../");
-            //var ss = Directory.GetParent("../");
-
-            //foreach (string file in Directory.EnumerateFiles("../", "*.*", SearchOption.AllDirectories))
-            //{
-            //    Console.WriteLine(file);
-            //}
-
-            //Use cloud storage?
-
-            //var content = await File.ReadAllTextAsync(htmlPath);
-
-            //var content = epubBookRef.Content;
-            //content.Html.Local.First().
-
-            //var guide = epubBookRef.Schema.Package.Guide.Items;
-
-            //var list = content.Html.Local;
-            //var activeFile = list[3];
-
-
-            //var doc = new Document();
-            //var element = new HtmlElement();
-
-
-            //StreamWriter textWriter = File.CreateText("/newfile.epub");
-            //System.Net.WebUtility.HtmlEncode(activeFile.ReadContent(), output: textWriter);
-            //byte[] htmlBytes = await activeFile.ReadContentAsBytesAsync();
-            //string base64Html = Convert.ToBase64String(htmlBytes);
-            //dataUri = "data:text/html;base64," + base64Html;
-
-            //Sections = await BookOperationsService.GetBookSections(Guid.Parse(BookId));
-            //Content = await BookOperationsService.GetBookContent(Guid.Parse(BookId));
-
-            ////  await JS.InvokeVoidAsync("setupReadingPage");
-            //                                //TODO fix sections and show whole book.
-            //string css = string.Empty;      //TODO Fix it to comfort reading
-            //foreach (var item in Content)
-            //{
-            //    css += item.Content;
-            //}
-            //pagesCount = await JS.InvokeAsync<int>("initializeBookContainer", Sections.First().Text, css);
-            ////await JS.InvokeAsync<string?>("addStyle", css);
-
-            ////await JS.InvokeVoidAsync("setActualPage", pages[_actualPageNumber - 1]);
+            //string tmpFileName = "activeBook.epub";     //Work with the file, get sections from it, show them on page, maybe use MarkupString instead of iframe
+            //string path = "wwwroot/Uploads/";
+            //string tmpFilePath = Directory.GetCurrentDirectory() + tmpFileName;
+            //var info = Directory.CreateDirectory(path);
+            //File.Create(tmpFilePath);
+            //File.WriteAllBytes(tmpFilePath, bytes);
+            //EpubConverter converter = new EpubConverter();
+            //converter.Convert(tmpFilePath);
         }
+
+        private async void Method(string content)
+        {
+            //Getting iframeDocument from webpage
+            var context = BrowsingContext.New(Configuration.Default);
+            var iframeDocumentHtml = await JS.InvokeAsync<string>("getIframeDocument");
+            var document = await context.OpenAsync(req => req.Content(iframeDocumentHtml));
+
+            //Parse html of book section (content)
+            var parser = new HtmlParser();
+            var doc = await parser.ParseDocumentAsync(content);
+            if (document.Head is not null && doc.Head is not null)
+            {
+                document.Head.InnerHtml = doc.Head.InnerHtml;
+                document.Body.InnerHtml = doc.Body.InnerHtml;
+            }
+
+            //Add class to book section to hide scrollbar
+            IHtmlLinkElement link = document.CreateElement<IHtmlLinkElement>();
+            link.Href = "http://localhost:5284/css/container.css";
+            link.Relation = "stylesheet";
+            link.Type = "text/css";
+            document.Head.AppendChild(link);
+
+            //Set iframeDocument with JS and return its offsetHeight
+            string html = document.ToHtml();
+            var iframeBodyOffsetHeight = await JS.InvokeAsync<int>("setIframeDocument", html);
+
+            //Dividing html on columns (pages) and setting additional style parameters
+            actualSectionPagesCount = SeparateHtmlToPages(iframeBodyOffsetHeight);
+            document.Body.SetStyle($"padding: 10; margin: 0; width: {900 * actualSectionPagesCount}; height: {maxHeight}; column-count: {actualSectionPagesCount}");
+            html = document.ToHtml();
+            await JS.InvokeAsync<int>("setIframeDocument", html);
+        }
+
+        private int SeparateHtmlToPages(int offsetHeight)
+        {
+            return (int)Math.Ceiling((double)offsetHeight / maxHeight);
+        }
+
+        //protected override async Task OnAfterRenderAsync(bool firstRender)
+        //{
+            
+        //    await base.OnAfterRenderAsync(firstRender);
+        //}
 
         //private async Task ParseBookSection(string section)     //Separate head and body, now it works in JS
         //{
