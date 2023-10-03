@@ -13,6 +13,12 @@ namespace Objects.Entities
         public Guid Id { get; set; }
         public string? Title { get; set; }
         public int OrderNumber { get; set; }
+        [NotMapped]
+        public int PagesCount { get; set; }
+        [NotMapped]
+        public int FirstPage { get; set; }
+        [NotMapped]
+        public int LastPage { get; set; }
         public IEnumerable<Page> Pages { get; set; }
         public string? Text { get; set; }
 
@@ -21,13 +27,6 @@ namespace Objects.Entities
         public BookSection()
         {
             Id = Guid.NewGuid();
-        }
-        
-        private BookSection[] arr = new BookSection[100];
-        public BookSection this[int i]
-        {
-            get { return arr[i]; }
-            set { arr[i] = value; }
         }
     }
 }

@@ -47,8 +47,6 @@ namespace BlazorApp.Pages.Components
             _bookCovers = await BookOperationsService.GetBookCovers();
             _userBooks.AddRange(_bookCovers);
 
-            //TODO change saving books to database
-
             for(int i = 0; i < await localStorage.LengthAsync(); i++)
             {
                 try
@@ -94,7 +92,7 @@ namespace BlazorApp.Pages.Components
                     await AddNewEpubBook(e);
                     break;
                 case ConstBookFormats.fb2:
-                    //TODO
+                   
                     break;
                 default:
                     break;
@@ -142,24 +140,24 @@ namespace BlazorApp.Pages.Components
             return await EpubReader.ReadBookAsync("/123.epub");
         }
 
-        private async Task<IEnumerable<BookSection>> ProcessEpubBook(Book book, EpubBook epubBook)
+        private async Task<IList<BookSection>> ProcessEpubBook(Book book, EpubBook epubBook)
         {
             var contentList = new List<BookContent>();
             var sectionList = new List<BookSection>();
             int index = 0;
 
-            foreach (var item in epubBook.Content.Css.Local)    //TODO Create different method for that and return bookcontent list
-            {
-                var bookContent = new BookContent();
-                bookContent.Type = ContentType.css;
-                bookContent.Content = item.Content;
-                bookContent.BookId = book.Id;
-                contentList.Add(bookContent);
-                //Add file storage on server. What after I upload file on server? How work with it?
-                //BLOB in database then wirte it in memory
-                //csv code to string or json and then apply it to code +
-            }
-            book.Content = contentList;
+            //foreach (var item in epubBook.Content.Css.Local)
+            //{
+            //    var bookContent = new BookContent();
+            //    bookContent.Type = ContentType.css;
+            //    bookContent.Content = item.Content;
+            //    bookContent.BookId = book.Id;
+            //    contentList.Add(bookContent);
+            //    //Add file storage on server. What after I upload file on server? How work with it?
+            //    //BLOB in database then wirte it in memory
+            //    //csv code to string or json and then apply it to code +
+            //}
+            //book.Content = contentList;
 
             foreach (var item in epubBook.Content.Html.Local)           //What is remote file?
             {
@@ -168,7 +166,6 @@ namespace BlazorApp.Pages.Components
                 bookSection.OrderNumber = index;
                 bookSection.BookId = book.Id;
 
-                //Pages //Change
                 List<Page> pages = new List<Page> { new Page { Number = 1, SectionId = bookSection.Id, Text = "Text" } };
                 bookSection.Pages = pages;
 
@@ -214,7 +211,6 @@ namespace BlazorApp.Pages.Components
                 var pagesCount = pdfDoc.GetNumberOfPages();
                 for (int page = 1; page <= pagesCount; page++)
                 {
-                    //TODO parse pdf file with saving format. At least titles and images
                     ITextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
                     //ITextExtractionStrategy strategy2 = new iText.Kernel.Pdf.Canvas.Parser.Listener.
                     _pages.Add(PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(page), strategy));
