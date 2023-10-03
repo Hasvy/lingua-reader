@@ -4,6 +4,7 @@ using BlazorServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorServer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231002193837_IEnumToIList")]
+    partial class IEnumToIList
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,30 +40,6 @@ namespace BlazorServer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Books");
-                });
-
-            modelBuilder.Entity("Objects.Entities.BookContent", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("BookId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("BookContent");
                 });
 
             modelBuilder.Entity("Objects.Entities.BookCover", b =>
@@ -141,17 +120,6 @@ namespace BlazorServer.Migrations
                     b.ToTable("Pages");
                 });
 
-            modelBuilder.Entity("Objects.Entities.BookContent", b =>
-                {
-                    b.HasOne("Objects.Entities.Book", "Book")
-                        .WithMany("Content")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-                });
-
             modelBuilder.Entity("Objects.Entities.BookCover", b =>
                 {
                     b.HasOne("Objects.Entities.Book", "Book")
@@ -189,8 +157,6 @@ namespace BlazorServer.Migrations
                 {
                     b.Navigation("BookCover")
                         .IsRequired();
-
-                    b.Navigation("Content");
 
                     b.Navigation("Sections");
                 });

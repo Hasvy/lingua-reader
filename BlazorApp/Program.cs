@@ -21,6 +21,7 @@ builder.Services.AddScoped<EpubConverter>();
 builder.Services.AddScoped<BookOperationsService>();
 builder.Services.AddScoped<FilesOperationsService>();
 builder.Services.AddScoped<AddBookService>();
+builder.Services.AddScoped<HtmlParserService>();
 
 builder.Services.AddSingleton<ProgressService>();
 

@@ -12,8 +12,8 @@ namespace Objects.Entities
         public Guid Id { get; set; }
         public virtual BookCover BookCover { get; set; }
         //public string? Text { get; set; }
-        public virtual IEnumerable<BookSection> Sections { get; set; }
-        public virtual IEnumerable<BookContent> Content { get; set; }
+        public virtual IList<BookSection> Sections { get; set; }
+        //public virtual IEnumerable<BookContent> Content { get; set; }
         public int PagesCount { get; set; }
         public int SectionsCount { get; set; }
         [NotMapped]
