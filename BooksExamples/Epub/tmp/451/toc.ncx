@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="ces">
+  <head>
+    <meta content="48bc8a2d-e7dc-4d80-be51-0c254c9854bc" name="dtb:uid"/>
+    <meta content="2" name="dtb:depth"/>
+    <meta content="calibre (2.5.0)" name="dtb:generator"/>
+    <meta content="0" name="dtb:totalPageCount"/>
+    <meta content="0" name="dtb:maxPageNumber"/>
+  </head>
+  <docTitle>
+    <text>451 stupňů Fahrenheita</text>
+  </docTitle>
+  <navMap>
+    <navPoint class="chapter" id="navPoint1" playOrder="1">
+      <navLabel>
+        <text>SLOVO ÚVODEM</text>
+      </navLabel>
+      <content src="OEBPS/Text/Section0002.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="navPoint2" playOrder="2">
+      <navLabel>
+        <text>ČÁST PRVNÍ, OHNIŠTĚ A SALAMANDR</text>
+      </navLabel>
+      <content src="OEBPS/Text/Section0003.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="navPoint3" playOrder="3">
+      <navLabel>
+        <text>ČÁST DRUHÁ, SÍTO A PÍSEK</text>
+      </navLabel>
+      <content src="OEBPS/Text/Section0004.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="navPoint4" playOrder="4">
+      <navLabel>
+        <text>ČÁST TŘETÍ, PLAMEN PLÁ</text>
+      </navLabel>
+      <content src="OEBPS/Text/Section0005.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="navPoint5" playOrder="5">
+      <navLabel>
+        <text>SCIENCE FICTION A RAY BRADBURY</text>
+      </navLabel>
+      <content src="OEBPS/Text/Section0006.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="navPoint6" playOrder="6">
+      <navLabel>
+        <text>PODOBENSTVÍ PODLE MONTAGA</text>
+      </navLabel>
+      <content src="OEBPS/Text/Section0007.xhtml"/>
+    </navPoint>
+  </navMap>
+</ncx>
