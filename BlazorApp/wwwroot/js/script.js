@@ -24,7 +24,7 @@ function resizeHtml() {
 }
 
 function initializeBookContainer() {
-    //Getting iframeDocument from webpage 
+    //Getting iframeDocument from webpage
     iframe = document.querySelector("#iframe-container");
     iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
     iframe.contentWindow.addEventListener('resize', resizeHtml);
@@ -111,6 +111,14 @@ function removeClone() {
     document.getElementById("iframe-container-clone").remove();
 }
 
+function showContent() {
+    document.getElementById("reading-page").style.visibility = "visible";
+}
+
+function setActualPage(pagesCountToScroll) {
+    iframe.contentWindow.scrollBy(pagesCountToScroll * maxWidth, 0);
+}
+
 function nextPage() {
     iframe.contentWindow.scrollBy(maxWidth, 0);
 }
@@ -195,8 +203,4 @@ function checkContainerHeight(iframeHtml) {
             return false;
         }
     }
-}
-
-function setActualPage(htmlCode) {
-    containerElement.innerHTML = htmlCode;
 }

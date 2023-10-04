@@ -8,5 +8,6 @@
         public const string Settings = "settings";
         public const string Profile = "profile";
         public const string Read = "read/{BookId}";
+        public const string ReadPdf = "readPdf/{BookId}";
     }
 }

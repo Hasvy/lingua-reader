@@ -1,28 +1,27 @@
 ﻿@attribute [Route(Routes.Read)]
 
-@_actualPageNumber / @pagesCount
-<RadzenNumeric ShowUpDown="false" Style="width: 30px" TValue="int" Value=@_actualPageNumber Change="@(pageNumber => ChangePage(pageNumber))" />
-<div style="display: flex; justify-content: center">
-    <RadzenStack Gap="0" Wrap="FlexWrap.Wrap" Orientation="Orientation.Horizontal">
-        <RadzenButton Icon="arrow_back_ios_new" Click=@(args => PreviousPage()) />     @*TODO Fix icon*@
-        <RadzenButton Icon="arrow_forward_ios" Click="NextPage" />
-    </RadzenStack>
-</div>
-
-@* @if (_isLoading)
+@if (_isLoading)
 {
-    <h3>Loading...</h3>
+@*     <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" /> *@
+    <RadzenIcon class="centered-element" Icon="sync" Style="animation: reverse rotation 750ms linear infinite; font-size: 50px"/>
 }
-else
-{ *@
-    <div @ref="elementReference" style="display: flex; justify-content: center; align-items: center">
+
+<div id="reading-page" style="visibility: hidden;">
+    @_actualPageNumber / @pagesCount
+    <RadzenNumeric id="page-changer" ShowUpDown="false" Style="width: 30px" TValue="int?" Value="null" Change="@(pageNumber => ChangePage(pageNumber))" />
+
+    <div style="display: flex; justify-content: center">
+        <RadzenStack Gap="0" Wrap="FlexWrap.Wrap" Orientation="Orientation.Horizontal">
+            <RadzenButton Icon="arrow_back_ios_new" Click="PreviousPage" />
+            <RadzenButton Icon="arrow_forward_ios" Click="NextPage" />
+        </RadzenStack>
+    </div>
+
+    <div style="display: flex; justify-content: center; align-items: center">
         <RadzenCard id="reader-card" Style="width: 60%; padding: 20px 40px 20px 40px; height: 600px; position: center">
-            @*<RadzenText Style="height: 100%;" TextAlign="TextAlign.Justify">*@
             <iframe sandbox="allow-same-origin" style="width: 100%; height: 100%; border: none;" id="iframe-container">     @*Possible security problem with iframe*@
                 @*Text of a book*@
             </iframe>
-            @* @html *@
-            @*</RadzenText>*@
-            @* <BlazorEpub.Epub FontSize="12" FontFace="Tahoma" EpubFile="tmpFilePath" LastPageCfi=""></BlazorEpub.Epub> *@
         </RadzenCard>
     </div>
+</div>
