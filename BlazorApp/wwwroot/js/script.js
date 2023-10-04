@@ -12,6 +12,7 @@ var globalHtml;
 //TODO Fix exception if user open a book and then immidietly click button back in web browser
 
 //TODO If image is bigger, than maxHeight or maxWidth I have to make it smaller with proportions saving
+//TODO Add links handling
 
 function resizeHtml() {
     if (globalHtml != null) {

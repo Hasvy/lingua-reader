@@ -29,17 +29,15 @@ namespace BlazorApp.Pages
         private int pagesCount = 0;
         private int actualSectionPagesCount = 0;
         private int currentSectionNumber;
-        private List<string> pages = new List<string>();
         private bool _isLoading;
-        private ElementReference elementReference;
 
         protected override async Task OnInitializedAsync()
         {
-            //Stopwatch stopwatch = Stopwatch.StartNew();
             _isLoading = true;
             Sections = await BookOperationsService.GetBookSections(Guid.Parse(BookId));
             await JS.InvokeVoidAsync("initializeBookContainer");
             await JS.InvokeVoidAsync("setClone");
+
             foreach (var item in Sections)                  //TODO what if section will be less then one page? Maybe it on page will be only content of the section.
             {
                 item.PagesCount = await JS.InvokeAsync<int>("separateHtmlOnPages", item.Text);
@@ -54,25 +52,12 @@ namespace BlazorApp.Pages
             await JS.InvokeVoidAsync("removeClone");
 
             currentSectionNumber = 0;
-            
-            //JS
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            actualSectionPagesCount = await JS.InvokeAsync<int>("divideAndSetHtml", Sections[2].Text);
-            stopwatch.Stop();
-            Console.WriteLine("JS time: " + stopwatch.ElapsedMilliseconds + " msec");
-
-            //C#
-            Stopwatch stopwatch2 = Stopwatch.StartNew();
-            await DivideAndSetHtml(Sections[2].Text);
-            stopwatch2.Stop();
-            Console.WriteLine("C# time: " + stopwatch2.ElapsedMilliseconds + " msec");
-
-            //pagesCount = await JS.InvokeAsync<int>("countPagesOfBook", listOfStrings);        //Move this code to C#
+            actualSectionPagesCount = await JS.InvokeAsync<int>("divideAndSetHtml", Sections.First().Text);
 
             _isLoading = false;
             await base.OnInitializedAsync();
             //stopwatch.Stop();
-            //Console.WriteLine(stopwatch.ElapsedMilliseconds);
+            //Console.WriteLine("Time: " + stopwatch.ElapsedMilliseconds + " msec");
         }
 
         private async Task DivideAndSetHtml(string content)
@@ -118,7 +103,7 @@ namespace BlazorApp.Pages
         private async void ChangePage(int pageNumber)
         {
             _actualPageNumber = pageNumber;
-            await JS.InvokeVoidAsync("setActualPage", pages[_actualPageNumber - 1]);
+            //await JS.InvokeVoidAsync("setActualPage", _actualPageNumber);
         }
 
         private async void NextPage()
