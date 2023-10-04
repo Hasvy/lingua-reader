@@ -6,30 +6,38 @@ var iframeDocumentClone;
 
 var containerElement;
 let backup;
+var globalHtml;
 
 //TODO Add loading so user cant click links and broke the script
 //TODO Fix exception if user open a book and then immidietly click button back in web browser
 
 //TODO If image is bigger, than maxHeight or maxWidth I have to make it smaller with proportions saving
 
+function resizeHtml() {
+    if (globalHtml != null) {
+        initializeBookContainer();
+        separateHtmlOnPages(globalHtml);
+        divideAndSetHtml(globalHtml);
+    }
+    //iframeDocument.style.width = Math.round(iframeDocument.clientWidth) + 'px';
+}
+
 function initializeBookContainer() {
     //Getting iframeDocument from webpage 
     iframe = document.querySelector("#iframe-container");
     iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    iframe.contentWindow.addEventListener('resize', resizeHtml);
 
     maxHeight = iframeDocument.body.scrollHeight;
-    maxWidth = iframeDocument.body.scrollWidth; - 0.2;       //Page 38-39 je problem
+    maxWidth = iframeDocument.body.scrollWidth;       //Page 38-39 je problem
+    iframeDocument.body.width = maxWidth;
 }
 
 //Variant of paging with using page dividing by columns like in Yandex browser.
 //With using scroll moving when page changes.
-function divideAndSetHtml(html) {                                        
-
-    //Getting iframeDocument from webpage 
-    iframe = document.querySelector("#iframe-container");
-    iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-    
+function divideAndSetHtml(html) {    
     //Parse html of book section (content)
+    globalHtml = html;
     var parser = new DOMParser();
     doc = parser.parseFromString(html, "text/html");
     iframeDocument.head.innerHTML = doc.head.innerHTML;

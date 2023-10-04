@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Objects.Entities;
 using Services;
+using System.Diagnostics;
 
 namespace BlazorApp.Pages
 {
@@ -17,15 +18,12 @@ namespace BlazorApp.Pages
         [Inject] IJSRuntime JS { get; set; } = null!;
         //[Inject] ILocalStorageService localStorageService { get; set; } = null!;
         [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
-        [Inject] FilesOperationsService FilesOperationsService { get; set; } = null!;
 
         [Parameter]
         public string BookId { get; set; }
 
         private IList<BookSection> Sections { get; set; } = new List<BookSection>();
         //private IEnumerable<BookContent> Content { get; set; } = new List<BookContent>();
-        private string _actualPage = null!;
-        private MarkupString html;
         private int maxHeight = 560;
         private int _actualPageNumber = 1;
         private int pagesCount = 0;
@@ -39,38 +37,10 @@ namespace BlazorApp.Pages
         {
             //Stopwatch stopwatch = Stopwatch.StartNew();
             _isLoading = true;
-            //string base64 = await FilesOperationsService.GetBookFile(Guid.Parse(BookId));       //TODO move this code to Library and save edited html in database {
-            //byte[] bytes = Convert.FromBase64String(base64);
-
-            //EpubBookRef? epubBookRef = await EpubReader.OpenBookAsync(new MemoryStream(bytes));
-            //var list = await epubBookRef.GetReadingOrderAsync();
-
-            //var bytesHtml = await list.First().ReadContentAsBytesAsync();
-            //var htmlParser = new HtmlParser();
-
-            //var content = "";
-
-            //When book opens, get all prepared sections from database
-            //Display first section, when user move to the next section, draw and display the section from prepared list.
-            //Get all sections as IEnumerable
-
             Sections = await BookOperationsService.GetBookSections(Guid.Parse(BookId));
-            var listOfStrings = new List<string>();
-            foreach (var section in Sections)
-            {
-                //pagesCount += SeparateHtmlToPages(await JS.InvokeAsync<int>("setIframeDocument", section.Text));
-                listOfStrings.Add(section.Text);
-            }
             await JS.InvokeVoidAsync("initializeBookContainer");
-
-            //pagesCount = await JS.InvokeAsync<int>("countPagesOfBook", listOfStrings);
-
-            //await JS.InvokeAsync<int>("initializeBookContainer", Sections[2].Text);
-            //await JS.InvokeVoidAsync("setClone");
-            //await JS.InvokeAsync<int>("separateHtmlOnPages", Sections[2].Text);
-
             await JS.InvokeVoidAsync("setClone");
-            foreach (var item in Sections)      //TODO what if section will be less then one page?
+            foreach (var item in Sections)                  //TODO what if section will be less then one page? Maybe it on page will be only content of the section.
             {
                 item.PagesCount = await JS.InvokeAsync<int>("separateHtmlOnPages", item.Text);
                 item.FirstPage = pagesCount + 1;
@@ -83,21 +53,19 @@ namespace BlazorApp.Pages
             }
             await JS.InvokeVoidAsync("removeClone");
 
-            //foreach (var section in Sections)
-            //{
-            //    Stopwatch stopwatch = Stopwatch.StartNew();
-            //    DivideAndSetHtml(section.Text);
-            //    //await JS.InvokeVoidAsync("clearIframeDocument");
-            //    stopwatch.Stop();
-            //    Console.WriteLine(stopwatch.ElapsedMilliseconds);
-            //}
-
             currentSectionNumber = 0;
-            actualSectionPagesCount = await JS.InvokeAsync<int>("divideAndSetHtml", Sections.First().Text);
-            //await DivideAndSetHtml(Sections[1].Text);
+            
+            //JS
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            actualSectionPagesCount = await JS.InvokeAsync<int>("divideAndSetHtml", Sections[2].Text);
+            stopwatch.Stop();
+            Console.WriteLine("JS time: " + stopwatch.ElapsedMilliseconds + " msec");
 
-            //TODO show a whole book, not one section
-            //await JS.InvokeVoidAsync("clearIframeDocument");
+            //C#
+            Stopwatch stopwatch2 = Stopwatch.StartNew();
+            await DivideAndSetHtml(Sections[2].Text);
+            stopwatch2.Stop();
+            Console.WriteLine("C# time: " + stopwatch2.ElapsedMilliseconds + " msec");
 
             //pagesCount = await JS.InvokeAsync<int>("countPagesOfBook", listOfStrings);        //Move this code to C#
 
@@ -145,16 +113,6 @@ namespace BlazorApp.Pages
         private int SeparateHtmlToPages(int offsetHeight)
         {
             return (int)Math.Ceiling((double)offsetHeight / maxHeight);
-        }
-
-        //protected override async Task OnAfterRenderAsync(bool firstRender)
-        //{
-        //    await base.OnAfterRenderAsync(firstRender);
-        //}
-
-        private int GetIndexOfActualPage()
-        {
-            return pages.IndexOf(_actualPage);
         }
 
         private async void ChangePage(int pageNumber)
