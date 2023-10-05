@@ -12,7 +12,7 @@
 }
 
 .book_card:hover, .add_book_card:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19) !important;
     transition: box-shadow 0.3s ease-in-out;
 }
 

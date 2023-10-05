@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Objects.Entities;
+using Objects.Entities.Books.EpubBook;
 using static System.Reflection.Metadata.BlobBuilder;
 
 namespace BlazorServer.Controllers
@@ -18,7 +18,7 @@ namespace BlazorServer.Controllers
         [Route("api/[controller]/Get/{Id:Guid}")]
         public async Task<ActionResult<IEnumerable<BookSection>>> Get(Guid id)
         {
-            var bookSections = await _appDbContext.BookSections.Where(bs => bs.BookId == id)
+            var bookSections = await _appDbContext.BookSections.Where(bs => bs.EpubBookId == id)
                                                                .OrderBy(bs => bs.OrderNumber)
                                                                .ToListAsync();
 

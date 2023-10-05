@@ -6,8 +6,10 @@ using Newtonsoft.Json;
 using Objects.Entities;
 using VersOne.Epub;
 using Objects;
-using System.IO;
-using System.Diagnostics;
+using Objects.Entities.Books.EpubBook;
+using Objects.Entities.Books.PdfBook;
+using iText.Layout;
+using iText.Bouncycastleconnector;
 
 namespace Services
 {
@@ -28,16 +30,16 @@ namespace Services
         }
 
         #region Epub book processing
-        public async Task<Book?> AddNewEpubBook(InputFileChangeEventArgs e)
+        public async Task<Objects.Entities.Books.EpubBook.EpubBook?> AddNewEpubBook(InputFileChangeEventArgs e)
         {
             
             MemoryStream memoryStream = await GetMemoryStreamFromInput(e);
 
             //EpubBook epubBook = await EpubReader.ReadBookAsync(memoryStream);       //TODO add ePubSharp library like additional try to read a book when versone cant read a book, maybe it will read Sheakspere book file
             EpubBookRef epubBook = await EpubReader.OpenBookAsync(memoryStream);
-            Book book = await SetBookData(epubBook);
+            Objects.Entities.Books.EpubBook.EpubBook book = await SetBookData(epubBook);
             book.BookContentFile = Convert.ToBase64String(memoryStream.ToArray());
-            var response = await _bookOperationsService.PostBook(book);
+            var response = await _bookOperationsService.PostEpubBook(book);
 
             if (response.IsSuccessStatusCode)
             {
@@ -58,9 +60,9 @@ namespace Services
 
         }
 
-        private async Task<Book> SetBookData(EpubBookRef epubBook)     //Assign epubBook data to Book object
+        private async Task<Objects.Entities.Books.EpubBook.EpubBook> SetBookData(EpubBookRef epubBook)     //Assign epubBook data to EpubBook object
         {
-            Book book = new Book
+            Objects.Entities.Books.EpubBook.EpubBook book = new Objects.Entities.Books.EpubBook.EpubBook
             {
                 BookCover = new BookCover
                 {
@@ -77,7 +79,7 @@ namespace Services
             return book;
         }
 
-        private async Task<List<BookSection>> SetBookSections(EpubBookRef epubBook, Book book)
+        private async Task<List<BookSection>> SetBookSections(EpubBookRef epubBook, Objects.Entities.Books.EpubBook.EpubBook book)
         {
             var sectionList = new List<BookSection>();
             int index = 0;
@@ -88,16 +90,14 @@ namespace Services
                 var bookSection = new BookSection();
                 bookSection.Text = await _htmlParserService.Parse(item.ReadContentAsync().Result, epubBook);
                 bookSection.OrderNumber = index;
-                bookSection.BookId = book.Id;
-                List<Page> pages = new List<Page> { new Page { Number = 1, SectionId = bookSection.Id, Text = "Text" } };           //Pages //Change if I will use them
-                bookSection.Pages = pages;
+                bookSection.EpubBookId = book.Id;
                 sectionList.Add(bookSection);
                 index++;
             }
             return sectionList;
         }
 
-        private async Task<List<BookContent>> SetBookContent(EpubBookRef epubBook, Book book)
+        private async Task<List<BookContent>> SetBookContent(EpubBookRef epubBook, Objects.Entities.Books.EpubBook.EpubBook book)
         {
             var contentList = new List<BookContent>();
 
@@ -121,17 +121,17 @@ namespace Services
         #region Pdf book processing
 
         private List<string> _pages = new List<string>();
-        public async Task AddNewPdfBook(InputFileChangeEventArgs e)
+        public async Task<PdfBook?> AddNewPdfBook(InputFileChangeEventArgs e)
         {
             try
             {
+                MemoryStream memoryStream = await GetMemoryStreamFromInput(e);
                 //In future, I can use JavaScript Interop to save and then read a file. Also I can save all information in file, like drawio.
-                await using FileStream fileStream = new(Directory.GetCurrentDirectory() + "123.pdf", FileMode.Create);
-
-                await e.File.OpenReadStream(_maxFileSize).CopyToAsync(fileStream);
-                var fi = new System.IO.FileInfo("/123.pdf").Length;
-
-                PdfReader pdfReader = new PdfReader("/123.pdf");
+                //await using FileStream fileStream = new(Directory.GetCurrentDirectory() + "123.pdf", FileMode.Create);
+                //await e.File.OpenReadStream(_maxFileSize).CopyToAsync(memoryStream);
+                //var fi = new System.IO.FileInfo("/123.pdf").Length;
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                PdfReader pdfReader = new PdfReader(memoryStream);
                 PdfDocument pdfDoc = new PdfDocument(pdfReader);
                 var pagesCount = pdfDoc.GetNumberOfPages();
                 for (int page = 1; page <= pagesCount; page++)
@@ -140,15 +140,32 @@ namespace Services
                     ITextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
                     //ITextExtractionStrategy strategy2 = new iText.Kernel.Pdf.Canvas.Parser.Listener.
                     _pages.Add(PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(page), strategy));
-                    PdfCanvasProcessor parser = new PdfCanvasProcessor(strategy);
-                    parser.ProcessPageContent(pdfDoc.GetPage(page));
-                    _pages.Add(strategy.GetResultantText());
+                    //PdfCanvasProcessor parser = new PdfCanvasProcessor(strategy);
+                    //parser.ProcessPageContent(pdfDoc.GetPage(page));
+                    //_pages.Add(strategy.GetResultantText());
                     await Task.Delay(1);
                     _progressService.UpdateProgress(page * 100 / pagesCount);
                 }
-                SaveBook();
+
+                PdfBook book = SaveBookData(pdfDoc);
+
+                foreach (var pageText in _pages)
+                {
+                    book.Text += pageText;
+                }
+                var response = await _bookOperationsService.PostPdfBook(book);
                 pdfDoc.Close();
                 pdfReader.Close();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return book;
+                }
+                else
+                {
+                    return null;
+                    //Notification and log
+                }
             }
             catch (Exception)
             {
@@ -156,19 +173,16 @@ namespace Services
             }
         }
 
-        private void SaveBook()
+        private PdfBook SaveBookData(PdfDocument pdfDoc)
         {
-            Book book = new Book();
+            PdfBook book = new PdfBook();
             book.BookCover = new BookCover();
-            book.BookCover.Title = "Mars";
-            book.BookCover.Author = "Breadbury";
+            book.BookCover.Title = pdfDoc.GetDocumentInfo().GetTitle();
+            book.BookCover.Author = pdfDoc.GetDocumentInfo().GetAuthor();
+            book.BookCover.Format = ConstBookFormats.pdf;
+            book.BookCover.BookId = book.Id;
 
-            //_userBooks.Add(book.BookCover);
-
-            string cover = JsonConvert.SerializeObject(book.BookCover);
-            string text = JsonConvert.SerializeObject(_pages);
-            //await localStorage.SetItemAsync(book.BookCover.Id.ToString("N"), cover);
-            //await localStorage.SetItemAsync(book.BookCover.TextId.ToString("D"), text);
+            return book;
         }
         #endregion
     }

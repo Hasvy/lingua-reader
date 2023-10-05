@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Text.Json.Serialization;
+using Objects.Entities.Books;
+using Objects.Entities.Books.EpubBook;
+using Objects.Entities.Books.PdfBook;
 
 namespace Objects.Entities
 {
@@ -9,10 +12,8 @@ namespace Objects.Entities
         public string? Title { get; set; }
         public string? Author { get; set; }
         public string? Description { get; set; }
-        public string Format { get; set; }
-
-        public Guid BookId { get; set; }
-        public virtual Book? Book { get; set; }     //Find out why database need this, I dont
+        public string Format { get; set; } = null!;
+        public Guid BookId { get; set; }        //Foreign key
 
         public BookCover()
         {

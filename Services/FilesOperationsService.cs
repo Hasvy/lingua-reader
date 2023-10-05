@@ -1,4 +1,4 @@
-﻿using Objects.Entities;
+﻿using Objects.Entities.Books.EpubBook;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,9 +35,9 @@ namespace Services
         public async Task<string> GetBookFile(Guid id)
         {
             try
-            {   //Or another variant, return string in Book object, book.BookContentFile parameter
+            {   //Or another variant, return string in EpubBook object, book.BookContentFile parameter
                 //Or with JsonSerializer.SerializeToUtf8Bytes(bytes)
-                var book = await _httpClient.GetFromJsonAsync<Book>($"api/BookFile/Get/{id}");
+                var book = await _httpClient.GetFromJsonAsync<EpubBook>($"api/BookFile/Get/{id}");
                 return book.BookContentFile;
             }
             catch (Exception)

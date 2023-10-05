@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SqlServer.Server;
-using Objects.Entities;
+using Objects.Entities.Books.EpubBook;
+using Objects.Entities.Books.PdfBook;
 using System.IO.Compression;
+using EpubBook = Objects.Entities.Books.EpubBook.EpubBook;
 
 namespace BlazorServer.Controllers
 {
@@ -18,25 +20,24 @@ namespace BlazorServer.Controllers
         }
 
         [HttpPost]
-        [Route("api/[controller]/Post")]
-        public async Task<IActionResult> Post([FromBody] Book book)
+        [Route("api/EpubBook/Post")]
+        public async Task<IActionResult> PostEpub([FromBody] EpubBook book)
         {
             if (ModelState.IsValid)
             {
-                //await Test();
-                _appDbContext.Books.Add(book);
+                _appDbContext.EpubBooks.Add(book);
                 await _appDbContext.SaveChangesAsync();
 
-                byte[] bytes = Convert.FromBase64String(book.BookContentFile);
-                string filename = book.Id.ToString();
-                string path = "Uploads\\Users\\user1\\Books\\" + filename;
+                //byte[] bytes = Convert.FromBase64String(epubBook.BookContentFile);
+                //string filename = book.Id.ToString();
+                //string path = "Uploads\\Users\\user1\\Books\\" + filename;
 
                 //TODO security check before save!!!
                 //TODO save confidence, save files encrypted.   Maybe use File.Encrypt
-                using (var stream = System.IO.File.Create(path))
-                {
-                    stream.Write(bytes, 0, bytes.Length);
-                }
+                //using (var stream = System.IO.File.Create(path))
+                //{
+                //    stream.Write(bytes, 0, bytes.Length);
+                //}
 
                 return Ok();
             }
@@ -44,40 +45,26 @@ namespace BlazorServer.Controllers
             return BadRequest();
         }
 
-        private async Task Test()
+        [HttpPost]
+        [Route("api/PdfBook/Post")]
+        public async Task<IActionResult> PostPdf([FromBody] PdfBook book)
         {
-            string epubFilePath = "Uploads\\Users\\user1\\Books\\5ac16609-a1f7-45d3-a749-3349dd368f13";
-            string outputZipFilePath = "Uploads\\Users\\user1\\Books\\Archive.zip";
-
-            using (FileStream zipStream = new FileStream(outputZipFilePath, FileMode.Create))
+            if (ModelState.IsValid)
             {
-                using (ZipArchive zipArchive = new ZipArchive(zipStream, ZipArchiveMode.Create))
-                {
-                    // Добавляем файлы из EPUB архива в ZIP архив
-                    using (ZipArchive epubArchive = ZipFile.Open(epubFilePath, ZipArchiveMode.Read))
-                    {
-                        foreach (var entry in epubArchive.Entries)
-                        {
-                            // Создаем новую запись в ZIP архиве и копируем содержимое из EPUB архива
-                            var zipEntry = zipArchive.CreateEntry(entry.FullName);
-                            using (var epubStream = entry.Open())
-                            using (var zipEntryStream = zipEntry.Open())
-                            {
-                                epubStream.CopyTo(zipEntryStream);
-                            }
-                        }
-                    }
-                }
+                _appDbContext.PdfBooks.Add(book);
+                await _appDbContext.SaveChangesAsync();
+
+                return Ok();
             }
 
-            var aaa = Directory.Exists(outputZipFilePath);
+            return BadRequest();
         }
 
         [HttpDelete]
         [Route("api/[controller]/Delete/{Id:Guid}")]
         public async Task<IActionResult> DeleteBook(Guid id)
         {
-            var bookToDelete = await _appDbContext.Books.SingleOrDefaultAsync(b => b.Id == id);
+            var bookToDelete = await _appDbContext.EpubBooks.SingleOrDefaultAsync(b => b.Id == id);
             string filename = id.ToString();
             string path = "Uploads\\Users\\user1\\Books\\" + filename;
 
@@ -87,7 +74,7 @@ namespace BlazorServer.Controllers
             }
 
             System.IO.File.Delete(path);
-            _appDbContext.Books.Remove(bookToDelete);
+            _appDbContext.EpubBooks.Remove(bookToDelete);
             await _appDbContext.SaveChangesAsync();
             return Ok();
         }

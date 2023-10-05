@@ -1,4 +1,7 @@
 ﻿using Objects.Entities;
+using Objects.Entities.Books;
+using Objects.Entities.Books.EpubBook;
+using Objects.Entities.Books.PdfBook;
 using System.Net.Http.Json;
 
 namespace Services
@@ -54,12 +57,26 @@ namespace Services
             }
         }
 
-        public async Task<HttpResponseMessage> PostBook(Book book)
+        public async Task<HttpResponseMessage> PostEpubBook(EpubBook book)
         {
             try
             {
-                var response = await _httpClient.PostAsJsonAsync("api/Book/Post", book);
+                var response = await _httpClient.PostAsJsonAsync("api/EpubBook/Post", book);
                 //TODO Return some info
+                return response;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<HttpResponseMessage> PostPdfBook(PdfBook book)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync("api/PdfBook/Post", book); ;
                 return response;
             }
             catch (Exception)
@@ -77,7 +94,7 @@ namespace Services
 
                 //if (response.IsSuccessStatusCode)
                 //{
-                //    return await response.Content.ReadFromJsonAsync<Book>();
+                //    return await response.Content.ReadFromJsonAsync<EpubBook>();
                 //}
                 //return null;
             }
