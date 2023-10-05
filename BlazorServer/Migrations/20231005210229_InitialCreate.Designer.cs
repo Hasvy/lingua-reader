@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorServer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230925134951_AddTextToSection")]
-    partial class AddTextToSection
+    [Migration("20231005210229_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,23 +24,6 @@ namespace BlazorServer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Objects.Entities.Book", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("PagesCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SectionsCount")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Books");
-                });
 
             modelBuilder.Entity("Objects.Entities.BookCover", b =>
                 {
@@ -72,13 +55,33 @@ namespace BlazorServer.Migrations
                     b.ToTable("BookCovers");
                 });
 
-            modelBuilder.Entity("Objects.Entities.BookSection", b =>
+            modelBuilder.Entity("Objects.Entities.Books.AbstractBook", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AbstractBooks");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("AbstractBook");
+
+                    b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("Objects.Entities.Books.EpubBook.BookSection", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BookId")
+                    b.Property<Guid?>("EpubBookId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("OrderNumber")
@@ -92,37 +95,35 @@ namespace BlazorServer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookId");
+                    b.HasIndex("EpubBookId");
 
                     b.ToTable("BookSections");
                 });
 
-            modelBuilder.Entity("Objects.Entities.Page", b =>
+            modelBuilder.Entity("Objects.Entities.Books.EpubBook.EpubBook", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.HasBaseType("Objects.Entities.Books.AbstractBook");
 
-                    b.Property<int>("Number")
+                    b.Property<int>("SectionsCount")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("SectionId")
-                        .HasColumnType("uniqueidentifier");
+                    b.HasDiscriminator().HasValue("EpubBook");
+                });
+
+            modelBuilder.Entity("Objects.Entities.Books.PdfBook.PdfBook", b =>
+                {
+                    b.HasBaseType("Objects.Entities.Books.AbstractBook");
 
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("SectionId");
-
-                    b.ToTable("Pages");
+                    b.HasDiscriminator().HasValue("PdfBook");
                 });
 
             modelBuilder.Entity("Objects.Entities.BookCover", b =>
                 {
-                    b.HasOne("Objects.Entities.Book", "Book")
+                    b.HasOne("Objects.Entities.Books.AbstractBook", "Book")
                         .WithOne("BookCover")
                         .HasForeignKey("Objects.Entities.BookCover", "BookId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -131,39 +132,22 @@ namespace BlazorServer.Migrations
                     b.Navigation("Book");
                 });
 
-            modelBuilder.Entity("Objects.Entities.BookSection", b =>
+            modelBuilder.Entity("Objects.Entities.Books.EpubBook.BookSection", b =>
                 {
-                    b.HasOne("Objects.Entities.Book", "Book")
+                    b.HasOne("Objects.Entities.Books.EpubBook.EpubBook", null)
                         .WithMany("Sections")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
+                        .HasForeignKey("EpubBookId");
                 });
 
-            modelBuilder.Entity("Objects.Entities.Page", b =>
-                {
-                    b.HasOne("Objects.Entities.BookSection", "Section")
-                        .WithMany("Pages")
-                        .HasForeignKey("SectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Section");
-                });
-
-            modelBuilder.Entity("Objects.Entities.Book", b =>
+            modelBuilder.Entity("Objects.Entities.Books.AbstractBook", b =>
                 {
                     b.Navigation("BookCover")
                         .IsRequired();
-
-                    b.Navigation("Sections");
                 });
 
-            modelBuilder.Entity("Objects.Entities.BookSection", b =>
+            modelBuilder.Entity("Objects.Entities.Books.EpubBook.EpubBook", b =>
                 {
-                    b.Navigation("Pages");
+                    b.Navigation("Sections");
                 });
 #pragma warning restore 612, 618
         }

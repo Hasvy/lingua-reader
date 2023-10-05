@@ -25,6 +25,7 @@ using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
 using AngleSharp;
 using System.Threading;
+using Objects.Entities.Books.EpubBook;
 
 namespace BlazorApp.Pages.Components
 {
@@ -101,8 +102,8 @@ namespace BlazorApp.Pages.Components
 
         private async Task AddNewEpubBook(InputFileChangeEventArgs e)
         {
-            EpubBook epubBook = await GetEpubFormat(e);
-            Book book = new Book
+            VersOne.Epub.EpubBook epubBook = await GetEpubFormat(e);
+            Objects.Entities.Books.EpubBook.EpubBook book = new Objects.Entities.Books.EpubBook.EpubBook
             {
                 BookCover = new BookCover
                 {
@@ -112,20 +113,20 @@ namespace BlazorApp.Pages.Components
                     Format = ConstBookFormats.epub
                 }
             };
-            book.BookCover.BookId = book.Id;
+            //book.BookCover.Id = book.Id;
             book.Sections = await ProcessEpubBook(book, epubBook);
 
-            var response = await BookOperationsService.PostBook(book);
+            //var response = await BookOperationsService.PostEpubBook(book);
 
-            if (response.IsSuccessStatusCode)
-            {
-                _userBooks.Add(book.BookCover);
-            }
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    _userBooks.Add(book.BookCover);
+            //}
             
             //NavigationManager.NavigateTo(Routes.Reading, true);
         }
 
-        private async Task<EpubBook> GetEpubFormat(InputFileChangeEventArgs e)          //ConvertToHtml
+        private async Task<VersOne.Epub.EpubBook> GetEpubFormat(InputFileChangeEventArgs e)          //ConvertToHtml
         {
             string tmpFileName = "123.epub";                                        //Optimize that code{
             string tmpFilePath = Directory.GetCurrentDirectory() + tmpFileName;
@@ -140,7 +141,7 @@ namespace BlazorApp.Pages.Components
             return await EpubReader.ReadBookAsync("/123.epub");
         }
 
-        private async Task<IList<BookSection>> ProcessEpubBook(Book book, EpubBook epubBook)
+        private async Task<IList<BookSection>> ProcessEpubBook(Objects.Entities.Books.EpubBook.EpubBook book, VersOne.Epub.EpubBook epubBook)
         {
             var contentList = new List<BookContent>();
             var sectionList = new List<BookSection>();
@@ -164,10 +165,10 @@ namespace BlazorApp.Pages.Components
                 var bookSection = new BookSection();
                 bookSection.Text = item.Content;
                 bookSection.OrderNumber = index;
-                bookSection.BookId = book.Id;
+                //bookSection.EpubBookId = book.Id;
 
-                List<Page> pages = new List<Page> { new Page { Number = 1, SectionId = bookSection.Id, Text = "Text" } };
-                bookSection.Pages = pages;
+                //List<Page> pages = new List<Page> { new Page { Number = 1, SectionId = bookSection.Id, Text = "Text" } };
+                //bookSection.Pages = pages;
 
                 sectionList.Add(bookSection);
                 index++;
@@ -232,7 +233,7 @@ namespace BlazorApp.Pages.Components
 
         private async Task SaveBook()
         {
-            Book book = new Book();
+            Objects.Entities.Books.EpubBook.EpubBook book = new Objects.Entities.Books.EpubBook.EpubBook();
             book.BookCover = new BookCover();
             book.BookCover.Title = "Mars";
             book.BookCover.Author = "Breadbury";

@@ -8,6 +8,7 @@ using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using Objects;
 using Objects.Entities;
+using Objects.Entities.Books.EpubBook;
 using Services;
 using System.Reflection.Metadata;
 

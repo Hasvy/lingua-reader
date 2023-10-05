@@ -12,6 +12,7 @@
     <PackageReference Include="Aspose.PDF" Version="23.8.0" />
     <PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
     <PackageReference Include="EpubSharp.dll" Version="1.1.5" />
+    <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.11" PrivateAssets="all" />
     <PackageReference Include="Radzen.Blazor" Version="4.16.3" />

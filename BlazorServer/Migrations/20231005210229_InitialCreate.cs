@@ -12,15 +12,17 @@ namespace BlazorServer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Books",
+                name: "AbstractBooks",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SectionsCount = table.Column<int>(type: "int", nullable: true),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Books", x => x.Id);
+                    table.PrimaryKey("PK_AbstractBooks", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -38,28 +40,43 @@ namespace BlazorServer.Migrations
                 {
                     table.PrimaryKey("PK_BookCovers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BookCovers_Books_BookId",
+                        name: "FK_BookCovers_AbstractBooks_BookId",
                         column: x => x.BookId,
-                        principalTable: "Books",
+                        principalTable: "AbstractBooks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Books",
-                columns: new[] { "Id", "Text" },
-                values: new object[] { new Guid("d87ea8ac-7a38-4b4d-a229-c8930203249e"), "Text" });
-
-            migrationBuilder.InsertData(
-                table: "BookCovers",
-                columns: new[] { "Id", "Author", "BookId", "Description", "Format", "Title" },
-                values: new object[] { new Guid("0cf6923b-9a81-4e0e-89f1-744165b9f19c"), "Author", new Guid("d87ea8ac-7a38-4b4d-a229-c8930203249e"), "Description", "epub", "Title2" });
+            migrationBuilder.CreateTable(
+                name: "BookSections",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrderNumber = table.Column<int>(type: "int", nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EpubBookId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookSections", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BookSections_AbstractBooks_EpubBookId",
+                        column: x => x.EpubBookId,
+                        principalTable: "AbstractBooks",
+                        principalColumn: "Id");
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_BookCovers_BookId",
                 table: "BookCovers",
                 column: "BookId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BookSections_EpubBookId",
+                table: "BookSections",
+                column: "EpubBookId");
         }
 
         /// <inheritdoc />
@@ -69,7 +86,10 @@ namespace BlazorServer.Migrations
                 name: "BookCovers");
 
             migrationBuilder.DropTable(
-                name: "Books");
+                name: "BookSections");
+
+            migrationBuilder.DropTable(
+                name: "AbstractBooks");
         }
     }
 }

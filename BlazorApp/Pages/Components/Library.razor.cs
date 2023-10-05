@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Objects;
 using Objects.Entities;
+using Objects.Entities.Books;
+using Objects.Entities.Books.EpubBook;
 using Radzen;
 using Services;
 
@@ -13,6 +16,7 @@ namespace BlazorApp.Pages.Components
         [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
         [Inject] DialogService DialogService { get; set; } = null!;
         [Inject] NavigationManager NavigationManager { get; set; } = null!;
+        [Inject] ILocalStorageService LocalStorageService { get; set; } = null!;
 
         private IList<BookCover> _userBooks = new List<BookCover>();
         private bool _isLoading;
@@ -29,11 +33,11 @@ namespace BlazorApp.Pages.Components
         private async Task AddBookToDatabase(InputFileChangeEventArgs e)
         {
             string? fileExtension = new System.IO.FileInfo(e.File.Name).Extension;      //Get file extension
-            Book? book = null;
+            AbstractBook? book = null;
             switch (fileExtension)
             {
                 case ConstBookFormats.pdf:
-                    await AddBookService.AddNewPdfBook(e);
+                    book = await AddBookService.AddNewPdfBook(e);
                     break;
                 case ConstBookFormats.epub:
                     book = await AddBookService.AddNewEpubBook(e);
@@ -54,9 +58,11 @@ namespace BlazorApp.Pages.Components
             }
         }
 
-        private void OpenBook(BookCover choosenBook)
+        private async void OpenBook(BookCover choosenBook)
         {
+            await LocalStorageService.SetItemAsStringAsync("bookFormat", choosenBook.Format);
             NavigationManager.NavigateTo("read/" + choosenBook.BookId);
+            //NavigationManager.NavigateTo("read/" + choosenBook.BookId + $"?bookFormat={choosenBook.Format}", true);
         }
 
         private async Task DeleteBook(BookCover bookCover)

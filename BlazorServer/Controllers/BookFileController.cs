@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Objects.Entities;
+using Objects.Entities.Books.EpubBook;
 using System.Text.Json;
 
 namespace BlazorServer.Controllers
@@ -41,7 +41,7 @@ namespace BlazorServer.Controllers
         [Route("api/[controller]/Get/{Id:Guid}")]
         public async Task<IActionResult> GetBookFile(Guid id)
         {
-            Book? book = _appDbContext.Books.SingleOrDefault(b => b.Id == id);
+            EpubBook? book = _appDbContext.EpubBooks.SingleOrDefault(b => b.Id == id);
 
             if (book == null)
             {

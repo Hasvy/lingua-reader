@@ -3,14 +3,10 @@ var maxWidth;
 var iframe;
 var iframeDocument;
 var iframeDocumentClone;
-
-var containerElement;
-let backup;
+var clone;
 var globalHtml;
 
-//TODO Add loading so user cant click links and broke the script
 //TODO Fix exception if user open a book and then immidietly click button back in web browser
-
 //TODO If image is bigger, than maxHeight or maxWidth I have to make it smaller with proportions saving
 //TODO Add links handling
 
@@ -99,7 +95,6 @@ function separateHtmlOnPages(html) {
     return pagesCount;
 }
 
-var clone;
 function setClone() {
     clone = document.getElementById("iframe-container").cloneNode(false);
     clone.id = "iframe-container-clone";
@@ -110,6 +105,8 @@ function setClone() {
 function removeClone() {
     document.getElementById("iframe-container-clone").remove();
 }
+
+
 
 function showContent() {
     document.getElementById("reading-page").style.visibility = "visible";
@@ -129,78 +126,4 @@ function previousPage() {
 
 function setScrollToLastPage(sectionPagesCount) {
     iframe.contentWindow.scrollTo((sectionPagesCount * maxWidth) - maxWidth, 0);
-}
-
-//function countPagesOfBook(listOfStrings) {
-//    var pagesCount = 0;
-//    var clone = document.getElementById("iframe-container").cloneNode(false);
-//    clone.id = "iframe-container-clone";
-//    clone.style.visibility = "hidden";
-//    document.getElementById("reader-card").appendChild(clone);
-//    for (var i = 0; i < listOfStrings.length; i++) {
-//        pagesCount += separateHtmlOnPages(listOfStrings[i], clone);
-//    }
-//    document.getElementById("iframe-container-clone").remove();
-
-//    return pagesCount;
-//}
-
-function addStyle(css) {
-    const style = document.createElement('style');
-    style.textContent = css;
-    iframeDocument.head.appendChild(style);
-}
-
-//Methods for C# with AngleSharp
-
-function getElementHtml(element) {
-    return element.innerHTML;
-}
-
-function getIframeDocument() {
-    iframe = document.getElementById("iframe-container");
-    iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-    return new XMLSerializer().serializeToString(iframeDocument);;
-}
-
-function setIframeDocument(html) {
-    iframeDocument.documentElement.innerHTML = html;
-    return iframeDocument.body.offsetHeight;
-}
-
-
-function clearIframeDocument() {
-    iframeDocument.documentElement.innerHTML = "";
-}
-
-//function getIframeBodyOffsetHeight() {
-//    return iframeDocument.body.offsetHeight;
-//}
-
-//Variant with loading pages 
-
-function setupReadingPage() {
-    iframe = document.getElementById("iframe-container");
-    var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-    iframeDocument.body.style = "margin: 0; overflow: hidden;"
-    containerElement = iframeDocument.createElement("div");
-    containerElement.id = "container";
-    iframeDocument.body.appendChild(containerElement);
-}
-
-function clearContainerElement() {
-    containerElement.innerHTML = "";
-}
-
-function checkContainerHeight(iframeHtml) {
-
-    if (containerElement) {
-        containerElement.innerHTML = iframeHtml;
-        if (containerElement.clientHeight < maxHeight) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 }
