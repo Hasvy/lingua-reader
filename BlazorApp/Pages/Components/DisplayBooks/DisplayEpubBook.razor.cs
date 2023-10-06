@@ -5,15 +5,16 @@ using Services;
 
 namespace BlazorApp.Pages.Components.DisplayBooks
 {
-    public partial class DisplayEpubBook : ComponentBase
+    public partial class DisplayEpubBook : ComponentBase, IDisplayBook
     {
         [Inject] IJSRuntime JS { get; set; } = null!;
         [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
         [Parameter] public string BookId { get; set; } = null!;
 
-        private IList<BookSection> Sections { get; set; } = new List<BookSection>();
-        private int _actualPageNumber = 1;
-        private int pagesCount = 0;
+        public int ActualPageNumber { get; set; } = 1;
+        public int PagesCount { get; set; }
+
+        private IList<BookSection> Sections = new List<BookSection>();
         private int actualSectionPagesCount = 0;
         private int currentSectionNumber;
         private bool _isLoading;
@@ -29,9 +30,9 @@ namespace BlazorApp.Pages.Components.DisplayBooks
             foreach (var item in Sections)                  //TODO what if section will be less then one page? Maybe it on page will be only content of the section.
             {
                 item.PagesCount = await JS.InvokeAsync<int>("separateHtmlOnPages", item.Text);
-                item.FirstPage = pagesCount + 1;
-                item.LastPage = pagesCount + item.PagesCount;
-                pagesCount += item.PagesCount;
+                item.FirstPage = PagesCount + 1;
+                item.LastPage = PagesCount + item.PagesCount;
+                PagesCount += item.PagesCount;
                 if (item.PagesCount == 0 || item.LastPage == 0)
                 {
                     throw new Exception();
@@ -49,26 +50,26 @@ namespace BlazorApp.Pages.Components.DisplayBooks
             //Console.WriteLine("Time: " + stopwatch.ElapsedMilliseconds + " msec");
         }
 
-        private async void ChangePage(int? pageNumber)
+        public async void ChangePage(int? pageNumber)
         {
             foreach (var section in Sections)
             {
                 if (section.FirstPage <= pageNumber && pageNumber <= section.LastPage)
                 {
-                    _actualPageNumber = (int)pageNumber;
+                    ActualPageNumber = (int)pageNumber;
                     currentSectionNumber = section.OrderNumber;
                     actualSectionPagesCount = await JS.InvokeAsync<int>("divideAndSetHtml", section.Text);
-                    await JS.InvokeVoidAsync("setActualPage", _actualPageNumber - section.FirstPage);
+                    await JS.InvokeVoidAsync("setActualPage", ActualPageNumber - section.FirstPage);
                 }
             }
         }
 
-        private async void NextPage()
+        public async void NextPage()
         {
-            if (_actualPageNumber != pagesCount)
+            if (ActualPageNumber != PagesCount)
             {
-                _actualPageNumber++;
-                if (_actualPageNumber > Sections[currentSectionNumber].LastPage)
+                ActualPageNumber++;
+                if (ActualPageNumber > Sections[currentSectionNumber].LastPage)
                 {
                     NextSection();
                 }
@@ -79,12 +80,12 @@ namespace BlazorApp.Pages.Components.DisplayBooks
             }
         }
 
-        private async void PreviousPage()
+        public async void PreviousPage()
         {
-            if (_actualPageNumber > 1)
+            if (ActualPageNumber > 1)
             {
-                _actualPageNumber--;
-                if (_actualPageNumber < Sections[currentSectionNumber].FirstPage)
+                ActualPageNumber--;
+                if (ActualPageNumber < Sections[currentSectionNumber].FirstPage)
                 {
                     PreviousSection();
                     await JS.InvokeVoidAsync("setScrollToLastPage", Sections[currentSectionNumber].PagesCount);

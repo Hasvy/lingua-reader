@@ -5,7 +5,7 @@
 }
 
 <div id="reading-page" style="visibility: hidden;">
-    @_actualPageNumber / @pagesCount
+    @ActualPageNumber / @PagesCount
     <RadzenNumeric id="page-changer" ShowUpDown="false" Style="width: 30px" TValue="int?" Value="null" Change="@(pageNumber => ChangePage(pageNumber))" />
 
     <div style="display: flex; justify-content: center">

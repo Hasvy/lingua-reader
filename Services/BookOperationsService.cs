@@ -29,12 +29,26 @@ namespace Services
             }
         }
 
-        public async Task<IList<BookSection>> GetBookSections(Guid id)
+        public async Task<IList<BookSection>> GetBookSections(Guid id)      //Epub
         {
             try
             {
                 var bookSections = await _httpClient.GetFromJsonAsync<IList<BookSection>>($"api/BookSection/Get/{id}");
                 return bookSections;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<PdfBook> GetBookText(Guid id)      //Pdf
+        {
+            try
+            {
+                var book = await _httpClient.GetFromJsonAsync<PdfBook>($"api/PdfBook/Get/{id}");
+                return book;
             }
             catch (Exception)
             {
