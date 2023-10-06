@@ -219,7 +219,7 @@ namespace BlazorApp.Pages.Components
                     parser.ProcessPageContent(pdfDoc.GetPage(page));
                     _pages.Add(strategy.GetResultantText());
                     await Task.Delay(1);
-                    //ProgressService.UpdateProgress(page * 100 / pagesCount);
+                    //ProgressService.UpdateProgress(page * 100 / PagesCount);
                 }
                 await SaveBook();
                 pdfDoc.Close();

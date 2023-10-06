@@ -20,7 +20,21 @@ namespace BlazorServer
 
             //modelBuilder.Entity<AbstractBook>()
             //    .HasOne(b => b.BookCover)
-            //    .WithOne(bc => bc.Book);
+            //    .WithOne(bc => bc.book);
+
+            modelBuilder.Entity<AbstractBook>(entity =>
+            {
+                entity.HasKey(ab => ab.Id);
+            });
+
+            modelBuilder.Entity<BookCover>(entity =>
+            {
+                entity.HasKey(bc => bc.Id);
+                entity.HasOne<AbstractBook>()
+                    .WithOne(ab => ab.BookCover)
+                    .HasForeignKey<BookCover>(bc => bc.BookId);
+            });
+
 
             modelBuilder.Entity<EpubBook>().ToTable("EpubBooks");       //Table-per-type configuration
 

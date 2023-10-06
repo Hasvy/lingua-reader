@@ -46,6 +46,9 @@ namespace BlazorServer.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BookId")
+                        .IsUnique();
+
                     b.ToTable("BookCovers");
                 });
 
@@ -56,12 +59,7 @@ namespace BlazorServer.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("Id");
 
-                    b.Property<Guid>("BookCoverId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("BookCoverId");
 
                     b.ToTable("AbstractBooks");
 
@@ -114,15 +112,13 @@ namespace BlazorServer.Migrations
                     b.ToTable("PdfBooks", (string)null);
                 });
 
-            modelBuilder.Entity("Objects.Entities.Books.AbstractBook", b =>
+            modelBuilder.Entity("Objects.Entities.BookCover", b =>
                 {
-                    b.HasOne("Objects.Entities.BookCover", "BookCover")
-                        .WithMany()
-                        .HasForeignKey("BookCoverId")
+                    b.HasOne("Objects.Entities.Books.AbstractBook", null)
+                        .WithOne("BookCover")
+                        .HasForeignKey("Objects.Entities.BookCover", "BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("BookCover");
                 });
 
             modelBuilder.Entity("Objects.Entities.Books.EpubBook.BookSection", b =>
@@ -149,6 +145,12 @@ namespace BlazorServer.Migrations
                         .WithOne()
                         .HasForeignKey("Objects.Entities.Books.PdfBook.PdfBook", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Objects.Entities.Books.AbstractBook", b =>
+                {
+                    b.Navigation("BookCover")
                         .IsRequired();
                 });
 

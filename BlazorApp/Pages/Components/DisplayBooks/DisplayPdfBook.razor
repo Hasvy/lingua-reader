@@ -1,1 +1,26 @@
-﻿<h3>DisplayPdfBook</h3>
+﻿@if (_isLoading)
+{
+    @*     <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" /> *@
+    <RadzenIcon class="centered-element" Icon="sync" Style="animation: reverse rotation 750ms linear infinite; font-size: 50px" />
+}
+
+    <div id="reading-page">
+        @ActualPageNumber / @PagesCount
+        <RadzenNumeric id="page-changer" ShowUpDown="false" Style="width: 30px" TValue="int?" Value="null" Change="@(pageNumber => ChangePage(pageNumber))" />
+
+        <div style="display: flex; justify-content: center">
+            <RadzenStack Gap="0" Wrap="FlexWrap.Wrap" Orientation="Orientation.Horizontal">
+                <RadzenButton Icon="arrow_back_ios_new" Click="PreviousPage" />
+                <RadzenButton Icon="arrow_forward_ios" Click="NextPage" />
+            </RadzenStack>
+        </div>
+
+        <div style="display: flex; justify-content: center; align-items: center">
+            <RadzenCard id="reader-card" Style="width: 60%; padding: 20px 40px 20px 40px; height: 600px; position: center">
+                @if (_book is not null)
+                {
+                    @_book.Text;
+                }
+            </RadzenCard>
+        </div>
+    </div>

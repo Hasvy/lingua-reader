@@ -64,17 +64,14 @@ namespace BlazorServer.Controllers
         [Route("api/[controller]/Delete/{Id:Guid}")]
         public async Task<IActionResult> DeleteBook(Guid id)
         {
-            var bookToDelete = await _appDbContext.EpubBooks.SingleOrDefaultAsync(b => b.Id == id);
-            string filename = id.ToString();
-            string path = "Uploads\\Users\\user1\\Books\\" + filename;
+            var bookToDelete = await _appDbContext.AbstractBooks.SingleOrDefaultAsync(b => b.Id == id);
 
-            if (bookToDelete == null)
+            if (bookToDelete is null)
             {
                 return NotFound();
             }
+            _appDbContext.AbstractBooks.Remove(bookToDelete);
 
-            System.IO.File.Delete(path);
-            _appDbContext.EpubBooks.Remove(bookToDelete);
             await _appDbContext.SaveChangesAsync();
             return Ok();
         }
