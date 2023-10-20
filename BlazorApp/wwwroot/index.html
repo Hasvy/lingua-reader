@@ -8,16 +8,22 @@
     <!-- Libraries styles and scripts -->
     <link href="css/app.css" rel="stylesheet" />
     <link rel="stylesheet" href="_content/Radzen.Blazor/css/material-base.css">
+    <link rel="stylesheet" href="./lib/pdf.js/build/dist/web/pdf_viewer.css">
     <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
+    <script type="module" src="./lib/pdf.js/build/dist/build/pdf.mjs"></script>
+    <script type="module" src="./lib/pdf.js/build/dist/build/pdf.worker.mjs"></script>
+    <script type="module" src="./lib/pdf.js/build/dist/web/pdf_viewer.mjs"></script>
     <!-- Custom styles and scripts -->
     <link href="css/read.css" rel="stylesheet" />
+    <!--<script src="js/PdfJsInterop.js"></script>-->
+    <script src="js/getTextFromPdf.js"></script>
     <script src="js/script.js"></script>
 
     <!-- If you add any scoped CSS files, uncomment the following to load them
     <link href="BlazorApp.styles.css" rel="stylesheet" /> -->
 </head>
 
-<body>
+<body tabindex="1">
     <div id="app">Loading...</div>
 
     <div id="blazor-error-ui">
@@ -26,6 +32,7 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script src="js/index.bundle.js"></script>
 </body>
 
 </html>

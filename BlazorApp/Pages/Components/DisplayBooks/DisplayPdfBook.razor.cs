@@ -11,29 +11,45 @@ namespace BlazorApp.Pages.Components.DisplayBooks
         [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
         [Parameter] public string BookId { get; set; } = null!;
 
-        public int ActualPageNumber { get; set; }
-        public int PagesCount { get; set; }
+        public int ActualPageNumber { get; set; } = 0;
+        public int PagesCount { get; set; } = 0;
 
         private PdfBook? _book;
         private bool _isLoading;
 
         protected override async Task OnInitializedAsync()
         {
+            await base.OnInitializedAsync();
             _isLoading = true;
             _book = await BookOperationsService.GetBookText(Guid.Parse(BookId));
 
+            await JS.InvokeVoidAsync("initializeBookContainer");
+            await JS.InvokeVoidAsync("addText", _book.Text);
+            await JS.InvokeVoidAsync("divideHtmlOnPages");
+
+            //await JS.InvokeVoidAsync("getText", _book.Text);
+            
+
             _isLoading = false;
-            await base.OnInitializedAsync();
         }
 
-        public void NextPage()
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-
+            //if (_book is not null)
+            //{
+            //    await JS.InvokeVoidAsync("showPdf", _book.Text);
+            //}
+            await base.OnAfterRenderAsync(firstRender);
         }
 
-        public void PreviousPage()
+        public async void NextPage()
         {
-            throw new NotImplementedException();
+            await JS.InvokeVoidAsync("nextPage");
+        }
+
+        public async void PreviousPage()
+        {
+            await JS.InvokeVoidAsync("previousPage");
         }
 
         public void ChangePage(int? pageNumber)

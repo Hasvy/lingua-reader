@@ -19,6 +19,26 @@ function resizeHtml() {
     //iframeDocument.style.width = Math.round(iframeDocument.clientWidth) + 'px';
 }
 
+function divideHtmlOnPages(text) {
+    iframeDocument.body.style.padding = 0;
+    iframeDocument.body.style.margin = 0;
+    totalHeight = iframeDocument.body.offsetHeight;
+    iframeDocument.body.offsetWidth = maxWidth;
+    pagesCount = Math.floor(totalHeight / maxHeight) + 1;
+    iframeDocument.body.style.width = maxWidth * pagesCount;
+    iframeDocument.body.style.WebkitColumnCount = pagesCount;
+
+    var link = document.createElement('link');
+    link.href = 'http://localhost:5284/css/container.css';
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    iframeDocument.head.appendChild(link);
+}
+
+function addText(text) {
+    iframeDocument.body.innerHTML = text;
+}
+
 function initializeBookContainer() {
     //Getting iframeDocument from webpage
     iframe = document.querySelector("#iframe-container");

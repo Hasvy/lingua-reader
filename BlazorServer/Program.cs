@@ -17,6 +17,10 @@ builder.Services.AddDbContextPool<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
 );
 
+builder.Services.AddDbContextPool<DictionaryDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Dictionary"))
+);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

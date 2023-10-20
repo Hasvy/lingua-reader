@@ -10,6 +10,17 @@ using Objects.Entities.Books.EpubBook;
 using Objects.Entities.Books.PdfBook;
 using iText.Layout;
 using iText.Bouncycastleconnector;
+using UglyToad.PdfPig;
+using System;
+using System.Text;
+using UglyToad.PdfPig.DocumentLayoutAnalysis.WordExtractor;
+using static iText.Kernel.Pdf.Canvas.Parser.Listener.LocationTextExtractionStrategy;
+using System.Numerics;
+using iText.Kernel.Pdf.Canvas.Parser.Data;
+using iText.Svg.Utils;
+using Tesseract.Interop;
+using Tesseract;
+using Microsoft.JSInterop;
 
 namespace Services
 {
@@ -21,12 +32,14 @@ namespace Services
         private readonly BookOperationsService _bookOperationsService;
         private readonly HtmlParserService _htmlParserService;
         private readonly ProgressService _progressService;
+        private readonly IJSRuntime _JS;
         private long _maxFileSize = 1024 * 1024 * 10;       //10Mb
-        public AddBookService(BookOperationsService bookOperationsService, ProgressService progressService, HtmlParserService htmlParserService)
+        public AddBookService(BookOperationsService bookOperationsService, ProgressService progressService, HtmlParserService htmlParserService, IJSRuntime jSRuntime)
         {
             _bookOperationsService = bookOperationsService;
             _progressService = progressService;
             _htmlParserService = htmlParserService;
+            _JS = jSRuntime;
         }
 
         #region Epub book processing
@@ -120,60 +133,55 @@ namespace Services
 
         #region Pdf book processing
 
-        private List<string> _pages = new List<string>();
+        //private List<string> _pages = new List<string>();
         public async Task<PdfBook?> AddNewPdfBook(InputFileChangeEventArgs e)
         {
-            try
+            MemoryStream memoryStream = await GetMemoryStreamFromInput(e);
+            memoryStream.Seek(0, SeekOrigin.Begin);
+
+            iText.Kernel.Pdf.PdfReader reader = new iText.Kernel.Pdf.PdfReader(memoryStream);
+            iText.Kernel.Pdf.PdfDocument pdfDoc = new iText.Kernel.Pdf.PdfDocument(reader);
+
+            memoryStream.Seek(0, SeekOrigin.Begin);
+            string base64 = Convert.ToBase64String(memoryStream.ToArray());
+
+            List<string> _pages = new List<string>();
+            var pagesCount = pdfDoc.GetNumberOfPages();
+            resourses = pdfDoc.GetPage(1).GetResources();
+            Encoding encoding = Encoding.UTF8;
+            ITextExtractionStrategy strategy = new CustomTextExtractionStrategy(encoding);
+            //ITextExtractionStrategy strategy2 = new SimpleTextExtractionStrategy();
+
+            for (int pageNumber = 1; pageNumber <= pagesCount; pageNumber++)
             {
-                MemoryStream memoryStream = await GetMemoryStreamFromInput(e);
-                //In future, I can use JavaScript Interop to save and then read a file. Also I can save all information in file, like drawio.
-                //await using FileStream fileStream = new(Directory.GetCurrentDirectory() + "123.pdf", FileMode.Create);
-                //await e.File.OpenReadStream(_maxFileSize).CopyToAsync(memoryStream);
-                //var fi = new System.IO.FileInfo("/123.pdf").Length;
-                memoryStream.Seek(0, SeekOrigin.Begin);
-                PdfReader pdfReader = new PdfReader(memoryStream);
-                PdfDocument pdfDoc = new PdfDocument(pdfReader);
-                var pagesCount = pdfDoc.GetNumberOfPages();
-                for (int page = 1; page <= pagesCount; page++)
-                {
-                    //TODO parse pdf file with saving format. At least titles and images
-                    ITextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
-                    //ITextExtractionStrategy strategy2 = new iText.Kernel.Pdf.Canvas.Parser.Listener.
-                    _pages.Add(PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(page), strategy));
-                    //PdfCanvasProcessor parser = new PdfCanvasProcessor(strategy);
-                    //parser.ProcessPageContent(pdfDoc.GetPage(page));
-                    //_pages.Add(strategy.GetResultantText());
-                    await Task.Delay(1);
-                    _progressService.UpdateProgress(page * 100 / pagesCount);
-                }
-
-                PdfBook book = SaveBookData(pdfDoc);
-
-                foreach (var pageText in _pages)
-                {
-                    book.Text += pageText;
-                }
-                var response = await _bookOperationsService.PostPdfBook(book);
-                pdfDoc.Close();
-                pdfReader.Close();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return book;
-                }
-                else
-                {
-                    return null;
-                    //Notification and log
-                }
+                PdfCanvasProcessor processor = new PdfCanvasProcessor(strategy);    //I will renew the processor with every page, otherwise start and end of a segment in strategy
+                var page = pdfDoc.GetPage(pageNumber);                              //will create a very short interval, so the code will stop create new lines, I don't know why, its a bug.
+                processor.ProcessPageContent(page);
             }
-            catch (Exception)
+
+            PdfBook book = SaveBookData(pdfDoc);
+            book.Text = strategy.GetResultantText();
+            //foreach (var item in _pages)
+            //{
+            //    book.Text += item;
+            //}
+            var response = await _bookOperationsService.PostPdfBook(book);      //Here will add 
+
+            if (response.IsSuccessStatusCode)
             {
-                throw;
+                return book;
+            }
+            else
+            {
+                return null;
             }
         }
 
-        private PdfBook SaveBookData(PdfDocument pdfDoc)
+        int index = 0;
+        string stringBuilder = string.Empty;
+        PdfResources resourses;
+
+        private PdfBook SaveBookData(iText.Kernel.Pdf.PdfDocument pdfDoc)
         {
             PdfBook book = new PdfBook();
             book.BookCover = new BookCover();
