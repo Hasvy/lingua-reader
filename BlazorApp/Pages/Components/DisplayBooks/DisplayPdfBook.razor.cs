@@ -26,9 +26,10 @@ namespace BlazorApp.Pages.Components.DisplayBooks
             await JS.InvokeVoidAsync("initializeBookContainer");
             await JS.InvokeVoidAsync("addText", _book.Text);
             await JS.InvokeVoidAsync("divideHtmlOnPages");
+            await JS.InvokeVoidAsync("addEventListenerForTextClicked");
 
             //await JS.InvokeVoidAsync("getText", _book.Text);
-            
+
 
             _isLoading = false;
         }
@@ -39,7 +40,13 @@ namespace BlazorApp.Pages.Components.DisplayBooks
             //{
             //    await JS.InvokeVoidAsync("showPdf", _book.Text);
             //}
+
             await base.OnAfterRenderAsync(firstRender);
+        }
+
+        private async Task DetectClick(EventArgs e)
+        {
+
         }
 
         public async void NextPage()

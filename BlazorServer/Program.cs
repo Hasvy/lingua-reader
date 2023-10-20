@@ -1,4 +1,5 @@
 using BlazorServer;
+using BlazorServer.Migrations.DictionaryDb;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
@@ -13,11 +14,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContextPool<AppDbContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
 );
 
-builder.Services.AddDbContextPool<DictionaryDbContext>(options =>
+builder.Services.AddDbContext<DictionaryDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Dictionary"))
 );
 

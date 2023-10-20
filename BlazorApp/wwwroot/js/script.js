@@ -10,6 +10,8 @@ var globalHtml;
 //TODO If image is bigger, than maxHeight or maxWidth I have to make it smaller with proportions saving
 //TODO Add links handling
 
+//TODO Get text column for one page and show the text as page, not as column. Save epub css styles.
+
 function resizeHtml() {
     if (globalHtml != null) {
         initializeBookContainer();

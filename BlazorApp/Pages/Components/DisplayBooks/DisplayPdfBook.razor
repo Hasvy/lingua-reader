@@ -6,7 +6,10 @@
     <RadzenIcon class="centered-element" Icon="sync" Style="animation: reverse rotation 750ms linear infinite; font-size: 50px" />
 } *@
 
-    <div id="reading-page">
+<div @onclick="DetectClick" id="reading-page">
+        <p>
+            Lorem ipsum dolor sit amet
+        </p>
         @ActualPageNumber / @PagesCount
         <RadzenNumeric id="page-changer" ShowUpDown="false" Style="width: 30px" TValue="int?" Value="null" Change="@(pageNumber => ChangePage(pageNumber))" />
 
@@ -18,7 +21,7 @@
             </RadzenStack>
         </div>
 
-        <div style="display: flex; justify-content: center; align-items: center">
+    <div style="display: flex; justify-content: center; align-items: center">
             <RadzenCard id="reader-card" Style="width: 60%; padding: 20px 40px 20px 40px; height: 600px; position: center">
 
             <iframe sandbox="allow-same-origin" style="width: 100%; height: 100%; border: none;" id="iframe-container">
