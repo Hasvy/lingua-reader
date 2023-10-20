@@ -2,7 +2,10 @@
 using Objects.Entities.Books;
 using Objects.Entities.Books.EpubBook;
 using Objects.Entities.Books.PdfBook;
+using Objects.Entities.Translator;
+using System.Net.Http;
 using System.Net.Http.Json;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Services
 {

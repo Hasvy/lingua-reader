@@ -1,0 +1,17 @@
+﻿<h3>Translator</h3>
+
+<RadzenButton Click="GetTranslation"></RadzenButton>
+
+<RadzenText >
+    @if (responseContent is not null)
+    {
+        @responseContent.displaySource
+
+        @foreach (var translation in responseContent.translations)
+        {
+            @translation.displayTarget;
+        }
+    }
+
+    @error
+</RadzenText>
