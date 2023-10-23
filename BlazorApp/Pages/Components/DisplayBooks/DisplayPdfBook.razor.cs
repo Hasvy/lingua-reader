@@ -23,30 +23,14 @@ namespace BlazorApp.Pages.Components.DisplayBooks
             _isLoading = true;
             _book = await BookOperationsService.GetBookText(Guid.Parse(BookId));
 
-            await JS.InvokeVoidAsync("initializeBookContainer");
-            await JS.InvokeVoidAsync("addText", _book.Text);
-            await JS.InvokeVoidAsync("divideHtmlOnPages");
-            await JS.InvokeVoidAsync("addEventListenerForTextClicked");
+            await JS.InvokeVoidAsync("initializeBookContainer", _book.Text);
+            //await JS.InvokeVoidAsync("addText", _book.Text);
+            //await JS.InvokeVoidAsync("divideHtmlOnPages");
+            //await JS.InvokeVoidAsync("addEventListenerForTextClicked");
 
             //await JS.InvokeVoidAsync("getText", _book.Text);
 
-
             _isLoading = false;
-        }
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            //if (_book is not null)
-            //{
-            //    await JS.InvokeVoidAsync("showPdf", _book.Text);
-            //}
-
-            await base.OnAfterRenderAsync(firstRender);
-        }
-
-        private async Task DetectClick(EventArgs e)
-        {
-
         }
 
         public async void NextPage()

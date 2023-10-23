@@ -21,12 +21,12 @@ namespace BlazorServer.Controllers
         }
 
         [HttpGet]
-        [Route("api/Proxy/TranslateWord")]
-        public async Task<ActionResult<TranslatorWordResponse?>> TranslateWord()
+        [Route("api/Proxy/TranslateWord/{Word}")]
+        public async Task<ActionResult<TranslatorWordResponse?>> TranslateWord(string word)
         {
             string route = "dictionary/lookup?api-version=3.0&from=en&to=cs";
-            string wordToTranslate = "Hello";
-            object[] body = new object[] { new { Text = wordToTranslate } };
+            //string wordToTranslate = "Hello";
+            object[] body = new object[] { new { Text = word } };
             var requestBody = JsonConvert.SerializeObject(body);
 
             using (var request = new HttpRequestMessage())
