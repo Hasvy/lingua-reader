@@ -10,7 +10,106 @@ var globalHtml;
 //TODO If image is bigger, than maxHeight or maxWidth I have to make it smaller with proportions saving
 //TODO Add links handling
 
-//TODO Get text column for one page and show the text as page, not as column. Save epub css styles.
+var container;
+var body;
+var pagesCount;
+var currentPage = 0;
+
+async function initializeBookContainer(htmlString) {
+    //Getting iframeDocument from webpage
+    await addBookOnPage(htmlString);
+    separateBookDocument();
+    //iframe = document.querySelector("#iframe-container");
+    //iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    //iframe.contentWindow.addEventListener('resize', resizeHtml);
+
+    //maxHeight = iframeDocument.body.scrollHeight;
+    //maxWidth = iframeDocument.body.scrollWidth;
+    //iframeDocument.body.width = maxWidth;
+}
+
+function addBookOnPage(htmlString) {
+    return new Promise(function (resolve) {
+        container = document.getElementById("container");
+        var blob = new Blob([htmlString], { type: 'text/html' });
+
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = 'document';
+        xhr.onreadystatechange = async function () {
+            if (xhr.readyState === 4 && xhr.status == 200) {
+                addListener(xhr.response.documentElement);
+                container.appendChild(xhr.response.documentElement);
+                resolve();
+            }
+            // else{
+            //     reject();
+            // }
+        };
+
+        xhr.open('GET', window.URL.createObjectURL(blob), true);
+        xhr.send();
+    });
+}
+
+function addListener(document) {
+    // Adds an event listener to every <p> html tag
+    var clickableElements = document.querySelectorAll("p");
+    var word_regexp = /^\w*$/;
+    clickableElements.forEach(function (element) {
+        element.addEventListener("click", function () {
+            var s = window.getSelection();
+            var range = s.getRangeAt(0);
+            var node = s.anchorNode;
+
+            // Finds a start point of a clicked word
+            while ((range.startOffset > 0) && range.toString().match(word_regexp)) {
+                range.setStart(node, (range.startOffset - 1));
+            }
+            if (!range.toString().match(word_regexp)) {
+                range.setStart(node, range.startOffset + 1);
+            }
+
+            // Finds an end point of a clicked word
+            while ((range.endOffset < node.length) && range.toString().match(word_regexp)) {
+                range.setEnd(node, range.endOffset + 1);
+            }
+            if (!range.toString().match(word_regexp)) {
+                range.setEnd(node, range.endOffset - 1);
+            }
+
+            // Gets a word, removes selection and sends it to C#
+            var word = range.toString().trim();
+            //alert(word);
+            window.getSelection().removeAllRanges();
+            sendWordToDotNet(word);
+        });
+    });
+}
+
+function sendWordToDotNet(word) {
+    DotNet.invokeMethodAsync('BlazorApp', 'GetWordFromJS', word);
+}
+
+function separateBookDocument() {
+    body = container.querySelector("html body");
+    var totalHeight = body.offsetHeight;
+    var containerHeight = container.clientHeight;
+    var containerWidth = container.clientWidth;
+
+    pagesCount = Math.floor(totalHeight / containerHeight);
+    console.info(pagesCount);
+    body.style.margin = 0;
+    body.style.width = (containerWidth * pagesCount) + "px";
+    body.style.height = containerHeight + "px";
+    body.style.columnCount = pagesCount;
+    body.style.position = "relative";
+    body.style.columnGap = 0 + "px";
+
+    //body.style.columnWidth = container.clientWidth - 10 + "px";
+    //body.style.columnFill = "balance";
+}
+
+//New code ^^^^
 
 function resizeHtml() {
     if (globalHtml != null) {
@@ -27,7 +126,7 @@ function divideHtmlOnPages(text) {
     totalHeight = iframeDocument.body.offsetHeight;
     iframeDocument.body.offsetWidth = maxWidth;
     pagesCount = Math.floor(totalHeight / maxHeight) + 1;
-    iframeDocument.body.style.width = maxWidth * pagesCount;
+    iframeDocument.body.style.width = (maxWidth - 100) * pagesCount + "px";
     iframeDocument.body.style.WebkitColumnCount = pagesCount;
 
     var link = document.createElement('link');
@@ -39,17 +138,6 @@ function divideHtmlOnPages(text) {
 
 function addText(text) {
     iframeDocument.body.innerHTML = text;
-}
-
-function initializeBookContainer() {
-    //Getting iframeDocument from webpage
-    iframe = document.querySelector("#iframe-container");
-    iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-    iframe.contentWindow.addEventListener('resize', resizeHtml);
-
-    maxHeight = iframeDocument.body.scrollHeight;
-    maxWidth = iframeDocument.body.scrollWidth;       //Page 38-39 je problem
-    iframeDocument.body.width = maxWidth;
 }
 
 //Variant of paging with using page dividing by columns like in Yandex browser.
@@ -139,11 +227,19 @@ function setActualPage(pagesCountToScroll) {
 }
 
 function nextPage() {
-    iframe.contentWindow.scrollBy(maxWidth, 0);
+    if (currentPage < pagesCount) {
+        currentPage += 1;
+        body.style.right = (currentPage * container.clientWidth) + "px";
+        console.info(currentPage * container.clientWidth);
+    }
 }
 
 function previousPage() {
-    iframe.contentWindow.scrollBy(-maxWidth, 0);
+    if (currentPage != 0) {
+        currentPage -= 1;
+        body.style.right = (currentPage * container.clientWidth) + "px";
+        console.info(currentPage * container.clientWidth);
+    }
 }
 
 function setScrollToLastPage(sectionPagesCount) {

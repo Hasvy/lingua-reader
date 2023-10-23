@@ -18,9 +18,9 @@ namespace Services
             _httpClient = httpClient;
         }
 
-        public async Task<TranslatorWordResponse?> GetWordTranslation()
+        public async Task<TranslatorWordResponse?> GetWordTranslation(string word)
         {
-            TranslatorWordResponse? translation = await _httpClient.GetFromJsonAsync<TranslatorWordResponse?>("api/Proxy/TranslateWord");
+            TranslatorWordResponse? translation = await _httpClient.GetFromJsonAsync<TranslatorWordResponse?>($"api/Proxy/TranslateWord/{word}");
             if (translation is not null)
             {
                 return translation;

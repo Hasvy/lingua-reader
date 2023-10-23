@@ -1,15 +1,15 @@
-﻿<h3>Translator</h3>
-
-<RadzenButton Click="GetTranslation"></RadzenButton>
+﻿<p>
+    Translation: 
+</p>
 
 <RadzenText >
     @if (responseContent is not null)
     {
-        @responseContent.displaySource
+        @(responseContent.displaySource + " ")
 
         @foreach (var translation in responseContent.translations)
         {
-            @translation.displayTarget;
+            @(translation.displayTarget + " ");
         }
     }
 
