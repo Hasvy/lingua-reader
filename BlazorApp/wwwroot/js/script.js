@@ -15,17 +15,11 @@ var body;
 var pagesCount;
 var currentPage = 0;
 
-async function initializeBookContainer(htmlString) {
+async function initializeBookContainer(htmlString, translatorServiceReference) {
     //Getting iframeDocument from webpage
+    window.translatorServiceInstance = translatorServiceReference;
     await addBookOnPage(htmlString);
     separateBookDocument();
-    //iframe = document.querySelector("#iframe-container");
-    //iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-    //iframe.contentWindow.addEventListener('resize', resizeHtml);
-
-    //maxHeight = iframeDocument.body.scrollHeight;
-    //maxWidth = iframeDocument.body.scrollWidth;
-    //iframeDocument.body.width = maxWidth;
 }
 
 function addBookOnPage(htmlString) {
@@ -79,7 +73,6 @@ function addListener(document) {
 
             // Gets a word, removes selection and sends it to C#
             var word = range.toString().trim();
-            //alert(word);
             window.getSelection().removeAllRanges();
             sendWordToDotNet(word);
         });
@@ -87,7 +80,8 @@ function addListener(document) {
 }
 
 function sendWordToDotNet(word) {
-    DotNet.invokeMethodAsync('BlazorApp', 'GetWordFromJS', word);
+    DotNet.invokeMethodAsync('BlazorApp', 'GetWordFromJS', word, window.translatorServiceInstance);
+    //DotNet.invokeMethodAsync('BlazorApp', 'GetWordFromJS', word);
 }
 
 function separateBookDocument() {

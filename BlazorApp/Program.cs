@@ -25,6 +25,7 @@ builder.Services.AddScoped<HtmlParserService>();
 builder.Services.AddScoped<TranslatorService>();
 
 builder.Services.AddSingleton<ProgressService>();
+builder.Services.AddSingleton<TranslatorServiceAccessor>();
 
 builder.Services.AddBlazoredLocalStorage();
 
