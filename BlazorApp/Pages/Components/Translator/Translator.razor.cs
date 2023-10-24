@@ -1,51 +1,48 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using Microsoft.Extensions.DependencyInjection;
 using Objects.Entities;
 using Objects.Entities.Translator;
 using Services;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Runtime.CompilerServices;
 
 namespace BlazorApp.Pages.Components.Translator
 {
     public partial class Translator : ComponentBase
     {
-        [Inject] TranslatorService TranslatorService { get; set; } = null!;
-        string word = "hello";
+        //[Inject] TranslatorService TranslatorService { get; set; } = null!;
+        public static event Action OnUpdate = null!;
+        private static TranslatorWordResponse? responseContent;
         string initialLang = "en";
         string targetLang = "cz";
-
-        private TranslatorWordResponse? responseContent;
-        //private static HttpClient _httpClient;
-        //private TranslatorService? TranslatorService;
         private string error = string.Empty;
-
-        //public Translator()
-        //{
-        //    _httpClient = new HttpClient();
-        //    _httpClient.BaseAddress = new Uri("http://localhost:5284");
-        //    _httpClient.Timeout = TimeSpan.FromSeconds(30);
-        //    TranslatorService = new TranslatorService(_httpClient);
-        //}
 
         protected override Task OnInitializedAsync()
         {
+            OnUpdate += HandleUpdate;
             return base.OnInitializedAsync();
         }
 
-        [JSInvokable]
-        public static async Task GetWordFromJS(string word)
+        //Try to understand this more, and try to optimize it
+        [JSInvokable]           //Optimize it, maybe just get a word, and then update it with Invoke and // Works worse.
+                                //Mb bcs translator service instance creates in DisplayBook, not in Translator, so creates a service for every translation.
+        
+        //public static async Task GetWordFromJS(string word)
+        public static async Task GetWordFromJS(string word, DotNetObjectReference<TranslatorService> translatorServiceInstance)
         {
             if (word.Length < 10)       //Temporary
             {
-                Translator component = new Translator();        //TODO Change this
-                await component.GetTranslation(word);
+                var translatorService = translatorServiceInstance.Value;
+                responseContent = await translatorService.GetWordTranslation(word);
+                OnUpdate?.Invoke();
             }
         }
 
-        public async Task GetTranslation(string word)
+        private void HandleUpdate()
         {
-            responseContent = await TranslatorService.GetWordTranslation(word);
+            StateHasChanged();
         }
     }
 }

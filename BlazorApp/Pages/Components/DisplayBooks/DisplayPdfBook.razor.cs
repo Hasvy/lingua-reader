@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Objects.Entities.Books.PdfBook;
+using Objects.Entities.Translator;
 using Services;
+using System.Data.Common;
 
 namespace BlazorApp.Pages.Components.DisplayBooks
 {
@@ -9,6 +11,7 @@ namespace BlazorApp.Pages.Components.DisplayBooks
     {
         [Inject] IJSRuntime JS { get; set; } = null!;
         [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
+        [Inject] TranslatorService TranslatorService { get; set; } = null!;
         [Parameter] public string BookId { get; set; } = null!;
 
         public int ActualPageNumber { get; set; } = 0;
@@ -19,18 +22,12 @@ namespace BlazorApp.Pages.Components.DisplayBooks
 
         protected override async Task OnInitializedAsync()
         {
-            await base.OnInitializedAsync();
             _isLoading = true;
             _book = await BookOperationsService.GetBookText(Guid.Parse(BookId));
-
-            await JS.InvokeVoidAsync("initializeBookContainer", _book.Text);
-            //await JS.InvokeVoidAsync("addText", _book.Text);
-            //await JS.InvokeVoidAsync("divideHtmlOnPages");
-            //await JS.InvokeVoidAsync("addEventListenerForTextClicked");
-
-            //await JS.InvokeVoidAsync("getText", _book.Text);
+            await JS.InvokeVoidAsync("initializeBookContainer", _book.Text, DotNetObjectReference.Create(TranslatorService));
 
             _isLoading = false;
+            await base.OnInitializedAsync();
         }
 
         public async void NextPage()
