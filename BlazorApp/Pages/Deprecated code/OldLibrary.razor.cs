@@ -32,7 +32,7 @@ namespace BlazorApp.Pages.Components
     public partial class OldLibrary : ComponentBase
     {
         [Inject] ILocalStorageService localStorage { get; set; } = null!;
-        [Inject] EpubConverter epubConverter { get; set; } = null!;
+        //[Inject] EpubConverter epubConverter { get; set; } = null!;
         [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
 
         private List<BookCover> _userBooks = new List<BookCover>();

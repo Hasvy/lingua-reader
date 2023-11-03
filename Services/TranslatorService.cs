@@ -18,12 +18,27 @@ namespace Services
             _httpClient = httpClient;
         }
 
+        public async Task<HttpResponseMessage> SetBookLang(string bookLang)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/Translator/Set-book-language", bookLang);
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> SetTargetLang(string targetLang)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/Translator/Set-target-language", targetLang);
+            return response;
+        }
+
         public async Task<TranslatorWordResponse?> GetWordTranslation(string word)
         {
-            TranslatorWordResponse? translation = await _httpClient.GetFromJsonAsync<TranslatorWordResponse?>($"api/Proxy/TranslateWord/{word}");
-            if (translation is not null)
+            if (!string.IsNullOrWhiteSpace(word))
             {
-                return translation;
+                TranslatorWordResponse? translation = await _httpClient.GetFromJsonAsync<TranslatorWordResponse?>($"api/Translator/TranslateWord?word={word}");
+                if (translation is not null)
+                {
+                    return translation;
+                }
             }
 
             return null;
@@ -32,7 +47,7 @@ namespace Services
         public async Task<string?> GetTextTranslation()
         {
             string? word = null;
-            TranslatorTextResponse? translation = await _httpClient.GetFromJsonAsync<TranslatorTextResponse>("api/Proxy/TranslateText");
+            TranslatorTextResponse? translation = await _httpClient.GetFromJsonAsync<TranslatorTextResponse>("api/Translator/TranslateText");
             if (translation is not null && translation.translations.First() is not null)
             {
                 word = translation.translations.First().text;

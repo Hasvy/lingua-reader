@@ -9,9 +9,12 @@ namespace BlazorApp.Pages.Components.DisplayBooks
     {
         [Inject] IJSRuntime JS { get; set; } = null!;
         [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
+        [Inject] TranslatorService TranslatorService { get; set; } = null!;
         [Parameter] public string BookId { get; set; } = null!;
+        [Parameter] public string BookLanguage { get; set; } = null!;
+        [Parameter] public string UserMainLang { get; set; } = null!;
 
-        public int ActualPageNumber { get; set; } = 1;
+        public int CurrentPageNumber { get; set; }
         public int PagesCount { get; set; }
 
         private IList<BookSection> Sections = new List<BookSection>();
@@ -23,25 +26,28 @@ namespace BlazorApp.Pages.Components.DisplayBooks
         {
             _isLoading = true;
             Sections = await BookOperationsService.GetBookSections(Guid.Parse(BookId));
+            await JS.InvokeVoidAsync("onInitialized", BookLanguage, DotNetObjectReference.Create(TranslatorService));
 
-            await JS.InvokeVoidAsync("initializeBookContainer");
             await JS.InvokeVoidAsync("setClone");
-
-            foreach (var item in Sections)                  //TODO what if section will be less then one page? Maybe it on page will be only content of the section.
+            foreach (var section in Sections)
             {
-                item.PagesCount = await JS.InvokeAsync<int>("separateHtmlOnPages", item.Text);
-                item.FirstPage = PagesCount + 1;
-                item.LastPage = PagesCount + item.PagesCount;
-                PagesCount += item.PagesCount;
-                if (item.PagesCount == 0 || item.LastPage == 0)
+                section.PagesCount = await JS.InvokeAsync<int>("getPagesCount", section.Text);
+                section.FirstPage = PagesCount + 1;
+                section.LastPage = PagesCount + section.PagesCount;
+                PagesCount += section.PagesCount;
+                if (section.PagesCount == 0 || section.LastPage == 0)
                 {
                     throw new Exception();
                 }
+                //TODO Fix Epub display styles from inner html tag
             }
             await JS.InvokeVoidAsync("removeClone");
 
+            CurrentPageNumber = 1;
             currentSectionNumber = 0;
-            actualSectionPagesCount = await JS.InvokeAsync<int>("divideAndSetHtml", Sections.First().Text);
+            await TranslatorService.SetBookLang(BookLanguage);
+            await TranslatorService.SetTargetLang(UserMainLang);
+            actualSectionPagesCount = await JS.InvokeAsync<int>("embedHtmlOnPage", Sections[0].Text);
 
             await JS.InvokeVoidAsync("showContent");
             _isLoading = false;
@@ -50,49 +56,48 @@ namespace BlazorApp.Pages.Components.DisplayBooks
             //Console.WriteLine("Time: " + stopwatch.ElapsedMilliseconds + " msec");
         }
 
-        public async void ChangePage(int? pageNumber)
+        public async void JumpToPage(int? pageNumber)
         {
             foreach (var section in Sections)
             {
                 if (section.FirstPage <= pageNumber && pageNumber <= section.LastPage)
                 {
-                    ActualPageNumber = (int)pageNumber;
+                    CurrentPageNumber = (int)pageNumber;
                     currentSectionNumber = section.OrderNumber;
-                    actualSectionPagesCount = await JS.InvokeAsync<int>("divideAndSetHtml", section.Text);
-                    await JS.InvokeVoidAsync("setActualPage", ActualPageNumber - section.FirstPage);
+                    actualSectionPagesCount = await JS.InvokeAsync<int>("embedHtmlOnPage", section.Text);
+                    await JS.InvokeVoidAsync("jumpToPage", CurrentPageNumber - section.FirstPage);
                 }
             }
         }
 
         public async void NextPage()
         {
-            if (ActualPageNumber != PagesCount)
+            if (CurrentPageNumber != PagesCount)
             {
-                ActualPageNumber++;
-                if (ActualPageNumber > Sections[currentSectionNumber].LastPage)
+                CurrentPageNumber++;
+                if (CurrentPageNumber > Sections[currentSectionNumber].LastPage)
                 {
                     NextSection();
                 }
                 else
                 {
-                    await JS.InvokeVoidAsync("nextPage");
+                    await JS.InvokeVoidAsync("nextPage", CurrentPageNumber - Sections[currentSectionNumber].FirstPage);
                 }
             }
         }
 
         public async void PreviousPage()
         {
-            if (ActualPageNumber > 1)
+            if (CurrentPageNumber > 1)
             {
-                ActualPageNumber--;
-                if (ActualPageNumber < Sections[currentSectionNumber].FirstPage)
+                CurrentPageNumber--;
+                if (CurrentPageNumber < Sections[currentSectionNumber].FirstPage)
                 {
-                    PreviousSection();
-                    await JS.InvokeVoidAsync("setScrollToLastPage", Sections[currentSectionNumber].PagesCount);
+                    await PreviousSection();
                 }
                 else
                 {
-                    await JS.InvokeVoidAsync("previousPage");
+                    await JS.InvokeVoidAsync("previousPage", CurrentPageNumber - Sections[currentSectionNumber].FirstPage);
                 }
             }
         }
@@ -102,16 +107,17 @@ namespace BlazorApp.Pages.Components.DisplayBooks
             if (currentSectionNumber < Sections.Count())
             {
                 currentSectionNumber++;
-                await JS.InvokeAsync<int>("divideAndSetHtml", Sections[currentSectionNumber].Text);
+                await JS.InvokeAsync<int>("embedHtmlOnPage", Sections[currentSectionNumber].Text);
             }
         }
 
-        private async void PreviousSection()
+        private async Task PreviousSection()
         {
             if (currentSectionNumber > 0)
             {
                 currentSectionNumber--;
-                await JS.InvokeAsync<int>("divideAndSetHtml", Sections[currentSectionNumber].Text);
+                await JS.InvokeAsync<int>("embedHtmlOnPage", Sections[currentSectionNumber].Text);
+                await JS.InvokeVoidAsync("setScrollToLastPage", Sections[currentSectionNumber].PagesCount - 1);
             }
         }
     }

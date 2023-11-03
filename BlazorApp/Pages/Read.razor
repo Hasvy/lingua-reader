@@ -11,12 +11,12 @@
 
 @if (BookFormat == ConstBookFormats.epub)
 {
-    <DisplayEpubBook BookId="@BookId" />
+    <DisplayEpubBook BookId="@BookId" BookLanguage="@BookLang" UserMainLang="@UserMainLang" />
 }
 
 @if (BookFormat == ConstBookFormats.pdf)
 {
-    <DisplayPdfBook BookId="@BookId" />
+    <DisplayPdfBook BookId="@BookId" BookLanguage="@BookLang" UserMainLang="@UserMainLang" />
 }
 
 @if (BookFormat == ConstBookFormats.fb2)

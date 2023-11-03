@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using Objects.Entities.Books;
 using Objects.Entities.Books.EpubBook;
@@ -13,6 +14,10 @@ namespace Objects.Entities
         public string? Author { get; set; }
         public string? Description { get; set; }
         public string Format { get; set; } = null!;
+        [MaxLength(9)]
+        public string Language { get; set; } = ConstLanguages.Undefined;
+        public string? CoverImage { get; set; }
+
         public Guid BookId { get; set; }        //Foreign key
 
         public BookCover()

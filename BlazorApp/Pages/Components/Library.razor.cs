@@ -61,7 +61,7 @@ namespace BlazorApp.Pages.Components
         private async void OpenBook(BookCover choosenBook)
         {
             await LocalStorageService.SetItemAsStringAsync("bookFormat", choosenBook.Format);
-            NavigationManager.NavigateTo("read/" + choosenBook.BookId);
+            NavigationManager.NavigateTo("read/" + choosenBook.BookId + $"?lang={choosenBook.Language}");
             //NavigationManager.NavigateTo("read/" + choosenBook.BookId + $"?bookFormat={choosenBook.Format}", true);
         }
 
@@ -72,8 +72,31 @@ namespace BlazorApp.Pages.Components
                                                                                                                              AutoFocusFirstElement = false });
             if (confirm == true)
             {
-                await BookOperationsService.DeleteBook(bookCover.BookId);
-                _userBooks.Remove(bookCover);
+                var response = await BookOperationsService.DeleteBook(bookCover.BookId);
+                if (response.IsSuccessStatusCode)
+                {
+                    _userBooks.Remove(bookCover);
+                }
+            }
+        }
+
+        private async Task ChangeBookLang(BookCover bookCover)
+        {
+            await BookOperationsService.ChangeBookLang(bookCover.Language, bookCover.Id);
+        }
+
+        private string GetFlagPath(string language)
+        {
+            switch (language)
+            {
+                case ConstLanguages.Czech: return "img/czech-republic-32.png";
+                case ConstLanguages.English: return "img/great-britain-32.png";
+                case ConstLanguages.German: return "img/germany-32.png";
+                case ConstLanguages.Russian: return "img/russian-federation-32.png";
+                case ConstLanguages.Italian: return "img/italy-32.png";
+                case ConstLanguages.Spanish: return "img/spain-flag-32.png";
+                default:
+                    return "img/question-32.png";
             }
         }
     }

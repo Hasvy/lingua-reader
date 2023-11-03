@@ -14,9 +14,8 @@ namespace BlazorApp.Pages.Components.Translator
     {
         //[Inject] TranslatorService TranslatorService { get; set; } = null!;
         public static event Action OnUpdate = null!;
+        private static string? wordToTranslate;
         private static TranslatorWordResponse? responseContent;
-        string initialLang = "en";
-        string targetLang = "cz";
         private string error = string.Empty;
 
         protected override Task OnInitializedAsync()
@@ -35,10 +34,16 @@ namespace BlazorApp.Pages.Components.Translator
             if (word.Length < 10)       //Temporary
             {
                 var translatorService = translatorServiceInstance.Value;
+                wordToTranslate = word;
                 responseContent = await translatorService.GetWordTranslation(word);
                 OnUpdate?.Invoke();
             }
         }
+
+        //private void Speak(string word)
+        //{
+        //    speechSynthesizer.SpeakAsync(word);
+        //}
 
         private void HandleUpdate()
         {

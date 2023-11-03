@@ -51,7 +51,7 @@ namespace BlazorApp.Pages
             }
             await JS.InvokeAsync<string?>("addStyle", css);
 
-            //await JS.InvokeVoidAsync("setActualPage", pages[ActualPageNumber - 1]);
+            //await JS.InvokeVoidAsync("setActualPage", pages[CurrentPageNumber - 1]);
             await base.OnInitializedAsync();
         }
 
@@ -171,21 +171,21 @@ namespace BlazorApp.Pages
         //For list of pages
         //private async void NextPage()
         //{
-        //    if (ActualPageNumber != pages.Count)
+        //    if (CurrentPageNumber != pages.Count)
         //    {
         //        _actualPage = pages[GetIndexOfActualPage() + 1];
-        //        ActualPageNumber++;
-        //        await JS.InvokeVoidAsync("setActualPage", pages[ActualPageNumber - 1]);
+        //        CurrentPageNumber++;
+        //        await JS.InvokeVoidAsync("setActualPage", pages[CurrentPageNumber - 1]);
         //    }
         //}
 
         //private async void PreviousPage()
         //{
-        //    if (ActualPageNumber != 1)
+        //    if (CurrentPageNumber != 1)
         //    {
         //        _actualPage = pages[GetIndexOfActualPage()];
-        //        ActualPageNumber--;
-        //        await JS.InvokeVoidAsync("setActualPage", pages[ActualPageNumber - 1]);
+        //        CurrentPageNumber--;
+        //        await JS.InvokeVoidAsync("setActualPage", pages[CurrentPageNumber - 1]);
         //    }
         //}
 
@@ -199,19 +199,19 @@ namespace BlazorApp.Pages
         //private async void NextPage()
         //{
         //    await SetActualPageText();
-        //    if (ActualPageNumber != Text.Count)
+        //    if (CurrentPageNumber != Text.Count)
         //    {
         //        _actualPage = Text[GetIndexOfActualPage() + 1];
-        //        ActualPageNumber++;
+        //        CurrentPageNumber++;
         //    }
         //}
 
         //private void PreviousPage()
         //{
-        //    if (ActualPageNumber != 1)
+        //    if (CurrentPageNumber != 1)
         //    {
         //        _actualPage = Text[GetIndexOfActualPage() - 1];
-        //        ActualPageNumber--;
+        //        CurrentPageNumber--;
         //    }
         //}
     }

@@ -5,11 +5,12 @@
 <RadzenText>
     @if (responseContent is not null)
     {
-        @(responseContent.displaySource + " ")
+        @* <RadzenButton Click="@(() => Speak(responseContent.displaySource))"></RadzenButton> *@
+        @(wordToTranslate + ": ")
 
         @foreach (var translation in responseContent.translations)
         {
-            @(translation.displayTarget + " ");
+            @(translation.displayTarget + ", ");
         }
     }
 
