@@ -16,11 +16,17 @@ using System.Text;
 using UglyToad.PdfPig.DocumentLayoutAnalysis.WordExtractor;
 using static iText.Kernel.Pdf.Canvas.Parser.Listener.LocationTextExtractionStrategy;
 using System.Numerics;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 using iText.Kernel.Pdf.Canvas.Parser.Data;
 using iText.Svg.Utils;
 using Tesseract.Interop;
 using Tesseract;
 using Microsoft.JSInterop;
+using VersOne.Epub.Schema;
+using iText.Commons.Datastructures;
+using PdfSharp.Drawing;
+using SixLabors.ImageSharp.Formats.Jpeg;
 
 namespace Services
 {
@@ -82,11 +88,13 @@ namespace Services
                     Author = epubBook.Author,
                     Title = epubBook.Title,
                     Description = epubBook.Description,
-                    Format = ConstBookFormats.epub
-                }
+                    Format = ConstBookFormats.epub,
+        }
             };
+            //epubBook.Content.NavigationHtmlFile. or GetNavigation      //TODO nav file
+            book.BookCover.CoverImage = await ResizeBookCoverImage(epubBook);
+            book.BookCover.Language = GetBookLanguage(epubBook);
             book.BookCover.BookId = book.Id;
-            //book.Content = await SetBookContent(epubBook, book);
             book.Sections = await SetBookSections(epubBook, book);
             book.SectionsCount = book.Sections.Count();
             return book;
@@ -96,9 +104,10 @@ namespace Services
         {
             var sectionList = new List<BookSection>();
             int index = 0;
+            var readingOrder = await epubBook.GetReadingOrderAsync();
             //var epubBookref = await EpubReader.OpenBookAsync(epubBook);     //work with epubbook or epubbookref
 
-            foreach (var item in epubBook.Content.Html.Local)           //I use Local file. What is remote file?
+            foreach (var item in readingOrder)           //I use Local file. What is remote file?
             {
                 var bookSection = new BookSection();
                 bookSection.Text = await _htmlParserService.Parse(item.ReadContentAsync().Result, epubBook);
@@ -110,24 +119,76 @@ namespace Services
             return sectionList;
         }
 
-        private async Task<List<BookContent>> SetBookContent(EpubBookRef epubBook, Objects.Entities.Books.EpubBook.EpubBook book)
+        private async Task<string?> ResizeBookCoverImage(EpubBookRef epubBook)
         {
-            var contentList = new List<BookContent>();
+            byte[]? coverImage = await epubBook.ReadCoverAsync();
+            string? resizedImage = null;
 
-            foreach (var item in epubBook.Content.Css.Local)
+            if (coverImage is not null)
             {
-                var bookContent = new BookContent();
-                bookContent.Type = ContentType.css;
-                bookContent.Content = await item.ReadContentAsync();
-                bookContent.BookId = book.Id;
-                contentList.Add(bookContent);
-                //I can't add a file storage on server. What after I upload file on server? How work with it?
-                //The file will be on server, but I need it on a client, so I cant work with the file.
-                //BLOB in database then wirte it in memory - for images
-                //css and images to datauri string and then apply it to code +
+                int newHeight = 200;
+                int newWidth = 200;
+                using (MemoryStream stream = new MemoryStream(coverImage))
+                {
+                    using (Image image = Image.Load(stream))
+                    {
+                        int originalWidth = image.Width;
+                        int originalHeight = image.Height;
+                        double widthRatio = (double)newWidth / originalWidth;
+                        double heightRatio = (double)newHeight / originalHeight;
+                        double ratio = Math.Min(widthRatio, heightRatio);
+                        int targetWidth = (int)(originalWidth * ratio);
+                        int targetHeight = (int)(originalHeight * ratio);
+
+                        image.Mutate(x => x.Resize(new ResizeOptions
+                        {
+                            Size = new Size(newWidth, newHeight),
+                            Mode = ResizeMode.Max
+                        }));
+
+                        using (MemoryStream outputStream = new MemoryStream())
+                        {
+                            image.Save(outputStream, new JpegEncoder());
+                            byte[] resizedImageBytes = outputStream.ToArray();
+                            resizedImage = Convert.ToBase64String(resizedImageBytes);
+                        }
+                    }
+                }
             }
-            return contentList;
+            return resizedImage;
         }
+
+        private string GetBookLanguage(EpubBookRef epubBook)
+        {
+            EpubMetadataLanguage? metadata = epubBook.Schema.Package.Metadata.Languages.FirstOrDefault();
+            if (metadata is not null)
+            {
+                return ConstLanguages.LanguagesSet.FirstOrDefault(l => l == metadata.Language, ConstLanguages.Undefined);
+            }
+            else
+            {
+                return ConstLanguages.Undefined;
+            }
+        }
+
+        //private async Task<List<BookContent>> SetBookContent(EpubBookRef epubBook, Objects.Entities.Books.EpubBook.EpubBook book)
+        //{
+        //    var contentList = new List<BookContent>();
+
+        //    foreach (var item in epubBook.Content.Css.Local)
+        //    {
+        //        var bookContent = new BookContent();
+        //        bookContent.Type = ContentType.css;
+        //        bookContent.Content = await item.ReadContentAsync();
+        //        bookContent.BookId = book.Id;
+        //        contentList.Add(bookContent);
+        //        //I can't add a file storage on server. What after I upload file on server? How work with it?
+        //        //The file will be on server, but I need it on a client, so I cant work with the file.
+        //        //BLOB in database then wirte it in memory - for images
+        //        //css and images to datauri string and then apply it to code +
+        //    }
+        //    return contentList;
+        //}
 
         #endregion
 
@@ -147,7 +208,7 @@ namespace Services
 
             List<string> _pages = new List<string>();
             var pagesCount = pdfDoc.GetNumberOfPages();
-            resourses = pdfDoc.GetPage(1).GetResources();
+            //PdfResources resourses = pdfDoc.GetPage(1).GetResources();
             Encoding encoding = Encoding.UTF8;
             ITextExtractionStrategy strategy = new CustomTextExtractionStrategy(encoding);
             //ITextExtractionStrategy strategy2 = new SimpleTextExtractionStrategy();
@@ -176,10 +237,6 @@ namespace Services
                 return null;
             }
         }
-
-        int index = 0;
-        string stringBuilder = string.Empty;
-        PdfResources resourses;
 
         private PdfBook SaveBookData(iText.Kernel.Pdf.PdfDocument pdfDoc)
         {

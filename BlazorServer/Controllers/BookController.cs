@@ -45,21 +45,6 @@ namespace BlazorServer.Controllers
             return BadRequest();
         }
 
-        [HttpPost]
-        [Route("api/PdfBook/Post")]
-        public async Task<IActionResult> PostPdf([FromBody] PdfBook book)
-        {
-            if (ModelState.IsValid)
-            {
-                _appDbContext.PdfBooks.Add(book);
-                await _appDbContext.SaveChangesAsync();
-
-                return Ok();
-            }
-
-            return BadRequest();
-        }
-
         [HttpDelete]
         [Route("api/[controller]/Delete/{Id:Guid}")]
         public async Task<IActionResult> DeleteBook(Guid id)

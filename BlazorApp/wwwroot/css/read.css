@@ -1,4 +1,5 @@
 ﻿.book_card, .add_book_card {
+    cursor: default;
     width: 300px;
     flex: none !important;
     transition: box-shadow 0.3s ease-in-out;
@@ -6,7 +7,7 @@
 
 .add_book_card {
     width: 332px;
-    height: 152px;
+    height: 336px;
     padding: 0 !important;
     position: relative;
 }

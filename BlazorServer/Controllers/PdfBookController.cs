@@ -14,6 +14,21 @@ namespace BlazorServer.Controllers
             _appDbContext = dbContext;
         }
 
+        [HttpPost]
+        [Route("api/PdfBook/Post")]
+        public async Task<IActionResult> PostPdf([FromBody] PdfBook book)
+        {
+            if (ModelState.IsValid)
+            {
+                _appDbContext.PdfBooks.Add(book);
+                await _appDbContext.SaveChangesAsync();
+
+                return Ok();
+            }
+
+            return BadRequest();
+        }
+
         [HttpGet]
         [Route("api/PdfBook/Get/{Id:Guid}")]
         public ActionResult<PdfBook> Get(Guid id)

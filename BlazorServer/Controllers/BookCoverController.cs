@@ -29,5 +29,22 @@ namespace BlazorServer.Controllers
                 return Ok(bookCovers);
             }
         }
+
+        [HttpPut]
+        [Route("api/[controller]/Language/Put")]
+        public async Task<ActionResult> PutLanguage([FromQuery] string newLanguage, [FromQuery] Guid bookCoverId)
+        {
+            BookCover? bookCover = await _appDbContext.BookCovers.SingleAsync(bc => bc.Id == bookCoverId);
+            if (bookCover is not null)
+            {
+                bookCover.Language = newLanguage;
+                await _appDbContext.SaveChangesAsync();
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }

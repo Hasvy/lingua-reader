@@ -17,15 +17,12 @@ builder.Services.AddScoped<NotificationService>();
 //Html
 builder.Services.AddScoped<HtmlParser>();
 //My services
-builder.Services.AddScoped<EpubConverter>();        //TODO check scoped and singleton services
-builder.Services.AddScoped<BookOperationsService>();
-builder.Services.AddScoped<FilesOperationsService>();
+builder.Services.AddScoped<BookOperationsService>();        //TODO check scoped and singleton services
 builder.Services.AddScoped<AddBookService>();
 builder.Services.AddScoped<HtmlParserService>();
 builder.Services.AddScoped<TranslatorService>();
 
 builder.Services.AddSingleton<ProgressService>();
-builder.Services.AddSingleton<TranslatorServiceAccessor>();
 
 builder.Services.AddBlazoredLocalStorage();
 

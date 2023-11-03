@@ -1,4 +1,4 @@
-h1:focus {
+﻿h1:focus {
     outline: none;
 }
 
@@ -6,12 +6,16 @@ body {
     margin: 0;
 }
 
-.rz-button {
-    --rz-button-focus-shadow: var(--rz-shadow-1);
-    --rz-button-focus-gradient: none;
+.progress-bar {
 }
 
-.progress-bar {
+.book-title-text {
+    margin: 0px;
+    font-weight: 600 !important;
+}
+
+.w-100 {
+    width: 100%;
 }
 
 #blazor-error-ui {

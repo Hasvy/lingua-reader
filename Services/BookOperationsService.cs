@@ -103,12 +103,19 @@ namespace Services
             }
         }
 
-        public async Task DeleteBook(Guid id)
+        public async Task<HttpResponseMessage> ChangeBookLang(string newLanguage, Guid bookCoverId)
+        {
+            string apiUri = $"api/BookCover/Language/Put?newLanguage={newLanguage}&bookCoverId={bookCoverId}";
+            var response = await _httpClient.PutAsync(apiUri, null);
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> DeleteBook(Guid id)
         {
             try
             {
                 var response = await _httpClient.DeleteAsync($"api/Book/Delete/{id}");
-
+                return response;
                 //if (response.IsSuccessStatusCode)
                 //{
                 //    return await response.Content.ReadFromJsonAsync<EpubBook>();

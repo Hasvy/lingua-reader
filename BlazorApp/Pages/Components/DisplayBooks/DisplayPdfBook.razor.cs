@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Objects.Entities.Books.PdfBook;
 using Objects.Entities.Translator;
 using Services;
-using System.Data.Common;
 
 namespace BlazorApp.Pages.Components.DisplayBooks
 {
@@ -13,8 +13,10 @@ namespace BlazorApp.Pages.Components.DisplayBooks
         [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
         [Inject] TranslatorService TranslatorService { get; set; } = null!;
         [Parameter] public string BookId { get; set; } = null!;
+        [Parameter] public string BookLanguage {  get; set; } = null!;
+        [Parameter] public string UserMainLang {  get; set; } = null!;
 
-        public int ActualPageNumber { get; set; } = 0;
+        public int CurrentPageNumber { get; set; } = 0;
         public int PagesCount { get; set; } = 0;
 
         private PdfBook? _book;
@@ -24,49 +26,41 @@ namespace BlazorApp.Pages.Components.DisplayBooks
         {
             _isLoading = true;
             _book = await BookOperationsService.GetBookText(Guid.Parse(BookId));
-            await JS.InvokeVoidAsync("initializeBookContainer", _book.Text, DotNetObjectReference.Create(TranslatorService));
+            await TranslatorService.SetBookLang(BookLanguage);      //TODO method initialize TranslatorService
+            await TranslatorService.SetTargetLang(UserMainLang);
+            await JS.InvokeVoidAsync("onInitialized", BookLanguage, DotNetObjectReference.Create(TranslatorService));
+            PagesCount = await JS.InvokeAsync<int>("embedHtmlOnPage", _book.Text);
+            CurrentPageNumber = 1;
 
             _isLoading = false;
             await base.OnInitializedAsync();
         }
 
+        public async void JumpToPage(int? pageNumber)
+        {
+            if (1 <= pageNumber && pageNumber <= PagesCount)
+            {
+                CurrentPageNumber = (int)pageNumber;
+                await JS.InvokeVoidAsync("jumpToPage", CurrentPageNumber - 1);
+            }
+        }
+
         public async void NextPage()
         {
-            await JS.InvokeVoidAsync("nextPage");
+            if (CurrentPageNumber != PagesCount)
+            {
+                CurrentPageNumber += 1;
+                await JS.InvokeVoidAsync("nextPage", CurrentPageNumber - 1);
+            }   
         }
 
         public async void PreviousPage()
         {
-            await JS.InvokeVoidAsync("previousPage");
+            if (CurrentPageNumber > 1)
+            {
+                CurrentPageNumber -= 1;
+                await JS.InvokeVoidAsync("previousPage", CurrentPageNumber - 1);
+            }
         }
-
-        public void ChangePage(int? pageNumber)
-        {
-            throw new NotImplementedException();
-        }
-
-        //private int GetIndexOfActualPage()
-        //{
-        //    return Text.IndexOf(_actualPage);
-        //}
-
-        //private async void NextPage()
-        //{
-        //    await SetActualPageText();
-        //    if (ActualPageNumber != Text.Count)
-        //    {
-        //        _actualPage = Text[GetIndexOfActualPage() + 1];
-        //        ActualPageNumber++;
-        //    }
-        //}
-
-        //private void PreviousPage()
-        //{
-        //    if (ActualPageNumber != 1)
-        //    {
-        //        _actualPage = Text[GetIndexOfActualPage() - 1];
-        //        ActualPageNumber--;
-        //    }
-        //}
     }
 }

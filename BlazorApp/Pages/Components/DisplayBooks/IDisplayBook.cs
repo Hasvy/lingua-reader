@@ -1,11 +1,15 @@
-﻿namespace BlazorApp.Pages.Components.DisplayBooks
+﻿using Microsoft.AspNetCore.Components;
+
+namespace BlazorApp.Pages.Components.DisplayBooks
 {
     public interface IDisplayBook
     {
-        public int ActualPageNumber { get; set; }
+        public string BookId { get; set; }
+        public string BookLanguage { get; set; }
+        public int CurrentPageNumber { get; set; }
         public int PagesCount { get; set; }
         void NextPage();
         void PreviousPage();
-        void ChangePage(int? pageNumber);
+        void JumpToPage(int? pageNumber);
     }
 }

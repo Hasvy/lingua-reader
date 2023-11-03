@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 @using Microsoft.AspNetCore.Components.Forms;
 @using Objects.Entities;
+@using Objects;
 
 @if (_isLoading)
 {
@@ -25,14 +26,31 @@ else
         @foreach (var bookCover in _userBooks)
         {
             <RadzenCard class="book_card" @onclick="@(() => OpenBook(bookCover))">
+                <RadzenRow JustifyContent="JustifyContent.Center">
+                    <RadzenText class="rz-text-truncate book-title-text" Text="@(bookCover.Title ?? "Book Title")" />
+                </RadzenRow>
                 <RadzenRow>
                     <RadzenColumn Size="10">
-                        <RadzenText Text="@bookCover.Title" />
-                        <RadzenText Text="@bookCover.Author" />
+                        <div style="height: 200px; width: 200px; overflow: hidden; display: flex; justify-content: center">
+                            @if (bookCover.CoverImage is not null)
+                            {
+                                <img src="data:image/jpeg;base64,@bookCover.CoverImage" />
+                            }
+                            else
+                            {
+                                <img src="img/book-cover-icon.png" />
+                            }
+                        </div>
+                        <RadzenText Text="@(bookCover.Author ?? "Book Author")" />
                         <RadzenText Text="@bookCover.Format" />
                     </RadzenColumn>
                     <RadzenColumn Size="2">
                         <RadzenButton Icon="delete" Variant="Variant.Text" ButtonStyle="ButtonStyle.Danger" @onclick:stopPropagation="true" Click="@(() => DeleteBook(bookCover))" />
+                        <RadzenDropDown class="horizontal-dropdown" @bind-Value="bookCover.Language" TValue="string" Data="ConstLanguages.LanguagesSet" Change="@(() => ChangeBookLang(bookCover))">
+                            <Template Context="language">
+                                <img class="dropdown-item" src="@GetFlagPath(language)"/>
+                            </Template>
+                        </RadzenDropDown>
                     </RadzenColumn>
                 </RadzenRow>
             </RadzenCard>
