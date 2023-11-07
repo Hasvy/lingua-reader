@@ -151,6 +151,7 @@ async function separateBookDocument(container) {
     //body.style.minHeight = "100%";
     //var card = document.getElementById("reader-card");
     //card.style.height = "100%";
+    //body.style.maxHeight = "100%";
     body.style.position = "relative";
     body.style.columnGap = 0 + "px";
     body.style.columnFill = "balance";
