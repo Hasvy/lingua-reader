@@ -1,9 +1,8 @@
 ﻿//TODO Fix exception if user open a book and then immidietly click button back in web browser
-//TODO If image is bigger, than maxHeight or maxWidth I have to make it smaller with proportions saving
 //TODO Add links handling
 
 const de_regexp = /^[\wßäöüÄÖÜ]*$/;
-const cs_regexp = /^[\wčďěňřšťžáéíóúůČĎĚŇŘŠŤŽÁÉÍÓÚŮ]*$/;
+const cs_regexp = /^[\wčďěňřšťžáéíóúůýČĎĚŇŘŠŤŽÁÉÍÓÚŮÝ]*$/;
 const it_regexp = /^[\wàèéìòóùÀÈÉÌÒÓÙ]*$/;
 const es_regexp = /^[\wáéíóúñÑÁÉÍÓÚüÜ]*$/;
 var lang_regexp = /^\w*$/;
@@ -81,10 +80,10 @@ function addBookOnPage(htmlString) {
     });
 }
 
-function addListener(document) {
+function addListener(bookDocument) {
     return new Promise(function (resolve) {
         // Adds an event listener to every <p> html tag
-        var clickableElements = document.querySelectorAll("p, h1, h2, h3, h4, h5, h6, div, span");
+        var clickableElements = bookDocument.querySelectorAll("p, h1, h2, h3, h4, h5, h6, div, span");
         var wordRegexp = lang_regexp;
         clickableElements.forEach(function (element) {
             element.addEventListener("click", function () {
@@ -110,18 +109,46 @@ function addListener(document) {
 
                 // Gets a word, removes selection and sends it to C#
                 var word = range.toString().trim();
+
+                //sendPositionToDotNet(rangePosition);
+                var rangePosition = range.getBoundingClientRect();
                 window.getSelection().removeAllRanges();
-                sendWordToDotNet(word);
+                sendWordToDotNet(word, rangePosition);
             });
         });
         resolve();
     });
 }
 
-function sendWordToDotNet(word) {
-    DotNet.invokeMethodAsync('BlazorApp', 'GetWordFromJS', word, window.translatorServiceInstance);
+function sendWordToDotNet(word, rangePosition) {
+    //var width = rangePosition.width;
+    var containerPosition = container.getBoundingClientRect();
+    var height = 40;
+    var left = rangePosition.left - containerPosition.left;
+    var rzBody = document.querySelector(".rz-body");
+    var top = rangePosition.top - height -  + rzBody.scrollTop;
+    DotNet.invokeMethodAsync('BlazorApp', 'GetWordFromJS', word, height, left, top, window.translatorServiceInstance);
     //DotNet.invokeMethodAsync('BlazorApp', 'GetWordFromJS', word);
 }
+
+//function sendPositionToDotNet(rangePosition) {
+//    //var containerPosition = container.getBoundingClientRect();
+//    var width = rangePosition.width;
+//    //var height = rangePosition.height;
+//    var left = rangePosition.left;
+//    var top = rangePosition.top;
+//    //var rectangle = document.createElement('div');
+//    //var rectangleHeight = 40;
+
+//    //rectangle.style.position = 'absolute';
+//    //rectangle.style.width = width + 'px';
+//    //rectangle.style.height = rectangleHeight + 'px'; // Например, высота 20 пикселей
+//    //rectangle.style.left = rangePosition.left + 'px';
+//    //rectangle.style.top = (rangePosition.top - rectangleHeight) + 'px';       //-20 - 
+//    //rectangle.style.backgroundColor = 'blue'; // Например, цвет фона синий
+//    //document.body.appendChild(rectangle);
+//    DotNet.invokeMethod("BlazorApp", "GetTranslatorPositionFromJS", width, left, top)
+//}
 
 async function separateBookDocument(container) {
     body = container.querySelector("html body");
@@ -129,12 +156,13 @@ async function separateBookDocument(container) {
     //    body = container.querySelector("html body");
     //}
     var totalHeight = body.offsetHeight;
-    var containerHeight = host.clientHeight;
+    var containerHeight = host.clientHeight - 100;
     var containerWidth = host.clientWidth;
 
     var pagesCount = Math.floor(totalHeight / containerHeight) + 1;
     body.style.margin = 0;
     body.style.width = (containerWidth * pagesCount) + "px";
+    //body.style.maxHeight = "100%";
     body.style.columnCount = pagesCount;
     body.style.position = "relative";
     body.style.columnGap = 0 + "px";

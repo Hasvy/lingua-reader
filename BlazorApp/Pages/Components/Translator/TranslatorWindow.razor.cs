@@ -10,9 +10,12 @@ using System.Runtime.CompilerServices;
 
 namespace BlazorApp.Pages.Components.Translator
 {
-    public partial class Translator : ComponentBase
+    public partial class TranslatorWindow : ComponentBase
     {
         //[Inject] TranslatorService TranslatorService { get; set; } = null!;
+        [Parameter] public static float Height { get; set; }
+        [Parameter] public static float Left { get; set; }
+        [Parameter] public static float Top { get; set; }
         public static event Action OnUpdate = null!;
         private static string? wordToTranslate;
         private static TranslatorWordResponse? responseContent;
@@ -26,19 +29,28 @@ namespace BlazorApp.Pages.Components.Translator
 
         //Try to understand this more, and try to optimize it
         [JSInvokable]           //Optimize it, maybe just get a word, and then update it with Invoke and // Works worse.
-                                //Mb bcs translator service instance creates in DisplayBook, not in Translator, so creates a service for every translation.
+                                //Mb bcs translator service instance creates in DisplayBook, not in TranslatorWindow, so creates a service for every translation.
         
         //public static async Task GetWordFromJS(string word)
-        public static async Task GetWordFromJS(string word, DotNetObjectReference<TranslatorService> translatorServiceInstance)
+        public static async Task GetWordFromJS(string word, float height, float left, float top, DotNetObjectReference<TranslatorService> translatorServiceInstance)
         {
             if (word.Length < 10)       //Temporary
             {
                 var translatorService = translatorServiceInstance.Value;
                 wordToTranslate = word;
+                Height = height;
+                Left = left;
+                Top = top;
                 responseContent = await translatorService.GetWordTranslation(word);
                 OnUpdate?.Invoke();
             }
         }
+
+        //[JSInvokable]
+        //public static void GetTranslatorPositionFromJS()
+        //{
+        //    Console.WriteLine($"{width}, {left}, {top}");
+        //}
 
         //private void Speak(string word)
         //{

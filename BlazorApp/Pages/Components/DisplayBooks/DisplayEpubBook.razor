@@ -10,7 +10,7 @@
     @CurrentPageNumber / @PagesCount
     <RadzenNumeric id="page-changer" ShowUpDown="false" Style="width: 30px" TValue="int?" Value="null" Change="@(pageNumber => JumpToPage(pageNumber))" />
 
-    <Translator/>
+    <TranslatorWindow/>
     <div style="display: flex; justify-content: center">
         <RadzenStack Gap="0" Wrap="FlexWrap.Wrap" Orientation="Orientation.Horizontal">
             <RadzenButton Icon="arrow_back_ios_new" Click="PreviousPage" />
