@@ -1,0 +1,32 @@
+﻿@using System.Globalization;
+
+<RadzenCard id="translator-window" Style=@($@"position: absolute; padding: 0, 5, 0, 5;
+                                              height: {Height.ToString(CultureInfo.InvariantCulture)}px; 
+                                              left: {(Left - 5).ToString(CultureInfo.InvariantCulture)}px;
+                                              top: {Top.ToString(CultureInfo.InvariantCulture)}px; z-index: 10;")>
+    <RadzenRow>
+        <RadzenText>
+            @if (responseContent is not null)
+            {
+                @(wordToTranslate)
+            }
+        </RadzenText>
+    </RadzenRow>
+</RadzenCard>
+
+@* <RadzenText>
+
+
+    @if (responseContent is not null)
+    {
+        <RadzenButton Click="@(() => Speak(responseContent.displaySource))"></RadzenButton> 
+        @(wordToTranslate + ": ")
+
+        @foreach (var translation in responseContent.translations)
+        {
+            @(translation.displayTarget + ", ");
+        }
+    }
+
+    @error
+</RadzenText>*@
