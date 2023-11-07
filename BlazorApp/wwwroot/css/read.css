@@ -17,11 +17,17 @@
     transition: box-shadow 0.3s ease-in-out;
 }
 
+/*Outside iframe*/
 .book-frame {
+    display: block;
     border: none;
     width: 100%;
     height: 100%;
-    overflow-x: clip;
+}
+
+/*Inside iframe*/
+.book-style{
+    overflow-y: hidden;
 }
 
 .centered-element {

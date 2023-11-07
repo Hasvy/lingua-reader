@@ -31,7 +31,7 @@ namespace BlazorApp.Pages.Components.DisplayBooks
             await JS.InvokeVoidAsync("setClone");
             foreach (var section in Sections)
             {
-                section.PagesCount = await JS.InvokeAsync<int>("getPagesCount", section.Text);
+                section.PagesCount = await JS.InvokeAsync<int>("embedHtmlOnPage", section.Text);
                 section.FirstPage = PagesCount + 1;
                 section.LastPage = PagesCount + section.PagesCount;
                 PagesCount += section.PagesCount;

@@ -60,21 +60,21 @@ async function embedHtmlOnPage(htmlString) {
     return pagesCount;
 }
 
-async function getPagesCount(htmlString) {                  //Only for epub format to get total pages count from every section
-    var pagesCount;
-    //var bookDocument = await addBookOnPage(htmlString);
-    //if (bookDocument) {
-       // await clone.appendChild(bookDocument);
-    cloneDocument = clone.contentDocument || clone.contentWindow.document;
-    cloneDocument.open();
-    cloneDocument.write(htmlString);
-    cloneDocument.close();
-    await adjustImages(cloneDocument, container.clientHeight, container.clientWidth);
-    pagesCount = separateBookDocument(cloneDocument);
-    clone.innerHTML = "";
-    //}
-    return pagesCount;
-}
+//async function getPagesCount(htmlString) {                  //Only for epub format to get total pages count from every section
+//    var pagesCount;
+//    //var bookDocument = await addBookOnPage(htmlString);
+//    //if (bookDocument) {
+//       // await clone.appendChild(bookDocument);
+//    cloneDocument = clone.contentDocument || clone.contentWindow.document;
+//    cloneDocument.open();
+//    cloneDocument.write(htmlString);
+//    cloneDocument.close();
+//    await adjustImages(cloneDocument, container.clientHeight, container.clientWidth);
+//    pagesCount = separateBookDocument(cloneDocument);
+//    clone.innerHTML = "";
+//    //}
+//    return pagesCount;
+//}
 
 //function addBookOnPage(htmlString) {
 //    return new Promise(function (resolve) {
@@ -148,6 +148,9 @@ async function separateBookDocument(container) {
     body.style.margin = 0;
     body.style.width = (containerWidth * pagesCount) + "px";
     body.style.columnCount = pagesCount;
+    //body.style.minHeight = "100%";
+    //var card = document.getElementById("reader-card");
+    //card.style.height = "100%";
     body.style.position = "relative";
     body.style.columnGap = 0 + "px";
     body.style.columnFill = "balance";
