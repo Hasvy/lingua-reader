@@ -24,62 +24,74 @@ async function onInitialized(bookLang, translatorServiceReference) {
 
     window.translatorServiceInstance = translatorServiceReference;
 
-    host = document.getElementById("host");
-    shadow = host.attachShadow({ mode: "open" });
+    container = document.getElementById("host");
+    //shadow = host.attachShadow({ mode: "open" });
 
-    container = document.createElement("div");
-    container.id = "container";
-    const style = document.createElement("style");
-    style.textContent = "#container { width: 100%; height: 100%; overflow-x: clip; }";
-    shadow.appendChild(container);
-    shadow.appendChild(style);
+    //container = document.createElement("div");
+    //container.id = "container";
+    //const style = document.createElement("style");
+    //style.textContent = "#container { width: 100%; height: 100%; overflow-x: clip; }";
+    //shadow.appendChild(container);
+    //shadow.appendChild(style);
 }
 
 async function embedHtmlOnPage(htmlString) {
-    container = shadow.getElementById("container");
-    container.innerHTML = "";   //Fix it
+    iframe = document.getElementById("iframe-container");
+    iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    iframeDocument.open();
+    iframeDocument.write(htmlString);
+    iframeDocument.close();
+    iframeDocument.body.style.overflowX = "clip";
+    iframeDocument.body.classList.add("book-style");
 
     var pagesCount;
-    var bookDocument = await addBookOnPage(htmlString);
-    if (bookDocument) {
+    //container.innerHTML = "";   //Fix it
+    //await container.appendChild(bookDocument);
+    await addListener(iframeDocument);
+    await adjustImages(iframeDocument, container.clientHeight, container.clientWidth);
+    pagesCount = separateBookDocument(iframeDocument);
+
+    //var bookDocument = await addBookOnPage(htmlString);
+    //if (bookDocument) {
         //const shadowRoot = container.shadowRoot;
 
-        await container.appendChild(bookDocument);
-        await addListener(bookDocument);
-        await adjustImages(container, container.clientHeight, container.clientWidth);
-        pagesCount = separateBookDocument(container);
-    }
+
+    //}
     return pagesCount;
 }
 
 async function getPagesCount(htmlString) {                  //Only for epub format to get total pages count from every section
     var pagesCount;
-    var bookDocument = await addBookOnPage(htmlString);
-    if (bookDocument) {
-        await clone.appendChild(bookDocument);
-        await adjustImages(clone, clone.clientHeight, clone.clientWidth);
-        pagesCount = separateBookDocument(clone);
-        clone.innerHTML = "";
-    }
+    //var bookDocument = await addBookOnPage(htmlString);
+    //if (bookDocument) {
+       // await clone.appendChild(bookDocument);
+    cloneDocument = clone.contentDocument || clone.contentWindow.document;
+    cloneDocument.open();
+    cloneDocument.write(htmlString);
+    cloneDocument.close();
+    await adjustImages(cloneDocument, container.clientHeight, container.clientWidth);
+    pagesCount = separateBookDocument(cloneDocument);
+    clone.innerHTML = "";
+    //}
     return pagesCount;
 }
 
-function addBookOnPage(htmlString) {
-    return new Promise(function (resolve) {
-        var blob = new Blob([htmlString], { type: 'text/html' });
-        var xhr = new XMLHttpRequest();
-        xhr.responseType = 'document';
-        xhr.onreadystatechange = async function () {
-            if (xhr.readyState === 4 && xhr.status == 200) {
-                resolve(xhr.response.documentElement);
-            }
-            //Maybe add reject return
-        };
+//function addBookOnPage(htmlString) {
+//    return new Promise(function (resolve) {
+//        var blob = new Blob([htmlString], { type: 'text/html' });
+//        var xhr = new XMLHttpRequest();
+//        xhr.responseType = 'document';
+//        xhr.onreadystatechange = async function () {
+//            if (xhr.readyState === 4 && xhr.status == 200) {
+//                resolve(xhr.response.documentElement);
+//            }
+//            //Maybe add reject return
+//        };
 
-        xhr.open('GET', window.URL.createObjectURL(blob), true);
-        xhr.send();
-    });
-}
+//        xhr.open('GET', window.URL.createObjectURL(blob), true);
+//        xhr.send();
+//    });
+//}
 
 function addListener(document) {
     return new Promise(function (resolve) {
@@ -88,7 +100,7 @@ function addListener(document) {
         var wordRegexp = lang_regexp;
         clickableElements.forEach(function (element) {
             element.addEventListener("click", function () {
-                var s = host.shadowRoot.getSelection();
+                var s = iframeDocument.getSelection();
                 var range = s.getRangeAt(0);
                 var node = s.anchorNode;
 
@@ -110,7 +122,7 @@ function addListener(document) {
 
                 // Gets a word, removes selection and sends it to C#
                 var word = range.toString().trim();
-                window.getSelection().removeAllRanges();
+                iframeDocument.getSelection().removeAllRanges();
                 sendWordToDotNet(word);
             });
         });
@@ -212,14 +224,14 @@ function adjustImages(container, containerHeight, containerWidth) {
 //}
 
 function setClone() {
-    clone = document.getElementById("host").cloneNode(false);
-    clone.id = "container-clone";
+    clone = document.getElementById("iframe-container").cloneNode(false);
+    clone.id = "iframe-container-clone";
     clone.style.visibility = "hidden";
     document.getElementById("reader-card").appendChild(clone);
 }
 
 function removeClone() {
-    document.getElementById("container-clone").remove();
+    document.getElementById("iframe-container-clone").remove();
 }
 
 function showContent() {
