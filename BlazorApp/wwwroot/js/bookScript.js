@@ -1,16 +1,11 @@
 ﻿//TODO Fix exception if user open a book and then immidietly click button back in web browser
 //TODO Add links handling
 
-const de_regexp = /^[\wßäöüÄÖÜ]*$/;
-const cs_regexp = /^[\wčďěňřšťžáéíóúůýČĎĚŇŘŠŤŽÁÉÍÓÚŮÝ]*$/;
-const it_regexp = /^[\wàèéìòóùÀÈÉÌÒÓÙ]*$/;
-const es_regexp = /^[\wáéíóúñÑÁÉÍÓÚüÜ]*$/;
-var lang_regexp = /^\w*$/;
 var container;
 var clone;
 var body;
 
-async function onInitialized(bookLang, translatorServiceReference) {
+async function onInitialized(bookLang) {
     if (bookLang === "de") {
         lang_regexp = de_regexp
     } else if (bookLang === "cs") {
@@ -21,11 +16,10 @@ async function onInitialized(bookLang, translatorServiceReference) {
         lang_regexp = es_regexp
     }
 
-    window.translatorServiceInstance = translatorServiceReference;
-
     host = document.getElementById("host");
     shadow = host.attachShadow({ mode: "open" });
 
+    //TODO Fix page size and use while loading so resize will not break the app
     container = document.createElement("div");
     container.id = "container";
     const style = document.createElement("style");
@@ -44,21 +38,9 @@ async function embedHtmlOnPage(htmlString) {
         //const shadowRoot = container.shadowRoot;
 
         await container.appendChild(bookDocument);
-        await addListener(bookDocument);
+        //await addListener(bookDocument);
         await adjustImages(container, container.clientHeight, container.clientWidth);
         pagesCount = separateBookDocument(container);
-    }
-    return pagesCount;
-}
-
-async function getPagesCount(htmlString) {                  //Only for epub format to get total pages count from every section
-    var pagesCount;
-    var bookDocument = await addBookOnPage(htmlString);
-    if (bookDocument) {
-        await clone.appendChild(bookDocument);
-        await adjustImages(clone, clone.clientHeight, clone.clientWidth);
-        pagesCount = separateBookDocument(clone);
-        clone.innerHTML = "";
     }
     return pagesCount;
 }
@@ -80,83 +62,38 @@ function addBookOnPage(htmlString) {
     });
 }
 
-function addListener(bookDocument) {
-    return new Promise(function (resolve) {
-        // Adds an event listener to every <p> html tag
-        var clickableElements = bookDocument.querySelectorAll("p, h1, h2, h3, h4, h5, h6, div, span");
-        var wordRegexp = lang_regexp;
-        clickableElements.forEach(function (element) {
-            element.addEventListener("click", function () {
-                var s = host.shadowRoot.getSelection();
-                var range = s.getRangeAt(0);
-                var node = s.anchorNode;
-
-                // Finds a start point of a clicked word
-                while ((range.startOffset > 0) && range.toString().match(wordRegexp)) {
-                    range.setStart(node, (range.startOffset - 1));
-                }
-                if (!range.toString().match(wordRegexp)) {
-                    range.setStart(node, range.startOffset + 1);
-                }
-
-                // Finds an end point of a clicked word
-                while ((range.endOffset < node.length) && range.toString().match(wordRegexp)) {
-                    range.setEnd(node, range.endOffset + 1);
-                }
-                if (!range.toString().match(wordRegexp)) {
-                    range.setEnd(node, range.endOffset - 1);
-                }
-
-                // Gets a word, removes selection and sends it to C#
-                var word = range.toString().trim();
-
-                //sendPositionToDotNet(rangePosition);
-                var rangePosition = range.getBoundingClientRect();
-                window.getSelection().removeAllRanges();
-                sendWordToDotNet(word, rangePosition);
-            });
-        });
-        resolve();
-    });
-}
-
-function sendWordToDotNet(word, rangePosition) {
-    //var width = rangePosition.width;
-    var containerPosition = container.getBoundingClientRect();
-    var height = 40;
-    var left = rangePosition.left - containerPosition.left;
+async function sendWordToDotNet(word, range) {                      //To delete
+    var rangePosition = range.getBoundingClientRect();
+    //var containerPosition = container.getBoundingClientRect();
     var rzBody = document.querySelector(".rz-body");
-    var top = rangePosition.top - height -  + rzBody.scrollTop;
-    DotNet.invokeMethodAsync('BlazorApp', 'GetWordFromJS', word, height, left, top, window.translatorServiceInstance);
+    var rzHeader = document.querySelector(".rz-header");
+
+    var height = 40;
+    var width = rangePosition.width;
+    var left = rangePosition.left;
+    var top = rangePosition.top - height - rzHeader.clientHeight + rzBody.scrollTop;
+    await DotNet.invokeMethodAsync('BlazorApp', 'GetWordFromJS', word, height, left, top, window.translatorServiceInstance);
+    var translator = document.getElementById("translator-window");
+    var translatorCenter = foundMedian(translator);
+    var rangeCenter = foundMedian(range);
+    //const translatorLeft = translator.style.left;     //TODO
+    //var newLeft = translatorLeft - (translatorCenter - rangeCenter);
+    //translator.style.left = newLeft + "px";
     //DotNet.invokeMethodAsync('BlazorApp', 'GetWordFromJS', word);
 }
 
-//function sendPositionToDotNet(rangePosition) {
-//    //var containerPosition = container.getBoundingClientRect();
-//    var width = rangePosition.width;
-//    //var height = rangePosition.height;
-//    var left = rangePosition.left;
-//    var top = rangePosition.top;
-//    //var rectangle = document.createElement('div');
-//    //var rectangleHeight = 40;
-
-//    //rectangle.style.position = 'absolute';
-//    //rectangle.style.width = width + 'px';
-//    //rectangle.style.height = rectangleHeight + 'px'; // Например, высота 20 пикселей
-//    //rectangle.style.left = rangePosition.left + 'px';
-//    //rectangle.style.top = (rangePosition.top - rectangleHeight) + 'px';       //-20 - 
-//    //rectangle.style.backgroundColor = 'blue'; // Например, цвет фона синий
-//    //document.body.appendChild(rectangle);
-//    DotNet.invokeMethod("BlazorApp", "GetTranslatorPositionFromJS", width, left, top)
-//}
+function foundMedian(object) {
+    var objectPosition = object.getBoundingClientRect();
+    var x1 = objectPosition.left;
+    var x2 = objectPosition.left + objectPosition.width;
+    var center = (x1 + x2) / 2;
+    return center;
+}
 
 async function separateBookDocument(container) {
     body = container.querySelector("html body");
-    //if (!body) {
-    //    body = container.querySelector("html body");
-    //}
     var totalHeight = body.offsetHeight;
-    var containerHeight = host.clientHeight - 100;
+    var containerHeight = host.clientHeight;
     var containerWidth = host.clientWidth;
 
     var pagesCount = Math.floor(totalHeight / containerHeight) + 1;
@@ -239,16 +176,16 @@ function adjustImages(container, containerHeight, containerWidth) {
 //    //iframeDocument.style.width = Math.round(iframeDocument.clientWidth) + 'px';
 //}
 
-function setClone() {
-    clone = document.getElementById("host").cloneNode(false);
-    clone.id = "container-clone";
-    clone.style.visibility = "hidden";
-    document.getElementById("reader-card").appendChild(clone);
-}
+//function setClone() {
+//    clone = document.getElementById("host").cloneNode(false);
+//    clone.id = "container-clone";
+//    clone.style.visibility = "hidden";
+//    document.getElementById("reader-card").appendChild(clone);
+//}
 
-function removeClone() {
-    document.getElementById("container-clone").remove();
-}
+//function removeClone() {
+//    document.getElementById("container-clone").remove();
+//}
 
 function showContent() {
     document.getElementById("reading-page").style.visibility = "visible";
@@ -264,10 +201,8 @@ function setScrollToLastPage(sectionPagesCount) {          //When section change
 
 function nextPage(currentPage) {
     body.style.right = (currentPage * container.clientWidth) + "px";
-    //console.info(currentPage * container.clientWidth);
 }
 
 function previousPage(currentPage) {
     body.style.right = (currentPage * container.clientWidth) + "px";
-    //console.info(currentPage * container.clientWidth);
 }

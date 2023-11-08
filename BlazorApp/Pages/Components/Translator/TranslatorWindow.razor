@@ -1,19 +1,31 @@
 ﻿@using System.Globalization;
 
-<RadzenCard id="translator-window" Style=@($@"position: absolute; padding: 0, 5, 0, 5;
-                                              height: {Height.ToString(CultureInfo.InvariantCulture)}px; 
-                                              left: {(Left - 5).ToString(CultureInfo.InvariantCulture)}px;
-                                              top: {Top.ToString(CultureInfo.InvariantCulture)}px; z-index: 10;")>
-    <RadzenRow>
-        <RadzenText>
-            @if (responseContent is not null)
-            {
-                @(wordToTranslate)
-            }
-        </RadzenText>
-    </RadzenRow>
-</RadzenCard>
-
+@if (!string.IsNullOrWhiteSpace(WordInfo.Word) && Hidden is false)
+{
+    <RadzenCard id="translator-window" Style=@($@"position: absolute; padding: 0px 10px 0px 10px;
+                                                  height: {WordInfo.Height.ToString(CultureInfo.InvariantCulture)}px; 
+                                                  left: {(WordInfo.Left - 10).ToString(CultureInfo.InvariantCulture)}px;
+                                                  top: {WordInfo.Top.ToString(CultureInfo.InvariantCulture)}px; z-index: 10;")>
+        <RadzenRow AlignItems="AlignItems.Center" Style="height: 100%">
+            <RadzenColumn Size="12">
+                <RadzenText TextAlign="TextAlign.Center" Style="margin-top: 0;">
+                    @if (ResponseContent is not null)
+                    {
+                        var translation = ResponseContent.translations.FirstOrDefault();
+                        if (translation is not null)
+                        {
+                            @(translation.displayTarget)
+                        }
+                    }
+                </RadzenText>
+            </RadzenColumn>
+        </RadzenRow>
+    </RadzenCard>
+}
+else
+{
+    
+}
 @* <RadzenText>
 
 

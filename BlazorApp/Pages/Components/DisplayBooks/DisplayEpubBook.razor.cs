@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Objects.Entities.Books.EpubBook;
+using Objects.Entities.Translator;
 using Services;
+using System.Diagnostics;
 
 namespace BlazorApp.Pages.Components.DisplayBooks
 {
@@ -14,6 +16,10 @@ namespace BlazorApp.Pages.Components.DisplayBooks
         [Parameter] public string BookLanguage { get; set; } = null!;
         [Parameter] public string UserMainLang { get; set; } = null!;
 
+        private TranslatorWordResponse? translatorWordResponse;
+        public WordInfo? WordInfo { get; set; } = new WordInfo();
+        private ElementReference host;
+        private bool isTranslatorHidden;
         public int CurrentPageNumber { get; set; }
         public int PagesCount { get; set; }
 
@@ -25,13 +31,14 @@ namespace BlazorApp.Pages.Components.DisplayBooks
         protected override async Task OnInitializedAsync()
         {
             _isLoading = true;
+            Stopwatch stopwatch = Stopwatch.StartNew();
             Sections = await BookOperationsService.GetBookSections(Guid.Parse(BookId));
-            await JS.InvokeVoidAsync("onInitialized", BookLanguage, DotNetObjectReference.Create(TranslatorService));
+            await JS.InvokeVoidAsync("onInitialized", BookLanguage);
 
-            await JS.InvokeVoidAsync("setClone");
+            //await JS.InvokeVoidAsync("setClone");
             foreach (var section in Sections)
             {
-                section.PagesCount = await JS.InvokeAsync<int>("getPagesCount", section.Text);
+                section.PagesCount = await JS.InvokeAsync<int>("embedHtmlOnPage", section.Text);
                 section.FirstPage = PagesCount + 1;
                 section.LastPage = PagesCount + section.PagesCount;
                 PagesCount += section.PagesCount;
@@ -41,7 +48,7 @@ namespace BlazorApp.Pages.Components.DisplayBooks
                 }
                 //TODO Fix Epub display styles from inner html tag
             }
-            await JS.InvokeVoidAsync("removeClone");
+            //await JS.InvokeVoidAsync("removeClone");
 
             CurrentPageNumber = 1;
             currentSectionNumber = 0;
@@ -52,8 +59,24 @@ namespace BlazorApp.Pages.Components.DisplayBooks
             await JS.InvokeVoidAsync("showContent");
             _isLoading = false;
             await base.OnInitializedAsync();
-            //stopwatch.Stop();
-            //Console.WriteLine("Time: " + stopwatch.ElapsedMilliseconds + " msec");
+            stopwatch.Stop();
+            Console.WriteLine("Time: " + stopwatch.ElapsedMilliseconds + " msec");
+        }
+
+        private void HideTranslatorWindow()
+        {
+            isTranslatorHidden = true;
+        }
+
+        private async Task GetSelectedWord()
+        {
+            WordInfo wordInfo = await JS.InvokeAsync<WordInfo>("getSelectedWord", host);
+            if (!string.IsNullOrWhiteSpace(wordInfo.Word) && wordInfo.Word.Length < 9)
+            {
+                WordInfo = wordInfo;
+                isTranslatorHidden = false;
+                translatorWordResponse = await TranslatorService.GetWordTranslation(wordInfo.Word);
+            }
         }
 
         public async void JumpToPage(int? pageNumber)
