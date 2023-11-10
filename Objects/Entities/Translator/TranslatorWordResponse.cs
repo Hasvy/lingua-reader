@@ -8,7 +8,9 @@ namespace Objects.Entities.Translator
 {
     public class TranslatorWordResponse
     {
-        public string displaySource { get; set; } = null!;
-        public IList<WordTranslation> translations { get; set; } = new List<WordTranslation>();
+        public int Id { get; set; }
+        public string DisplaySource { get; set; } = null!;
+        public string Language { get; set; } = null!;
+        public IList<WordTranslation> Translations { get; set; } = new List<WordTranslation>();
     }
 }

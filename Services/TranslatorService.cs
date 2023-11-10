@@ -18,15 +18,10 @@ namespace Services
             _httpClient = httpClient;
         }
 
-        public async Task<HttpResponseMessage> SetBookLang(string bookLang)
+        public async Task<HttpResponseMessage> SetLanguages(string bookLang, string targetLang)
         {
-            var response = await _httpClient.PostAsJsonAsync("api/Translator/Set-book-language", bookLang);
-            return response;
-        }
-
-        public async Task<HttpResponseMessage> SetTargetLang(string targetLang)
-        {
-            var response = await _httpClient.PostAsJsonAsync("api/Translator/Set-target-language", targetLang);
+            string apiUri = $"api/Translator/Set-languages?bookLang={bookLang}&targetLang={targetLang}";
+            var response = await _httpClient.PostAsync(apiUri, null);
             return response;
         }
 

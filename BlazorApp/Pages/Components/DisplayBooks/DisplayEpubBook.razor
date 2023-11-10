@@ -1,26 +1,9 @@
-﻿@using BlazorApp.Pages.Components.Translator
-
+﻿
 @if (_isLoading)
 {
-    @*      <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />  *@
-    <RadzenIcon class="centered-element" Icon="sync" Style="animation: reverse rotation 750ms linear infinite; font-size: 50px" />
+    <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" /> 
+    @* <RadzenIcon class="centered-element" Icon="sync" Style="animation: reverse rotation 750ms linear infinite; font-size: 50px" /> *@
 }
 
-<div id="reading-page" @onclick="HideTranslatorWindow" style="visibility: hidden">
-    @CurrentPageNumber / @PagesCount
-    <RadzenNumeric id="page-changer" ShowUpDown="false" Style="width: 30px" TValue="int?" Value="null" Change="@(pageNumber => JumpToPage(pageNumber))" />
-
-    <TranslatorWindow WordInfo="WordInfo" ResponseContent="translatorWordResponse" Hidden="isTranslatorHidden"/>
-    <div style="display: flex; justify-content: center">
-        <RadzenStack Gap="0" Wrap="FlexWrap.Wrap" Orientation="Orientation.Horizontal">
-            <RadzenButton Icon="arrow_back_ios_new" Click="PreviousPage" />
-            <RadzenButton Icon="arrow_forward_ios" Click="NextPage" />
-        </RadzenStack>
-    </div>
-
-    <div style="display: flex; justify-content: center; align-items: center">
-        <RadzenCard id="reader-card" Style="width: 60%; height: 80vh; padding: 20px 40px 40px 40px; position: center;">
-            <div @ref="host" id="host" @onclick="GetSelectedWord" style="width: 100%; height: 100%; overflow-x: clip;"></div>
-        </RadzenCard>
-    </div>
-</div>
+    <ReaderComponent CurrentPageNumber="@CurrentPageNumber" PagesCount="@PagesCount" BookLanguage="@BookLanguage" UserMainLang="@UserMainLang" 
+                     NextPageCallback="NextPage" PreviousPageCallback="PreviousPage" JumpToPageCallback="JumpToPage" />

@@ -35,7 +35,6 @@ namespace BlazorServer
                     .HasForeignKey<BookCover>(bc => bc.BookId);
             });
 
-
             modelBuilder.Entity<EpubBook>().ToTable("EpubBooks");       //Table-per-type configuration
 
             modelBuilder.Entity<PdfBook>().ToTable("PdfBooks");

@@ -15,8 +15,9 @@ namespace BlazorApp.Pages
             await base.OnInitializedAsync();
         }
 
-        private async void ChangeBookLang(string chosenLang)
+        private async void ChangeUserLang(string chosenLang)
         {
+            //Todo save language in user settings
             await LocalStorageService.SetItemAsStringAsync("UserMainLang", chosenLang);
         }
     }

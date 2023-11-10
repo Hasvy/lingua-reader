@@ -2,22 +2,40 @@
 
 @if (!string.IsNullOrWhiteSpace(WordInfo.Word) && Hidden is false)
 {
-    <RadzenCard id="translator-window" Style=@($@"position: absolute; padding: 0px 10px 0px 10px;
-                                                  height: {WordInfo.Height.ToString(CultureInfo.InvariantCulture)}px; 
+    <RadzenCard id="translator-window" class="translator-window" Style=@($@"position: absolute; padding: 0px 10px 0px 10px;
+                                                  
                                                   left: {(WordInfo.Left - 10).ToString(CultureInfo.InvariantCulture)}px;
                                                   top: {WordInfo.Top.ToString(CultureInfo.InvariantCulture)}px; z-index: 10;")>
-        <RadzenRow AlignItems="AlignItems.Center" Style="height: 100%">
-            <RadzenColumn Size="12">
-                <RadzenText TextAlign="TextAlign.Center" Style="margin-top: 0;">
-                    @if (ResponseContent is not null)
+        <RadzenRow>
+            <RadzenColumn Size="10">
+                @if (ResponseContent is not null)
+                {
+                    if (mainTranslation is not null)
                     {
-                        var translation = ResponseContent.translations.FirstOrDefault();
-                        if (translation is not null)
+                        <RadzenRow>
+                            <strong>@mainTranslation.DisplayTarget</strong>
+                        </RadzenRow>
+                        foreach (var posTag in dict)
                         {
-                            @(translation.displayTarget)
+                            <RadzenRow>
+                                <RadzenColumn Size="4">
+                                    @posTag.Key
+                                </RadzenColumn>
+                                <RadzenColumn Size="8">
+                                    @posTag.Value
+                                </RadzenColumn>
+                            </RadzenRow>
                         }
                     }
-                </RadzenText>
+                }
+            </RadzenColumn>
+            <RadzenColumn Size="2">
+                <RadzenRow>
+                    Listen
+                </RadzenRow>
+                <RadzenRow>
+                    Add
+                </RadzenRow>
             </RadzenColumn>
         </RadzenRow>
     </RadzenCard>
