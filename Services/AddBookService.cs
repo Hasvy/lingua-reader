@@ -1,32 +1,15 @@
-﻿using iText.Kernel.Pdf.Canvas.Parser.Listener;
-using iText.Kernel.Pdf.Canvas.Parser;
-using iText.Kernel.Pdf;
+﻿using iText.Kernel.Pdf.Canvas.Parser;
+using iText.Kernel.Pdf.Canvas.Parser.Listener;
 using Microsoft.AspNetCore.Components.Forms;
-using Newtonsoft.Json;
-using Objects.Entities;
-using VersOne.Epub;
+using Microsoft.JSInterop;
 using Objects;
+using Objects.Entities;
 using Objects.Entities.Books.EpubBook;
 using Objects.Entities.Books.PdfBook;
-using iText.Layout;
-using iText.Bouncycastleconnector;
-using UglyToad.PdfPig;
-using System;
-using System.Text;
-using UglyToad.PdfPig.DocumentLayoutAnalysis.WordExtractor;
-using static iText.Kernel.Pdf.Canvas.Parser.Listener.LocationTextExtractionStrategy;
-using System.Numerics;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Processing;
-using iText.Kernel.Pdf.Canvas.Parser.Data;
-using iText.Svg.Utils;
-using Tesseract.Interop;
-using Tesseract;
-using Microsoft.JSInterop;
-using VersOne.Epub.Schema;
-using iText.Commons.Datastructures;
-using PdfSharp.Drawing;
 using SixLabors.ImageSharp.Formats.Jpeg;
+using System.Text;
+using VersOne.Epub;
+using VersOne.Epub.Schema;
 
 namespace Services
 {
@@ -163,7 +146,7 @@ namespace Services
             EpubMetadataLanguage? metadata = epubBook.Schema.Package.Metadata.Languages.FirstOrDefault();
             if (metadata is not null)
             {
-                return ConstLanguages.LanguagesSet.FirstOrDefault(l => l == metadata.Language, ConstLanguages.Undefined);
+                return ConstLanguages.BookLanguagesSet.FirstOrDefault(l => l == metadata.Language, ConstLanguages.Undefined);
             }
             else
             {

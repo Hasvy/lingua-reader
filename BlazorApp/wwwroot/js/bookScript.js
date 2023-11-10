@@ -16,6 +16,9 @@ async function onInitialized(bookLang) {
         lang_regexp = es_regexp
     }
 
+    rzBody = document.querySelector(".rz-body");
+    rzHeader = document.querySelector(".rz-header");
+
     host = document.getElementById("host");
     shadow = host.attachShadow({ mode: "open" });
 
@@ -174,17 +177,6 @@ function adjustImages(container, containerHeight, containerWidth) {
 //        divideAndSetHtml(globalHtml);
 //    }
 //    //iframeDocument.style.width = Math.round(iframeDocument.clientWidth) + 'px';
-//}
-
-//function setClone() {
-//    clone = document.getElementById("host").cloneNode(false);
-//    clone.id = "container-clone";
-//    clone.style.visibility = "hidden";
-//    document.getElementById("reader-card").appendChild(clone);
-//}
-
-//function removeClone() {
-//    document.getElementById("container-clone").remove();
 //}
 
 function showContent() {

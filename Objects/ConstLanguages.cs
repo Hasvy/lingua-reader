@@ -14,8 +14,11 @@ namespace Objects
         public const string Czech = "cs";
         public const string Italian = "it";
         public const string Spanish = "es";
+        public const string Ukrainian = "uk";
+        public const string French = "fr";
         public const string Undefined = "undefined";
 
-        public static readonly string[] LanguagesSet = new string[] { English, German, Russian, Czech, Italian, Spanish };
+        public static readonly string[] BookLanguagesSet = new string[] { English, German, Russian, Czech, Italian, Spanish };
+        public static readonly string[] TargetLanguagesSet = new string[] { English, German, Russian, Czech, Italian, Spanish, Ukrainian, French };
     }
 }

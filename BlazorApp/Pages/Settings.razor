@@ -4,7 +4,7 @@
 
 <RadzenHeading Text="Settings page"></RadzenHeading>
 
-<RadzenDropDown class="horizontal-dropdown" @bind-Value="UserMainLang" TValue="string" Data="ConstLanguages.LanguagesSet" Change="@(() => ChangeBookLang(UserMainLang))">
+<RadzenDropDown class="horizontal-dropdown" @bind-Value="UserMainLang" TValue="string" Data="ConstLanguages.TargetLanguagesSet" Change="@(() => ChangeUserLang(UserMainLang))">
     <Template Context="language">
         @language
         @* <img class="dropdown-item" src="@GetFlagPath(language)" /> *@

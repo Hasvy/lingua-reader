@@ -4,15 +4,15 @@ it_regexp = /^[\wàèéìòóùÀÈÉÌÒÓÙ]*$/;
 es_regexp = /^[\wáéíóúñÑÁÉÍÓÚüÜ]*$/;
 lang_regexp = /^\w*$/;
 
-var rzBody = document.querySelector(".rz-body");
-var rzHeader = document.querySelector(".rz-header");
-
 function getSelectedWord(hostElement) {
     return new Promise(function (resolve) {
         var wordRegexp = lang_regexp;
         var s = hostElement.shadowRoot.getSelection();
-        var range = s.getRangeAt(0);
         var node = s.anchorNode;
+        if (!node) {            //Mb node.nodeName !== '#text'
+            return;
+        }
+        var range = s.getRangeAt(0);
 
         // Finds a start point of a clicked word
         while ((range.startOffset > 0) && range.toString().match(wordRegexp)) {
@@ -35,7 +35,7 @@ function getSelectedWord(hostElement) {
         window.getSelection().removeAllRanges();
 
         var rangePosition = range.getBoundingClientRect();
-        var height = 40;
+        var height = 60;
         var width = rangePosition.width;
         var top = rangePosition.top - height - rzHeader.clientHeight + rzBody.scrollTop;
         var left = rangePosition.left;

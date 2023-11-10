@@ -17,6 +17,11 @@
     transition: box-shadow 0.3s ease-in-out;
 }
 
+.translator-window {
+    border: 1px solid rgb(200, 200, 200);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 4px 8px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
 .centered-element {
     display: flex;
     justify-content: center;

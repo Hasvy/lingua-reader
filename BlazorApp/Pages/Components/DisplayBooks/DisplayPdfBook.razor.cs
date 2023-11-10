@@ -1,5 +1,4 @@
-﻿using Blazored.LocalStorage;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Objects.Entities.Books.PdfBook;
 using Objects.Entities.Translator;
@@ -11,7 +10,6 @@ namespace BlazorApp.Pages.Components.DisplayBooks
     {
         [Inject] IJSRuntime JS { get; set; } = null!;
         [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
-        [Inject] TranslatorService TranslatorService { get; set; } = null!;
         [Parameter] public string BookId { get; set; } = null!;
         [Parameter] public string BookLanguage {  get; set; } = null!;
         [Parameter] public string UserMainLang {  get; set; } = null!;
@@ -26,12 +24,9 @@ namespace BlazorApp.Pages.Components.DisplayBooks
         {
             _isLoading = true;
             _book = await BookOperationsService.GetBookText(Guid.Parse(BookId));
-            await TranslatorService.SetBookLang(BookLanguage);      //TODO method initialize TranslatorService
-            await TranslatorService.SetTargetLang(UserMainLang);
-            await JS.InvokeVoidAsync("onInitialized", BookLanguage, DotNetObjectReference.Create(TranslatorService));
+            await JS.InvokeVoidAsync("onInitialized", BookLanguage);
             PagesCount = await JS.InvokeAsync<int>("embedHtmlOnPage", _book.Text);
             CurrentPageNumber = 1;
-
             _isLoading = false;
             await base.OnInitializedAsync();
         }
@@ -51,7 +46,7 @@ namespace BlazorApp.Pages.Components.DisplayBooks
             {
                 CurrentPageNumber += 1;
                 await JS.InvokeVoidAsync("nextPage", CurrentPageNumber - 1);
-            }   
+            }
         }
 
         public async void PreviousPage()
