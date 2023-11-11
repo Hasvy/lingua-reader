@@ -3,6 +3,7 @@ using BlazorServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorServer.Migrations.DictionaryDb
 {
     [DbContext(typeof(DictionaryDbContext))]
-    partial class DictionaryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231111203247_AddedLangColumnToTranslations")]
+    partial class AddedLangColumnToTranslations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
