@@ -39,15 +39,16 @@ namespace BlazorServer
             //   .Property(te => te.Id)
             //   .HasColumnName("Id");
 
-            modelBuilder.Entity<TranslationEnglish>().ToTable("TranslationsEnglish");
-            modelBuilder.Entity<TranslationGerman>().ToTable("TranslationsGerman");
-            modelBuilder.Entity<TranslationRussian>().ToTable("TranslationsRussian");
+            //modelBuilder.Entity<TranslationEnglish>().UseTptMappingStrategy().ToTable("Translations");
+            //modelBuilder.Entity<TranslationEnglish>().ToTable("TranslationsEnglish");
+            //modelBuilder.Entity<TranslationGerman>().ToTable("TranslationsGerman");
+            //modelBuilder.Entity<TranslationRussian>().ToTable("TranslationsRussian");
         }
 
         public DbSet<TranslatorWordResponse> Words { get; set; }
         public DbSet<WordTranslation> Translations { get; set; }
-        public DbSet<TranslationEnglish> TranslationsEnglish { get; set; }
-        public DbSet<TranslationGerman> TranslationsGerman { get; set; }
-        public DbSet<TranslationRussian> TranslationsRussian { get; set; }
+        //public DbSet<TranslationEnglish> TranslationsEnglish { get; set; }
+        //public DbSet<TranslationGerman> TranslationsGerman { get; set; }
+        //public DbSet<TranslationRussian> TranslationsRussian { get; set; }
     }
 }

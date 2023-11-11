@@ -17,6 +17,7 @@ namespace BlazorServer.Controllers
         private static readonly string _intermediateLang = ConstLanguages.English;          //Because microsoft translator supports translation only with english source or target language
         private static string _bookLang = ConstLanguages.English;       //Default value
         private static string _targetLang = ConstLanguages.Czech;       //Default value
+        private int existedWordId = 0;
 
         //TODO Mb for test and filling db with data use recurse translation with backtranslations
         public TranslatorController(DictionaryDbContext dictionaryDbContext)
@@ -46,6 +47,7 @@ namespace BlazorServer.Controllers
         [Route("api/Translator/TranslateWord")]
         public async Task<ActionResult<TranslatorWordResponse?>> TranslateWord(string word)
         {
+            existedWordId = 0;
             var translatorWordResp = await GetTranslationFromDb(word);
             if (translatorWordResp is not null)
             {
@@ -83,6 +85,7 @@ namespace BlazorServer.Controllers
                     var firstResult = result.FirstOrDefault();
                     if (firstResult is not null)
                     {
+                        firstResult.DisplaySource = word.ToLower();
                         firstResult.Language = _bookLang;
                         await PostTranslationToDb(firstResult);
                         Console.WriteLine("Word added to Db");
@@ -104,7 +107,12 @@ namespace BlazorServer.Controllers
             var translatorWordResp = _dictionaryDbContext.Words.SingleOrDefault(w => w.DisplaySource == word && w.Language == _bookLang);
             if (translatorWordResp is not null)
             {
-                IList<WordTranslation> wordTranslations = _dictionaryDbContext.Translations.Where(t => t.WordId == translatorWordResp.Id).ToList();
+                existedWordId = translatorWordResp.Id;      //This will used in PostTranslationToDb to decide if word exist or not
+                IList<WordTranslation> wordTranslations = _dictionaryDbContext.Translations.Where(t => t.WordId == translatorWordResp.Id && t.Language == _targetLang).ToList();
+                if (!wordTranslations.Any())
+                {
+                    return null;
+                }
                 translatorWordResp.Translations = wordTranslations;
                 return translatorWordResp;
             }
@@ -121,7 +129,20 @@ namespace BlazorServer.Controllers
             //TODO put word in db in right language, not in english (before try to change translation logic)
             if (ModelState.IsValid)
             {
-                _dictionaryDbContext.Words.Add(response);
+                //bool isWordExist = _dictionaryDbContext.Words.Contains();
+                foreach (var translation in response.Translations)
+                {
+                    translation.Language = _targetLang;
+                    if (existedWordId != 0)         //If word already exist in Db, FK of translations changes to it, so word is not duplicated
+                    {
+                        translation.WordId = existedWordId;
+                        _dictionaryDbContext.Translations.Add(translation);
+                    }
+                }
+                if (existedWordId == 0)
+                {
+                    _dictionaryDbContext.Words.Add(response);
+                }
                 int updNumber = await _dictionaryDbContext.SaveChangesAsync();
                 if (updNumber > 0)
                 {

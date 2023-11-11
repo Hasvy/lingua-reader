@@ -7,6 +7,7 @@
         public string PosTag { get; set; } = null!;
         public float Confidence { get; set; }
         public string? PrefixWord { get; set; }
+        public string Language { get; set; } = null!;
         public int WordId { get; set; }     //FK
         //public IList<string> backTranslations { get; set; }
     }
