@@ -7,16 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AngleSharp" Version="1.0.5" />
+    <PackageReference Include="AngleSharp" Version="1.0.6" />
     <PackageReference Include="AngleSharp.Css" Version="0.17.0" />
-    <PackageReference Include="Aspose.PDF" Version="23.8.0" />
-    <PackageReference Include="Blazored.LocalStorage" Version="4.3.0" />
+    <PackageReference Include="Blazored.LocalStorage" Version="4.4.0" />
     <PackageReference Include="EpubSharp.dll" Version="1.1.5" />
-    <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.1" />
+    <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.11" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
-    <PackageReference Include="Radzen.Blazor" Version="4.17.0" />
+    <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="3.3.0" />
+    <PackageReference Include="Radzen.Blazor" Version="4.21.3" />
     <PackageReference Include="VersOne.Epub" Version="3.3.1" />
   </ItemGroup>
 

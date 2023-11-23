@@ -16,6 +16,7 @@ namespace BlazorApp.Pages.Components
         [Inject] BookOperationsService BookOperationsService { get; set; } = null!;
         [Inject] DialogService DialogService { get; set; } = null!;
         [Inject] NavigationManager NavigationManager { get; set; } = null!;
+        [Inject] NotificationService NotificationService { get; set; } = null!;
         [Inject] ILocalStorageService LocalStorageService { get; set; } = null!;
 
         private IList<BookCover> _userBooks = new List<BookCover>();
@@ -60,9 +61,24 @@ namespace BlazorApp.Pages.Components
 
         private async void OpenBook(BookCover choosenBook)
         {
+            if (choosenBook.Language == ConstLanguages.Undefined)
+            {
+                NotificationService.Notify(NotificationSeverity.Error, "Please specify language of the book");
+            }
+            var userMainLang = await LocalStorageService.GetItemAsStringAsync("UserMainLang");
+            if (string.IsNullOrEmpty(userMainLang))
+            {
+                NotificationService.Notify(NotificationSeverity.Error, "Please specify your language in settings");
+                return;
+            }
             await LocalStorageService.SetItemAsStringAsync("bookFormat", choosenBook.Format);
             NavigationManager.NavigateTo("read/" + choosenBook.BookId + $"?lang={choosenBook.Language}");
             //NavigationManager.NavigateTo("read/" + choosenBook.BookId + $"?bookFormat={choosenBook.Format}", true);
+        }
+
+        void Notify(NotificationMessage message)
+        {
+            NavigationManager.NavigateTo(Routes.Settings);
         }
 
         private async Task DeleteBook(BookCover bookCover)

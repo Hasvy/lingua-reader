@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Writers;
 using Newtonsoft.Json;
 using Objects;
 using Objects.Entities.Translator;
@@ -35,11 +36,6 @@ namespace BlazorServer.Controllers
             {
                 _bookLang = bookLang;
                 _targetLang = targetLang;
-            }
-            else
-            {
-                //Error Language wasnt set. Message will be before sending to the controller
-                Console.WriteLine("Please specify language of the book or your language in settings");
             }
         }
 
@@ -92,8 +88,6 @@ namespace BlazorServer.Controllers
                         return Ok(firstResult);
                     }
                 }
-                //SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer();
-                //speechSynthesizer.Speak(word);      //TODO return stream or file and play it on client
                 return Ok(null);      //TODO if result is null or translations is empty => word did not found
             }
             else
@@ -101,6 +95,17 @@ namespace BlazorServer.Controllers
                 return BadRequest("Error: " + response.StatusCode);
             }
         }
+
+        //[HttpGet]
+        //[Route("api/Translator/Speak")]
+        //public async Task<ActionResult<Stream>> SpeakWord(string word)
+        //{
+        //    SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer();
+        //    Stream audioStream = null;
+        //    speechSynthesizer.SetOutputToWaveStream(audioStream);
+        //    speechSynthesizer.Speak(word);
+        //    return Ok(audioStream);
+        //}
 
         private async Task<TranslatorWordResponse?> GetTranslationFromDb(string word)       //TODO divide word saving to different language database and search in target language db
         {
@@ -141,7 +146,7 @@ namespace BlazorServer.Controllers
                 }
                 if (existedWordId == 0)
                 {
-                    _dictionaryDbContext.Words.Add(response);
+                    _dictionaryDbContext.Words.Add(response);       //TODO Fix saving deutsch words in english, so them wont found because it searching german word, in db words in eng
                 }
                 int updNumber = await _dictionaryDbContext.SaveChangesAsync();
                 if (updNumber > 0)

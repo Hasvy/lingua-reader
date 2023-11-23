@@ -39,6 +39,20 @@ namespace Services
             return null;
         }
 
+        //public async Task<Stream?> GetWordAudio(string word)
+        //{
+        //    if (!string.IsNullOrWhiteSpace(word))
+        //    {
+        //        Stream audio = await _httpClient.GetStreamAsync($"api/Translator/Speak?word={word}");
+        //        if(audio is not null)
+        //        {
+        //            return audio;
+        //        }
+        //    }
+
+        //    return null;
+        //}
+
         public async Task<string?> GetTextTranslation()
         {
             string? word = null;
