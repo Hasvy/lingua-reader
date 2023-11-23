@@ -1,11 +1,10 @@
 ﻿@using System.Globalization;
 
-@if (!string.IsNullOrWhiteSpace(WordInfo.Word) && Hidden is false)
-{
-    <RadzenCard id="translator-window" class="translator-window" Style=@($@"position: absolute; padding: 0px 10px 0px 10px;
-                                                  
-                                                  left: {(WordInfo.Left - 10).ToString(CultureInfo.InvariantCulture)}px;
-                                                  top: {WordInfo.Top.ToString(CultureInfo.InvariantCulture)}px; z-index: 10;")>
+<RadzenCard id="translator-window" class="translator-window" Visible="@Visible" Style=@($@"position: absolute; padding: 0px 10px 0px 10px;
+                                                left: {(WordInfo.Left).ToString(CultureInfo.InvariantCulture)}px;
+                                                top: {WordInfo.Top.ToString(CultureInfo.InvariantCulture)}px; z-index: 10;")>
+    @if (!isLoading)
+    {
         <RadzenRow>
             <RadzenColumn Size="10">
                 @if (ResponseContent is not null)
@@ -31,32 +30,40 @@
             </RadzenColumn>
             <RadzenColumn Size="2">
                 <RadzenRow>
-                    Listen
+                    <RadzenButton IsBusy="@isBusy" Icon="volume_up" Variant="Variant.Text" Click="SpeakWord" />
                 </RadzenRow>
                 <RadzenRow>
-                    Add
+                    <RadzenButton Icon="add" Variant="Variant.Text" />
                 </RadzenRow>
             </RadzenColumn>
         </RadzenRow>
-    </RadzenCard>
-}
-else
-{
-    
-}
-@* <RadzenText>
-
-
-    @if (responseContent is not null)
-    {
-        <RadzenButton Click="@(() => Speak(responseContent.displaySource))"></RadzenButton> 
-        @(wordToTranslate + ": ")
-
-        @foreach (var translation in responseContent.translations)
-        {
-            @(translation.displayTarget + ", ");
-        }
     }
-
-    @error
-</RadzenText>*@
+    else
+    {
+        //Skeleton loading
+        <RadzenRow>
+            <RadzenColumn Size="10">
+                <RadzenRow>
+                    <div class="skeleton-box" style="height: 10px; width: 50px; margin-top: 5px;"></div>
+                </RadzenRow>
+                <RadzenRow>
+                    <RadzenColumn Size="4">
+                        <div class="skeleton-box" style="height: 15px; width: 40px; margin-top: 8px;"></div>
+                    </RadzenColumn>
+                    <RadzenColumn Size="8">
+                        <div class="skeleton-box" style="height: 5px; width: 100px; bottom: 0;"></div>
+                        <div class="skeleton-box" style="height: 5px; width: 25px; top: 0"></div>
+                    </RadzenColumn>
+                </RadzenRow>
+            </RadzenColumn>
+            <RadzenColumn Size="2">
+                <RadzenRow>
+                    <RadzenIcon class="skeleton-box" Style="background-color: white;" Icon="volume_up" IconColor="gray" />
+                </RadzenRow>
+                <RadzenRow>
+                    <RadzenIcon class="skeleton-box" Style="background-color: white;" Icon="add" IconColor="gray" />
+                </RadzenRow>
+            </RadzenColumn>
+        </RadzenRow>
+    }
+</RadzenCard>

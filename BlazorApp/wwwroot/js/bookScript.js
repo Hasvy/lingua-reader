@@ -5,7 +5,7 @@ var container;
 var clone;
 var body;
 
-async function onInitialized(bookLang) {
+async function onInitialized(bookLang) {        //TODO Cleanup here
     if (bookLang === "de") {
         lang_regexp = de_regexp
     } else if (bookLang === "cs") {
@@ -21,6 +21,22 @@ async function onInitialized(bookLang) {
 
     host = document.getElementById("host");
     shadow = host.attachShadow({ mode: "open" });
+
+    span = document.createElement("span");
+    span.id = "selected-word";
+    span.style.color = "red";
+
+    document.addEventListener("click", function (event) {
+        var translatorWindow = document.getElementById("translator-window");
+        if (translatorWindow) {
+            if (!event.target.isEqualNode(host) && translatorWindow.contains(event.target) != true) {
+                removeSpan();
+                translatorWindow.style.display = "none";
+            }
+        }
+    });
+
+    //TODO set and initialize speechSynth utterance.lang = language;
 
     //TODO Fix page size and use while loading so resize will not break the app
     container = document.createElement("div");
@@ -65,33 +81,18 @@ function addBookOnPage(htmlString) {
     });
 }
 
-async function sendWordToDotNet(word, range) {                      //To delete
-    var rangePosition = range.getBoundingClientRect();
-    //var containerPosition = container.getBoundingClientRect();
-    var rzBody = document.querySelector(".rz-body");
-    var rzHeader = document.querySelector(".rz-header");
+//async function sendWordToDotNet(word, range) {                      //To delete
+//    var rangePosition = range.getBoundingClientRect();
+//    //var containerPosition = container.getBoundingClientRect();
+//    var rzBody = document.querySelector(".rz-body");
+//    var rzHeader = document.querySelector(".rz-header");
 
-    var height = 40;
-    var width = rangePosition.width;
-    var left = rangePosition.left;
-    var top = rangePosition.top - height - rzHeader.clientHeight + rzBody.scrollTop;
-    await DotNet.invokeMethodAsync('BlazorApp', 'GetWordFromJS', word, height, left, top, window.translatorServiceInstance);
-    var translator = document.getElementById("translator-window");
-    var translatorCenter = foundMedian(translator);
-    var rangeCenter = foundMedian(range);
-    //const translatorLeft = translator.style.left;     //TODO
-    //var newLeft = translatorLeft - (translatorCenter - rangeCenter);
-    //translator.style.left = newLeft + "px";
-    //DotNet.invokeMethodAsync('BlazorApp', 'GetWordFromJS', word);
-}
-
-function foundMedian(object) {
-    var objectPosition = object.getBoundingClientRect();
-    var x1 = objectPosition.left;
-    var x2 = objectPosition.left + objectPosition.width;
-    var center = (x1 + x2) / 2;
-    return center;
-}
+//    var height = 40;
+//    var width = rangePosition.width;
+//    var left = rangePosition.left;
+//    var top = rangePosition.top - height - rzHeader.clientHeight + rzBody.scrollTop;
+//    await DotNet.invokeMethodAsync('BlazorApp', 'GetWordFromJS', word, height, left, top, window.translatorServiceInstance);
+//}
 
 async function separateBookDocument(container) {
     body = container.querySelector("html body");

@@ -20,6 +20,20 @@
 .translator-window {
     border: 1px solid rgb(200, 200, 200);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 4px 8px 0 rgba(0, 0, 0, 0.2) !important;
+    margin-top: calc(-1 * var(--translator-height));
+    margin-left: calc(-1 * var(--translator-width));
+}
+
+#reader-card {
+    width: 60vw;
+    height: 80vh;
+    padding: 20px 40px 20px 40px;
+}
+
+.change-page-button {
+    height: 25vh;
+    width: 10vh;
+    margin: 0px 10px
 }
 
 .centered-element {

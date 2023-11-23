@@ -1,7 +1,10 @@
-﻿using BlazorApp.Pages.Components.Translator;
+﻿using AngleSharp.Io;
+using BlazorApp.Pages.Components.Translator;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 using Objects.Entities.Translator;
+using Org.BouncyCastle.Crypto.Parameters;
 using Services;
 
 namespace BlazorApp.Pages.Components.DisplayBooks
@@ -18,13 +21,14 @@ namespace BlazorApp.Pages.Components.DisplayBooks
         [Parameter] public string BookLanguage { get; set; } = null!;
         [Parameter] public string UserMainLang { get; set; } = null!;
 
-        public WordInfo? WordInfo { get; set; } = new WordInfo();
-
         private int? insertedPageNumber;
         private ElementReference host;
-        private bool isTranslatorHidden;
+        private bool visible = false;
+        private bool isBusy = false;
+        private bool isLoading = false;
+        private WordInfo? wordInfo = new WordInfo();
         private TranslatorWordResponse? translatorWordResponse;
-        private TranslatorWindow translatorWindow;      //???
+        private string pressedKey = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
@@ -32,21 +36,44 @@ namespace BlazorApp.Pages.Components.DisplayBooks
             await base.OnInitializedAsync();
         }
 
-        private void HideTranslatorWindow()
+        private async Task GetSelectedWord()        //TODO reorganize the method and rename
         {
-            isTranslatorHidden = true;
-        }
-
-        private async Task GetSelectedWord()
-        {
-            WordInfo wordInfo = await JS.InvokeAsync<WordInfo>("getSelectedWord", host);
+            visible = false;
+            wordInfo = await JS.InvokeAsync<WordInfo>("getSelectedWord", host);
             if (!string.IsNullOrWhiteSpace(wordInfo.Word) && wordInfo.Word.Length < 9)
             {
-                WordInfo = wordInfo;
-                isTranslatorHidden = false;
-                translatorWordResponse = await TranslatorService.GetWordTranslation(wordInfo.Word);
+                visible = true;          //ShowTranslatorWindow, unhide
+                isLoading = true;
                 StateHasChanged();
-                translatorWindow.ProcessResponse();
+                //await Task.Yield();
+                await Task.Delay(1);
+                translatorWordResponse = await TranslatorService.GetWordTranslation(wordInfo.Word);
+            }
+            //StateHasChanged();
+            //translatorWindow.ProcessResponse();
+            isLoading = false;
+        }
+
+        private async Task SpeakWord()
+        {
+            if (wordInfo is not null)
+            {
+                isBusy = true;
+                await Task.Delay(1);            //Isntead of StateHasChanged(); which does not work because of a bug
+                await JS.InvokeVoidAsync("speakWord", wordInfo.Word, BookLanguage);
+                isBusy = false;
+            }
+        }
+
+        private async void HandleKeyPress(KeyboardEventArgs e)
+        {
+            if (e.Key == "ArrowRight" || e.Key == " ")
+            {
+                await NextPage();
+            }
+            if (e.Key == "ArrowLeft")
+            {
+                await PreviousPage();
             }
         }
 
@@ -60,7 +87,7 @@ namespace BlazorApp.Pages.Components.DisplayBooks
             await PreviousPageCallback.InvokeAsync();
         }
 
-        private async Task JumpToPage()
+        private async Task JumpToPage(int? insertedPageNumber)
         {
             await JumpToPageCallback.InvokeAsync(insertedPageNumber);
         }
