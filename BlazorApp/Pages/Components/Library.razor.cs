@@ -1,4 +1,5 @@
 ﻿using Blazored.LocalStorage;
+using iText.Forms.Xfdf;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Objects;
@@ -33,29 +34,43 @@ namespace BlazorApp.Pages.Components
 
         private async Task AddBookToDatabase(InputFileChangeEventArgs e)
         {
+            DialogService.Open<LoadingProgress>($"Uploading", new Dictionary<string, object>() { }, new DialogOptions() { ShowClose = false, Width = "fit-content", Height = "fit-content" });
             string? fileExtension = new System.IO.FileInfo(e.File.Name).Extension;      //Get file extension
             AbstractBook? book = null;
-            switch (fileExtension)
+            try
             {
-                case ConstBookFormats.pdf:
-                    book = await AddBookService.AddNewPdfBook(e);
-                    break;
-                case ConstBookFormats.epub:
-                    book = await AddBookService.AddNewEpubBook(e);
-                    break;
-                case ConstBookFormats.fb2:
-                    //TODO
-                    break;
-                case ConstBookFormats.mobi:
-                    //TODO
-                    break;
-                default:
-                    break;
-            }
+                switch (fileExtension)
+                {
+                    case ConstBookFormats.pdf:
+                        book = await AddBookService.AddNewPdfBook(e);
+                        break;
+                    case ConstBookFormats.epub:
+                        book = await AddBookService.AddNewEpubBook(e);
+                        break;
+                    case ConstBookFormats.fb2:
+                        //TODO
+                        break;
+                    case ConstBookFormats.mobi:
+                        //TODO
+                        break;
+                    default:
+                        DialogService.Close();
+                        break;
+                }
 
-            if (book is not null)
+                if (book is not null)   //ToDo MB get books from db again instead of separating
+                {
+                    _userBooks.Add(book.BookCover);
+                }
+            }
+            catch (Exception)
             {
-                _userBooks.Add(book.BookCover);
+
+                throw;
+            }
+            finally
+            {
+                DialogService.Close();
             }
         }
 
@@ -64,6 +79,7 @@ namespace BlazorApp.Pages.Components
             if (choosenBook.Language == ConstLanguages.Undefined)
             {
                 NotificationService.Notify(NotificationSeverity.Error, "Please specify language of the book");
+                return;
             }
             var userMainLang = await LocalStorageService.GetItemAsStringAsync("UserMainLang");
             if (string.IsNullOrEmpty(userMainLang))
