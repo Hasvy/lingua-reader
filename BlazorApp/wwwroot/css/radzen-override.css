@@ -1,0 +1,44 @@
+﻿.rz-button {
+    --rz-button-focus-shadow: var(--rz-shadow-1);
+    --rz-button-focus-gradient: none;
+}
+
+.horizontal-dropdown {
+    cursor: pointer;
+    height: 32px;
+    width: 42px;
+    padding: 0px 5px 0px 5px;
+}
+
+.rz-dropdown-label {
+    cursor: pointer;
+}
+
+.horizontal-dropdown .rz-dropdown-trigger .rzi-chevron-down {
+    display: none;
+}
+
+.horizontal-dropdown .rz-dropdown-label {
+    height: 32px;
+    width: 32px;
+}
+
+.rz-dropdown-item {
+    display: flex;
+    justify-content: center;
+}
+
+.rz-dropdown-items-wrapper {
+    max-height: unset !important;
+}
+
+.rz-dropdown-item {
+    /*flex: 1;*/
+    padding: 0 !important;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+

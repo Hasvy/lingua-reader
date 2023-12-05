@@ -1,9 +1,21 @@
-h1:focus {
+﻿h1:focus {
     outline: none;
 }
 
 body {
     margin: 0;
+}
+
+.progress-bar {
+}
+
+.book-title-text {
+    margin: 0px;
+    font-weight: 600 !important;
+}
+
+.w-100 {
+    width: 100%;
 }
 
 #blazor-error-ui {
