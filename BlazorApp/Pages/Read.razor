@@ -1,18 +1,30 @@
-﻿@attribute [Route(Routes.Read)]
+﻿@using Objects;
+@using BlazorApp.Pages.Components.DisplayBooks;
 
-@_actualPageNumber / @(pages.Count)
-<RadzenNumeric ShowUpDown="false" Style="width: 30px" TValue="int" Value=@_actualPageNumber Change="@(pageNumber => ChangePage(pageNumber))" />
-<div style="display: flex; justify-content: center">
-    <RadzenButton Icon="arrow_back_ios" Click="PreviousPage" />     @*TODO Fix icon*@
-    <RadzenButton Icon="arrow_forward_ios" Click="NextPage" />
-</div>
+@attribute [Route(Routes.Read)]
 
-<div style="display: flex; justify-content: center; align-items: center">
-    <RadzenCard Style="width: 60%; height: 600px; position: center">
-        @*<RadzenText Style="height: 100%;" TextAlign="TextAlign.Justify">*@
-        <iframe sandbox="allow-same-origin" style="width: 100%; height: 100%; border: none;" id="iframe-container">     @*Possible security problem with iframe*@
-            @*Text of a book*@
-        </iframe>
-        @*</RadzenText>*@
-    </RadzenCard>
-</div>
+@* @if (_isLoading)
+{
+     <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+    <RadzenIcon class="centered-element" Icon="sync" Style="animation: reverse rotation 750ms linear infinite; font-size: 50px"/>
+} *@
+
+@if (BookFormat == ConstBookFormats.epub)
+{
+    <DisplayEpubBook BookId="@BookId" BookLanguage="@BookLang" UserMainLang="@UserMainLang" />
+}
+
+@if (BookFormat == ConstBookFormats.pdf)
+{
+    <DisplayPdfBook BookId="@BookId" BookLanguage="@BookLang" UserMainLang="@UserMainLang" />
+}
+
+@if (BookFormat == ConstBookFormats.fb2)
+{
+
+}
+
+@if (BookFormat == ConstBookFormats.mobi)
+{
+    
+}

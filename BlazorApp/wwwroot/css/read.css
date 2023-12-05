@@ -1,4 +1,5 @@
 ﻿.book_card, .add_book_card {
+    cursor: default;
     width: 300px;
     flex: none !important;
     transition: box-shadow 0.3s ease-in-out;
@@ -6,11 +7,39 @@
 
 .add_book_card {
     width: 332px;
+    height: 336px;
     padding: 0 !important;
     position: relative;
 }
 
 .book_card:hover, .add_book_card:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19) !important;
     transition: box-shadow 0.3s ease-in-out;
+}
+
+.translator-window {
+    border: 1px solid rgb(200, 200, 200);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 4px 8px 0 rgba(0, 0, 0, 0.2) !important;
+    margin-top: calc(-1 * var(--translator-height));
+    margin-left: calc(-1 * var(--translator-width));
+}
+
+#reader-card {
+    width: 60vw;
+    height: 80vh;
+    padding: 20px 40px 20px 40px;
+}
+
+.change-page-button {
+    height: 25vh;
+    width: 10vh;
+    margin: 0px 10px
+}
+
+.centered-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
 }

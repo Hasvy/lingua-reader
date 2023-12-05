@@ -1,0 +1,9 @@
+﻿
+@if (_isLoading)
+{
+    <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+    @* <RadzenIcon class="centered-element" Icon="sync" Style="animation: reverse rotation 750ms linear infinite; font-size: 50px" /> *@
+}
+
+    <ReaderComponent CurrentPageNumber="@CurrentPageNumber" PagesCount="@PagesCount" BookLanguage="@BookLanguage" UserMainLang="@UserMainLang"
+                     NextPageCallback="NextPage" PreviousPageCallback="PreviousPage" JumpToPageCallback="JumpToPage" />

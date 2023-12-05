@@ -11,5 +11,6 @@ namespace Objects
         public const string pdf = ".pdf";
         public const string epub = ".epub";
         public const string fb2 = ".fb2";
+        public const string mobi = ".mobi";
     }
 }
