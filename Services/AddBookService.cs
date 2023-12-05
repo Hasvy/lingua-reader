@@ -36,7 +36,6 @@ namespace Services
         {
             
             MemoryStream memoryStream = await GetMemoryStreamFromInput(e);
-
             //EpubBook epubBook = await EpubReader.ReadBookAsync(memoryStream);       //TODO add ePubSharp library like additional try to read a book when versone cant read a book, maybe it will read Sheakspere book file
             EpubBookRef epubBook = await EpubReader.OpenBookAsync(memoryStream);
             Objects.Entities.Books.EpubBook.EpubBook book = await SetBookData(epubBook);
@@ -56,6 +55,7 @@ namespace Services
 
         private async Task<MemoryStream> GetMemoryStreamFromInput(InputFileChangeEventArgs e)
         {
+            //TODO progress info
             var ms = new MemoryStream();        //Possible memory leak?
             await e.File.OpenReadStream(_maxFileSize).CopyToAsync(ms);
             return ms;
@@ -72,7 +72,7 @@ namespace Services
                     Title = epubBook.Title,
                     Description = epubBook.Description,
                     Format = ConstBookFormats.epub,
-        }
+                }
             };
             //epubBook.Content.NavigationHtmlFile. or GetNavigation      //TODO nav file
             book.BookCover.CoverImage = await ResizeBookCoverImage(epubBook);
@@ -180,16 +180,17 @@ namespace Services
         //private List<string> _pages = new List<string>();
         public async Task<PdfBook?> AddNewPdfBook(InputFileChangeEventArgs e)
         {
+            _progressService.UpdateProgress(0);
             MemoryStream memoryStream = await GetMemoryStreamFromInput(e);
             memoryStream.Seek(0, SeekOrigin.Begin);
 
             iText.Kernel.Pdf.PdfReader reader = new iText.Kernel.Pdf.PdfReader(memoryStream);
             iText.Kernel.Pdf.PdfDocument pdfDoc = new iText.Kernel.Pdf.PdfDocument(reader);
 
-            memoryStream.Seek(0, SeekOrigin.Begin);
-            string base64 = Convert.ToBase64String(memoryStream.ToArray());
+            //memoryStream.Seek(0, SeekOrigin.Begin);
+            //string base64 = Convert.ToBase64String(memoryStream.ToArray());
 
-            List<string> _pages = new List<string>();
+            //List<string> _pages = new List<string>();
             var pagesCount = pdfDoc.GetNumberOfPages();
             //PdfResources resourses = pdfDoc.GetPage(1).GetResources();
             Encoding encoding = Encoding.UTF8;
@@ -201,6 +202,10 @@ namespace Services
                 PdfCanvasProcessor processor = new PdfCanvasProcessor(strategy);    //I will renew the processor with every page, otherwise start and end of a segment in strategy
                 var page = pdfDoc.GetPage(pageNumber);                              //will create a very short interval, so the code will stop create new lines, I don't know why, its a bug.
                 processor.ProcessPageContent(page);
+
+                await Task.Delay(1);
+                _progressService.GetCancellationToken().ThrowIfCancellationRequested();
+                _progressService.UpdateProgress(pageNumber * 100 / pagesCount);
             }
 
             PdfBook book = SaveBookData(pdfDoc);
@@ -233,5 +238,12 @@ namespace Services
             return book;
         }
         #endregion
+
+        private async void UpdateProgress(int progress, int taskCount)
+        {
+            await Task.Delay(1);
+            _progressService.GetCancellationToken().ThrowIfCancellationRequested();
+            _progressService.UpdateProgress(progress * 100 / taskCount);
+        }
     }
 }

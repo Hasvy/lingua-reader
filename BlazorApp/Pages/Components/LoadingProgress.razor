@@ -2,20 +2,34 @@
 
 @inject ProgressService ProgressService
 
-<p>Processing file progress: @_percentage %</p>
+<RadzenStack>
+    <RadzenRow JustifyContent="JustifyContent.Center">
+        <RadzenProgressBarCircular ProgressBarStyle="ProgressBarStyle.Primary" Mode="ProgressBarMode.Determinate" Size="ProgressBarCircularSize.Medium" ShowValue=true @bind-Value="@_percentage" />
+    </RadzenRow>
+    <RadzenRow JustifyContent="JustifyContent.Center">
+        <RadzenButton Text="Cancel" Click="@OnCancel" />
+    </RadzenRow>
+</RadzenStack>
 
 @code {
-    private int _percentage;
+    private double _percentage;
+    [Inject] DialogService DialogService { get; set; } = null!;
 
-    protected override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
+        ProgressService.ResetCancellationToken();
         ProgressService.ProgressChanged += UpdateProgress;
-        return base.OnInitializedAsync();
+        await base.OnInitializedAsync();
     }
 
     private void UpdateProgress(int progress)
     {
-        _percentage = progress;
+        _percentage = (double)progress;
         StateHasChanged();
+    }
+
+    private void OnCancel()
+    {
+        ProgressService.Cancel();
     }
 }

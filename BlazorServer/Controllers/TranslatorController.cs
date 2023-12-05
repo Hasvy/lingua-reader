@@ -10,21 +10,28 @@ namespace BlazorServer.Controllers
 
     public class TranslatorController : ControllerBase
     {
+        private readonly IConfiguration _configuration;
         private readonly HttpClient _httpClient;
         private readonly DictionaryDbContext _dictionaryDbContext;
-        private static readonly string _key = "e3e05bc92ae54af883a388e21cedb21f";
         private static readonly string _endpoint = "https://api.cognitive.microsofttranslator.com/";
         private static readonly string _location = "westeurope";
         private static readonly string _intermediateLang = ConstLanguages.English;          //Because microsoft translator supports translation only with english source or target language
         private static string _bookLang = ConstLanguages.English;       //Default value
         private static string _targetLang = ConstLanguages.Czech;       //Default value
+        private static string _key = string.Empty;
         private int existedWordId = 0;
 
         //TODO Mb for test and filling db with data use recurse translation with backtranslations
-        public TranslatorController(DictionaryDbContext dictionaryDbContext)
+        public TranslatorController(DictionaryDbContext dictionaryDbContext, IConfiguration configuration)
         {
             _httpClient = new HttpClient();
             _dictionaryDbContext = dictionaryDbContext;
+            _configuration = configuration;
+            var key = _configuration["Keys:TranslatorApiKey"];
+            if (key is not null)
+            {
+                _key = key;
+            }
         }
 
         //TODO return result of action
