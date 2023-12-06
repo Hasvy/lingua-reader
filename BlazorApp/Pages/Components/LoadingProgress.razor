@@ -1,0 +1,35 @@
+﻿@using Services;
+
+@inject ProgressService ProgressService
+
+<RadzenStack>
+    <RadzenRow JustifyContent="JustifyContent.Center">
+        <RadzenProgressBarCircular ProgressBarStyle="ProgressBarStyle.Primary" Mode="ProgressBarMode.Determinate" Size="ProgressBarCircularSize.Medium" ShowValue=true @bind-Value="@_percentage" />
+    </RadzenRow>
+    <RadzenRow JustifyContent="JustifyContent.Center">
+        <RadzenButton Text="Cancel" Click="@OnCancel" />
+    </RadzenRow>
+</RadzenStack>
+
+@code {
+    private double _percentage;
+    [Inject] DialogService DialogService { get; set; } = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        ProgressService.ResetCancellationToken();
+        ProgressService.ProgressChanged += UpdateProgress;
+        await base.OnInitializedAsync();
+    }
+
+    private void UpdateProgress(int progress)
+    {
+        _percentage = (double)progress;
+        StateHasChanged();
+    }
+
+    private void OnCancel()
+    {
+        ProgressService.Cancel();
+    }
+}

@@ -1,0 +1,23 @@
+﻿@using BlazorApp.Pages.Components.Translator;
+@using Objects.Entities.Translator;
+@using Services;
+
+<div id="reading-page" @onkeydown="@HandleKeyPress" tabindex="0">
+    @CurrentPageNumber / @PagesCount
+    <RadzenNumeric ShowUpDown="false" id="page-changer" Style="width: 30px; position: absolute;" TValue="int?" Value="@insertedPageNumber" Change="JumpToPage" />
+
+    <TranslatorWindow WordInfo="@wordInfo" ResponseContent="translatorWordResponse" isLoading="@isLoading" isBusy="@isBusy" Visible="@visible" SpeakWordCallback="SpeakWord" />
+
+@*     <div style="display: flex; justify-content: center">
+        <RadzenStack Gap="0" Wrap="FlexWrap.Wrap" Orientation="Orientation.Horizontal">
+        </RadzenStack>
+    </div> *@
+
+    <div style="display: flex; justify-content: center; align-items: center">
+        <RadzenButton Size="ButtonSize.Large" class="change-page-button" Variant="Variant.Text" Icon="arrow_back_ios_new" Click="PreviousPage" />
+        <RadzenCard id="reader-card">
+            <div id="host" @ref="host" @onclick="GetSelectedWord" style="width: 100%; height: 100%; overflow-x: clip;"></div>
+        </RadzenCard>
+        <RadzenButton Size="ButtonSize.Large" class="change-page-button" Variant="Variant.Text" Icon="arrow_forward_ios" Click="NextPage" />
+    </div>
+</div>
