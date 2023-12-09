@@ -396,3 +396,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml											
 /.vs/LinguaReader/v17/.suo
+/BlazorServer/appsettings.Local.json
+/BlazorServer/appsettings.json

@@ -1,4 +1,5 @@
-﻿@inherits LayoutComponentBase
+﻿@using BlazorApp.Pages.Components
+@inherits LayoutComponentBase
 
 <PageTitle>LinguaReader</PageTitle>
 
@@ -25,6 +26,9 @@
                     <NavLink>
                         <RadzenLink Path="@Routes.Profile" Text="Profile" />
                     </NavLink>
+                    <div class="top-row px-4">
+                        <AuthLinks />
+                    </div>
                 </RadzenStack>
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="3">
