@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Writers;
 using Newtonsoft.Json;
-using Objects;
+using Objects.Constants;
 using Objects.Entities.Translator;
 using System.Text;
 

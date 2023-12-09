@@ -1,13 +1,15 @@
 ﻿using Blazored.LocalStorage;
 using iText.Forms.Xfdf;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
-using Objects;
+using Objects.Constants;
 using Objects.Entities;
 using Objects.Entities.Books;
 using Objects.Entities.Books.EpubBook;
 using Radzen;
 using Services;
+using Services.Authentication;
 
 namespace BlazorApp.Pages.Components
 {
@@ -18,6 +20,7 @@ namespace BlazorApp.Pages.Components
         [Inject] DialogService DialogService { get; set; } = null!;
         [Inject] NavigationManager NavigationManager { get; set; } = null!;
         [Inject] NotificationService NotificationService { get; set; } = null!;
+        [Inject] AuthStateProvider AuthStateProvider { get; set; } = null!;
         [Inject] ILocalStorageService LocalStorageService { get; set; } = null!;
 
         private IList<BookCover> _userBooks = new List<BookCover>();
@@ -26,13 +29,29 @@ namespace BlazorApp.Pages.Components
 
         protected override async Task OnInitializedAsync()
         {
-            _isLoading = true;
-            _userBooks = (await BookOperationsService.GetBookCovers()).ToList();
-            await base.OnInitializedAsync();
-            _isLoading = false;
+            try
+            {
+                _isLoading = true;
+                AuthenticationState authState = await AuthStateProvider.GetAuthenticationStateAsync();
+                var user = authState.User;
+                if (user.Identity!.IsAuthenticated)
+                {
+                    _userBooks = (await BookOperationsService.GetBookCovers()).ToList();
+                    await base.OnInitializedAsync();
+                }
+                else
+                {
+                    NavigationManager.NavigateTo("/login");
+                }
+                _isLoading = false;
+            }
+            catch (HttpRequestException ex) when (ex.Message.Contains("401"))
+            {
+                NavigationManager.NavigateTo("/login");
+            }
         }
 
-        private async Task AddBookToDatabase(InputFileChangeEventArgs e)
+        private async Task AddNewBook(InputFileChangeEventArgs e)
         {
             DialogService.Open<LoadingProgress>($"Uploading", new Dictionary<string, object>() { }, new DialogOptions() { ShowClose = false, Width = "fit-content", Height = "fit-content" });
             string? fileExtension = new System.IO.FileInfo(e.File.Name).Extension;      //Get file extension

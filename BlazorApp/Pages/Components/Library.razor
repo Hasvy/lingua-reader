@@ -2,6 +2,7 @@
 @using Microsoft.AspNetCore.Components.Forms;
 @using Objects.Entities;
 @using Objects;
+@using Objects.Constants;
 
 @if (_isLoading)
 {
@@ -16,7 +17,7 @@ else
 
         <RadzenCard class="add_book_card">
             <RadzenText Text="Add a new book" Style="position: relative; margin: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center" />
-            <InputFile title="" style="width: 100%; height: 100%; opacity: 0; position: absolute; top: 0" OnChange="AddBookToDatabase" accept=".pdf, .epub, .fb2" />
+            <InputFile title="" style="width: 100%; height: 100%; opacity: 0; position: absolute; top: 0" OnChange="AddNewBook" accept=".pdf, .epub, .fb2" />
         </RadzenCard>
 
         @foreach (var bookCover in _userBooks)
