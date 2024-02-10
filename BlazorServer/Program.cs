@@ -28,7 +28,13 @@ builder.Services.AddDbContext<DictionaryDbContext>(options =>
 );
 
 //Authentication
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
+    {
+        opt.Password.RequiredLength = 8;
+        opt.Password.RequireUppercase = false;
+        opt.User.RequireUniqueEmail = true;
+        opt.SignIn.RequireConfirmedEmail = true;
+    })
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 

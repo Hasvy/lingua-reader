@@ -1,0 +1,19 @@
+﻿@page "/ConfirmEmail"
+
+@if (_confirmEmailResponseDto is null)
+{
+    <p>Please wait. We are confirming your email...</p>
+}
+else
+{
+    if (_confirmEmailResponseDto.IsSuccessfulConfirmation is true)
+    {
+        <h3>Email is verified</h3>
+        <p>Thank you for confirming your email</p>
+    }
+    else
+    {
+        <h3>Something went wrong</h3>
+        <p>Email is not verified. Please try again.</p>
+    }
+}

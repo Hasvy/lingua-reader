@@ -2,7 +2,7 @@
 using Objects.Dto;
 using Services.Authentication;
 
-namespace BlazorApp.Pages
+namespace BlazorApp.Pages.Registration
 {
     public partial class Registration : ComponentBase
     {
@@ -22,7 +22,7 @@ namespace BlazorApp.Pages
             }
             else
             {
-                NavigationManager.NavigateTo("/");
+                NavigationManager.NavigateTo("/SuccessRegistration");
             }
         }
     }
