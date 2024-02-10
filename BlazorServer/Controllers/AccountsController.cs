@@ -1,6 +1,7 @@
 ﻿using EmailService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using Objects.Dto;
 using System.IdentityModel.Tokens.Jwt;
@@ -43,6 +44,12 @@ namespace BlazorServer.Controllers
                 return BadRequest(new RegistrationResponseDto { Errors = errors });
             }
 
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var encodedToken = HttpUtility.UrlEncode(token);
+            var confirmationLink = $"{Request.Scheme}://{_configuration["ClientAddress"]}/ConfirmEmail?token={encodedToken}&email={Uri.EscapeDataString(user.Email)}";
+            var message = new Message(new string[] { user.Email }, "Confirmation email link", confirmationLink);
+            await _emailSender.SendEmailAsync(message);
+
             return StatusCode(201);
         }
 
@@ -53,6 +60,11 @@ namespace BlazorServer.Controllers
             var user = await _userManager.FindByNameAsync(userForAuthentication.Email);
             if (user == null || !await _userManager.CheckPasswordAsync(user, userForAuthentication.Password))
                 return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid Authentication" });
+
+            bool isEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+            if (!isEmailConfirmed)
+                return Unauthorized(new AuthResponseDto { ErrorMessage = "The Email is not confirmed. Please confirm your email using a link, that is sent to your email address." });
+
             var signingCredentials = GetSigningCredentials();
             var claims = GetClaims(user);
             var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
@@ -104,6 +116,27 @@ namespace BlazorServer.Controllers
                 {
                     ModelState.TryAddModelError(error.Code, error.Description);
                 }
+                return BadRequest();
+            }
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("api/accounts/ConfirmEmail")]
+        public async Task<IActionResult> ConfirmEmail(ConfirmEmailDto confirmEmailDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var user = await _userManager.FindByEmailAsync(confirmEmailDto.Email);
+            if (user is null)
+            {
+                return BadRequest();
+            }
+            var result = await _userManager.ConfirmEmailAsync(user, confirmEmailDto.Token);
+            if (!result.Succeeded)
+            {
                 return BadRequest();
             }
             return Ok();

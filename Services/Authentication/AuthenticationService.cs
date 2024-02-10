@@ -98,5 +98,21 @@ namespace Services.Authentication
                 _navigationManager.NavigateTo("/ResetPasswordConfirmation/Success");
             }
         }
+
+        public async Task<ConfirmEmailResponseDto> ConfirmEmail(ConfirmEmailDto confirmEmailDto)
+        {
+            var content = JsonSerializer.Serialize(confirmEmailDto);
+            var bodyContent = new StringContent(content, Encoding.UTF8, "application/json");
+            var result = await _httpClient.PostAsync("api/accounts/ConfirmEmail", bodyContent);
+
+            if (result.IsSuccessStatusCode)
+            {
+                return new ConfirmEmailResponseDto { IsSuccessfulConfirmation = true };
+            }
+            else
+            {
+                return new ConfirmEmailResponseDto { IsSuccessfulConfirmation = false };
+            }
+        }
     }
 }
