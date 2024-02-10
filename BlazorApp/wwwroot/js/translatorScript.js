@@ -34,7 +34,7 @@ function getSelectedWord(hostElement) {
             range.setEnd(node, range.endOffset - 1);
         }
 
-        // Gets a word, removes selection and sends it to C#
+        // Gets a word, removes selection
         var word = range.toString().trim();
         if (word) {
             addSpan(range);

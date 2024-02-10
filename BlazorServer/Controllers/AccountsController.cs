@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using EmailService;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Objects.Dto;
 using System.IdentityModel.Tokens.Jwt;
@@ -14,10 +16,12 @@ namespace BlazorServer.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _configuration;
         private readonly IConfigurationSection _jwtSettings;
+        private readonly IEmailSender _emailSender;
 
-        public AccountsController(UserManager<IdentityUser> userManager, IConfiguration configuration)
+        public AccountsController(UserManager<IdentityUser> userManager, IConfiguration configuration, IEmailSender emailSender)
         {
             _userManager = userManager;
+            _emailSender = emailSender;
             _configuration = configuration;
             _jwtSettings = _configuration.GetSection("JwtSettings");
         }
@@ -56,6 +60,70 @@ namespace BlazorServer.Controllers
             return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });
         }
 
+        [HttpPost]
+        [Route("api/accounts/ForgotPassword")]
+        public async Task<IActionResult> SendEmail([FromBody] ForgotPasswordDto forgotPasswordDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
+            if (user is null)
+            {
+                return Ok();        //For security reasons
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var callback = $"{Request.Scheme}://localhost:7215/ResetPassword?token={token}&email={Uri.EscapeDataString(user.Email)}";
+
+            var message = new Message(new string[] { user.Email }, "Password reset link", callback);    //TODO check user emails
+            await _emailSender.SendEmailAsync(message);
+
+            return Ok();
+        }
+
+        [HttpGet]       //Start from how get works
+        [Route("api/accounts/ResetPassword")]
+        public IActionResult ResetPassword(string token, string email)
+        {
+            var dto = new ResetPasswordDto { Token = token, Email = email };
+            return Ok(dto);
+        }
+
+        [HttpPost]
+        [Route("api/accounts/ResetPassword")]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
+            if (user is null)
+            {
+                return Ok();        //For security reasons
+            }
+            var resetPassResult = await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.Password);
+            if (!resetPassResult.Succeeded)
+            {
+                foreach (var error in resetPassResult.Errors)
+                {
+                    ModelState.TryAddModelError(error.Code, error.Description);
+                }
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpGet]
+        [Route("api/accounts/ResetPasswordConfirmation")]
+        public IActionResult ResetPasswordConfirmation()
+        {
+            return Ok();
+        }
+
         private SigningCredentials GetSigningCredentials()
         {
             var key = Encoding.UTF8.GetBytes(_jwtSettings["securityKey"]);
@@ -66,9 +134,9 @@ namespace BlazorServer.Controllers
         private List<Claim> GetClaims(IdentityUser user)
         {
             var claims = new List<Claim>
-    {
-        new Claim(ClaimTypes.Name, user.Email)
-    };
+            {
+                new Claim(ClaimTypes.Name, user.Email)
+            };
 
             return claims;
         }

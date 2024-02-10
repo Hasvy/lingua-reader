@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorApp\BlazorApp.csproj" />
+    <ProjectReference Include="..\EmailService\EmailService.csproj" />
     <ProjectReference Include="..\Objects\Objects.csproj" />
   </ItemGroup>
 

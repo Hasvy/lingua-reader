@@ -1,4 +1,6 @@
 ﻿using Blazored.LocalStorage;
+using iText.Layout.Tagging;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Objects.Dto;
 using System;
@@ -17,13 +19,15 @@ namespace Services.Authentication
         private readonly JsonSerializerOptions _options;
         private readonly AuthenticationStateProvider _authStateProvider;
         private readonly ILocalStorageService _localStorage;
+        private readonly NavigationManager _navigationManager;
 
-        public AuthenticationService(HttpClient httpClient, AuthenticationStateProvider authStateProvider, ILocalStorageService localStorage)
+        public AuthenticationService(HttpClient httpClient, AuthenticationStateProvider authStateProvider, ILocalStorageService localStorage, NavigationManager navigationManager)
         {
             _httpClient = httpClient;
             _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             _authStateProvider = authStateProvider;
             _localStorage = localStorage;
+            _navigationManager = navigationManager;
         }
 
         public async Task<RegistrationResponseDto> RegisterUser(UserForRegistrationDto userForRegistration)
@@ -62,6 +66,36 @@ namespace Services.Authentication
             await _localStorage.RemoveItemAsync("authToken");
             ((AuthStateProvider)_authStateProvider).NotifyUserLogout();
             _httpClient.DefaultRequestHeaders.Authorization = null;
+        }
+
+        public async Task SendEmail(ForgotPasswordDto forgotPasswordDto)
+        {
+            var content = JsonSerializer.Serialize(forgotPasswordDto);
+            var bodyContent = new StringContent(content, Encoding.UTF8, "application/json");
+            var result = await _httpClient.PostAsync("api/accounts/ForgotPassword", bodyContent);
+            if (!result.IsSuccessStatusCode)
+            {
+                //TODO error message
+            }
+            else
+            {
+                _navigationManager.NavigateTo("/ForgotPasswordConfirmation");
+            }
+        }
+
+        public async Task ResetPassword(ResetPasswordDto resetPasswordDto)
+        {
+            var content = JsonSerializer.Serialize(resetPasswordDto);
+            var bodyContent = new StringContent(content, Encoding.UTF8, "application/json");
+            var result = await _httpClient.PostAsync("api/accounts/ResetPassword", bodyContent);
+            if (!result.IsSuccessStatusCode)
+            {
+                //TODO error message
+            }
+            else
+            {
+                _navigationManager.NavigateTo("/ResetPasswordConfirmation");
+            }
         }
     }
 }
