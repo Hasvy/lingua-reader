@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using EmailService;
+using Microsoft.AspNetCore.Components;
 using Objects.Dto;
 using Services.Authentication;
 
@@ -24,6 +25,11 @@ namespace BlazorApp.Pages.Components
             {
                 NavigationManager.NavigateTo("/");
             }
+        }
+
+        public void GoToForgotPassword()
+        {
+            NavigationManager.NavigateTo("/ForgotPassword");
         }
     }
 }

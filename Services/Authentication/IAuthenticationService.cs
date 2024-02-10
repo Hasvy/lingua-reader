@@ -12,5 +12,7 @@ namespace Services.Authentication
         Task<RegistrationResponseDto> RegisterUser(UserForRegistrationDto userForRegistration);
         Task<AuthResponseDto> Login(UserForAuthenticationDto userForAuthentication);
         Task Logout();
+        Task SendEmail(ForgotPasswordDto forgotPasswordDto);
+        Task ResetPassword(ResetPasswordDto resetPasswordDto);
     }
 }
