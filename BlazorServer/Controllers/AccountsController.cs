@@ -1,12 +1,12 @@
 ﻿using EmailService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Objects.Dto;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Web;
 
 namespace BlazorServer.Controllers
 {
@@ -71,11 +71,12 @@ namespace BlazorServer.Controllers
             var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
             if (user is null)
             {
-                return Ok();        //For security reasons
+                return Ok();        //For security reasons, hide info if user exists
             }
-
+            
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-            var callback = $"{Request.Scheme}://localhost:7215/ResetPassword?token={token}&email={Uri.EscapeDataString(user.Email)}";
+            var encodedToken = HttpUtility.UrlEncode(token);
+            var callback = $"{Request.Scheme}://{_configuration["ClientAddress"]}/ResetPassword?token={encodedToken}&email={Uri.EscapeDataString(user.Email)}";
 
             var message = new Message(new string[] { user.Email }, "Password reset link", callback);    //TODO check user emails
             await _emailSender.SendEmailAsync(message);
@@ -83,17 +84,8 @@ namespace BlazorServer.Controllers
             return Ok();
         }
 
-        [HttpGet]       //Start from how get works
-        [Route("api/accounts/ResetPassword")]
-        public IActionResult ResetPassword(string token, string email)
-        {
-            var dto = new ResetPasswordDto { Token = token, Email = email };
-            return Ok(dto);
-        }
-
         [HttpPost]
         [Route("api/accounts/ResetPassword")]
-        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
         {
             if (!ModelState.IsValid)
@@ -112,15 +104,8 @@ namespace BlazorServer.Controllers
                 {
                     ModelState.TryAddModelError(error.Code, error.Description);
                 }
-                return Ok();
+                return BadRequest();
             }
-            return BadRequest();
-        }
-
-        [HttpGet]
-        [Route("api/accounts/ResetPasswordConfirmation")]
-        public IActionResult ResetPasswordConfirmation()
-        {
             return Ok();
         }
 

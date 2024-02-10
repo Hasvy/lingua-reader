@@ -75,11 +75,11 @@ namespace Services.Authentication
             var result = await _httpClient.PostAsync("api/accounts/ForgotPassword", bodyContent);
             if (!result.IsSuccessStatusCode)
             {
-                //TODO error message
+                _navigationManager.NavigateTo("/ForgotPasswordConfirmation/Failed");
             }
             else
             {
-                _navigationManager.NavigateTo("/ForgotPasswordConfirmation");
+                _navigationManager.NavigateTo("/ForgotPasswordConfirmation/Success");
             }
         }
 
@@ -88,13 +88,14 @@ namespace Services.Authentication
             var content = JsonSerializer.Serialize(resetPasswordDto);
             var bodyContent = new StringContent(content, Encoding.UTF8, "application/json");
             var result = await _httpClient.PostAsync("api/accounts/ResetPassword", bodyContent);
+
             if (!result.IsSuccessStatusCode)
             {
-                //TODO error message
+                _navigationManager.NavigateTo("/ResetPasswordConfirmation/Failed");
             }
             else
             {
-                _navigationManager.NavigateTo("/ResetPasswordConfirmation");
+                _navigationManager.NavigateTo("/ResetPasswordConfirmation/Success");
             }
         }
     }
