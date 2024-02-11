@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Objects.Constants;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,5 +16,7 @@ namespace Objects.Dto
         public string Password { get; set; } = null!;
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; } = null!;
+        [Required(ErrorMessage = "Language is required")]
+        public string UserMainLang { get; set; } = null!;
     }
 }

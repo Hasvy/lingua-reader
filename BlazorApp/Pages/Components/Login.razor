@@ -1,8 +1,8 @@
 ﻿@using Objects.Dto
 @using Microsoft.AspNetCore.Components.Forms
 
-@page "/login"
-<h3>Login</h3>
+@page "/Login"
+@* <h3>Login</h3> *@
 
 @if (ShowAuthError)
 {
@@ -10,28 +10,40 @@
         <p>@Error</p>
     </div>
 }
-<div class="rz-p-0 rz-p-md-12">
-    <RadzenTemplateForm TItem="UserForAuthenticationDto" Data="_userForAuthentication" Submit="ExecuteLogin">
-        <DataAnnotationsValidator />
-        <RadzenStack Gap="1rem" class="rz-p-sm-12">
-            <RadzenFormField Text="Email" Variant="Variant.Outlined">
-                <ChildContent>
-                    <RadzenTextBox Name="Email" @bind-Value=_userForAuthentication.Email />
-                </ChildContent>
-                <Helper>
-                    <ValidationMessage For="@(() => _userForAuthentication.Email)" />
-                </Helper>
-            </RadzenFormField>
-            <RadzenFormField Text="Password" Variant="Variant.Outlined">
-                <ChildContent>
-                    <RadzenPassword Name="Password" @bind-Value=_userForAuthentication.Password />
-                </ChildContent>
-                <Helper>
-                    <ValidationMessage For="@(() => _userForAuthentication.Password)" />
-                </Helper>
-            </RadzenFormField>
-            <RadzenButton ButtonType="ButtonType.Submit" Text="Submit"></RadzenButton>
-            <RadzenButton ButtonType="ButtonType.Button" Text="Forgot my password" Click="GoToForgotPassword"></RadzenButton>
-        </RadzenStack>
-    </RadzenTemplateForm>
-</div>
+
+<RadzenStack Gap="0" Class="rz-my-12 rz-mx-auto rz-border-radius-6 rz-shadow-10" Style="width: 100%; max-width: 520px; overflow: hidden;">
+    <RadzenCard Class="rz-shadow-0 rz-border-radius-0 rz-background-color-primary rz-p-12" style="text-align: center;">
+        <RadzenText TextStyle="TextStyle.DisplayH4" TagName="TagName.H2" Class="rz-color-white rz-m-0">Login</RadzenText>
+    </RadzenCard>
+    <RadzenCard Class="rz-shadow-0 rz-p-8">
+        <RadzenTemplateForm TItem="UserForAuthenticationDto" Data="_userForAuthentication" Submit="ExecuteLogin">
+            <DataAnnotationsValidator />
+            <RadzenStack Gap="1rem" class="rz-p-sm-8">
+                <RadzenFormField Text="Email" Variant="Variant.Outlined">
+                    <ChildContent>
+                        <RadzenTextBox Name="Email" @bind-Value=_userForAuthentication.Email />
+                    </ChildContent>
+                    <Helper>
+                        <ValidationMessage For="@(() => _userForAuthentication.Email)" />
+                    </Helper>
+                </RadzenFormField>
+                <RadzenFormField Text="Password" Variant="Variant.Outlined">
+                    <ChildContent>
+                        <RadzenPassword Name="Password" @bind-Value=_userForAuthentication.Password />
+                    </ChildContent>
+                    <Helper>
+                        <ValidationMessage For="@(() => _userForAuthentication.Password)" />
+                    </Helper>
+                </RadzenFormField>
+                <RadzenRow AlignItems="AlignItems.Center">
+                    <RadzenColumn class="rz-text-align-left">
+                        <RadzenButton ButtonType="ButtonType.Submit" Size="ButtonSize.Large" Text="Submit"></RadzenButton>
+                    </RadzenColumn>
+                    <RadzenColumn class="rz-text-align-right">
+                        <a class="rz-link" @onclick="GoToForgotPassword">Forgot password?</a>
+                    </RadzenColumn>
+                </RadzenRow>
+            </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenCard>
+</RadzenStack>
