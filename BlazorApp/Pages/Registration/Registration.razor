@@ -1,7 +1,8 @@
-﻿@using Microsoft.AspNetCore.Components.Forms
+﻿@using Objects.Constants;
+@using Objects.Dto
+@using Microsoft.AspNetCore.Components.Forms
 
-@page "/registration"
-<h3>Registration</h3>
+@page "/Registration"
 
 @if (ShowRegistrationErrors)
 {
@@ -12,36 +13,50 @@
         }
     </div>
 }
-
-<EditForm Model="_userForRegistration" OnValidSubmit="Register" class="card card-body bg-light mt-5">
-    <DataAnnotationsValidator />
-    <div class="form-group row">
-        <label for="email" class="col-md-2 col-form-label">Email:</label>
-        <div class="col-md-10">
-            <InputText id="email" class="form-control" @bind-Value="_userForRegistration.Email" />
-            <ValidationMessage For="@(() => _userForRegistration.Email)" />
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label for="password" class="col-md-2 col-form-label">Password:</label>
-        <div class="col-md-10">
-            <InputText type="password" id="password" class="form-control" @bind-Value="_userForRegistration.Password" />
-            <ValidationMessage For="@(() => _userForRegistration.Password)" />
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label for="confirm" class="col-md-2 col-form-label">Confirm Password:</label>
-        <div class="col-md-10">
-            <InputText type="password" id="confirm" class="form-control" @bind-Value="_userForRegistration.ConfirmPassword" />
-            <ValidationMessage For="@(() => _userForRegistration.ConfirmPassword)" />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12 text-right">
-            <button type="submit" class="btn btn-success">Register</button>
-        </div>
-    </div>
-</EditForm>
+<RadzenStack Gap="0" Class="rz-my-12 rz-mx-auto rz-border-radius-6 rz-shadow-10" Style="width: 100%; max-width: 520px; overflow: hidden;">
+    <RadzenCard Class="rz-shadow-0 rz-border-radius-0 rz-background-color-primary rz-p-12" style="text-align: center;">
+        <RadzenText TextStyle="TextStyle.DisplayH4" TagName="TagName.H2" Class="rz-color-white rz-m-0">Registration</RadzenText>
+    </RadzenCard>
+    <RadzenCard Class="rz-shadow-0 rz-p-8">
+        <RadzenTemplateForm TItem="UserForRegistrationDto" Data="_userForRegistration" Submit="Register">
+            <DataAnnotationsValidator />
+            <RadzenStack Gap="1rem" class="rz-p-sm-8">
+                <RadzenFormField Text="Email" Variant="Variant.Outlined">
+                    <ChildContent>
+                        <RadzenTextBox Name="Email" @bind-Value=_userForRegistration.Email />
+                    </ChildContent>
+                    <Helper>
+                        <ValidationMessage For="@(() => _userForRegistration.Email)" />
+                    </Helper>
+                </RadzenFormField>
+                <RadzenFormField Text="Password" Variant="Variant.Outlined">
+                    <ChildContent>
+                        <RadzenPassword Name="Password" @bind-Value=_userForRegistration.Password />
+                    </ChildContent>
+                    <Helper>
+                        <ValidationMessage For="@(() => _userForRegistration.Password)" />
+                    </Helper>
+                </RadzenFormField>
+                <RadzenFormField Text="Confirm password" Variant="Variant.Outlined">
+                    <ChildContent>
+                        <RadzenPassword Name="ConfirmPassword" @bind-Value=_userForRegistration.ConfirmPassword />
+                    </ChildContent>
+                    <Helper>
+                        <ValidationMessage For="@(() => _userForRegistration.ConfirmPassword)" />
+                    </Helper>
+                </RadzenFormField>
+                <RadzenFormField Text="Your native language" Variant="Variant.Outlined">
+                    <RadzenDropDown @bind-Value="_userForRegistration.UserMainLang" TValue="string" Data="ConstLanguages.TargetLanguagesSet">
+                        <Template Context="language">
+                            @language
+                            @* <img class="dropdown-item" src="" /> *@
+                        </Template>
+                    </RadzenDropDown>
+                </RadzenFormField>
+                <RadzenRow AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center">
+                    <RadzenButton ButtonType="ButtonType.Submit" Size="ButtonSize.Large" Text="Submit"></RadzenButton>
+                </RadzenRow>
+            </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenCard>
+</RadzenStack>
