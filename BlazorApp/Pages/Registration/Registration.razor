@@ -46,12 +46,17 @@
                     </Helper>
                 </RadzenFormField>
                 <RadzenFormField Text="Your native language" Variant="Variant.Outlined">
-                    <RadzenDropDown @bind-Value="_userForRegistration.UserMainLang" TValue="string" Data="ConstLanguages.TargetLanguagesSet">
-                        <Template Context="language">
-                            @language
-                            @* <img class="dropdown-item" src="" /> *@
-                        </Template>
-                    </RadzenDropDown>
+                    <ChildContent>
+                        <RadzenDropDown @bind-Value="_userForRegistration.UserMainLang" TValue="string" Data="ConstLanguages.TargetLanguagesSet">
+                            <Template Context="language">
+                                @language
+                                @* <img class="dropdown-item" src="@GetFlagPath(language)" /> *@
+                            </Template>
+                        </RadzenDropDown>
+                    </ChildContent>
+                    <Helper>
+                        <ValidationMessage For="@(() => _userForRegistration.UserMainLang)" />
+                    </Helper>
                 </RadzenFormField>
                 <RadzenRow AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center">
                     <RadzenButton ButtonType="ButtonType.Submit" Size="ButtonSize.Large" Text="Submit"></RadzenButton>

@@ -8,6 +8,7 @@ namespace BlazorApp.Pages.Components
     public partial class Login : ComponentBase
     {
         private UserForAuthenticationDto _userForAuthentication = new UserForAuthenticationDto();
+        private bool _isPasswordVisible = false;
         [Inject] public IAuthenticationService AuthenticationService { get; set; } = null!;
         [Inject] public NavigationManager NavigationManager { get; set; } = null!;
         public bool ShowAuthError { get; set; }
@@ -30,6 +31,11 @@ namespace BlazorApp.Pages.Components
         public void GoToForgotPassword()
         {
             NavigationManager.NavigateTo("/ForgotPassword");
+        }
+
+        void TogglePassword()
+        {
+            _isPasswordVisible = !_isPasswordVisible;
         }
     }
 }

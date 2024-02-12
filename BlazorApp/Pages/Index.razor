@@ -1,3 +1,24 @@
 ﻿@attribute [Route(Routes.Index)]
 
 <RadzenHeading Text="Home page"></RadzenHeading>
+
+<div Class="rz-p-0 rz-p-md-12">
+    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.5rem" Class="rz-p-4 rz-mb-6 rz-border-radius-1" Style="border: var(--rz-grid-cell-border);">
+        <RadzenLabel Text="Variant:" />
+    </RadzenStack>
+    <RadzenRow Gap="1rem">
+        <RadzenColumn Size="12" SizeSM="6">
+            <RadzenStack>
+                <RadzenFormField Text="RadzenTextBox" Variant="Variant.Outlined">
+                    <RadzenTextBox @bind-Value="@value" />
+                </RadzenFormField>
+                <RadzenFormField Text="RadzenTextBox" Variant="Variant.Outlined">
+                    <RadzenNumeric @bind-Value="intvalue" />
+                </RadzenFormField>
+                <RadzenFormField Text="RadzenDropDown" Variant="Variant.Outlined">
+                    <RadzenDropDown Data="@companyNames" @bind-Value="@dropDownValue" />
+                </RadzenFormField>
+            </RadzenStack>
+        </RadzenColumn>
+    </RadzenRow>
+</div>
