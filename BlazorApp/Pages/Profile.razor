@@ -1,3 +1,14 @@
-﻿@attribute [Route(Routes.Profile)]
+﻿@using Objects.Constants;
+
+@attribute [Route(Routes.Profile)]
 
 <RadzenHeading Text="Profile page"></RadzenHeading>
+
+<RadzenDropDown @bind-Value="user.UserMainLang" TValue="string" Data="ConstLanguages.TargetLanguagesSet">
+    <Template Context="language">
+        @language
+        @* <img class="dropdown-item" src="@GetFlagPath(language)" /> *@
+    </Template>
+</RadzenDropDown>
+
+<RadzenButton Text="Confirm changes" Click="ConfirmChanges"></RadzenButton>

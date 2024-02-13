@@ -26,6 +26,7 @@ builder.Services.AddScoped<TranslatorService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 builder.Services.AddScoped<AuthStateProvider>();
+builder.Services.AddScoped<UserService>();
 
 builder.Services.AddSingleton<ProgressService>();
 
