@@ -4,6 +4,7 @@
 @using Objects;
 @using Objects.Constants;
 
+
 @if (_isLoading)
 {
     <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate"/>
@@ -12,9 +13,7 @@
 }
 else
 {
-
     <RadzenStack Wrap="FlexWrap.Wrap" Orientation="Orientation.Horizontal" Style="margin-top: 3%;">
-
         <RadzenCard class="add_book_card">
             <RadzenText Text="Add a new book" Style="position: relative; margin: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center" />
             <InputFile title="" style="width: 100%; height: 100%; opacity: 0; position: absolute; top: 0" OnChange="AddNewBook" accept=".pdf, .epub, .fb2" />
@@ -43,7 +42,7 @@ else
                     </RadzenColumn>
                     <RadzenColumn Size="2">
                         <RadzenButton Icon="delete" Variant="Variant.Text" ButtonStyle="ButtonStyle.Danger" @onclick:stopPropagation="true" Click="@(() => DeleteBook(bookCover))" />
-                        <RadzenDropDown class="custom-dropdown" @bind-Value="bookCover.Language" TValue="string" Data="ConstLanguages.BookLanguagesSet" Change="@(() => ChangeBookLang(bookCover))">
+                        <RadzenDropDown class="custom-dropdown horizontal-dropdown" @bind-Value="bookCover.Language" TValue="string" Data="ConstLanguages.BookLanguagesSet" Change="@(() => ChangeBookLang(bookCover))">
                             <Template Context="language">
                                 <img class="dropdown-item" src="@GetFlagPath(language)"/>
                             </Template>

@@ -28,8 +28,9 @@ builder.Services.AddDbContext<DictionaryDbContext>(options =>
 );
 
 //Authentication
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(opt =>
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(opt =>
     {
+        opt.ClaimsIdentity.UserIdClaimType = "UserID";
         opt.Password.RequiredLength = 8;
         opt.Password.RequireUppercase = false;
         opt.User.RequireUniqueEmail = true;

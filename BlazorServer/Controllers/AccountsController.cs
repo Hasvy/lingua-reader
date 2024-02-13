@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using Objects.Dto;
+using Objects.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -14,12 +15,12 @@ namespace BlazorServer.Controllers
     [ApiController]
     public class AccountsController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
         private readonly IConfigurationSection _jwtSettings;
         private readonly IEmailSender _emailSender;
 
-        public AccountsController(UserManager<IdentityUser> userManager, IConfiguration configuration, IEmailSender emailSender)
+        public AccountsController(UserManager<ApplicationUser> userManager, IConfiguration configuration, IEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;
@@ -34,7 +35,9 @@ namespace BlazorServer.Controllers
             if (userForRegistration == null || !ModelState.IsValid)
                 return BadRequest();
 
-            var user = new IdentityUser { UserName = userForRegistration.Email, Email = userForRegistration.Email };
+            var user = new ApplicationUser { UserName = userForRegistration.Email,
+                                             Email = userForRegistration.Email,
+                                             UserMainLanguage = userForRegistration.UserMainLang };
 
             var result = await _userManager.CreateAsync(user, userForRegistration.Password);
             if (!result.Succeeded)
@@ -142,6 +145,34 @@ namespace BlazorServer.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        [Route("api/accounts/GetUserMainLanguage")]
+        public async Task<string> GetUserMainLang()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user is not null)
+                return user.UserMainLanguage ?? string.Empty;
+            else
+                return string.Empty;
+        }
+
+        [HttpPost]
+        [Route("api/accounts/ChangeUserSettings")]
+        public async Task<IActionResult> ChangeUserSettings([FromBody] UserProfileSettingsDto userProfileSettingsDto)
+        {
+            if (userProfileSettingsDto == null || !ModelState.IsValid)
+                return BadRequest();
+            var user = await _userManager.GetUserAsync(User);
+            if (user is not null)
+            {
+                user.UserMainLanguage = userProfileSettingsDto.UserMainLang;
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                    return Ok();
+            }
+            return BadRequest();
+        }
+
         private SigningCredentials GetSigningCredentials()
         {
             var key = Encoding.UTF8.GetBytes(_jwtSettings["securityKey"]);
@@ -149,11 +180,12 @@ namespace BlazorServer.Controllers
 
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
         }
-        private List<Claim> GetClaims(IdentityUser user)
+        private List<Claim> GetClaims(ApplicationUser user)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Email)
+                new Claim(ClaimTypes.Name, user.Email),
+                new Claim("UserID", user.Id)
             };
 
             return claims;

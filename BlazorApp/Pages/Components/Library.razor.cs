@@ -21,6 +21,7 @@ namespace BlazorApp.Pages.Components
         [Inject] NavigationManager NavigationManager { get; set; } = null!;
         [Inject] NotificationService NotificationService { get; set; } = null!;
         [Inject] AuthStateProvider AuthStateProvider { get; set; } = null!;
+        [Inject] UserService UserService { get; set; } = null!;
         [Inject] ILocalStorageService LocalStorageService { get; set; } = null!;
 
         private IList<BookCover> _userBooks = new List<BookCover>();
@@ -97,15 +98,16 @@ namespace BlazorApp.Pages.Components
         {
             if (choosenBook.Language == ConstLanguages.Undefined)
             {
-                NotificationService.Notify(NotificationSeverity.Error, "Please specify language of the book");
+                NotificationService.Notify(NotificationSeverity.Error, "Please specify a language of the book");
                 return;
             }
-            var userMainLang = await LocalStorageService.GetItemAsStringAsync("UserMainLang");
-            if (string.IsNullOrEmpty(userMainLang))
-            {
-                NotificationService.Notify(NotificationSeverity.Error, "Please specify your language in settings");
-                return;
-            }
+            //var userMainLang = await LocalStorageService.GetItemAsStringAsync("UserMainLang");
+            //if (string.IsNullOrEmpty(userMainLang))
+            //{
+            //    NotificationService.Notify(NotificationSeverity.Error, "Please specify your language in settings");
+            //    return;
+            //}
+            string userMainLang = await UserService.GetUserMainLanguage();
             await LocalStorageService.SetItemAsStringAsync("bookFormat", choosenBook.Format);
             NavigationManager.NavigateTo("read/" + choosenBook.BookId + $"?lang={choosenBook.Language}");
             //NavigationManager.NavigateTo("read/" + choosenBook.BookId + $"?bookFormat={choosenBook.Format}", true);

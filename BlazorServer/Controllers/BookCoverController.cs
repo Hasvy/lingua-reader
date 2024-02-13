@@ -13,9 +13,9 @@ namespace BlazorServer.Controllers
     [ApiController]
     public class BookCoverController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly AppDbContext _appDbContext;
-        public BookCoverController(AppDbContext dbContext, UserManager<IdentityUser> userManager)
+        public BookCoverController(AppDbContext dbContext, UserManager<ApplicationUser> userManager)
         {
             _appDbContext = dbContext;
             _userManager = userManager;

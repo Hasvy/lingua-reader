@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Objects.Entities;
 using Objects.Entities.Books.EpubBook;
 using Objects.Entities.Books.PdfBook;
 
@@ -12,8 +13,8 @@ namespace BlazorServer.Controllers
     public class PdfBookController : Controller
     {
         private readonly AppDbContext _appDbContext;
-        private readonly UserManager<IdentityUser> _userManager;
-        public PdfBookController(AppDbContext dbContext, UserManager<IdentityUser> userManager)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public PdfBookController(AppDbContext dbContext, UserManager<ApplicationUser> userManager)
         {
             _appDbContext = dbContext;
             _userManager = userManager;
