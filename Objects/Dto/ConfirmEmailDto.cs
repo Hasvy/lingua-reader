@@ -15,5 +15,8 @@ namespace Objects.Dto
     public class ConfirmEmailResponseDto
     {
         public bool IsSuccessfulConfirmation { get; set; }
+        public string? ErrorMessage { get; set; }
+        public string? Url { get; set; }
+        public string? UrlText { get; set; }
     }
 }

@@ -15,5 +15,6 @@ namespace Services.Authentication
         Task SendEmail(ForgotPasswordDto forgotPasswordDto);
         Task ResetPassword(ResetPasswordDto resetPasswordDto);
         Task<ConfirmEmailResponseDto> ConfirmEmail(ConfirmEmailDto confirmEmailDto);
+        Task<ConfirmEmailResponseDto> ResendConfirmationEmail(string email);
     }
 }

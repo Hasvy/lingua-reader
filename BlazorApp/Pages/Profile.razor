@@ -1,14 +1,35 @@
-﻿@using Objects.Constants;
+﻿@using BlazorApp.Pages.Components
+@using Microsoft.AspNetCore.Components.Forms
+@using Objects.Constants;
+@using Objects.Dto;
 
 @attribute [Route(Routes.Profile)]
 
-<RadzenHeading Text="Profile page"></RadzenHeading>
-
-<RadzenDropDown @bind-Value="user.UserMainLang" TValue="string" Data="ConstLanguages.TargetLanguagesSet">
-    <Template Context="language">
-        @language
-        @* <img class="dropdown-item" src="@GetFlagPath(language)" /> *@
-    </Template>
-</RadzenDropDown>
-
-<RadzenButton Text="Confirm changes" Click="ConfirmChanges"></RadzenButton>
+<RadzenStack Gap="0" Class="rz-my-12 rz-mx-auto rz-border-radius-6 rz-shadow-10" Style="width: 100%; max-width: 520px; overflow: hidden;">
+    <RadzenCard Class="rz-shadow-0 rz-border-radius-0 rz-background-color-primary rz-p-12" style="text-align: center;">
+        <RadzenText TextStyle="TextStyle.DisplayH4" TagName="TagName.H2" Class="rz-color-white rz-m-0">Profile</RadzenText>
+        <AuthorizeView>
+            <Authorized>
+                <RadzenText TextStyle="TextStyle.DisplayH5" TagName="TagName.H4" Class="rz-color-white rz-mt-5">@context.User.Identity.Name</RadzenText>
+            </Authorized>
+        </AuthorizeView>
+    </RadzenCard>
+    <RadzenCard Class="rz-shadow-0 rz-p-8">
+        <RadzenTemplateForm TItem="UserProfileSettingsDto" Data="user" Submit="ConfirmChanges">
+            <DataAnnotationsValidator />
+            <RadzenStack Gap="1rem" class="rz-p-sm-8">
+                <RadzenFormField Text="Your native language" Variant="Variant.Outlined">
+                    <ChildContent>
+                        <LanguageDropdown @bind-UserMainLang="@user.UserMainLang" />
+                    </ChildContent>
+                    <Helper>
+                        <ValidationMessage For="@(() => user.UserMainLang)" />
+                    </Helper>
+                </RadzenFormField>
+                <RadzenRow AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center">
+                    <RadzenButton ButtonType="ButtonType.Submit" Size="ButtonSize.Large" Text="Confirm changes" />
+                </RadzenRow>
+            </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenCard>
+</RadzenStack>

@@ -12,5 +12,6 @@
         public const string Login = "Login";
         public const string Logout = "Logout";
         public const string Registration = "Registration";
+        public const string ResendConfirmationEmail = "ResendConfirmationEmail";
     }
 }

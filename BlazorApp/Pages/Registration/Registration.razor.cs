@@ -11,6 +11,9 @@ namespace BlazorApp.Pages.Registration
         [Inject] public NavigationManager NavigationManager { get; set; } = null!;
         public bool ShowRegistrationErrors { get; set; }
         public IEnumerable<string>? Errors { get; set; }
+        private bool _isPasswordVisible = false;
+        private bool _isConfirmPasswordVisible = false;
+
         public async Task Register()
         {
             ShowRegistrationErrors = false;
@@ -24,6 +27,12 @@ namespace BlazorApp.Pages.Registration
             {
                 NavigationManager.NavigateTo("/SuccessRegistration");
             }
+        }
+
+        private void TogglePassword()
+        {
+            _isPasswordVisible = !_isPasswordVisible;
+            _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
         }
     }
 }

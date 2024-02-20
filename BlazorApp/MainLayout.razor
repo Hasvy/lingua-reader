@@ -5,46 +5,62 @@
 
 <RadzenLayout>
     <RadzenHeader>
-        <RadzenRow AlignItems="AlignItems.Center" Style="height: 100%;">
-            <RadzenColumn Size="12" SizeMD="3">
+        <RadzenRow AlignItems="AlignItems.Center" class="h-100">
+            <RadzenColumn Size="12" SizeMD="4">
 
             </RadzenColumn>
-            <RadzenColumn Size="12" SizeMD="6">
-                <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Center" AlignItems="AlignItems.Center">
-                    <AuthorizeView>
-                        <Authorized>
-                            <NavLink>
-                                <RadzenLink Path="@Routes.Reading" Text="Reading" />
-                            </NavLink>
-                            <NavLink>
-                                <RadzenLink Path="@Routes.Learning" Text="Learning" />
-                            </NavLink>
-                        </Authorized>
-                        <NotAuthorized>
-                            <NavLink>
-                                <RadzenLink Path="@Routes.Registration" Text="Register" />
-                            </NavLink>
-                            <NavLink ActiveClass="rz-p-8" class="">
-                                <RadzenLink style="font-size: 1.6rem" Path="@Routes.Login" Text="Log in" />
-                            </NavLink>
-                        </NotAuthorized>
-                    </AuthorizeView>
-                </RadzenStack>
+            <RadzenColumn Size="12" SizeMD="4" class="h-100 flex-center custom-active">
+                <AuthorizeView>
+                    <Authorized>
+                        <RadzenRow Gap="0" AlignItems="AlignItems.Center" class="h-100 w-100">
+                            <RadzenColumn Size="12" SizeMD="6" class="h-100">
+                                <NavLink>
+                                    <RadzenLink class="h-100 flex-center h4" Path="@Routes.Reading" Text="Reading" />
+                                </NavLink>
+                            </RadzenColumn>
+                            <RadzenColumn Size="12" SizeMD="6" class="h-100">
+                                <NavLink>
+                                    <RadzenLink class="h-100 flex-center h4" Path="@Routes.Learning" Text="Learning" />
+                                </NavLink>
+                            </RadzenColumn>
+                        </RadzenRow>
+                    </Authorized>
+                    <NotAuthorized>
+                        <RadzenRow Gap="0" AlignItems="AlignItems.Center" class="h-100 w-100">
+                            <RadzenColumn Size="12" SizeMD="6" class="h-100">
+                                <NavLink>
+                                    <RadzenLink class="h-100 flex-center h4" Path="@Routes.Registration" Text="Register" />
+                                </NavLink>
+                            </RadzenColumn>
+                            <RadzenColumn Size="12" SizeMD="6" class="h-100">
+                                <NavLink>
+                                    <RadzenLink class="h-100 flex-center h4" Path="@Routes.Login" Text="Log in" />
+                                </NavLink>
+                            </RadzenColumn>
+                        </RadzenRow>
+                    </NotAuthorized>
+                </AuthorizeView>
             </RadzenColumn>
-            <RadzenColumn Size="12" SizeMD="3">
-                <RadzenStack class="rz-pr-12" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Right" AlignItems="AlignItems.Center">
-                    <AuthorizeView>
-                        <Authorized>
-                            <NavLink>
-                                <RadzenLink Icon="person" Path="@Routes.Profile" Text="Profile" />
-                            </NavLink>
-                            @* Hello, @context.User.Identity.Name! *@
-                            <NavLink>
-                                <RadzenLink Path="@Routes.Logout" Text="Log out" />
-                            </NavLink>
-                        </Authorized>
-                    </AuthorizeView>
-                </RadzenStack>
+            <RadzenColumn Size="12" SizeMD="4" class="h-100 flex-center custom-active">
+                <AuthorizeView>
+                    <Authorized>
+                        <RadzenRow Gap="0" AlignItems="AlignItems.Center" class="h-100 w-100">
+                            <RadzenColumn Size="12" SizeMD="8">
+
+                            </RadzenColumn>
+                            <RadzenColumn Size="12" SizeMD="2" class="h-100">
+                                <NavLink>
+                                    <RadzenLink class="h-100 flex-center h6" Path="@Routes.Profile" Text="Profile" />
+                                </NavLink>
+                            </RadzenColumn>
+                            <RadzenColumn Size="12" SizeMD="2" class="h-100">
+                                <NavLink>
+                                    <RadzenLink class="h-100 flex-center h6" Path="@Routes.Logout" Text="Log out" />
+                                </NavLink>
+                            </RadzenColumn>
+                        </RadzenRow>
+                    </Authorized>
+                </AuthorizeView>
             </RadzenColumn>
         </RadzenRow>
     </RadzenHeader>

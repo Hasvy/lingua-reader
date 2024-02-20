@@ -1,6 +1,7 @@
 ﻿using EmailService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using Objects.Dto;
@@ -9,6 +10,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Web;
+using System.Xml;
 
 namespace BlazorServer.Controllers
 {
@@ -47,11 +49,7 @@ namespace BlazorServer.Controllers
                 return BadRequest(new RegistrationResponseDto { Errors = errors });
             }
 
-            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            var encodedToken = HttpUtility.UrlEncode(token);
-            var confirmationLink = $"{Request.Scheme}://{_configuration["ClientAddress"]}/ConfirmEmail?token={encodedToken}&email={Uri.EscapeDataString(user.Email)}";
-            var message = new Message(new string[] { user.Email }, "Confirmation email link", confirmationLink);
-            await _emailSender.SendEmailAsync(message);
+            await SendAddressConfirmationEmail(user);
 
             return StatusCode(201);
         }
@@ -61,17 +59,33 @@ namespace BlazorServer.Controllers
         public async Task<IActionResult> Login([FromBody] UserForAuthenticationDto userForAuthentication)
         {
             var user = await _userManager.FindByNameAsync(userForAuthentication.Email);
-            if (user == null || !await _userManager.CheckPasswordAsync(user, userForAuthentication.Password))
+
+            if (user is not null)
+            {
+                bool isLockedOut = await _userManager.IsLockedOutAsync(user);
+                if (isLockedOut)
+                    return Unauthorized(new AuthResponseDto { ErrorMessage = "Your account is locked out for 5 minutes, because of many invalid login attempts. Please try again later." });
+            }
+
+            if (user is null || !await _userManager.CheckPasswordAsync(user, userForAuthentication.Password))
+            {
+                if (user is not null)
+                {
+                    await _userManager.AccessFailedAsync(user);
+                }
+
                 return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid Authentication" });
+            }
 
             bool isEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
             if (!isEmailConfirmed)
-                return Unauthorized(new AuthResponseDto { ErrorMessage = "The Email is not confirmed. Please confirm your email using a link, that is sent to your email address." });
+                return Unauthorized(GetErrorWithResendLink(user, "The Email is not confirmed. Please confirm your email using a link, that is sent to your email address."));
 
             var signingCredentials = GetSigningCredentials();
             var claims = GetClaims(user);
             var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
             var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+            await _userManager.ResetAccessFailedCountAsync(user);
             return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });
         }
 
@@ -135,12 +149,12 @@ namespace BlazorServer.Controllers
             var user = await _userManager.FindByEmailAsync(confirmEmailDto.Email);
             if (user is null)
             {
-                return BadRequest();
+                return Ok();        //For security reasons
             }
             var result = await _userManager.ConfirmEmailAsync(user, confirmEmailDto.Token);
             if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(GetErrorWithResendLink(user, "The token is not valid, probably it was expired."));
             }
             return Ok();
         }
@@ -173,6 +187,32 @@ namespace BlazorServer.Controllers
             return BadRequest();
         }
 
+        [HttpPost]
+        [Route("api/accounts/ResendAddressConfirmationEmail")]
+        public async Task<IActionResult> ResendAddressConfirmationEmail([FromBody] string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user is null)
+            {
+                return Ok();        //For security reasons
+            }
+            if (await _userManager.IsEmailConfirmedAsync(user))
+            {
+                return BadRequest( new ConfirmEmailResponseDto { ErrorMessage = "Email has been already confirmed, you can log in." });
+            }
+            await SendAddressConfirmationEmail(user);
+            return Ok();
+        }
+
+        private async Task SendAddressConfirmationEmail(ApplicationUser user)
+        {
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var encodedToken = HttpUtility.UrlEncode(token);
+            var confirmationLink = $"{Request.Scheme}://{_configuration["ClientAddress"]}/ConfirmEmail?token={encodedToken}&email={Uri.EscapeDataString(user.Email)}";
+            var message = new Message(new string[] { user.Email }, "Confirmation email link", confirmationLink);
+            await _emailSender.SendEmailAsync(message);
+        }
+
         private SigningCredentials GetSigningCredentials()
         {
             var key = Encoding.UTF8.GetBytes(_jwtSettings["securityKey"]);
@@ -200,6 +240,13 @@ namespace BlazorServer.Controllers
                 signingCredentials: signingCredentials);
 
             return tokenOptions;
+        }
+
+        private ConfirmEmailResponseDto GetErrorWithResendLink(ApplicationUser user, string errorMessage)
+        {
+            return new ConfirmEmailResponseDto() { ErrorMessage = errorMessage,
+                                                   UrlText = "Click here to resend the confirmation link to your email.",
+                                                   Url = $"{Request.Scheme}://{_configuration["ClientAddress"]}/ResendConfirmationEmail?email={Uri.EscapeDataString(user.Email)}" };
         }
     }
 }

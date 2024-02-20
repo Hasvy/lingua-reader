@@ -26,5 +26,10 @@ namespace BlazorApp.Pages
             else
                 NotificationService.Notify(NotificationSeverity.Error);
         }
+
+        private async Task OnChangeHandler(string newMainLang)
+        {
+            user.UserMainLang = newMainLang;
+        }
     }
 }

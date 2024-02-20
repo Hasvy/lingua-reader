@@ -1,4 +1,5 @@
 ﻿@page "/ConfirmEmail"
+@attribute [AllowAnonymous]
 
 @if (_confirmEmailResponseDto is null)
 {
@@ -10,6 +11,15 @@ else
     {
         <h3>Email is verified</h3>
         <p>Thank you for confirming your email</p>
+    }
+    else if (_confirmEmailResponseDto.ErrorMessage is not null)
+    {
+        <h3>Sorry</h3>
+        <p>@_confirmEmailResponseDto.ErrorMessage</p>
+        @if (_confirmEmailResponseDto.Url != null)
+        {
+            <a href="@_confirmEmailResponseDto.Url">@_confirmEmailResponseDto.UrlText</a>
+        }
     }
     else
     {

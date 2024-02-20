@@ -1,12 +1,10 @@
 using BlazorServer;
-using BlazorServer.Migrations.DictionaryDb;
+using BlazorServer.CustomTokenProviders;
 using EmailService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Net.Http.Headers;
 using Objects.Entities;
 using System.Text;
 
@@ -35,12 +33,22 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(opt =>
         opt.Password.RequireUppercase = false;
         opt.User.RequireUniqueEmail = true;
         opt.SignIn.RequireConfirmedEmail = true;
+        opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+        opt.Lockout.MaxFailedAccessAttempts = 5;
+        opt.Tokens.EmailConfirmationTokenProvider = "emailconfirmation";
     })
     .AddEntityFrameworkStores<AppDbContext>()
-    .AddDefaultTokenProviders();
+    .AddDefaultTokenProviders()
+    .AddTokenProvider<EmailConfirmationTokenProvider<ApplicationUser>>("emailconfirmation");
 
+//Tokens
+//Reset password token
 builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
    opt.TokenLifespan = TimeSpan.FromHours(2));          //TODO check if it envolves a login token
+
+//Confirm email token
+builder.Services.Configure<EmailConfirmationTokenProviderOptions>(opt =>
+    opt.TokenLifespan = TimeSpan.FromDays(3));
 
 var jwtSettings = builder.Configuration.GetSection("JWTSettings");
 builder.Services.AddAuthentication(opt =>
