@@ -1,12 +1,17 @@
 ﻿@using Objects.Dto
 @using Microsoft.AspNetCore.Components.Forms
 
-@page "/Login"
+@attribute [Route(Routes.Login)]
+@attribute [AllowAnonymous]
 
 @if (ShowAuthError)
 {
     <div class="alert alert-danger" role="alert">
-        <p>@Error</p>
+        <p>@Result.ErrorMessage</p>
+        @if (Result.Url != null)
+        {
+            <a href="@Result.Url">@Result.UrlText</a>
+        }
     </div>
 }
 

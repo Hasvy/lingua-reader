@@ -1,8 +1,10 @@
-﻿@using Objects.Constants;
+﻿@using BlazorApp.Pages.Components
+@using Objects.Constants;
 @using Objects.Dto
 @using Microsoft.AspNetCore.Components.Forms
 
 @page "/Registration"
+@attribute [AllowAnonymous]
 
 @if (ShowRegistrationErrors)
 {
@@ -31,15 +33,20 @@
                 </RadzenFormField>
                 <RadzenFormField Text="Password" Variant="Variant.Outlined">
                     <ChildContent>
-                        <RadzenPassword Name="Password" @bind-Value=_userForRegistration.Password />
+                        <RadzenTextBox Name="Password" @bind-Value="_userForRegistration.Password" Visible="@_isPasswordVisible" />
+                        <RadzenPassword Name="Password" @bind-Value=_userForRegistration.Password Visible="@(!_isPasswordVisible)" />
                     </ChildContent>
+                    <End>
+                        <RadzenButton Icon="@(_isPasswordVisible ? "visibility" : "visibility_off")" Click="TogglePassword" Variant="Variant.Text" Size="ButtonSize.Small" />
+                    </End>
                     <Helper>
                         <ValidationMessage For="@(() => _userForRegistration.Password)" />
                     </Helper>
                 </RadzenFormField>
                 <RadzenFormField Text="Confirm password" Variant="Variant.Outlined">
                     <ChildContent>
-                        <RadzenPassword Name="ConfirmPassword" @bind-Value=_userForRegistration.ConfirmPassword />
+                        <RadzenTextBox Name="ConfirmPassword" @bind-Value="_userForRegistration.ConfirmPassword" Visible="@_isConfirmPasswordVisible" />
+                        <RadzenPassword Name="ConfirmPassword" @bind-Value=_userForRegistration.ConfirmPassword Visible="@(!_isConfirmPasswordVisible)" />
                     </ChildContent>
                     <Helper>
                         <ValidationMessage For="@(() => _userForRegistration.ConfirmPassword)" />
@@ -47,12 +54,7 @@
                 </RadzenFormField>
                 <RadzenFormField Text="Your native language" Variant="Variant.Outlined">
                     <ChildContent>
-                        <RadzenDropDown @bind-Value="_userForRegistration.UserMainLang" TValue="string" Data="ConstLanguages.TargetLanguagesSet">
-                            <Template Context="language">
-                                @language
-                                @* <img class="dropdown-item" src="@GetFlagPath(language)" /> *@
-                            </Template>
-                        </RadzenDropDown>
+                        <LanguageDropdown @bind-UserMainLang="@_userForRegistration.UserMainLang" />
                     </ChildContent>
                     <Helper>
                         <ValidationMessage For="@(() => _userForRegistration.UserMainLang)" />

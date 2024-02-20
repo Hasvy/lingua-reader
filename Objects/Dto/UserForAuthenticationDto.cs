@@ -18,6 +18,8 @@ namespace Objects.Dto
     {
         public bool IsAuthSuccessful { get; set; }
         public string? ErrorMessage { get; set; }
+        public string? Url { get; set; }
+        public string? UrlText { get; set; }
         public string? Token { get; set; }
     }
 }

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="BlazorServer.Controllers.AccountsController">
+    <Position X="2" Y="0.75" Width="7.75" />
+    <TypeIdentifier>
+      <HashCode>EAAABAAABAAAgAAAAAgIAAAACoCAAIAAAgEQIAIAAAA=</HashCode>
+      <FileName>Controllers\AccountsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlazorServer.Controllers.BookContentController" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Controllers\BookContentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlazorServer.Controllers.BookController" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAABAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Controllers\BookController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlazorServer.Controllers.BookCoverController" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAABAAAAAAAAAAAAAAAAAAAAASAAAAAA=</HashCode>
+      <FileName>Controllers\BookCoverController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlazorServer.Controllers.BookFileController" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAACAAAAAA=</HashCode>
+      <FileName>Controllers\BookFileController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlazorServer.Controllers.BookSectionController" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Controllers\BookSectionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlazorServer.Controllers.PdfBookController" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACABAAAAAAAAABAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Controllers\PdfBookController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlazorServer.Controllers.TranslatorController" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAABIAAAQAAQABCCEAAAAAAAAAAAACEAIggACEA=</HashCode>
+      <FileName>Controllers\TranslatorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

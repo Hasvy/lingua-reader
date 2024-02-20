@@ -1,0 +1,7 @@
+﻿@using Objects.Constants;
+
+<RadzenDropDown @bind-Value="UserMainLang" TValue="string" Data="@ConstLanguages.TargetLanguagesSet">
+    <Template Context="language">
+        @ConstLanguages.GetFullLang(language) <img src="@ConstLanguages.GetFlagPath(language)" />
+    </Template>
+</RadzenDropDown>

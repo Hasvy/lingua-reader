@@ -1,25 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Services.ProgressService">
-    <Position X="15.25" Y="0.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ProgressService.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Services.ConvertPdf">
-    <Position X="1" Y="0.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ConvertPdf.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Services.EpubConverter">
-    <Position X="3.25" Y="0.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAEAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EpubConverter.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

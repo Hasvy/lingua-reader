@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Objects.Dto;
+using Objects.Entities;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 
@@ -31,12 +33,10 @@ namespace Services.Authentication
             var bodyContent = new StringContent(content, Encoding.UTF8, "application/json");
 
             var registrationResult = await _httpClient.PostAsync("api/accounts/Registration", bodyContent);
-            var registrationContent = await registrationResult.Content.ReadAsStringAsync();
 
             if (!registrationResult.IsSuccessStatusCode)
             {
-                var result = JsonSerializer.Deserialize<RegistrationResponseDto>(registrationContent, _options);
-                return result;
+                return await DeserializeError<RegistrationResponseDto>(registrationResult);
             }
 
             return new RegistrationResponseDto { IsSuccessfulRegistration = true };
@@ -98,16 +98,34 @@ namespace Services.Authentication
         {
             var content = JsonSerializer.Serialize(confirmEmailDto);
             var bodyContent = new StringContent(content, Encoding.UTF8, "application/json");
-            var result = await _httpClient.PostAsync("api/accounts/ConfirmEmail", bodyContent);
+            var confirmResult = await _httpClient.PostAsync("api/accounts/ConfirmEmail", bodyContent);
 
-            if (result.IsSuccessStatusCode)
+            if (!confirmResult.IsSuccessStatusCode)
             {
-                return new ConfirmEmailResponseDto { IsSuccessfulConfirmation = true };
+                return await DeserializeError<ConfirmEmailResponseDto>(confirmResult);
             }
-            else
+
+            return new ConfirmEmailResponseDto { IsSuccessfulConfirmation = true };
+        }
+
+        public async Task<ConfirmEmailResponseDto> ResendConfirmationEmail(string email)
+        {
+            var resendResult = await _httpClient.PostAsJsonAsync("api/accounts/ResendAddressConfirmationEmail", email);
+
+            if (!resendResult.IsSuccessStatusCode)
             {
-                return new ConfirmEmailResponseDto { IsSuccessfulConfirmation = false };
+                return await DeserializeError<ConfirmEmailResponseDto>(resendResult);
             }
+
+            return new ConfirmEmailResponseDto { IsSuccessfulConfirmation = true };
+        }
+
+        //Helpers
+        private async Task<T> DeserializeError<T>(HttpResponseMessage responseMessage)
+        {
+            var content = await responseMessage.Content.ReadAsStringAsync();
+            var result = JsonSerializer.Deserialize<T>(content, _options);
+            return result!;
         }
     }
 }

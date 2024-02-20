@@ -138,19 +138,19 @@ namespace BlazorApp.Pages.Components
             await BookOperationsService.ChangeBookLang(bookCover.Language, bookCover.Id);
         }
 
-        private string GetFlagPath(string language)
-        {
-            switch (language)
-            {
-                case ConstLanguages.Czech: return "img/czech-republic-32.png";
-                case ConstLanguages.English: return "img/great-britain-32.png";
-                case ConstLanguages.German: return "img/germany-32.png";
-                case ConstLanguages.Russian: return "img/russian-federation-32.png";
-                case ConstLanguages.Italian: return "img/italy-32.png";
-                case ConstLanguages.Spanish: return "img/spain-flag-32.png";
-                default:
-                    return "img/question-32.png";
-            }
-        }
+        //private string GetFlagPath(string language)
+        //{
+        //    switch (language)
+        //    {
+        //        case ConstLanguages.Czech: return "img/czech-republic-32.png";
+        //        case ConstLanguages.English: return "img/great-britain-32.png";
+        //        case ConstLanguages.German: return "img/germany-32.png";
+        //        case ConstLanguages.Russian: return "img/russian-federation-32.png";
+        //        case ConstLanguages.Italian: return "img/italy-32.png";
+        //        case ConstLanguages.Spanish: return "img/spain-flag-32.png";
+        //        default:
+        //            return "img/question-32.png";
+        //    }
+        //}
     }
 }

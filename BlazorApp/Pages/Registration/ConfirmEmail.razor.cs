@@ -7,11 +7,10 @@ namespace BlazorApp.Pages.Registration
 {
     public partial class ConfirmEmail : ComponentBase
     {
-        private ConfirmEmailDto _confirmEmailDto = new ConfirmEmailDto();
-        private ConfirmEmailResponseDto? _confirmEmailResponseDto = null;
         [Inject] public IAuthenticationService AuthenticationService { get; set; } = null!;
         [Inject] public NavigationManager NavigationManager { get; set; } = null!;
-
+        private ConfirmEmailDto _confirmEmailDto = new ConfirmEmailDto();
+        private ConfirmEmailResponseDto? _confirmEmailResponseDto = null;
         protected override async Task OnInitializedAsync()
         {
             var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);

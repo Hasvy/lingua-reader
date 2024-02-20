@@ -1,0 +1,21 @@
+﻿@attribute [Route(Routes.ResendConfirmationEmail)]
+@attribute [AllowAnonymous]
+
+@if (_confirmEmailResponseDto is not null)
+{
+    @if (_confirmEmailResponseDto.IsSuccessfulConfirmation is true)
+    {
+        <h3>New confirmation link is sent to your email address</h3>
+        <p>Please check your email for the verification action.</p>
+    }
+    else if (_confirmEmailResponseDto.ErrorMessage is not null)
+    {
+        <h3>Sorry</h3>
+        <p>@_confirmEmailResponseDto.ErrorMessage</p>
+    }
+    else
+    {
+        <h3>Something went wrong</h3>
+        <p>Email is not sent. Please try again.</p>
+    }
+}

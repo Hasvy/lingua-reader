@@ -12,14 +12,17 @@ namespace BlazorApp.Pages.Components
         [Inject] public IAuthenticationService AuthenticationService { get; set; } = null!;
         [Inject] public NavigationManager NavigationManager { get; set; } = null!;
         public bool ShowAuthError { get; set; }
-        public string? Error { get; set; }
+        private AuthResponseDto? Result { get; set; }
         public async Task ExecuteLogin()
         {
             ShowAuthError = false;
             var result = await AuthenticationService.Login(_userForAuthentication);
             if (!result.IsAuthSuccessful)
             {
-                Error = result.ErrorMessage;
+                Result = new AuthResponseDto();
+                Result.ErrorMessage = result.ErrorMessage;
+                Result.Url = result.Url;
+                Result.UrlText = result.UrlText;
                 ShowAuthError = true;
             }
             else
