@@ -30,7 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\MainPages\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 	

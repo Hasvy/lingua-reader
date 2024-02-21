@@ -5,7 +5,7 @@ using Radzen;
 using Services;
 using System.Runtime.CompilerServices;
 
-namespace BlazorApp.Pages
+namespace BlazorApp.Pages.MainPages
 {
     public partial class Profile : ComponentBase, IDisposable
     {

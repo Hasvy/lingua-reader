@@ -17,4 +17,10 @@ namespace Objects.Dto
         public string Email { get; set; }
         public string Token { get; set; }
     }
+
+    public class ResetPasswordResponseDto
+    {
+        public bool IsSuccessfulRegistration { get; set; }
+        public IEnumerable<string>? Errors { get; set; }
+    }
 }

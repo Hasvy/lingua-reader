@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Services;
 
-namespace BlazorApp.Pages
+namespace BlazorApp.Pages.MainPages
 {
     public partial class Reading : ComponentBase, IDisposable
     {

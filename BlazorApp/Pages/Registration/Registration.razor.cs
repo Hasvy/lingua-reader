@@ -6,11 +6,11 @@ namespace BlazorApp.Pages.Registration
 {
     public partial class Registration : ComponentBase
     {
-        private UserForRegistrationDto _userForRegistration = new UserForRegistrationDto();
         [Inject] public IAuthenticationService AuthenticationService { get; set; } = null!;
         [Inject] public NavigationManager NavigationManager { get; set; } = null!;
         public bool ShowRegistrationErrors { get; set; }
         public IEnumerable<string>? Errors { get; set; }
+        private UserForRegistrationDto _userForRegistration = new UserForRegistrationDto();
         private bool _isPasswordVisible = false;
         private bool _isConfirmPasswordVisible = false;
 

@@ -88,7 +88,7 @@ namespace Services.Authentication
             }
         }
 
-        public async Task ResetPassword(ResetPasswordDto resetPasswordDto)
+        public async Task<ResetPasswordResponseDto> ResetPassword(ResetPasswordDto resetPasswordDto)
         {
             var content = JsonSerializer.Serialize(resetPasswordDto);
             var bodyContent = new StringContent(content, Encoding.UTF8, "application/json");
@@ -96,11 +96,13 @@ namespace Services.Authentication
 
             if (!result.IsSuccessStatusCode)
             {
-                _navigationManager.NavigateTo("/ResetPasswordConfirmation/Failed");
+                return await DeserializeError<ResetPasswordResponseDto>(result);
+                //_navigationManager.NavigateTo("/ResetPasswordConfirmation/Failed");
             }
             else
             {
-                _navigationManager.NavigateTo("/ResetPasswordConfirmation/Success");
+                return new ResetPasswordResponseDto { IsSuccessfulRegistration = true };
+                //_navigationManager.NavigateTo("/ResetPasswordConfirmation/Success");
             }
         }
 
