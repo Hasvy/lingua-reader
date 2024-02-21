@@ -7,13 +7,15 @@ using System.Runtime.CompilerServices;
 
 namespace BlazorApp.Pages
 {
-    public partial class Profile : ComponentBase
+    public partial class Profile : ComponentBase, IDisposable
     {
         [Inject] UserService UserService { get; set; } = null!;
         [Inject] NotificationService NotificationService { get; set; } = null!;
+        [Inject] HttpInterceptorService HttpInterceptorService { get; set; } = null!;
         private UserProfileSettingsDto user = new UserProfileSettingsDto();
         protected override async Task OnInitializedAsync()
         {
+            HttpInterceptorService.RegisterEvent();
             user.UserMainLang = await UserService.GetUserMainLanguage();
             await base.OnInitializedAsync();
         }
@@ -27,9 +29,6 @@ namespace BlazorApp.Pages
                 NotificationService.Notify(NotificationSeverity.Error);
         }
 
-        private async Task OnChangeHandler(string newMainLang)
-        {
-            user.UserMainLang = newMainLang;
-        }
+        public void Dispose() => HttpInterceptorService.DisposeEvent();
     }
 }

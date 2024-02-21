@@ -23,6 +23,7 @@ namespace BlazorApp.Pages.Components
         [Inject] AuthStateProvider AuthStateProvider { get; set; } = null!;
         [Inject] UserService UserService { get; set; } = null!;
         [Inject] ILocalStorageService LocalStorageService { get; set; } = null!;
+        //[Inject] HttpInterceptorService HttpInterceptorService { get; set; } = null!;
 
         private IList<BookCover> _userBooks = new List<BookCover>();
         private bool _isLoading;
@@ -30,26 +31,12 @@ namespace BlazorApp.Pages.Components
 
         protected override async Task OnInitializedAsync()
         {
-            try
-            {
-                _isLoading = true;
-                AuthenticationState authState = await AuthStateProvider.GetAuthenticationStateAsync();
-                var user = authState.User;
-                if (user.Identity!.IsAuthenticated)
-                {
-                    _userBooks = (await BookOperationsService.GetBookCovers()).ToList();
-                    await base.OnInitializedAsync();
-                }
-                else
-                {
-                    NavigationManager.NavigateTo("/login");
-                }
-                _isLoading = false;
-            }
-            catch (HttpRequestException ex) when (ex.Message.Contains("401"))
-            {
-                NavigationManager.NavigateTo("/login");
-            }
+            _isLoading = true;
+            //HttpInterceptorService.RegisterEvent();
+            _userBooks = (await BookOperationsService.GetBookCovers()).ToList();
+            _isLoading = false;
+            
+            await base.OnInitializedAsync();
         }
 
         private async Task AddNewBook(InputFileChangeEventArgs e)
@@ -137,20 +124,5 @@ namespace BlazorApp.Pages.Components
         {
             await BookOperationsService.ChangeBookLang(bookCover.Language, bookCover.Id);
         }
-
-        //private string GetFlagPath(string language)
-        //{
-        //    switch (language)
-        //    {
-        //        case ConstLanguages.Czech: return "img/czech-republic-32.png";
-        //        case ConstLanguages.English: return "img/great-britain-32.png";
-        //        case ConstLanguages.German: return "img/germany-32.png";
-        //        case ConstLanguages.Russian: return "img/russian-federation-32.png";
-        //        case ConstLanguages.Italian: return "img/italy-32.png";
-        //        case ConstLanguages.Spanish: return "img/spain-flag-32.png";
-        //        default:
-        //            return "img/question-32.png";
-        //    }
-        //}
     }
 }

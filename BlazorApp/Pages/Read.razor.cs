@@ -13,7 +13,6 @@ namespace BlazorApp.Pages
         [Parameter] public string BookId { get; set; } = null!;
         public string? BookLang { get; set; } = null!;
         public string? UserMainLang { get; set; } = null!;
-
         private string BookFormat { get; set; } = null!;
 
         protected override async Task OnInitializedAsync()

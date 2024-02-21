@@ -159,34 +159,6 @@ namespace BlazorServer.Controllers
             return Ok();
         }
 
-        [HttpGet]
-        [Route("api/accounts/GetUserMainLanguage")]
-        public async Task<string> GetUserMainLang()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user is not null)
-                return user.UserMainLanguage ?? string.Empty;
-            else
-                return string.Empty;
-        }
-
-        [HttpPost]
-        [Route("api/accounts/ChangeUserSettings")]
-        public async Task<IActionResult> ChangeUserSettings([FromBody] UserProfileSettingsDto userProfileSettingsDto)
-        {
-            if (userProfileSettingsDto == null || !ModelState.IsValid)
-                return BadRequest();
-            var user = await _userManager.GetUserAsync(User);
-            if (user is not null)
-            {
-                user.UserMainLanguage = userProfileSettingsDto.UserMainLang;
-                var result = await _userManager.UpdateAsync(user);
-                if (result.Succeeded)
-                    return Ok();
-            }
-            return BadRequest();
-        }
-
         [HttpPost]
         [Route("api/accounts/ResendAddressConfirmationEmail")]
         public async Task<IActionResult> ResendAddressConfirmationEmail([FromBody] string email)

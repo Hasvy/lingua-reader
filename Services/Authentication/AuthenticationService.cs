@@ -63,6 +63,16 @@ namespace Services.Authentication
             _httpClient.DefaultRequestHeaders.Authorization = null;
         }
 
+        //public async Task<string> RefreshToken()
+        //{
+        //    var bodyContent = new StringContent("", Encoding.UTF8, "application/json");
+        //    var refreshResult = await _httpClient.PostAsync("token/refresh", bodyContent);
+        //    var refreshContent = await refreshResult.Content.ReadAsStringAsync();
+        //    var result = JsonSerializer.Deserialize<AuthResponseDto>(refreshContent, _options);
+
+        //    return result.Token;
+        //}
+
         public async Task SendEmail(ForgotPasswordDto forgotPasswordDto)
         {
             var content = JsonSerializer.Serialize(forgotPasswordDto);
