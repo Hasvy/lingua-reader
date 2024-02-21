@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Services;
 using System.Reflection.Metadata;
 
-namespace BlazorApp.Pages
+namespace BlazorApp.Pages.MainPages
 {
     public partial class Read : ComponentBase
     {

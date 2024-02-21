@@ -13,7 +13,7 @@ namespace Services.Authentication
         Task<AuthResponseDto> Login(UserForAuthenticationDto userForAuthentication);
         Task Logout();
         Task SendEmail(ForgotPasswordDto forgotPasswordDto);
-        Task ResetPassword(ResetPasswordDto resetPasswordDto);
+        Task<ResetPasswordResponseDto> ResetPassword(ResetPasswordDto resetPasswordDto);
         //Task<string> RefreshToken();
         Task<ConfirmEmailResponseDto> ConfirmEmail(ConfirmEmailDto confirmEmailDto);
         Task<ConfirmEmailResponseDto> ResendConfirmationEmail(string email);

@@ -129,12 +129,11 @@ namespace BlazorServer.Controllers
             var resetPassResult = await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.Password);
             if (!resetPassResult.Succeeded)
             {
-                foreach (var error in resetPassResult.Errors)
-                {
-                    ModelState.TryAddModelError(error.Code, error.Description);
-                }
-                return BadRequest();
+                var errors = resetPassResult.Errors.Select(e => e.Description);
+
+                return BadRequest(new ResetPasswordResponseDto { Errors = errors });
             }
+
             return Ok();
         }
 
