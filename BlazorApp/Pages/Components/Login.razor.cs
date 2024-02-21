@@ -27,7 +27,7 @@ namespace BlazorApp.Pages.Components
             }
             else
             {
-                NavigationManager.NavigateTo("/");
+                NavigationManager.NavigateTo("/Reading");
             }
         }
 

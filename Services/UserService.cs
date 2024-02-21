@@ -21,7 +21,7 @@ namespace Services
         public async Task<string> GetUserMainLanguage()
         {
             string userMainLang = string.Empty;
-            var response = await _httpClient.GetAsync("api/accounts/GetUserMainLanguage");
+            var response = await _httpClient.GetAsync("api/user/GetUserMainLanguage");
             if (response != null)
                 userMainLang = await response.Content.ReadAsStringAsync();
             return userMainLang;
@@ -31,7 +31,7 @@ namespace Services
         {
             var content = JsonSerializer.Serialize(userProfileSettingsDto);
             var bodyContent = new StringContent(content, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("api/accounts/ChangeUserSettings", bodyContent);
+            var response = await _httpClient.PostAsync("api/user/ChangeUserSettings", bodyContent);
 
             if (response.IsSuccessStatusCode)
             {

@@ -44,7 +44,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(opt =>
 //Tokens
 //Reset password token
 builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
-   opt.TokenLifespan = TimeSpan.FromHours(2));          //TODO check if it envolves a login token
+   opt.TokenLifespan = TimeSpan.FromHours(2));
 
 //Confirm email token
 builder.Services.Configure<EmailConfirmationTokenProviderOptions>(opt =>
