@@ -31,7 +31,6 @@ namespace Services.Authentication
         {
             var content = JsonSerializer.Serialize(userForRegistration);
             var bodyContent = new StringContent(content, Encoding.UTF8, "application/json");
-
             var registrationResult = await _httpClient.PostAsync("api/accounts/Registration", bodyContent);
 
             if (!registrationResult.IsSuccessStatusCode)

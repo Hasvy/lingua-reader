@@ -19,4 +19,10 @@ namespace Objects.Dto
         [Required(ErrorMessage = "Language is required")]
         public string UserMainLang { get; set; } = null!;
     }
+
+    public class RegistrationResponseDto
+    {
+        public bool IsSuccessfulRegistration { get; set; }
+        public IEnumerable<string>? Errors { get; set; }
+    }
 }
