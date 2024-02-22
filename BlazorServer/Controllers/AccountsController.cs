@@ -36,21 +36,16 @@ namespace BlazorServer.Controllers
         {
             if (userForRegistration == null || !ModelState.IsValid)
                 return BadRequest();
-
-            var user = new ApplicationUser { UserName = userForRegistration.Email,
+            var user = new ApplicationUser { UserName = "user_" + Guid.NewGuid().ToString(),
                                              Email = userForRegistration.Email,
                                              UserMainLanguage = userForRegistration.UserMainLang };
-
             var result = await _userManager.CreateAsync(user, userForRegistration.Password);
             if (!result.Succeeded)
             {
                 var errors = result.Errors.Select(e => e.Description);
-
                 return BadRequest(new RegistrationResponseDto { Errors = errors });
             }
-
             await SendAddressConfirmationEmail(user);
-
             return StatusCode(201);
         }
 
