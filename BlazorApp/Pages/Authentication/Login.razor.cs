@@ -1,9 +1,9 @@
 ﻿using EmailService;
 using Microsoft.AspNetCore.Components;
-using Objects.Dto;
+using Objects.Dto.Authentication;
 using Services.Authentication;
 
-namespace BlazorApp.Pages.Components
+namespace BlazorApp.Pages.Authentication
 {
     public partial class Login : ComponentBase
     {

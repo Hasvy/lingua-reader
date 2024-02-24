@@ -1,5 +1,5 @@
 ﻿using AngleSharp.Io;
-using BlazorApp.Pages.Components.Translator;
+using BlazorApp.Components.Translator;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
@@ -7,7 +7,7 @@ using Objects.Entities.Translator;
 using Org.BouncyCastle.Crypto.Parameters;
 using Services;
 
-namespace BlazorApp.Pages.Components.DisplayBooks
+namespace BlazorApp.Components.DisplayBooks
 {
     public partial class ReaderComponent : ComponentBase
     {

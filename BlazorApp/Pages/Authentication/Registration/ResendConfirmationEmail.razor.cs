@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
-using Objects.Dto;
+using Objects.Dto.Authentication;
 using Services.Authentication;
 
-namespace BlazorApp.Pages.Registration
+namespace BlazorApp.Pages.Authentication.Registration
 {
     public partial class ResendConfirmationEmail : ComponentBase
     {

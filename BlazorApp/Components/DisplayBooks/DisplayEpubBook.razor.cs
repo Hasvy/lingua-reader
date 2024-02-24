@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorApp.Components.DisplayBooks;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Objects.Entities.Books.EpubBook;
 using Services;
 using System.Diagnostics;
 
-namespace BlazorApp.Pages.Components.DisplayBooks
+namespace BlazorApp.Components.DisplayBooks
 {
     public partial class DisplayEpubBook : ComponentBase, IDisplayBook
     {

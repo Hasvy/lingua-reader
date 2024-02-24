@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Services.Authentication;
 
-namespace BlazorApp.Pages.Components
+namespace BlazorApp.Pages.Authentication
 {
     public partial class Logout : ComponentBase
     {

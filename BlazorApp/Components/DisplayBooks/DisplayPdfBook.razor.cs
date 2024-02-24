@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorApp.Components.DisplayBooks;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Objects.Entities.Books.PdfBook;
 using Objects.Entities.Translator;
 using Services;
 
-namespace BlazorApp.Pages.Components.DisplayBooks
+namespace BlazorApp.Components.DisplayBooks
 {
     public partial class DisplayPdfBook : ComponentBase, IDisplayBook
     {

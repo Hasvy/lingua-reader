@@ -24,9 +24,9 @@ namespace BlazorApp.Pages.MainPages
         {
             var result = await UserService.ChangeUserSettings(user);
             if (result.IsSuccessfulChange is true)
-                NotificationService.Notify(NotificationSeverity.Success);
+                NotificationService.Notify(NotificationSeverity.Success, "Changes have been saved");
             else
-                NotificationService.Notify(NotificationSeverity.Error);
+                NotificationService.Notify(NotificationSeverity.Error, "An error occurred");
         }
 
         public void Dispose() => HttpInterceptorService.DisposeEvent();
