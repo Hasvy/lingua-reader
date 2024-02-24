@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Writers;
 using Newtonsoft.Json;
 using Objects.Constants;
+using Objects.Entities;
 using Objects.Entities.Translator;
+using Objects.Entities.Words;
 using System.Text;
 
 namespace BlazorServer.Controllers
@@ -12,6 +15,8 @@ namespace BlazorServer.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly HttpClient _httpClient;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly AppDbContext _appDbContext;
         private readonly DictionaryDbContext _dictionaryDbContext;
         private static readonly string _endpoint = "https://api.cognitive.microsofttranslator.com/";
         private static readonly string _location = "westeurope";
@@ -22,9 +27,11 @@ namespace BlazorServer.Controllers
         private int existedWordId = 0;
 
         //TODO Mb for test and filling db with data use recurse translation with backtranslations
-        public TranslatorController(DictionaryDbContext dictionaryDbContext, IConfiguration configuration)
+        public TranslatorController(DictionaryDbContext dictionaryDbContext, UserManager<ApplicationUser> userManager, IConfiguration configuration, AppDbContext appDbContext)
         {
             _httpClient = new HttpClient();
+            _userManager = userManager;
+            _appDbContext = appDbContext;
             _dictionaryDbContext = dictionaryDbContext;
             _configuration = configuration;
             var key = _configuration["Keys:TranslatorApiKey"];
@@ -90,7 +97,7 @@ namespace BlazorServer.Controllers
                     {
                         firstResult.DisplaySource = word.ToLower();
                         firstResult.Language = _bookLang;
-                        await PostTranslationToDb(firstResult);
+                        PostTranslationToDb(firstResult);
                         Console.WriteLine("Word added to Db");
                         return Ok(firstResult);
                     }
@@ -102,17 +109,6 @@ namespace BlazorServer.Controllers
                 return BadRequest("Error: " + response.StatusCode);
             }
         }
-
-        //[HttpGet]
-        //[Route("api/Translator/Speak")]
-        //public async Task<ActionResult<Stream>> SpeakWord(string word)
-        //{
-        //    SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer();
-        //    Stream audioStream = null;
-        //    speechSynthesizer.SetOutputToWaveStream(audioStream);
-        //    speechSynthesizer.Speak(word);
-        //    return Ok(audioStream);
-        //}
 
         private async Task<TranslatorWordResponse?> GetTranslationFromDb(string word)       //TODO divide word saving to different language database and search in target language db
         {
@@ -126,6 +122,8 @@ namespace BlazorServer.Controllers
                     return null;
                 }
                 translatorWordResp.Translations = wordTranslations;
+                var user = await _userManager.GetUserAsync(User);
+                translatorWordResp.IsWordSaved = _appDbContext.SavedWords.Any(w => w.UserId.ToString() == user.Id && w.WordId == translatorWordResp.Id);
                 return translatorWordResp;
             }
             else
@@ -135,7 +133,7 @@ namespace BlazorServer.Controllers
             }
         }
 
-        private async Task<IActionResult> PostTranslationToDb(TranslatorWordResponse response)
+        private ActionResult<TranslatorWordResponse> PostTranslationToDb(TranslatorWordResponse response)
         {
             //TODO dont put word in db if it does not contain any translation
             //TODO put word in db in right language, not in english (before try to change translation logic)
@@ -145,7 +143,7 @@ namespace BlazorServer.Controllers
                 foreach (var translation in response.Translations)
                 {
                     translation.Language = _targetLang;
-                    if (existedWordId != 0)         //If word already exist in Db, FK of translations changes to it, so word is not duplicated
+                    if (existedWordId != 0)         //If word already exist in Db, FK of translations changes to it, so word is not duplicated in DB
                     {
                         translation.WordId = existedWordId;
                         _dictionaryDbContext.Translations.Add(translation);
@@ -155,10 +153,14 @@ namespace BlazorServer.Controllers
                 {
                     _dictionaryDbContext.Words.Add(response);       //TODO Fix saving deutsch words in english, so them wont found because it searching german word, in db words in eng
                 }
-                int updNumber = await _dictionaryDbContext.SaveChangesAsync();
+                else
+                {
+                    response.Id = existedWordId;
+                }
+                int updNumber = _dictionaryDbContext.SaveChanges();
                 if (updNumber > 0)
                 {
-                    return Ok();
+                    return Ok(response);
                 }
             }
 

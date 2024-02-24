@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Objects.Entities.Translator.Words
+namespace Objects.Entities.Words
 {
     public class EnglishWord
     {

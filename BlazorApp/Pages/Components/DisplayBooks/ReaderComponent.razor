@@ -6,7 +6,7 @@
     @CurrentPageNumber / @PagesCount
     <RadzenNumeric ShowUpDown="false" id="page-changer" Style="width: 30px; position: absolute;" TValue="int?" Value="@insertedPageNumber" Change="JumpToPage" />
 
-    <TranslatorWindow WordInfo="@wordInfo" ResponseContent="translatorWordResponse" isLoading="@isLoading" isBusy="@isBusy" Visible="@visible" SpeakWordCallback="SpeakWord" />
+    <TranslatorWindow WordInfo="@wordInfo" ResponseContent="translatorWordResponse" isLoading="@isLoading" isSpeaking="@isBusy" Visible="@visible" SpeakWordCallback="SpeakWord" />
 
 @*     <div style="display: flex; justify-content: center">
         <RadzenStack Gap="0" Wrap="FlexWrap.Wrap" Orientation="Orientation.Horizontal">

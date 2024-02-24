@@ -30,10 +30,17 @@
             </RadzenColumn>
             <RadzenColumn Size="2">
                 <RadzenRow>
-                    <RadzenButton IsBusy="@isBusy" Icon="volume_up" Variant="Variant.Text" Click="SpeakWord" />
+                    <RadzenButton IsBusy="@isSpeaking" Icon="volume_up" Variant="Variant.Text" Click="SpeakWord" />
                 </RadzenRow>
                 <RadzenRow>
-                    <RadzenButton Icon="add" Variant="Variant.Text" />
+                    @if (ResponseContent.IsWordSaved)
+                    {
+                        <RadzenButton IsBusy="@_isDeleting" Icon="done" Variant="Variant.Text" Click="DeleteWord" />
+                    }
+                    else
+                    {
+                        <RadzenButton IsBusy="@_isSaving" Icon="add" Variant="Variant.Text" Click="AddWord" />
+                    }
                 </RadzenRow>
             </RadzenColumn>
         </RadzenRow>

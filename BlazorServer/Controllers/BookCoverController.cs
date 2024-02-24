@@ -27,8 +27,7 @@ namespace BlazorServer.Controllers
         {
             List<BookCover>? bookCovers = new List<BookCover>();
             List<AbstractBook>? abstractBooks = null;
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            //var user = await _userManager.GetUserAsync(User);
+            var user = await _userManager.GetUserAsync(User);
             if (user is not null)
             {
                 abstractBooks = await _appDbContext.AbstractBooks.Where(ab => ab.OwnerId == Guid.Parse(user.Id)).ToListAsync();
