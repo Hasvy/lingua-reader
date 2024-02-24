@@ -1,4 +1,4 @@
-﻿using Objects.Dto;
+﻿using Objects.Dto.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;

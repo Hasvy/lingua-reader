@@ -25,12 +25,12 @@ namespace Services
             var result = await _httpClient.PostAsJsonAsync("api/words/SaveWord", translatorWordResponse.Id);    //TODO dont allow to a user to send more than 1 query, save more than 1 word
             if (result.IsSuccessStatusCode)
             {
-                _notificationService.Notify(NotificationSeverity.Success, "Word is saved");
+                _notificationService.Notify(NotificationSeverity.Success, "Word has been saved");
                 return true;
             }
             else
             {
-                _notificationService.Notify(NotificationSeverity.Error, "Error is occured");
+                _notificationService.Notify(NotificationSeverity.Error, "An error occurred");
                 return false;
             }
         }
@@ -40,12 +40,12 @@ namespace Services
             var result = await _httpClient.DeleteAsync($"api/words/DeleteWord/{translatorWordResponse.Id}");
             if (result.IsSuccessStatusCode)
             {
-                _notificationService.Notify(NotificationSeverity.Success, "Word is deleted");
+                _notificationService.Notify(NotificationSeverity.Info, "Word has been deleted");
                 return true;
             }
             else
             {
-                _notificationService.Notify(NotificationSeverity.Error, "Error is occured");
+                _notificationService.Notify(NotificationSeverity.Error, "An error occurred");
                 return false;
             }
         }

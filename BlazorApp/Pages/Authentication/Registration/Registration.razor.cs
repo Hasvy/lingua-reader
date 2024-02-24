@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Objects.Dto;
+using Objects.Dto.Authentication;
 using Services.Authentication;
 
-namespace BlazorApp.Pages.Registration
+namespace BlazorApp.Pages.Authentication.Registration
 {
     public partial class Registration : ComponentBase
     {

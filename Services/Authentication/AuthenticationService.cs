@@ -1,7 +1,7 @@
 ﻿using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using Objects.Dto;
+using Objects.Dto.Authentication;
 using Objects.Entities;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;

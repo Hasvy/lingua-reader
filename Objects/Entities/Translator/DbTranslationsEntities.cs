@@ -11,15 +11,15 @@ namespace Objects.Entities.Translator
     //    public int WordId { get; set; }
     //}
 
-    public class TranslationEnglish : WordTranslation
-    {
-    }
+    //public class TranslationEnglish : WordTranslation
+    //{
+    //}
 
-    public class TranslationGerman : WordTranslation
-    {
-    }
+    //public class TranslationGerman : WordTranslation
+    //{
+    //}
 
-    public class TranslationRussian : WordTranslation
-    {
-    }
+    //public class TranslationRussian : WordTranslation
+    //{
+    //}
 }

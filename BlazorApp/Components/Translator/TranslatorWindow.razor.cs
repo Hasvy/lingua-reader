@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Objects.Entities.Translator;
-using System.Diagnostics;
-using BlazorApp.Pages.Components.DisplayBooks;
 using Microsoft.JSInterop;
 using Services;
 
-namespace BlazorApp.Pages.Components.Translator
+namespace BlazorApp.Components.Translator
 {
     public partial class TranslatorWindow : ComponentBase
     {
@@ -64,12 +62,6 @@ namespace BlazorApp.Pages.Components.Translator
         {
             await JS.InvokeVoidAsync("setWindowSizeVars");
         }
-
-        //private class Size
-        //{
-        //    public int Width { get; set; }
-        //    public int Height { get; set; }
-        //}
 
         protected async Task SpeakWord()
         {

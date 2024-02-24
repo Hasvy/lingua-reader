@@ -3,7 +3,7 @@ using Objects.Constants;
 using Objects.Dto;
 using Objects.Entities;
 
-namespace BlazorApp.Pages.Components
+namespace BlazorApp.Components
 {
     public partial class LanguageDropdown : ComponentBase
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace BlazorApp.Pages.Components.DisplayBooks
+namespace BlazorApp.Components.DisplayBooks
 {
     public interface IDisplayBook
     {

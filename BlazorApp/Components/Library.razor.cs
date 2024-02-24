@@ -11,7 +11,7 @@ using Radzen;
 using Services;
 using Services.Authentication;
 
-namespace BlazorApp.Pages.Components
+namespace BlazorApp.Components
 {
     public partial class Library : ComponentBase
     {
