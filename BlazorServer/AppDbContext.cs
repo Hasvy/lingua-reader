@@ -5,6 +5,8 @@ using Objects.Entities;
 using Objects.Entities.Books;
 using Objects.Entities.Books.EpubBook;
 using Objects.Entities.Books.PdfBook;
+using Objects.Entities.Translator;
+using Objects.Entities.Words;
 using System.Net;
 
 namespace BlazorServer
@@ -49,6 +51,13 @@ namespace BlazorServer
                 .Property(b => b.Id)
                 .HasColumnName("Id");
 
+            //modelBuilder.Entity<SavedWord>(entity =>
+            //{
+            //    entity.HasOne<TranslatorWordResponse>()
+            //        .WithMany(twr => twr.Id)
+            //        .HasForeignKey<TranslatorWordResponse>(w => w.Id);
+            //});
+
             //modelBuilder.Entity<BookSection>()
             //    .HasOne(s => s.EpubBook)
             //    .WithMany(b => b.Sections)
@@ -76,6 +85,7 @@ namespace BlazorServer
         public DbSet<PdfBook> PdfBooks { get; set; }
         public DbSet<BookCover> BookCovers { get; set; }
         public DbSet<BookSection> BookSections { get; set; }
+        public DbSet<SavedWord> SavedWords { get; set; }
         //public DbSet<Page> Pages { get; set; }
         //public DbSet<BookContent> BookContent { get; set; }
     }

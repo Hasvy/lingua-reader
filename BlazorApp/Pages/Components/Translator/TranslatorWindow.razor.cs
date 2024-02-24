@@ -3,20 +3,23 @@ using Objects.Entities.Translator;
 using System.Diagnostics;
 using BlazorApp.Pages.Components.DisplayBooks;
 using Microsoft.JSInterop;
+using Services;
 
 namespace BlazorApp.Pages.Components.Translator
 {
     public partial class TranslatorWindow : ComponentBase
     {
         [Inject] IJSRuntime JS { get; set; } = null!;
+        [Inject] WordsService WordsService { get; set; } = null!;
         [Parameter] public WordInfo WordInfo { get; set; }
         [Parameter] public TranslatorWordResponse? ResponseContent { get; set; }
         [Parameter] public EventCallback SpeakWordCallback { get; set; }
         [Parameter] public bool Visible { get; set; } = false;
-        [Parameter] public bool isBusy { get; set; } = false;
+        [Parameter] public bool isSpeaking { get; set; } = false;
         [Parameter] public bool isLoading { get; set; } = false;
 
-        //private bool isLoading = false;
+        private bool _isSaving = false;
+        private bool _isDeleting = false;
         private ElementReference translatorWindow;
         private string error = string.Empty;
         private WordTranslation? mainTranslation;
@@ -62,11 +65,11 @@ namespace BlazorApp.Pages.Components.Translator
             await JS.InvokeVoidAsync("setWindowSizeVars");
         }
 
-        private class Size
-        {
-            public int Width { get; set; }
-            public int Height { get; set; }
-        }
+        //private class Size
+        //{
+        //    public int Width { get; set; }
+        //    public int Height { get; set; }
+        //}
 
         protected async Task SpeakWord()
         {
@@ -77,11 +80,28 @@ namespace BlazorApp.Pages.Components.Translator
         //{
         //    if (WordInfo is not null)
         //    {
-        //        isBusy = true;
+        //        isSpeaking = true;
         //        await Task.Delay(1);            //Isntead of StateHasChanged(); which does not work because of a bug
         //        await JS.InvokeVoidAsync("speakWord", WordInfo.Word, BookLanguage);
-        //        isBusy = false;
+        //        isSpeaking = false;
         //    }
         //}
+
+        private async Task AddWord()
+        {
+            _isSaving = true;
+            bool result = await WordsService.SaveWord(ResponseContent);
+            if (result is true)
+                ResponseContent.IsWordSaved = true;
+            _isSaving = false;
+        }
+        private async Task DeleteWord()
+        {
+            _isDeleting = true;
+            bool result = await WordsService.DeleteWord(ResponseContent);
+            if (result is true)
+                ResponseContent.IsWordSaved = false;
+            _isDeleting = false;
+        }
     }
 }

@@ -1,4 +1,7 @@
 ﻿@attribute [Route(Routes.Learning)]
 @attribute [Authorize]
 
-<RadzenHeading Text="Learning page"></RadzenHeading>
+@foreach (var word in usersWords)
+{
+    @($"{word.DisplaySource} \n")
+}
