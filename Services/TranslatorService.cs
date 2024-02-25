@@ -25,14 +25,14 @@ namespace Services
             return response;
         }
 
-        public async Task<TranslatorWordResponse?> GetWordTranslation(string word)
+        public async Task<WordWithTranslations?> GetWordTranslation(string word)
         {
             if (!string.IsNullOrWhiteSpace(word))
             {
-                TranslatorWordResponse? translation = await _httpClient.GetFromJsonAsync<TranslatorWordResponse?>($"api/Translator/TranslateWord?word={word}");
-                if (translation is not null)
+                WordWithTranslations? wordWithTranslations = await _httpClient.GetFromJsonAsync<WordWithTranslations?>($"api/Translator/TranslateWord?word={word}");
+                if (wordWithTranslations is not null)
                 {
-                    return translation;
+                    return wordWithTranslations;
                 }
             }
 

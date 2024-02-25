@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Objects.Entities.Translator
 {
-    public class TranslatorWordResponse
+    public class WordWithTranslations
     {
         public int Id { get; set; }
         public string DisplaySource { get; set; } = null!;

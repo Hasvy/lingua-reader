@@ -53,9 +53,9 @@ namespace BlazorServer
 
             //modelBuilder.Entity<SavedWord>(entity =>
             //{
-            //    entity.HasOne<TranslatorWordResponse>()
+            //    entity.HasOne<WordWithTranslations>()
             //        .WithMany(twr => twr.Id)
-            //        .HasForeignKey<TranslatorWordResponse>(w => w.Id);
+            //        .HasForeignKey<WordWithTranslations>(w => w.Id);
             //});
 
             //modelBuilder.Entity<BookSection>()

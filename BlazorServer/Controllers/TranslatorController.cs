@@ -55,7 +55,7 @@ namespace BlazorServer.Controllers
 
         [HttpGet]
         [Route("api/Translator/TranslateWord")]
-        public async Task<ActionResult<TranslatorWordResponse?>> TranslateWord(string word)
+        public async Task<ActionResult<WordWithTranslations?>> TranslateWord(string word)
         {
             existedWordId = 0;
             var translatorWordResp = await GetTranslationFromDb(word);
@@ -89,7 +89,7 @@ namespace BlazorServer.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                List<TranslatorWordResponse>? result = await response.Content.ReadFromJsonAsync<List<TranslatorWordResponse>>();
+                List<WordWithTranslations>? result = await response.Content.ReadFromJsonAsync<List<WordWithTranslations>>();
                 if (result is not null)
                 {
                     var firstResult = result.FirstOrDefault();
@@ -110,21 +110,21 @@ namespace BlazorServer.Controllers
             }
         }
 
-        private async Task<TranslatorWordResponse?> GetTranslationFromDb(string word)       //TODO divide word saving to different language database and search in target language db
+        private async Task<WordWithTranslations?> GetTranslationFromDb(string word)       //TODO divide word saving to different language database and search in target language db
         {
-            var translatorWordResp = _dictionaryDbContext.Words.SingleOrDefault(w => w.DisplaySource == word && w.Language == _bookLang);
-            if (translatorWordResp is not null)
+            var wordWithTranslations = _dictionaryDbContext.Words.SingleOrDefault(w => w.DisplaySource == word && w.Language == _bookLang);
+            if (wordWithTranslations is not null)
             {
-                existedWordId = translatorWordResp.Id;      //This will used in PostTranslationToDb to decide if word exist or not
-                IList<WordTranslation> wordTranslations = _dictionaryDbContext.Translations.Where(t => t.WordId == translatorWordResp.Id && t.Language == _targetLang).ToList();
+                existedWordId = wordWithTranslations.Id;      //This will used in PostTranslationToDb to decide if word exist or not
+                IList<WordTranslation> wordTranslations = _dictionaryDbContext.Translations.Where(t => t.WordId == wordWithTranslations.Id && t.Language == _targetLang).ToList();
                 if (!wordTranslations.Any())
                 {
                     return null;
                 }
-                translatorWordResp.Translations = wordTranslations;
+                wordWithTranslations.Translations = wordTranslations;
                 var user = await _userManager.GetUserAsync(User);
-                translatorWordResp.IsWordSaved = _appDbContext.SavedWords.Any(w => w.UserId.ToString() == user.Id && w.WordId == translatorWordResp.Id);
-                return translatorWordResp;
+                wordWithTranslations.IsWordSaved = _appDbContext.SavedWords.Any(w => w.UserId.ToString() == user.Id && w.WordId == wordWithTranslations.Id);
+                return wordWithTranslations;
             }
             else
             {
@@ -133,14 +133,14 @@ namespace BlazorServer.Controllers
             }
         }
 
-        private ActionResult<TranslatorWordResponse> PostTranslationToDb(TranslatorWordResponse response)
+        private ActionResult<WordWithTranslations> PostTranslationToDb(WordWithTranslations wordWithTranslations)
         {
             //TODO dont put word in db if it does not contain any translation
             //TODO put word in db in right language, not in english (before try to change translation logic)
             if (ModelState.IsValid)
             {
                 //bool isWordExist = _dictionaryDbContext.Words.Contains();
-                foreach (var translation in response.Translations)
+                foreach (var translation in wordWithTranslations.Translations)
                 {
                     translation.Language = _targetLang;
                     if (existedWordId != 0)         //If word already exist in Db, FK of translations changes to it, so word is not duplicated in DB
@@ -151,31 +151,31 @@ namespace BlazorServer.Controllers
                 }
                 if (existedWordId == 0)
                 {
-                    _dictionaryDbContext.Words.Add(response);       //TODO Fix saving deutsch words in english, so them wont found because it searching german word, in db words in eng
+                    _dictionaryDbContext.Words.Add(wordWithTranslations);       //TODO Fix saving deutsch words in english, so them wont found because it searching german word, in db words in eng
                 }
                 else
                 {
-                    response.Id = existedWordId;
+                    wordWithTranslations.Id = existedWordId;
                 }
                 int updNumber = _dictionaryDbContext.SaveChanges();
                 if (updNumber > 0)
                 {
-                    return Ok(response);
+                    return Ok(wordWithTranslations);
                 }
             }
 
             return BadRequest();
         }
 
-        private async Task<TranslatorWordResponse?> GetEngTranslation(string word)
+        private async Task<WordWithTranslations?> GetEngTranslation(string word)
         {
             HttpResponseMessage response = await ConstructAndSendQuery(word, _bookLang, _intermediateLang);
             if (response.IsSuccessStatusCode)
             {
-                List<TranslatorWordResponse>? result = await response.Content.ReadFromJsonAsync<List<TranslatorWordResponse>>();
+                List<WordWithTranslations>? result = await response.Content.ReadFromJsonAsync<List<WordWithTranslations>>();
                 if (result is not null)
                 {
-                    TranslatorWordResponse? wordResponse = result.FirstOrDefault();
+                    WordWithTranslations? wordResponse = result.FirstOrDefault();
                     if (wordResponse is not null)
                     {
                         return wordResponse;

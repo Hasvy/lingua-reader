@@ -10,7 +10,7 @@ namespace BlazorApp.Components.Translator
         [Inject] IJSRuntime JS { get; set; } = null!;
         [Inject] WordsService WordsService { get; set; } = null!;
         [Parameter] public WordInfo WordInfo { get; set; }
-        [Parameter] public TranslatorWordResponse? ResponseContent { get; set; }
+        [Parameter] public WordWithTranslations? WordWithTranslations { get; set; }
         [Parameter] public EventCallback SpeakWordCallback { get; set; }
         [Parameter] public bool Visible { get; set; } = false;
         [Parameter] public bool isSpeaking { get; set; } = false;
@@ -39,13 +39,13 @@ namespace BlazorApp.Components.Translator
         private void ProcessResponse()
         {
             //Stopwatch stopwatch = Stopwatch.StartNew();
-            if (ResponseContent is not null)
+            if (WordWithTranslations is not null)
             {
-                mainTranslation = ResponseContent.Translations.FirstOrDefault();
+                mainTranslation = WordWithTranslations.Translations.FirstOrDefault();
 
                 if (mainTranslation != null)
                 {
-                    dict = ResponseContent.Translations
+                    dict = WordWithTranslations.Translations
                         .GroupBy(t => t.PosTag)
                         .ToDictionary(
                             group => group.Key,
@@ -82,17 +82,17 @@ namespace BlazorApp.Components.Translator
         private async Task AddWord()
         {
             _isSaving = true;
-            bool result = await WordsService.SaveWord(ResponseContent);
+            bool result = await WordsService.SaveWord(WordWithTranslations);
             if (result is true)
-                ResponseContent.IsWordSaved = true;
+                WordWithTranslations.IsWordSaved = true;
             _isSaving = false;
         }
         private async Task DeleteWord()
         {
             _isDeleting = true;
-            bool result = await WordsService.DeleteWord(ResponseContent);
+            bool result = await WordsService.DeleteWord(WordWithTranslations);
             if (result is true)
-                ResponseContent.IsWordSaved = false;
+                WordWithTranslations.IsWordSaved = false;
             _isDeleting = false;
         }
     }
