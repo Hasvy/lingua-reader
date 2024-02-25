@@ -9,7 +9,7 @@ namespace BlazorApp.Pages.MainPages
     {
         [Inject] HttpInterceptorService HttpInterceptorService { get; set; } = null!;
         [Inject] WordsService WordsService { get; set; } = null!;
-        private List<TranslatorWordResponse> usersWords = new List<TranslatorWordResponse>();
+        private List<WordWithTranslations> usersWords = new List<WordWithTranslations>();
         protected override async Task OnInitializedAsync()
         {
             HttpInterceptorService.RegisterEvent();

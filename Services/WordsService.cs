@@ -20,9 +20,9 @@ namespace Services
             _notificationService = notificationService;
         }
 
-        public async Task<bool> SaveWord(TranslatorWordResponse translatorWordResponse)
+        public async Task<bool> SaveWord(WordWithTranslations wordWithTranslations)
         {
-            var result = await _httpClient.PostAsJsonAsync("api/words/SaveWord", translatorWordResponse.Id);    //TODO dont allow to a user to send more than 1 query, save more than 1 word
+            var result = await _httpClient.PostAsJsonAsync("api/words/SaveWord", wordWithTranslations.Id);
             if (result.IsSuccessStatusCode)
             {
                 _notificationService.Notify(NotificationSeverity.Success, "Word has been saved");
@@ -35,9 +35,9 @@ namespace Services
             }
         }
 
-        public async Task<bool> DeleteWord(TranslatorWordResponse translatorWordResponse)
+        public async Task<bool> DeleteWord(WordWithTranslations wordWithTranslations)
         {
-            var result = await _httpClient.DeleteAsync($"api/words/DeleteWord/{translatorWordResponse.Id}");
+            var result = await _httpClient.DeleteAsync($"api/words/DeleteWord/{wordWithTranslations.Id}");
             if (result.IsSuccessStatusCode)
             {
                 _notificationService.Notify(NotificationSeverity.Info, "Word has been deleted");
@@ -50,9 +50,9 @@ namespace Services
             }
         }
 
-        public async Task<List<TranslatorWordResponse>> GetUsersWords()
+        public async Task<List<WordWithTranslations>?> GetUsersWords()
         {
-            var result = await _httpClient.GetFromJsonAsync<List<TranslatorWordResponse>>("api/words/GetUsersWords");
+            var result = await _httpClient.GetFromJsonAsync<List<WordWithTranslations>>("api/words/GetUsersWords");
             if (result is not null)
             {
                 return result;

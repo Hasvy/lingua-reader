@@ -27,7 +27,7 @@ namespace BlazorApp.Components.DisplayBooks
         private bool isBusy = false;
         private bool isLoading = false;
         private WordInfo? wordInfo = new WordInfo();
-        private TranslatorWordResponse? translatorWordResponse;
+        private WordWithTranslations? translatorWordResponse;
         private string pressedKey = string.Empty;
 
         protected override async Task OnInitializedAsync()
@@ -40,7 +40,7 @@ namespace BlazorApp.Components.DisplayBooks
         {
             visible = false;
             wordInfo = await JS.InvokeAsync<WordInfo>("getSelectedWord", host);
-            if (!string.IsNullOrWhiteSpace(wordInfo.Word) && wordInfo.Word.Length < 9)
+            if (!string.IsNullOrWhiteSpace(wordInfo.Word) && wordInfo.Word.Length < 30)
             {
                 visible = true;          //ShowTranslatorWindow, unhide
                 isLoading = true;

@@ -7,7 +7,7 @@
     {
         <RadzenRow>
             <RadzenColumn Size="10">
-                @if (ResponseContent is not null)
+                @if (WordWithTranslations is not null)
                 {
                     if (mainTranslation is not null)
                     {
@@ -33,7 +33,7 @@
                     <RadzenButton IsBusy="@isSpeaking" Icon="volume_up" Variant="Variant.Text" Click="SpeakWord" />
                 </RadzenRow>
                 <RadzenRow>
-                    @if (ResponseContent.IsWordSaved)
+                    @if (WordWithTranslations.IsWordSaved)
                     {
                         <RadzenButton IsBusy="@_isDeleting" Icon="done" Variant="Variant.Text" Click="DeleteWord" />
                     }

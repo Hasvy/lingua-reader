@@ -14,7 +14,7 @@ namespace BlazorServer
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<TranslatorWordResponse>(entity =>
+            modelBuilder.Entity<WordWithTranslations>(entity =>
             {
                 entity.HasKey(twr => twr.Id);
                 entity.HasMany(wt => wt.Translations)
@@ -45,7 +45,7 @@ namespace BlazorServer
             //modelBuilder.Entity<TranslationRussian>().ToTable("TranslationsRussian");
         }
 
-        public DbSet<TranslatorWordResponse> Words { get; set; }
+        public DbSet<WordWithTranslations> Words { get; set; }
         public DbSet<WordTranslation> Translations { get; set; }
         //public DbSet<TranslationEnglish> TranslationsEnglish { get; set; }
         //public DbSet<TranslationGerman> TranslationsGerman { get; set; }
