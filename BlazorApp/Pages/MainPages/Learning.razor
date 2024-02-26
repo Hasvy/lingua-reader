@@ -1,7 +1,14 @@
 ﻿@attribute [Route(Routes.Learning)]
 @attribute [Authorize]
 
-@foreach (var word in usersWords)
+@if (userWordsCount < 10)
 {
-    @($"{word.DisplaySource} \n")
+    
+}
+else
+{
+    @foreach (var word in usersWords)
+    {
+        @($"{word.DisplaySource} \n")
+    }
 }

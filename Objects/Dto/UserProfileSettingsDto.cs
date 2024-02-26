@@ -17,8 +17,11 @@ namespace Objects.Dto
         //public string NewPassword { get; set; } = null!;
         //[Compare("Password", ErrorMessage = "The new password and confirmation password do not match.")]
         //public string ConfirmNewPassword { get; set; } = null!;
-        [Required(ErrorMessage = "Language is required")]
-        public string UserMainLang { get; set; } = null!;
+        [Required(ErrorMessage = "Native language is required")]
+        public string NativeLanguage { get; set; } = null!;
+        
+        [Required(ErrorMessage = "Language to learn is required")]
+        public string DesiredLanguage { get; set; } = null!;
     }
 
     public class UserProfileResponseDto

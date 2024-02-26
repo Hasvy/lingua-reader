@@ -38,7 +38,8 @@ namespace BlazorServer.Controllers
                 return BadRequest();
             var user = new ApplicationUser { UserName = "user_" + Guid.NewGuid().ToString(),
                                              Email = userForRegistration.Email,
-                                             UserMainLanguage = userForRegistration.UserMainLang };
+                                             NativeLanguage = userForRegistration.NativeLanguage,
+                                             DesiredLanguage = userForRegistration.DesiredLanguage };
             var result = await _userManager.CreateAsync(user, userForRegistration.Password);
             if (!result.Succeeded)
             {

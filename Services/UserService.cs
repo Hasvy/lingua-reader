@@ -18,13 +18,14 @@ namespace Services
             _httpClient = httpClient;
         }
 
-        public async Task<string> GetUserMainLanguage()
+        public async Task<string> GetNativeLanguage()
         {
-            string userMainLang = string.Empty;
-            var response = await _httpClient.GetAsync("api/user/GetUserMainLanguage");
-            if (response != null)
-                userMainLang = await response.Content.ReadAsStringAsync();
-            return userMainLang;
+            return await GetLanguage("Native");
+        }
+
+        public async Task<string> GetDesiredLanguage()
+        {
+            return await GetLanguage("Desired");
         }
 
         public async Task<UserProfileResponseDto> ChangeUserSettings(UserProfileSettingsDto userProfileSettingsDto)
@@ -41,6 +42,15 @@ namespace Services
             {
                 return new UserProfileResponseDto { IsSuccessfulChange = false };
             }
+        }
+
+        private async Task<string> GetLanguage(string languageType)     //TODO exceptions if languages are not set
+        {
+            string language = string.Empty;
+            var response = await _httpClient.GetAsync($"api/user/Get{languageType}Language");
+            if (response != null)
+                language = await response.Content.ReadAsStringAsync();
+            return language;
         }
     }
 }

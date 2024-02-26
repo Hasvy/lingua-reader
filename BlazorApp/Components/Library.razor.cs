@@ -88,13 +88,13 @@ namespace BlazorApp.Components
                 NotificationService.Notify(NotificationSeverity.Error, "Please specify a language of the book");
                 return;
             }
-            //var userMainLang = await LocalStorageService.GetItemAsStringAsync("UserMainLang");
+            //var userMainLang = await LocalStorageService.GetItemAsStringAsync("NativeLanguage");
             //if (string.IsNullOrEmpty(userMainLang))
             //{
             //    NotificationService.Notify(NotificationSeverity.Error, "Please specify your language in settings");
             //    return;
             //}
-            string userMainLang = await UserService.GetUserMainLanguage();
+            string userMainLang = await UserService.GetNativeLanguage();
             await LocalStorageService.SetItemAsStringAsync("bookFormat", choosenBook.Format);
             NavigationManager.NavigateTo("read/" + choosenBook.BookId + $"?lang={choosenBook.Language}");
             //NavigationManager.NavigateTo("read/" + choosenBook.BookId + $"?bookFormat={choosenBook.Format}", true);

@@ -46,9 +46,7 @@ namespace BlazorServer.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
             if (user is null)
-            {
                 return BadRequest();
-            }
 
             var wordToDelete = await _appDbContext.SavedWords.SingleOrDefaultAsync(w => w.UserId.ToString() == user.Id && w.WordId == id);
             if (wordToDelete is null)
@@ -60,30 +58,93 @@ namespace BlazorServer.Controllers
         }
 
         [HttpGet]
-        [Route("api/words/GetUsersWords")]
-        public async Task<IActionResult> GetUsersWords()
+        [Route("api/words/GetWordsCount")]
+        public async Task<IActionResult> GetWordsCount()
+        {
+            var user = await _userManager.GetUserAsync(User);       //TODO GetUser method
+            if (user is null)
+                return BadRequest();
+
+            var usersWordsIds = _appDbContext.SavedWords.Where(w => w.UserId.ToString() == user.Id).ToList();
+            int wordsCount = (from savedWord in usersWordsIds
+                              join word in _dictionaryDbContext.Words
+                                  on savedWord.WordId equals word.Id
+                              where word.Language == user.DesiredLanguage
+                              select word).Count();
+            return Ok(wordsCount);
+        }
+
+        [HttpGet]
+        [Route("api/words/GetWordsToLearn")]
+        public async Task<IActionResult> GetWordsToLearn()
+        {
+            //TODO
+            return null;
+        }
+
+        [HttpGet]
+        [Route("api/words/GetAllUsersWords")]
+        public async Task<IActionResult> GetAllUsersWords()
         {
             var user = await _userManager.GetUserAsync(User);
             if (user is null)
-            {
                 return BadRequest();
-            }
+
             //Find all words that user has
             var usersWordsIds = _appDbContext.SavedWords.Where(w => w.UserId.ToString() == user.Id).ToList();
             //Join them with the words table
-            var query = from savedWord in usersWordsIds
-                        join translatorWordResponse in _dictionaryDbContext.Words
-                        on savedWord.WordId equals translatorWordResponse.Id
-                        select translatorWordResponse;
-                        //{
-                        //    Id = savedWord.WordId,
-                        //    Language = translatorWordResponse.Language,
-                        //    DisplaySource = translatorWordResponse.DisplaySource,
-                        //    UserId = savedWord.UserId
-                        //};
+            var completeQuery = from savedWord in usersWordsIds
+                                join wordWithTranslations in _dictionaryDbContext.Words
+                                    .Where(w => w.Language == user.DesiredLanguage)
+                                    .DefaultIfEmpty()
+                                    on savedWord.WordId equals wordWithTranslations?.Id
+                                join translation in _dictionaryDbContext.Translations
+                                    .Where(t => t.Language == user.NativeLanguage)
+                                    .DefaultIfEmpty()
+                                    on savedWord.WordId equals translation.WordId into translationsGroup
+                                select new WordWithTranslations
+                                {
+                                    Id = wordWithTranslations.Id,
+                                    DisplaySource = wordWithTranslations.DisplaySource,
+                                    Translations = translationsGroup.ToList(),
+                                    Language = wordWithTranslations.Language,
+                                    IsWordSaved = wordWithTranslations.IsWordSaved
+                                };
 
-            
-            var usersWords = query.ToList();
+            //var words = from savedWord in usersWordsIds
+            //            join word in _dictionaryDbContext.Words.DefaultIfEmpty()
+            //                on savedWord.WordId equals word.Id
+            //            where word.Language == user.DesiredLanguage
+            //            select word;
+
+            //var completeQuery = from wordWithTranslations in words
+            //                    join translation in _dictionaryDbContext.Translations.DefaultIfEmpty()
+            //                        on wordWithTranslations.Id equals translation.WordId into translationGroup
+            //                    from translation in translationGroup.DefaultIfEmpty()
+            //                    where translation.Language == user.NativeLanguage
+            //                    select wordWithTranslations;
+
+            //var query = from a in (from savedWord in usersWordsIds
+            //            join word in _dictionaryDbContext.Words
+            //                //.Where(w => w.Language == user.DesiredLanguage)
+            //                //.DefaultIfEmpty()
+            //                on savedWord.WordId equals word.Id
+            //            where word.Language == user.DesiredLanguage
+            //            select word).DefaultIfEmpty()
+            //            join translation in _dictionaryDbContext.Translations
+            //                on a.Id equals translation.WordId
+            //            where translation.Language == user.DesiredLanguage
+            //            //from word in wordGroup.DefaultIfEmpty()
+            //            //join translation in _dictionaryDbContext.Translations
+            //            //    .Where(t => t.Language == user.NativeLanguage)
+            //            //    .DefaultIfEmpty()
+            //            //    on savedWord.WordId equals translation.Id into translationGroup
+            //            //from translation in translationGroup.DefaultIfEmpty()
+            //            //where word.Language == user.DesiredLanguage
+            //            //where word.Language == user.NativeLanguage
+            //            select a;
+
+            var usersWords = completeQuery.ToList();
             return Ok(usersWords);
         }
     }

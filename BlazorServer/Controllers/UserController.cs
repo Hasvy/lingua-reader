@@ -16,12 +16,23 @@ namespace BlazorServer.Controllers
         }
 
         [HttpGet]
-        [Route("api/user/GetUserMainLanguage")]
-        public async Task<string> GetUserMainLang()
+        [Route("api/user/GetNativeLanguage")]
+        public async Task<string> GetNativeLanguage()
         {
             var user = await _userManager.GetUserAsync(User);
             if (user is not null)
-                return user.UserMainLanguage ?? string.Empty;
+                return user.NativeLanguage ?? string.Empty;
+            else
+                return string.Empty;
+        }
+
+        [HttpGet]
+        [Route("api/user/GetDesiredLanguage")]
+        public async Task<string> GetDesiredLanguage()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user is not null)
+                return user.DesiredLanguage ?? string.Empty;
             else
                 return string.Empty;
         }
@@ -32,10 +43,12 @@ namespace BlazorServer.Controllers
         {
             if (userProfileSettingsDto == null || !ModelState.IsValid)
                 return BadRequest();
+
             var user = await _userManager.GetUserAsync(User);
             if (user is not null)
             {
-                user.UserMainLanguage = userProfileSettingsDto.UserMainLang;
+                user.NativeLanguage = userProfileSettingsDto.NativeLanguage;
+                user.DesiredLanguage = userProfileSettingsDto.DesiredLanguage;
                 var result = await _userManager.UpdateAsync(user);
                 if (result.Succeeded)
                     return Ok();
