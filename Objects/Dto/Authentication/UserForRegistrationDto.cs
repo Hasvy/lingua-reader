@@ -16,8 +16,10 @@ namespace Objects.Dto.Authentication
         public string Password { get; set; } = null!;
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; } = null!;
-        [Required(ErrorMessage = "Language is required")]
-        public string UserMainLang { get; set; } = null!;
+        [Required(ErrorMessage = "Native language is required")]
+        public string NativeLanguage { get; set; } = null!;
+        [Required(ErrorMessage = "Language to learn is required")]
+        public string DesiredLanguage { get; set; } = null!;
     }
 
     public class RegistrationResponseDto

@@ -1,7 +1,10 @@
 ﻿@using Objects.Constants;
 
-<RadzenDropDown @bind-Value="UserMainLang" TValue="string" Data="@ConstLanguages.TargetLanguagesSet">
+<RadzenDropDown @bind-Value="Language" TValue="string" Data="@Data">
     <Template Context="language">
-        @ConstLanguages.GetFullLang(language) <img src="@ConstLanguages.GetFlagPath(language)" />
+        @if (language != string.Empty)
+        {
+            @ConstLanguages.GetFullLang(language) <img src="@ConstLanguages.GetFlagPath(language)" />
+        }
     </Template>
 </RadzenDropDown>

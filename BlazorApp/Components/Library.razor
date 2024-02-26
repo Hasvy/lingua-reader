@@ -43,7 +43,7 @@ else
                     </RadzenColumn>
                     <RadzenColumn Size="2">
                         <RadzenButton Icon="delete" Variant="Variant.Text" ButtonStyle="ButtonStyle.Danger" @onclick:stopPropagation="true" Click="@(() => DeleteBook(bookCover))" />
-                        <RadzenDropDown class="custom-dropdown" @bind-Value="bookCover.Language" TValue="string" Data="ConstLanguages.BookLanguagesSet" Change="@(() => ChangeBookLang(bookCover))">
+                        <RadzenDropDown class="custom-dropdown" @bind-Value="bookCover.Language" TValue="string" Data="ConstLanguages.DesiredLanguagesSet" Change="@(() => ChangeBookLang(bookCover))">
                             <Template Context="language">
                                 <img src="@ConstLanguages.GetFlagPath(language)" />
                             </Template>

@@ -10,6 +10,7 @@ namespace Objects.Entities
 {
     public class ApplicationUser : IdentityUser
     {
-        public virtual string? UserMainLanguage { get; set; }
+        public string NativeLanguage { get; set; } = null!;
+        public string DesiredLanguage { get; set; } = null!;
     }
 }

@@ -16,11 +16,12 @@ namespace BlazorApp.Pages.MainPages
         protected override async Task OnInitializedAsync()
         {
             HttpInterceptorService.RegisterEvent();
-            user.UserMainLang = await UserService.GetUserMainLanguage();
+            user.NativeLanguage = await UserService.GetNativeLanguage();
+            user.DesiredLanguage = await UserService.GetDesiredLanguage();
             await base.OnInitializedAsync();
         }
 
-        private async Task ConfirmChanges()
+        private async Task ConfirmChanges()     //TODO check that languages are not same
         {
             var result = await UserService.ChangeUserSettings(user);
             if (result.IsSuccessfulChange is true)

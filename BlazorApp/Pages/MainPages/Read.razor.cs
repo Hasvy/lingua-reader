@@ -19,8 +19,8 @@ namespace BlazorApp.Pages.MainPages
         {
             ParseQueryString();
             BookFormat = await LocalStorageService.GetItemAsStringAsync("bookFormat");      //19-30 msec
-            //UserMainLang = await LocalStorageService.GetItemAsStringAsync("UserMainLang");
-            UserMainLang = await UserService.GetUserMainLanguage();
+            //NativeLanguage = await LocalStorageService.GetItemAsStringAsync("NativeLanguage");
+            UserMainLang = await UserService.GetNativeLanguage();
             await base.OnInitializedAsync();
         }
 

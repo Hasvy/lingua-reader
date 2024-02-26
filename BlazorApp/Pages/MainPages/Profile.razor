@@ -21,10 +21,18 @@
             <RadzenStack Gap="1rem" class="rz-p-sm-8">
                 <RadzenFormField Text="Your native language" Variant="Variant.Outlined">
                     <ChildContent>
-                        <LanguageDropdown @bind-UserMainLang="@user.UserMainLang" />
+                        <LanguageDropdown @bind-Language="@user.NativeLanguage" Data="@ConstLanguages.NativeLanguagesSet"/>
                     </ChildContent>
                     <Helper>
-                        <ValidationMessage For="@(() => user.UserMainLang)" />
+                        <ValidationMessage For="@(() => user.NativeLanguage)" />
+                    </Helper>
+                </RadzenFormField>
+                <RadzenFormField Text="Language you want to learn" Variant="Variant.Outlined">
+                    <ChildContent>
+                        <LanguageDropdown @bind-Language="@user.DesiredLanguage" Data="@ConstLanguages.DesiredLanguagesSet" />
+                    </ChildContent>
+                    <Helper>
+                        <ValidationMessage For="@(() => user.DesiredLanguage)" />
                     </Helper>
                 </RadzenFormField>
                 <RadzenRow AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center">

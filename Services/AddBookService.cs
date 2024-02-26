@@ -148,7 +148,7 @@ namespace Services
             EpubMetadataLanguage? metadata = epubBook.Schema.Package.Metadata.Languages.FirstOrDefault();
             if (metadata is not null)
             {
-                return ConstLanguages.BookLanguagesSet.FirstOrDefault(l => l == metadata.Language, ConstLanguages.Undefined);
+                return ConstLanguages.DesiredLanguagesSet.FirstOrDefault(l => l == metadata.Language, ConstLanguages.Undefined);
             }
             else
             {

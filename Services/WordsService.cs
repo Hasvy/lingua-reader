@@ -50,9 +50,14 @@ namespace Services
             }
         }
 
-        public async Task<List<WordWithTranslations>?> GetUsersWords()
+        public async Task<int> GetWordsCount()
         {
-            var result = await _httpClient.GetFromJsonAsync<List<WordWithTranslations>>("api/words/GetUsersWords");
+            return await _httpClient.GetFromJsonAsync<int>("api/words/GetWordsCount");
+        }
+
+        public async Task<List<WordWithTranslations>?> GetAllUsersWords()
+        {
+            var result = await _httpClient.GetFromJsonAsync<List<WordWithTranslations>>("api/words/GetAllUsersWords");
             if (result is not null)
             {
                 return result;

@@ -39,8 +39,8 @@ namespace Objects.Constants
         public const string UkrainianFull = "Українська";
         public const string FrenchFull = "Français";
 
-        public static readonly string[] BookLanguagesSet = new string[] { English, German, Russian, Czech, Italian, Spanish };
-        public static readonly string[] TargetLanguagesSet = new string[] { English, German, Russian, Czech, Italian, Spanish, Ukrainian, French };
+        public static readonly string[] NativeLanguagesSet = new string[] { English, German, Russian, Czech, Italian, Spanish, Ukrainian, French };
+        public static readonly string[] DesiredLanguagesSet = new string[] { English, German, Russian, Czech, Italian, Spanish };
 
         public static string GetFlagPath(string language)
         {

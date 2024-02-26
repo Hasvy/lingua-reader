@@ -7,23 +7,24 @@ namespace BlazorApp.Components
 {
     public partial class LanguageDropdown : ComponentBase
     {
-        [Parameter] public string? UserMainLang
+        [Parameter] public string? Language
         { 
-        get => _userMainLang;
+        get => _language;
         set
             {
-                if (_userMainLang == value)
+                if (_language == value)
                     return;
 
-                _userMainLang = value;
-                UserMainLangChanged.InvokeAsync(value);
+                _language = value;
+                LanguageChanged.InvokeAsync(value);
             }
         }
-        [Parameter] public EventCallback<string> UserMainLangChanged { get; set; }
-        private string _userMainLang;
+        [Parameter] public string[] Data { get; set; } = null!;
+        [Parameter] public EventCallback<string> LanguageChanged { get; set; }
+        private string _language = string.Empty;
         private async Task ValueChanged()
         {
-            await UserMainLangChanged.InvokeAsync(UserMainLang);
+            await LanguageChanged.InvokeAsync(Language);
         }
     }
 }
