@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Objects.Dto;
 using Objects.Entities;
 using Objects.Entities.Translator;
 using Objects.Entities.Words;
 using System;
+using System.Diagnostics;
 
 namespace BlazorServer.Controllers
 {
@@ -57,29 +59,56 @@ namespace BlazorServer.Controllers
             return Ok();
         }
 
-        [HttpGet]
-        [Route("api/words/GetWordsCount")]
-        public async Task<IActionResult> GetWordsCount()
+        //[HttpGet]
+        //[Route("api/wordsWithTranslations/GetWordsCount")]
+        private int GetWordsCount(ApplicationUser user)
         {
-            var user = await _userManager.GetUserAsync(User);       //TODO GetUser method
-            if (user is null)
-                return BadRequest();
-
             var usersWordsIds = _appDbContext.SavedWords.Where(w => w.UserId.ToString() == user.Id).ToList();
             int wordsCount = (from savedWord in usersWordsIds
                               join word in _dictionaryDbContext.Words
                                   on savedWord.WordId equals word.Id
                               where word.Language == user.DesiredLanguage
                               select word).Count();
-            return Ok(wordsCount);
+            return wordsCount;
         }
 
         [HttpGet]
         [Route("api/words/GetWordsToLearn")]
         public async Task<IActionResult> GetWordsToLearn()
         {
-            //TODO
-            return null;
+            var user = await _userManager.GetUserAsync(User);
+            if (user is null)
+                return BadRequest();
+
+            int wordsCount = GetWordsCount(user);
+            if (wordsCount < 10)
+            {
+                return BadRequest( new WordsToLearnDto { WordsCount = wordsCount });
+            }
+
+            int count = 10;
+            var usersWordsIds = _appDbContext.SavedWords.Where(w => w.UserId.ToString() == user.Id);
+            var wordsWithTranslations = JoinWordsWithTranslations(usersWordsIds, user);
+            wordsWithTranslations = wordsWithTranslations.OrderBy(r => Guid.NewGuid()).Take(count).ToList();
+            List<WordToLearn> wordsToLearn = new List<WordToLearn>();
+            foreach (var word in wordsWithTranslations)
+            {
+                wordsToLearn.Add(new WordToLearn { WordWithTranslations = word });
+                //var variantToAnswer = new VariantToAnswer
+                //{
+                //    Text = word.Translations.First(),
+                //    isRight = true
+                //};
+                //var wordToLearn = new WordToLearn { WordWithTranslations = word };
+                //wordToLearn.VariantsToAnswer.Add(variantToAnswer);
+                //wordsToLearn.Add(wordToLearn);
+            }
+            foreach (var word in wordsToLearn)
+            {
+                word.WrongVariants = GetWrongVariants(3, word, user);
+                //word.VariantsToAnswer.AddRange((IEnumerable<VariantToAnswer>)word.WrongVariants.ToList());
+            }
+            return Ok(new WordsToLearnDto { WordsCount = wordsCount, WordsToLearn = wordsToLearn});
         }
 
         [HttpGet]
@@ -90,62 +119,70 @@ namespace BlazorServer.Controllers
             if (user is null)
                 return BadRequest();
 
-            //Find all words that user has
+            //Find all wordsWithTranslations that user has
             var usersWordsIds = _appDbContext.SavedWords.Where(w => w.UserId.ToString() == user.Id).ToList();
-            //Join them with the words table
-            var completeQuery = from savedWord in usersWordsIds
-                                join wordWithTranslations in _dictionaryDbContext.Words
-                                    .Where(w => w.Language == user.DesiredLanguage)
-                                    .DefaultIfEmpty()
-                                    on savedWord.WordId equals wordWithTranslations?.Id
-                                join translation in _dictionaryDbContext.Translations
-                                    .Where(t => t.Language == user.NativeLanguage)
-                                    .DefaultIfEmpty()
-                                    on savedWord.WordId equals translation.WordId into translationsGroup
-                                select new WordWithTranslations
-                                {
-                                    Id = wordWithTranslations.Id,
-                                    DisplaySource = wordWithTranslations.DisplaySource,
-                                    Translations = translationsGroup.ToList(),
-                                    Language = wordWithTranslations.Language,
-                                    IsWordSaved = wordWithTranslations.IsWordSaved
-                                };
-
-            //var words = from savedWord in usersWordsIds
-            //            join word in _dictionaryDbContext.Words.DefaultIfEmpty()
-            //                on savedWord.WordId equals word.Id
-            //            where word.Language == user.DesiredLanguage
-            //            select word;
-
-            //var completeQuery = from wordWithTranslations in words
-            //                    join translation in _dictionaryDbContext.Translations.DefaultIfEmpty()
-            //                        on wordWithTranslations.Id equals translation.WordId into translationGroup
-            //                    from translation in translationGroup.DefaultIfEmpty()
-            //                    where translation.Language == user.NativeLanguage
-            //                    select wordWithTranslations;
-
-            //var query = from a in (from savedWord in usersWordsIds
-            //            join word in _dictionaryDbContext.Words
-            //                //.Where(w => w.Language == user.DesiredLanguage)
-            //                //.DefaultIfEmpty()
-            //                on savedWord.WordId equals word.Id
-            //            where word.Language == user.DesiredLanguage
-            //            select word).DefaultIfEmpty()
-            //            join translation in _dictionaryDbContext.Translations
-            //                on a.Id equals translation.WordId
-            //            where translation.Language == user.DesiredLanguage
-            //            //from word in wordGroup.DefaultIfEmpty()
-            //            //join translation in _dictionaryDbContext.Translations
-            //            //    .Where(t => t.Language == user.NativeLanguage)
-            //            //    .DefaultIfEmpty()
-            //            //    on savedWord.WordId equals translation.Id into translationGroup
-            //            //from translation in translationGroup.DefaultIfEmpty()
-            //            //where word.Language == user.DesiredLanguage
-            //            //where word.Language == user.NativeLanguage
-            //            select a;
-
+            //Join them with the wordsWithTranslations table
+            var completeQuery = JoinWordsWithTranslations(usersWordsIds, user);
             var usersWords = completeQuery.ToList();
             return Ok(usersWords);
+
+            //var completeQuery = from savedWord in usersWordsIds
+            //                    join wordWithTranslations in _dictionaryDbContext.Words
+            //                        .Where(w => w.Language == user.DesiredLanguage)
+            //                        .DefaultIfEmpty()
+            //                        on savedWord.WordId equals wordWithTranslations?.Id
+            //                    join translation in _dictionaryDbContext.Translations
+            //                        .Where(t => t.Language == user.NativeLanguage)
+            //                        .DefaultIfEmpty()
+            //                        on savedWord.WordId equals translation.WordId into translationsGroup
+            //                    select new WordWithTranslations
+            //                    {
+            //                        Id = wordWithTranslations.Id,
+            //                        DisplaySource = wordWithTranslations.DisplaySource,
+            //                        Translations = translationsGroup.ToList(),
+            //                        Language = wordWithTranslations.Language,
+            //                        IsWordSaved = wordWithTranslations.IsWordSaved
+            //                    };
+        }
+
+        private IEnumerable<WordWithTranslations> JoinWordsWithTranslations(IEnumerable<SavedWord> savedWords, ApplicationUser user)
+        {
+            return from savedWord in savedWords
+                   join wordWithTranslations in _dictionaryDbContext.Words
+                       .Where(w => w.Language == user.DesiredLanguage)
+                       .DefaultIfEmpty()
+                       on savedWord.WordId equals wordWithTranslations?.Id
+                   join translation in _dictionaryDbContext.Translations
+                       .Where(t => t.Language == user.NativeLanguage)
+                       .DefaultIfEmpty()
+                       on savedWord.WordId equals translation.WordId into translationsGroup
+                   select new WordWithTranslations
+                   {
+                       Id = wordWithTranslations.Id,
+                       DisplaySource = wordWithTranslations.DisplaySource,
+                       Translations = translationsGroup.ToList(),
+                       Language = wordWithTranslations.Language,
+                       IsWordSaved = wordWithTranslations.IsWordSaved
+                   };
+        }
+
+        private WordTranslation[] GetWrongVariants(int count, WordToLearn wordToLearn, ApplicationUser user)
+        {
+            List<string> posTags = new List<string>();      //Types of speech of the right variant - noun, adv, verb...
+            foreach (var translation in wordToLearn.WordWithTranslations.Translations)
+            {
+                if (!posTags.Contains(translation.PosTag))
+                    posTags.Add(translation.PosTag);
+            }
+
+            return _dictionaryDbContext.Translations
+                //Get only variants in user's native language and wordsWithTranslations of the same type of speech as the right variant
+                .Where(v => v.Language == user.NativeLanguage && posTags.Contains(v.PosTag)).AsEnumerable()
+                //Prevent all right translations of the word from being in WrongVariants
+                .Where(v => !wordToLearn.WordWithTranslations.Translations.Any(t => t.DisplayTarget == v.DisplayTarget))
+                .OrderBy(r => Guid.NewGuid())
+                .Take(count)
+                .ToArray();
         }
     }
 }

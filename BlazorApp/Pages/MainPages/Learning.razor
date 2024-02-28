@@ -1,14 +1,36 @@
-﻿@attribute [Route(Routes.Learning)]
+﻿@using BlazorApp.Components.Learning
+@using Objects.Entities.Translator;
+@using Objects.Entities.Words;
+@attribute [Route(Routes.Learning)]
 @attribute [Authorize]
 
-@if (userWordsCount < 10)
+@if (_isLoading)
 {
-    
+    <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
 }
 else
 {
-    @foreach (var word in usersWords)
-    {
-        @($"{word.DisplaySource} \n")
-    }
+    <CardWithAnswers WordsToLearn="_wordsToLearn" ActualCardNumber="_actualCardNumber" ChangeCard="ChangeCard"/>
+
+@*     <RadzenDataGrid Data="@wordsToLearn" TItem="WordToLearn">
+        <Columns>
+            <RadzenDataGridColumn TItem="WordToLearn" Property="WordWithTranslations.DisplaySource" />
+            <RadzenDataGridColumn TItem="WordToLearn" Property="WordWithTranslations.Translations">
+                <Template>
+                    @foreach (var item in context.WordWithTranslations.Translations)
+                    {
+                        @item.DisplayTarget <br>
+                    }
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="WordToLearn" Property="WrongVariants">
+                <Template>
+                    @foreach (var item in context.WrongVariants)
+                    {
+                        @item.DisplayTarget <br>
+                    }
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid> *@
 }

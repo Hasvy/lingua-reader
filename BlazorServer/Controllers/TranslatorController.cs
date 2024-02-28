@@ -112,7 +112,7 @@ namespace BlazorServer.Controllers
 
         private async Task<WordWithTranslations?> GetTranslationFromDb(string word)       //TODO divide word saving to different language database and search in target language db
         {
-            var wordWithTranslations = _dictionaryDbContext.Words.SingleOrDefault(w => w.DisplaySource == word && w.Language == _bookLang);
+            var wordWithTranslations = _dictionaryDbContext.Words.SingleOrDefault(w => w.DisplaySource == word && w.Language == _bookLang);     //RODO fix language in which word is saved
             if (wordWithTranslations is not null)
             {
                 existedWordId = wordWithTranslations.Id;      //This will used in PostTranslationToDb to decide if word exist or not

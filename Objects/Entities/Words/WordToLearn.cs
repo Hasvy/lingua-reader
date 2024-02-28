@@ -9,9 +9,10 @@ namespace Objects.Entities.Words
 {
     public class WordToLearn
     {
-        public WordWithTranslations WordWithTranslations { get; set; } = new WordWithTranslations();
-        public string[] WrongVariants { get; set; } = new string[2];
+        public WordWithTranslations WordWithTranslations { get; set; } = new WordWithTranslations();    //TODO Maybe change to only one translation and word in main language properties
+        public WordTranslation[] WrongVariants { get; set; } = new WordTranslation[3];
         public string Answer { get; set; } = string.Empty;
         public bool? UserRemember { get; set; } = null;
+        public List<VariantToAnswer> VariantsToAnswer { get; set; } = new List<VariantToAnswer>();
     }
 }
