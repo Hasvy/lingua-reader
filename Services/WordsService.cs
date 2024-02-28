@@ -1,4 +1,5 @@
-﻿using Objects.Entities.Translator;
+﻿using Objects.Dto;
+using Objects.Entities.Translator;
 using Objects.Entities.Words;
 using Radzen;
 using System;
@@ -53,6 +54,11 @@ namespace Services
         public async Task<int> GetWordsCount()
         {
             return await _httpClient.GetFromJsonAsync<int>("api/words/GetWordsCount");
+        }
+
+        public async Task<WordsToLearnDto?> GetWordsToLearn()
+        {
+            return await _httpClient.GetFromJsonAsync<WordsToLearnDto>("api/words/GetWordsToLearn");
         }
 
         public async Task<List<WordWithTranslations>?> GetAllUsersWords()
