@@ -1,4 +1,5 @@
 ﻿using Objects.Dto;
+using Objects.Dto.Authentication;
 using Objects.Entities.Translator;
 using Objects.Entities.Words;
 using Radzen;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Services
@@ -50,25 +52,41 @@ namespace Services
                 return false;
             }
         }
-
-        public async Task<int> GetWordsCount()
+        public async Task<bool> DeleteWords(IList<WordWithTranslations> wordsWithTranslations)
         {
-            return await _httpClient.GetFromJsonAsync<int>("api/words/GetWordsCount");
+            var wordsIds = wordsWithTranslations.Select(w => w.Id).ToList();
+            var result = await _httpClient.PostAsJsonAsync("api/words/DeleteWords", wordsIds);
+            if (result.IsSuccessStatusCode)
+            {
+                _notificationService.Notify(NotificationSeverity.Success, "Words have been deleted");
+                return true;
+            }
+            else
+            {
+                _notificationService.Notify(NotificationSeverity.Error, "An error occurred");
+                return false;
+            }
         }
 
-        public async Task<WordsToLearnDto?> GetWordsToLearn()
+        //public async Task<int> GetWordsCount()
+        //{
+        //    return await _httpClient.GetFromJsonAsync<int>("api/words/GetWordsCount");
+        //}
+
+        public async Task<List<WordToLearn>> GetWordsToLearn()
         {
-            return await _httpClient.GetFromJsonAsync<WordsToLearnDto>("api/words/GetWordsToLearn");
+            var result = await _httpClient.GetFromJsonAsync<List<WordToLearn>>("api/words/GetWordsToLearn");
+            if (result is not null)
+                return result;
+            return new List<WordToLearn>();
         }
 
-        public async Task<List<WordWithTranslations>?> GetAllUsersWords()
+        public async Task<List<WordWithTranslations>> GetAllUsersWords()
         {
             var result = await _httpClient.GetFromJsonAsync<List<WordWithTranslations>>("api/words/GetAllUsersWords");
             if (result is not null)
-            {
                 return result;
-            }
-            return null;
+            return new List<WordWithTranslations>();
         }
     }
 }
