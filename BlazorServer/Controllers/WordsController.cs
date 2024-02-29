@@ -59,6 +59,29 @@ namespace BlazorServer.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        [Route("api/words/DeleteWords")]
+        public async Task<IActionResult> DeleteWords([FromBody] List<int> wordsToDeleteIds)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user is null)
+                return BadRequest();
+
+            var usersWordsIds = _appDbContext.SavedWords.Where(w => w.UserId.ToString() == user.Id).ToList();
+            var wordsToDelete = from savedWord in usersWordsIds
+                                join id in wordsToDeleteIds
+                                    on savedWord.WordId equals id
+                                select savedWord;
+
+            //var wordToDelete = await _appDbContext.SavedWords.Where(w => w.UserId.ToString() == user.Id && w.WordId == wordsWithTranslations.Where(p => p.Id == ));
+            if (wordsToDelete is null)
+                return NotFound();
+
+            _appDbContext.SavedWords.RemoveRange(wordsToDelete);
+            await _appDbContext.SaveChangesAsync();
+            return Ok();
+        }
+
         //[HttpGet]
         //[Route("api/wordsWithTranslations/GetWordsCount")]
         private int GetWordsCount(ApplicationUser user)
@@ -80,15 +103,15 @@ namespace BlazorServer.Controllers
             if (user is null)
                 return BadRequest();
 
-            int wordsCount = GetWordsCount(user);
-            if (wordsCount < 10)
-            {
-                return BadRequest( new WordsToLearnDto { WordsCount = wordsCount });
-            }
+            //int wordsCount = GetWordsCount(user);
+            //if (wordsCount < 10)
+            //{
+            //    return Ok( new WordsToLearnDto { WordsCount = wordsCount, WordsToLearn = null });
+            //}
 
             int count = 10;
             var usersWordsIds = _appDbContext.SavedWords.Where(w => w.UserId.ToString() == user.Id);
-            var wordsWithTranslations = JoinWordsWithTranslations(usersWordsIds, user);
+            var wordsWithTranslations = JoinWordsWithTranslations(usersWordsIds, user, true);
             wordsWithTranslations = wordsWithTranslations.OrderBy(r => Guid.NewGuid()).Take(count).ToList();
             List<WordToLearn> wordsToLearn = new List<WordToLearn>();
             foreach (var word in wordsWithTranslations)
@@ -108,7 +131,7 @@ namespace BlazorServer.Controllers
                 word.WrongVariants = GetWrongVariants(3, word, user);
                 //word.VariantsToAnswer.AddRange((IEnumerable<VariantToAnswer>)word.WrongVariants.ToList());
             }
-            return Ok(new WordsToLearnDto { WordsCount = wordsCount, WordsToLearn = wordsToLearn});
+            return Ok(wordsToLearn);
         }
 
         [HttpGet]
@@ -122,7 +145,7 @@ namespace BlazorServer.Controllers
             //Find all wordsWithTranslations that user has
             var usersWordsIds = _appDbContext.SavedWords.Where(w => w.UserId.ToString() == user.Id).ToList();
             //Join them with the wordsWithTranslations table
-            var completeQuery = JoinWordsWithTranslations(usersWordsIds, user);
+            var completeQuery = JoinWordsWithTranslations(usersWordsIds, user, true);
             var usersWords = completeQuery.ToList();
             return Ok(usersWords);
 
@@ -145,7 +168,7 @@ namespace BlazorServer.Controllers
             //                    };
         }
 
-        private IEnumerable<WordWithTranslations> JoinWordsWithTranslations(IEnumerable<SavedWord> savedWords, ApplicationUser user)
+        private IEnumerable<WordWithTranslations> JoinWordsWithTranslations(IEnumerable<SavedWord> savedWords, ApplicationUser user, bool isWordsSaved = false)
         {
             return from savedWord in savedWords
                    join wordWithTranslations in _dictionaryDbContext.Words
@@ -162,7 +185,7 @@ namespace BlazorServer.Controllers
                        DisplaySource = wordWithTranslations.DisplaySource,
                        Translations = translationsGroup.ToList(),
                        Language = wordWithTranslations.Language,
-                       IsWordSaved = wordWithTranslations.IsWordSaved
+                       IsWordSaved = isWordsSaved
                    };
         }
 
@@ -175,7 +198,7 @@ namespace BlazorServer.Controllers
                     posTags.Add(translation.PosTag);
             }
 
-            return _dictionaryDbContext.Translations
+            var variants = _dictionaryDbContext.Translations
                 //Get only variants in user's native language and wordsWithTranslations of the same type of speech as the right variant
                 .Where(v => v.Language == user.NativeLanguage && posTags.Contains(v.PosTag)).AsEnumerable()
                 //Prevent all right translations of the word from being in WrongVariants
@@ -183,6 +206,20 @@ namespace BlazorServer.Controllers
                 .OrderBy(r => Guid.NewGuid())
                 .Take(count)
                 .ToArray();
+
+            if (variants.Count() == 3)
+            {
+                return variants;
+            }
+            else
+            {
+                return _dictionaryDbContext.Translations
+                    .Where(v => v.Language == user.NativeLanguage).AsEnumerable()
+                    .Where(v => !wordToLearn.WordWithTranslations.Translations.Any(t => t.DisplayTarget == v.DisplayTarget))
+                    .OrderBy(r => Guid.NewGuid())
+                    .Take(count)
+                    .ToArray();
+            }
         }
     }
 }

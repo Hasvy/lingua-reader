@@ -12,13 +12,10 @@ namespace BlazorApp.Components.Learning
     {
         [Parameter] public List<WordToLearn> WordsToLearn { get; set; } = null!;
         [Parameter] public int ActualCardNumber { get; set; }
-        [Parameter] public EventCallback ChangeCard { get; set; }
-        private RadzenButton[] buttons = new RadzenButton[4]; 
-        //private RadzenButton button1;
-        //private RadzenButton button2;
-        //private RadzenButton button3;
-        //private RadzenButton button4;
+        [Parameter] public EventCallback EndPractice { get; set; }
+        private RadzenButton[] buttons = new RadzenButton[4];
         private bool _isDelaying;
+
         private async Task ChooseVariant(RadzenButton clickedButton, VariantToAnswer chosenVariant)
         {
             _isDelaying = true;
@@ -42,16 +39,18 @@ namespace BlazorApp.Components.Learning
                 rightButton.ButtonStyle = ButtonStyle.Success;
                 clickedButton.ButtonStyle = ButtonStyle.Danger;
             }
-            await Task.Delay(2000);
+            //await Task.Delay(2000);
             if (rightButton is not null)
             {
                 rightButton.ButtonStyle = ButtonStyle.Primary;
             }
             clickedButton.Variant = Variant.Outlined;
             clickedButton.ButtonStyle = ButtonStyle.Primary;
-            WordsToLearn[ActualCardNumber].Answer = chosenVariant.Text.DisplayTarget;
-            await ChangeCard.InvokeAsync();
+            WordsToLearn[ActualCardNumber].Answer = chosenVariant;
+            ActualCardNumber++;
             _isDelaying = false;
+            if (ActualCardNumber >= WordsToLearn.Count())
+                await EndPractice.InvokeAsync();
         }
     }
 }

@@ -8,29 +8,106 @@
 {
     <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
 }
-else
+else if (_showStatistics)
 {
-    <CardWithAnswers WordsToLearn="_wordsToLearn" ActualCardNumber="_actualCardNumber" ChangeCard="ChangeCard"/>
+    <RadzenRow class="rz-my-2 rz-mx-8">
+        <RadzenColumn>
+            <RadzenText TextStyle="TextStyle.DisplayH4" TagName="TagName.H2" Class="rz-m-0">Statistics of the round</RadzenText>
+        </RadzenColumn>
+        <RadzenColumn>
+            <RadzenStack JustifyContent="JustifyContent.End" Orientation="Orientation.Horizontal">
+                <RadzenButton Text="Next round" Click="StartPractice" Size="ButtonSize.Medium"></RadzenButton>
+                <RadzenButton Text="Back to list" Click="ShowWordsList" Size="ButtonSize.Medium"></RadzenButton>
+            </RadzenStack>
+        </RadzenColumn>
+    </RadzenRow>
 
-@*     <RadzenDataGrid Data="@wordsToLearn" TItem="WordToLearn">
+    <RadzenDataGrid Data="@_wordsToLearn" TItem="WordToLearn" AllowSorting="true" AllowColumnResize="true" GridLines="DataGridGridLines.Both" class="rz-mx-8">
         <Columns>
-            <RadzenDataGridColumn TItem="WordToLearn" Property="WordWithTranslations.DisplaySource" />
-            <RadzenDataGridColumn TItem="WordToLearn" Property="WordWithTranslations.Translations">
+            <RadzenDataGridColumn Title="Word" TItem="WordToLearn" Property="WordWithTranslations.DisplaySource" MinWidth="50px" />
+            <RadzenDataGridColumn SortProperty="WordWithTranslations.Translations.First().DisplayTarget" Title="Translations" TItem="WordToLearn" Property="WordWithTranslations.Translations" MinWidth="50px">
                 <Template>
                     @foreach (var item in context.WordWithTranslations.Translations)
                     {
-                        @item.DisplayTarget <br>
+                        @(item.DisplayTarget + " ");
                     }
                 </Template>
             </RadzenDataGridColumn>
-            <RadzenDataGridColumn TItem="WordToLearn" Property="WrongVariants">
+            <RadzenDataGridColumn Title="Your answer" TItem="WordToLearn" Property="Answer.Text.DisplayTarget" MinWidth="50px" />
+            <RadzenDataGridColumn Title="Is your answer right" TItem="WordToLearn" Property="Answer.isRight" TextAlign="TextAlign.Center" Width="180px" MinWidth="75px">
                 <Template>
-                    @foreach (var item in context.WrongVariants)
+                    @if (context.Answer.isRight)
                     {
-                        @item.DisplayTarget <br>
+                        <RadzenIcon IconStyle="IconStyle.Success" Icon="check_circle" />
+                    }
+                    else
+                    {
+                        <RadzenIcon IconStyle="IconStyle.Danger" Icon="cancel" />
+                    }
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn Title="Remove word from your list" TItem="WordToLearn" Sortable="false" TextAlign="TextAlign.Center" Width="250px" MinWidth="25px">
+                <Template>
+                    @if (context.Answer.isRight)
+                    {
+                        if (context.WordWithTranslations.IsWordSaved)
+                        {
+                            <RadzenButton Text="Delete the word" Variant="Variant.Outlined" IsBusy="_isDeleting" Click="@(() => DeleteWord(context.WordWithTranslations))" />
+                        }
+                        else
+                        {
+                            <RadzenButton Text="Add the word back" Variant="Variant.Outlined" IsBusy="_isSaving" Click="@(() => AddWord(context.WordWithTranslations))" />
+                        }
                     }
                 </Template>
             </RadzenDataGridColumn>
         </Columns>
-    </RadzenDataGrid> *@
+    </RadzenDataGrid>
+}
+else if (_showPractice)
+{
+    <CardWithAnswers WordsToLearn="_wordsToLearn" EndPractice="EndPractice" />
+}
+else
+{
+    <RadzenRow class="rz-my-2 rz-mx-8">
+        <RadzenColumn>
+            <RadzenText TextStyle="TextStyle.DisplayH4" TagName="TagName.H2" Class="rz-m-0">Your saved words</RadzenText>
+        </RadzenColumn>
+        <RadzenColumn>
+            <RadzenStack JustifyContent="JustifyContent.End" Orientation="Orientation.Horizontal">
+                <RadzenButton Text="Practice words" Click="StartPractice" Size="ButtonSize.Medium" />
+                <RadzenButton Text="Delete selected words" IsBusy="_isDeleting" Click="DeleteSelectedWords" Size="ButtonSize.Medium" />
+            </RadzenStack>
+        </RadzenColumn>
+    </RadzenRow>
+
+    <RadzenDataGrid Data="@_allUserWords" TItem="WordWithTranslations" class="rz-mx-8" @ref="grid"
+                    PageSizeOptions="@pageSizeOptions"
+                    @bind-Value="_selectedWords"
+                    AllowRowSelectOnRowClick="true"
+                    SelectionMode="DataGridSelectionMode.Multiple"
+                    AllowPaging="true" 
+                    ShowPagingSummary="true" 
+                    AllowSorting="true"
+                    AllowColumnResize="true" 
+                    GridLines="DataGridGridLines.Both">
+        <Columns>
+            <RadzenDataGridColumn TItem="WordWithTranslations" Width="60px" Resizable="false" Sortable="false">
+                <Template Context="data">
+                    <RadzenCheckBox TabIndex="-1" TriState="false" Value="@(_selectedWords != null && _selectedWords.Contains(data))" InputAttributes="@(new Dictionary<string,object>(){ { "aria-label", "Select item" }})"
+                                    TValue="bool" />
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn Title="Word" TItem="WordWithTranslations" Property="DisplaySource" MinWidth="50px" />
+            <RadzenDataGridColumn Title="Translations" TItem="WordWithTranslations" Property="Translations" MinWidth="50px" SortProperty="Translations.First().DisplayTarget">
+                <Template>
+                    @foreach (var item in context.Translations)
+                    {
+                        @(item.DisplayTarget + " ");
+                    }
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
 }

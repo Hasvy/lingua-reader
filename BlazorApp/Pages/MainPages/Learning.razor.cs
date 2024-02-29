@@ -3,6 +3,7 @@ using Objects.Dto;
 using Objects.Entities.Translator;
 using Objects.Entities.Words;
 using Radzen;
+using Radzen.Blazor;
 using Services;
 using System.Diagnostics;
 using static Org.BouncyCastle.Asn1.Cmp.Challenge;
@@ -15,88 +16,106 @@ namespace BlazorApp.Pages.MainPages
         [Inject] WordsService WordsService { get; set; } = null!;
         [Inject] DialogService DialogService { get; set; } = null!;
         [Inject] NavigationManager NavigationManager { get; set; } = null!;
-        //private List<WordWithTranslations>? usersWords = new List<WordWithTranslations>();
-        private List<WordToLearn>? _wordsToLearn = new List<WordToLearn>();
+        [Inject] NotificationService NotificationService { get; set; } = null!;
+        private List<WordWithTranslations> _allUserWords = new List<WordWithTranslations>();
+        private List<WordToLearn> _wordsToLearn = new List<WordToLearn>();
         private WordsToLearnDto? _wordsToLearnDto = null;
+        private bool _showStatistics = false;
+        private bool _showPractice = false;
         private bool _isLoading;
-        private int _actualCardNumber = 0;
+        private bool _isSaving = false;
+        private bool _isDeleting = false;
+        private IList<WordWithTranslations>? _selectedWords;
+        private IEnumerable<int> pageSizeOptions = new int[] { 10, 20, 30 };
+        private RadzenDataGrid<WordWithTranslations> grid;
         protected override async Task OnInitializedAsync()
         {
             HttpInterceptorService.RegisterEvent();
             _isLoading = true;
-            _wordsToLearnDto = await WordsService.GetWordsToLearn();
-            if (_wordsToLearnDto != null)
-            {
-                if (_wordsToLearnDto.WordsCount < 10)
-                {
-                    await DialogService.Alert("You don't have enough words to learn. You have to add at least 10 words in specified language to learn.", "Notification", new AlertOptions()
-                        {
-                            OkButtonText = "Go to Reading page"
-                        }
-                    );
-                    NavigationManager.NavigateTo(Routes.Reading);
-                }
-                else
-                {
-                    Random random = new Random();
-                    var ints = new List<int>();
-                    _wordsToLearn = _wordsToLearnDto.WordsToLearn;
-                    Stopwatch stopwatch = Stopwatch.StartNew();
-                    foreach (var wordToLearn in _wordsToLearn)
-                    {
-                        for (int i = 0; i < 100; i++)
-                        {
-                            wordToLearn.VariantsToAnswer.Add(new VariantToAnswer(wordToLearn.WordWithTranslations.Translations.First(), true));
-                            foreach (var wrongVariant in wordToLearn.WrongVariants)
-                            {
-                                int index = random.Next(wordToLearn.VariantsToAnswer.Count() + 1);                //Add tests to a diplom
-                                wordToLearn.VariantsToAnswer.Insert(index, new VariantToAnswer(wrongVariant));
-                                //wordToLearn.VariantsToAnswer.Insert(0, new VariantToAnswer(wrongVariant));
-                            }
-                            //wordToLearn.VariantsToAnswer = GenerateRandomLoop(wordToLearn.VariantsToAnswer);
-                            if (i != 99)
-                            {
-                                ints.Add(wordToLearn.VariantsToAnswer.FindIndex(v => v.isRight) + 1);
-                                wordToLearn.VariantsToAnswer.Clear();
-                            }
-                        }
-                    }
-                    stopwatch.Stop();
-                    for (int i = 1; i <= 4; i++)
-                    {
-                        Console.WriteLine($"{i}: " + ints.Count(num => num == i));
-                    }
-                    Console.WriteLine(stopwatch.ElapsedMilliseconds + " ms" + "\n");
-
-                    await base.OnInitializedAsync();
-                }
-            }
+            await GetAllUserWords();
+            await base.OnInitializedAsync();
             _isLoading = false;
         }
 
-        public async Task ChangeCard()
+        public async Task StartPractice()
         {
-            if (_actualCardNumber < _wordsToLearn.Count() - 1)
+            if (_allUserWords.Count < 10)
             {
-                _actualCardNumber++;
+                await DialogService.Alert("You don't have enough words to learn. You have to add at least 10 words in specified language to learn.", "Notification", new AlertOptions()
+                {
+                    OkButtonText = "Go to Reading page"
+                }
+                );
+                NavigationManager.NavigateTo(Routes.Reading);
             }
             else
             {
-                //TODO show statistics of the round
+                Random random = new Random();
+                _wordsToLearn = await WordsService.GetWordsToLearn();
+                foreach (var wordToLearn in _wordsToLearn)
+                {
+                    wordToLearn.VariantsToAnswer.Add(new VariantToAnswer(wordToLearn.WordWithTranslations.Translations.First(), true));
+                    foreach (var wrongVariant in wordToLearn.WrongVariants)
+                    {
+                        int index = random.Next(wordToLearn.VariantsToAnswer.Count() + 1);
+                        wordToLearn.VariantsToAnswer.Insert(index, new VariantToAnswer(wrongVariant));
+                    }
+                }
+                _showStatistics = false;
+                _showPractice = true;
             }
         }
 
-        public List<VariantToAnswer> GenerateRandomLoop(List<VariantToAnswer> listToShuffle)
+        public async Task GetAllUserWords()
         {
-            Random random = new Random();
-            for (int i = listToShuffle.Count - 1; i > 0; i--)
+            _allUserWords = await WordsService.GetAllUsersWords();
+        }
+
+        public void EndPractice()
+        {
+            _showPractice = false;
+            _showStatistics = true;
+        }
+
+        private async Task AddWord(WordWithTranslations word)
+        {
+            _isSaving = true;
+            bool result = await WordsService.SaveWord(word);
+            if (result is true)
+                word.IsWordSaved = true;
+            _isSaving = false;
+        }
+
+        public async Task DeleteWord(WordWithTranslations word)
+        {
+            _isDeleting = true;
+            var result = await WordsService.DeleteWord(word);
+            if (result is true)
+                word.IsWordSaved = false;
+            _isDeleting = false;
+        }
+
+        public async Task DeleteSelectedWords()
+        {
+            if (_selectedWords is not null && _selectedWords.Any())
             {
-                var k = random.Next(i + 1);
-                var value = listToShuffle[k];
-                listToShuffle[k] = listToShuffle[i];
-                listToShuffle[i] = value;
+                _isDeleting = true;
+                var result = await WordsService.DeleteWords(_selectedWords);
+                if (result is true && _allUserWords is not null)
+                    _allUserWords.RemoveAll(_selectedWords.Contains);
+                await grid.RefreshDataAsync();
+                _selectedWords = null;
+                _isDeleting = false;
             }
-            return listToShuffle;
+            else
+            {
+                NotificationService.Notify(NotificationSeverity.Error, "You didn't select any word");
+            }
+        }
+
+        public void ShowWordsList()
+        {
+            _showStatistics = false;
         }
 
         public void Dispose() => HttpInterceptorService.DisposeEvent();
