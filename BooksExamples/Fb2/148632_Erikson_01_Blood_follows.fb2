@@ -1,0 +1,1297 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">
+ <description>
+  <title-info>
+   <genre>sf_fantasy</genre>
+   <author>
+    <first-name>Steven</first-name>
+    <last-name>Erikson</last-name>
+   </author>
+   <book-title>Blood follows</book-title>
+   <date></date>
+   <coverpage>
+    <image l:href="#_1.jpg"/></coverpage>
+   <lang>en</lang>
+   <sequence name="Bauchelain and Korbal Broach" number="1"/>
+  </title-info>
+  <document-info>
+   <author>
+    <first-name></first-name>
+    <last-name></last-name>
+   </author>
+   <program-used>Fiction Book Designer, FictionBook Editor Release 2.6.3</program-used>
+   <date value="2012-03-18">18.03.2012</date>
+   <id>FBD-FEF64F-C5AA-A545-2781-3062-44BF-EA5EBD</id>
+   <version>1.0</version>
+  </document-info>
+ </description>
+ <body>
+  <title>
+   <p>Steven Erikson</p>
+  </title>
+  <section>
+   <title>
+    <p>Blood follows</p>
+   </title>
+   <p>The bells pealed across the lamentable city of Moll, clamouring along the crooked, narrow alleys, buffeting the dawn-risers hurriedly laying out their wares in the market rounds. The bells pealed, tumbling over the grimy cobblestones, down to the wharfs and out over the bay’s choppy, gray waves. Shrill iron, the bells pealed with the voice of hysteria.</p>
+   <p>The terrible, endless sound echoed deep inside the slate-covered barrows that humped the streets, tilted the houses and cramped the alleyways in every quarter of Moll. Barrows older than the Lamentable City itself, each long ago riven through and tunnelled in fruitless search for plunder, each now remaining like a pock, the scarring of some ancient plague. The bells reached through to the scattered, broken bones bedded down in hollowed-out logs, amidst rotted furs and stone tools and weapons, bone and shell beads and jewellery, the huddled forms of hunting dogs, the occasional horse with its head removed and placed at its master’s feet, the skull with the spike-hole gaping between the left eye and ear. Echoing among the dead, bestirring the shades in their centuries-long slumber.</p>
+   <p>A few of these dread shades rose in answer to that call, and in the darkness moments before dawn they’d lifted themselves clear of the slate and earth and potsherds, scenting the presence of… someone, something. They’d then returned to their dark abodes-and for those who saw them, for those who knew something of shades, their departure seemed more like flight.</p>
+   <p>In Temple Round, as the sun edged higher over the hills inland, the saving wells, fountains and bowl-stones overflowed with coin: silver and gold glinting among the beds of copper. Already crowds gathered outside the high-walled sanctuaries of Burn-relieved and safe under the steamy morning light-there to appease the passing over of sudden death, and to thank the Sleeping Goddess, who slept still. And many a manservant was seen exiting the side-postern of Hood’s Temple, for the rich were ever wont to bribe away the Lord of Death, so that they might awaken to yet another day, gentled of spirit in their soft beds.</p>
+   <p>It was the monks of the Queen of Dreams for whom the night just past was cause for mourning, with clanging dirge of iron, civilisation’s scarred, midnight face. For that face had a name, and it was Murder. And so the bells rang on, a shroud of fell sound descending upon the port of Moll, a sound cold and harsh that none could escape…</p>
+   <p>… while in an alley behind a small estate on Low Merchant Way, a diviner of the Deck of Dragons noisily emptied his breakfast of pomegranates, bread, prunes and watered wine, surrounded by a ring of dogs patiently awaiting theirs.</p>
+   <empty-line/>
+   <p>The door slammed behind Emancipor Reese, Rat tling the flimsy drop-latch a moment before sagging back down on its worn leather hinges. He stared at the narrow, musty hallway in front of him. The niche set waist-high on the wall to his right was lit with a lone tallow candle, revealing water stains and cracked plaster and the tiny stone altar of Sister Soliel, heaped with wilted flower heads. On the back wall at the far end, six paces from where he stood, where the passage opened on both sides, hung a black-iron broadsword-cross-hilted and bronze-pommeled, most likely rusted into its verdigrised scabbard. Emancipor’s lined, sun-scoured face fell, becoming heavy around his eyes as he gazed on the weapon of his youth. He felt every one of his five, maybe six decades.</p>
+   <p>His wife had gone silent in the kitchen, halfway through heating the wet sand, the morning’s porridge pot and the plates on the wood counter at her side still awaiting cleansing; and he could see her in his mind, motionless and massive and breathing her short, shallow, increasingly nervous breaths.</p>
+   <p>“Is that you, Mancy?”</p>
+   <p>He hesitated. He could do it, right now-back outside, out into the streets-he knew how to sound depths, he knew knots-all kinds of knots. He could stand a pitching deck. He could leave this damned wart of a city, leave her and the squalling, simpering brats they’d begetted. He could… escape. Emancipor sighed. “Yes, dear.”</p>
+   <p>Her voice pitched higher. “Why aren’t you at work?”</p>
+   <p>He drew a deep breath. “I am now…” he paused, then finished with loud, distinct articulation: “unemployed.”</p>
+   <p>“What did you say?”</p>
+   <p>“Unemployed.”</p>
+   <p>“Fired? You’ve been fired? You incompetent, stupid-”</p>
+   <p>“The bells!” he screamed. “The bells! Can’t you hear the bells?”</p>
+   <p>Silence in the kitchen, then: “The Sisters have mercy! You idiot! Why aren’t you finding work? Get a new job-if you think you can laze around here, seeing our children tossed from their schooling-”</p>
+   <p>Emancipor sighed. Dear Subly, ever so practical. “I’m on my way, dear.”</p>
+   <p>“Just come back with a job. A good job. The future of our children-”</p>
+   <p>He slammed the door behind him, and stared out on the street. The bells kept ringing. The air was growing hot, smelling of raw sewage, rotting shellfish, and human and animal sweat. Subly had come close to selling her soul for the tired old house behind him. For the neighbourhood, rather. As far as he could tell, it stank no different from all the other neighbourhoods they’d lived in. Saving perhaps that there was a greater variety among the vegetables rotting in the gutters. “ Positioning, Mancy. It’s all in positioning.”</p>
+   <p>Across the way Sturge Weaver waddled about the front of his shop, unlocking and folding back the shutters, casting nosy, knowing glances his way over the humped barrow mound that bulged the street between their houses. The lingering fart heard it all. Don’t matter. Subly’ll be finished with the pot and plates in record time, now. Then she’ll be out, gums flapping and her eyes wide as she fishes shallow waters for sympathy, and whatnot.</p>
+   <p>It was true enough that he’d need a new job before the day’s end, or all the respect he’d earned over the last six months would disappear faster than a candle-flame in a hurricane; and that grim label-“ Mancy the Luckless ”-would return, the ghost of old in step with his shadow, and neighbours like Sturge Weaver making warding signs whenever their paths crossed.</p>
+   <p>A new job. It was all that mattered, now. Never mind that some madman stalked the city every night since the season’s turning, never mind that horribly mutilated bodies were turning up every morning-citizens of Lamentable Moll, their eyes blank (when there were eyes) and their faces twisted in a rictus of terror-and their bodies-all those missing parts-Emancipor shivered. Never mind that Master Baltro wouldn’t need a coachman ever again, except for the grave-digger’s bent, white-faced crew and that one last journey to the pit of his ancestors, closing forever the line of his blood.</p>
+   <p>Emancipor shook himself. If not for the grisly in-between, he almost envied the merchant’s final trip. At least it’d bring silence-not Subly, of course, but the bells. The damned, endless, shrill, nagging bells…</p>
+   <empty-line/>
+   <p>“Go find the monk on the end of that rope and wring his neck.”</p>
+   <p>The corporal blinked at his sergeant, shifted uneasily under the death-detail’s attire of blue-stained bronze ringed hauberk, lobster-tailed bowl helm, and the heavy leather-padded shoulder-guards. Damn, the lad’s bloody well swimming in all that armour. Not quite succeeding at impressing the onlookers-the short sword at his belt’s still wax-sealed in the scabbard, for Hood’s sake. Guld turned away. “Now, son.”</p>
+   <p>He listened to the lad’s footsteps recede behind him, and glumly watched his detachment enforcing the cordon around the body and the old barrow pit it laid in, keeping at a distance the gawkers and stray dogs, kicking at pigeons and seagulls and otherwise letting what was left of the dead man lie in peace under the fragment of roof-thatch some merciful passerby had thrown over it.</p>
+   <p>He saw the diviner stumble ash-faced from the other alley. The king’s court magus wasn’t a man of the streets, but the cloth at the knees of his white pantaloons now showed intimate familiarity with the grimy, greasy cobblestones.</p>
+   <p>Guld had little respect for coddled mages. Too remote from human affairs, bookish and naive and slow to grow up. Ophan was nearing sixty, but he had the face of a toddler. Alchemy at work, of course. In vanity’s name, no less.</p>
+   <p>“Stul Ophan,” Guld called, catching the man’s watery eyes. “You finished your reading, then?” An insensitive question, but they were the kind Guld most liked to ask.</p>
+   <p>The rotund magus approached. “I did,” he said thickly, licking his bluish lips.</p>
+   <p>A cold art, divining the Deck in the wake of murder. “And?”</p>
+   <p>“Not a demon, not a Sekull, not a Jhorligg. A man.”</p>
+   <p>Sergeant Guld scowled, adjusting his helmet where the woollen inside trim had rubbed raw his forehead. “We know that. The last street diviner told us that. For this the King grants you a tower in his keep?”</p>
+   <p>Stul Ophan’s face darkened. “Was the King’s command that brought me here,” he snapped. “I’m a court mage. My divinations are of a more…” he faltered momentarily, “of a more bureaucratic nature. This raw and bloody murder business isn’t my speciality, is it?”</p>
+   <p>Guld’s scowl deepened. “You divine by the Deck to tally numbers? That’s a new one on me, Magus.”</p>
+   <p>“Don’t be a fool. What I meant was, my sorceries are in an administrative theme. Affairs of the realm, and such.” Stul Ophan looked about, his round shoulders hunching and a shudder taking him as his gaze found the covered body. “This… this is foulest sorcery, the workings of a madman-”</p>
+   <p>“Wait,” Guld interjected. “The killer’s a sorceror?”</p>
+   <p>Stul nodded, his lips twitching. “Powerful in the necromantic arts, skilled in cloaking his trail. Even the rats saw nothing-nothing that stayed in their brains, anyway-”</p>
+   <p>The rats. Reading their minds has become an art in Moll, with loot-hungry warlocks training the damn things and sending them under the streets, into the old barrows, down among the bones of a people so far dead as to be nameless in the city’s memory. The thought soothed him somewhat. There was truth in the world after all, when mages and rats saw so closely eye to eye. And thank Hood for the rat-hunters, the fearless bastards will spit at a warlock’s feet if that spit was the last water on earth.</p>
+   <p>“The pigeons?” he asked innocently.</p>
+   <p>“Sleep at night,” Stul said, throwing Guld a disgusted look. “I only go so far. Rats, fine. Pigeons…” He shook his head, cleared his throat and looked for a spitoon. Finding none-naturally-he turned and spat on the cobbles. “Anyway, the killer’s found a taste for nobility-”</p>
+   <p>Guld snorted. “That’s a long stretch, Magus. A distant cousin of a distant cousin. A middling cloth merchant with no heirs-”</p>
+   <p>“Close enough. The King wants results.” Stul Ophan observed the sergeant with an expression trying for contempt. “Your reputation’s at stake, Guld.”</p>
+   <p>“Reputation?” Guld’s laugh was bitter. He turned away, dismissing the mage for the moment. Reputation? My head’s on the pinch-block, and the grey man’s stacking his stones. The noble families are scared. They’re gnawing the King’s wrinkled feet in between the sycophantic kissing. Eleven nights, eleven victims. No witnesses. The whole city’s terrified-things could get out of hand. I need to find the bastard-I need him writhing on the spikes at Palace Gate… A sorceror, that’s new-I’ve got my clue, finally. He looked down at the merchant’s covered body. These dead don’t talk. That should’ve told me something. And the street diviners, so strangely terse and nervous. A mage, powerful enough to scare the average practitioner into silence. And worse yet, a necromancer-someone who knows how to silence souls, or send them off to Hood before the steam leaves the blood.</p>
+   <p>Stul Ophan cleared his throat a second time. “Well,” he said, “I’ll see you tomorrow morning, then.”</p>
+   <p>Guld winced, then shook himself. “He’ll make a mistake-you’re certain the killer’s a man?”</p>
+   <p>“Reasonably.”</p>
+   <p>Guld’s eyes fixed on the mage, making Stul Ophan take a step back. “Reasonably? What does that mean?”</p>
+   <p>“Well, uh, it has the feel of a man, though there’s something odd about it. I simply assumed he made some effort to disguise that-some simple cantrips and the like-”</p>
+   <p>“Poorly done? Does that fit with a mage who can silence souls and wipe clean the brains of rats?”</p>
+   <p>Stul Ophan frowned. “Well, uh, no, that doesn’t make much sense-”</p>
+   <p>“Think some more on it, Magus,” Guld ordered, and though only a sergeant of the City Watch, the command was answered with a swift nod.</p>
+   <p>Then the magus asked, “What do I tell the king?”</p>
+   <p>Guld hitched his thumbs into his sword-belt. It’d been years since he’d last drawn the weapon, but he’d dearly welcome the chance to do so now. He studied the crowd, the tide of faces pushing the ring of guards into an ever tighter circle. Could be any one of them. That wheezing beggar with the hanging mouth. Those two rat-hunters. That old woman with all the dolls at her belt-some kind of witch, seen her before, at every scene of these murders, and now she’s eager to start on the next doll, the eleventh-questioned her six mornings back. Then again, she’s got enough hair on her chin to be mistaken for a man. Or maybe that dark-faced stranger-armour under his fine cloak, well-made weapon at his belt-a foreigner for certain, since nobody around here uses single-edged scimitars. So, could be any one of them, come to study his handiwork by day’s light, come to gloat over the city’s most experienced guardsman in these sort of crimes. “Tell His Majesty that I now have a list of suspects.”</p>
+   <p>Stul Ophan made a sound in his throat that might have been disbelief.</p>
+   <p>Guld continued drily, “And inform King Seljure that I found his court mage passably helpful, although I have many more questions for him, for which I anticipate the mage’s fullest devotion of energies in answering my inquiries.”</p>
+   <p>“Of course,” Stul Ophan rasped. “At your behest, Sergeant, by the King’s command.” He wheeled and walked off to his awaiting carriage.</p>
+   <p>The sergeant sighed. A list of suspects. How many mages in Lamentable Moll? A hundred? Two hundred? How many real Talents among them? How many coming and going from the trader ships? Is the killer a foreigner, or has someone local turned bad? There are delvings in high sorcery that can twist even the calmest mind. Or has a shade broken free, climbed out nasty and miserable from some battered barrow-any recent deep construction lately? Better check with the Flatteners. Shades? Not their style, though The bells clanged wildly, then fell silent. Guld frowned, then recalled his order to the young corporal. Oh damn, did that lad take me literally?</p>
+   <empty-line/>
+   <p>The morning smoke from the breakfast hearth, reeking of fish, filled the cramped but mostly empty front room of Savory Bar. Emancipor sat at the lone round table near the back in the company of Kreege and Dully, who kept the pitchers coming as the hours rolled into afternoon. Emancipor’s usual disgust with the two wharf rats diminished steadily with each refilled tankard of foamy ale. He’d even begun to follow their conversation.</p>
+   <p>“Seljure’s always been wobbly on the throne,” Dully was saying, scratching at his barrel-like chest under the salt-stained jerkin, “ever since Stygg fell to the Jheck and he balked at invading. Now we’ve got a horde of savages just the other side of the strait and all Seljure does is bleat empty threats.” He found a louse and held it up for examination a moment before popping it into his mouth.</p>
+   <p>“Savages ain’t quite on the mark,” Kreege objected in a slow drawl, rubbing at the stubble covering his heavy jaw. His small, dark eyes narrowed. “It’s a complicated horde, them Jheck. You’ve got a pantheon chock-full of spirits and demons and the like-and the War Chief answers to the Elders in everything but the lay of battle. Now, he might well be something special, what with all his successes-after all, Stygg fell in the span of a day and a night, and Hood knows what magery he’s got all on his own-but if the Elders-”</p>
+   <p>“Ain’t interested in that,” Dully cut in, waving a grease-stained hand as if shooing dock flies. “Just be glad them Jheck can’t row a straight course in the Lees. I heard they burned the Stygg galleys in the harbours-if that bit of thick-headed stupidity don’t cost the War Chief his hat of feathers, then those Elders ain’t got the brains of a sea urchin. That’s all I’m saying. It’s Seljure who’s wobbly enough to turn Lamentable Moll into easy pickings.”</p>
+   <p>“It’s the nobles that’s shackled the city,” Kreege insisted, “and Seljure with it. And it don’t help that his only heir’s a sex-starved wanton lass determined to bed every pureblood nobleman in Moll. And then there’s the priesthoods-they ain’t helping things neither with all their proclamations of doom and all that tripe. So that’s the problem, and it’s not just Lamentable Moll’s. It’s every city the world over. Inbred ruling families and moaning priests-a classic case of divided power squabbling and sniping over the spoils of the common folk, with us mules stumbling under the yoke.”</p>
+   <p>Dully grumbled, “A king with some spine is what we need, that’s all.”</p>
+   <p>“That’s what they said in Korel when that puffed up Captain, Mad Hilt, usurped the throne, though pretty soon no one was saying nothing about nothing, since they were all dead or worse.”</p>
+   <p>“Exception proves the rule-”</p>
+   <p>“Not in politics, it don’t.”</p>
+   <p>The two old men scowled at each other, then Dully nudged Kreege and said to Emancipor, “So, Mancy, looking for work again, eh?” Both dockmen grinned. “Had yourself a run of Lad’s Luck with your employers, it seems. Lady fend the poor sod fool enough to take you on-not that you ain’t reliable, of course.”</p>
+   <p>Kreege’s grin broadened, further displaying his uneven, rotting teeth. “Maybe Hood’s made you his Herald,” he said. “Ever thought of that? It happens, you know. Not many diviners cracking the Deck these days, meaning there’s no way to tell, really. The Lord of Death picks his own, don’t he, and there ain’t a damned thing to be done for it.”</p>
+   <p>“Kreege’s made a point there, he has,” Dully said. “How did your first employer go? Drowned in bed, I heard. Lungs full of water and a hand print over the mouth. Hood’s Breath, what a way to go-”</p>
+   <p>Emancipor grunted, staring down at his tankard. “Sergeant Guld nailed the truth down, Kreege. ’Twas assassination. Luksor was playing the wrong game with the wrong people. Guld found the killer quick enough, and the bastard slid on his hook for days before spillin’ the hand at the other end of his strings.” He drank deep, in Luksor’s cursed name.</p>
+   <p>Dully leaned forward, his bloodshot eyes glittering. “But what about the next one, Mancy? The cutter said his heart exploded. Imagine that, and him being young enough to be your son, too.”</p>
+   <p>“And fat enough to tip a carriage if he didn’t sit in the middle,” Emancipor growled back. “I should know-I used to wedge him in and out. Your life’s what you make it, I always say.” He downed the last of his ale, in the name of poor fat Septryl.</p>
+   <p>“And now Merchant Baltro,” Kreege said. “Someone took his guts, I heard, and his tongue so the questioners couldn’t make the spirit talk. Word is, the King’s own magus was down there, sniffing around Guld’s heels.”</p>
+   <p>His head swimming, Emancipor looked up and blinked at Kreege. “The King’s own? Really?”</p>
+   <p>Dully asked, his eyebrows lifting, “Not nervous now, are you?”</p>
+   <p>“Baltro was of the blood,” Kreege said. He shivered. “What was done between his legs-”</p>
+   <p>“Shut up,” Emancipor snapped. “He was a good man in his way. It don’t fair the wind to spit in the sea, remember that.”</p>
+   <p>“Another round?” Dully asked by way of mollification.</p>
+   <p>Emancipor scowled. “Where d’you get alla coin, anyway?”</p>
+   <p>Dully smiled, picking at his teeth. “Disposing the bodies,” he explained, pausing to belch. “No souls, right? No trails of where they went, either. Like they was never there in the first place. So, just meat, the priests keep saying. No rites, no honouring, don’t matter what the family’s paid for beforehand, neither. Them priests won’t touch them bodies, plain and simple.”</p>
+   <p>“It’s our job,” Kreege said, “taking ’em out to the strand.” He clacked his teeth. “Keeping the crabs fat, and tasty.”</p>
+   <p>Emancipor stared. “You’re trapping the crabs! Selling them!”</p>
+   <p>“Why not? Ain’t taste any different now, do they? Three emolls to the pound-we been doing all right.”</p>
+   <p>“That’s… horrible.”</p>
+   <p>“That’s business,” Dully said. “And you’re drinking on the coin, Mancy.”</p>
+   <p>“Ain’t you just,” Kreege added.</p>
+   <p>Emancipor rubbed at his face, which was getting numb. “Yeah, well, I’m in mourning.”</p>
+   <p>“Hey!” Dully said, straightening. “I seen a posting in the square. Someone looking for a manservant. If you can walk straight, you might want to head down there.”</p>
+   <p>“Wait-” Kreege began with troubled look, but Dully jabbed his elbow into the man’s side.</p>
+   <p>“It’s an idea,” Dully resumed. “That wife of yours don’t like you unemployed, does she? Don’t mean to pry, of course. Just being helpful, is all.”</p>
+   <p>“On the centre post?”</p>
+   <p>“Yeah.”</p>
+   <p>Hood’s Breath, I’m an object of pity to these two crabmongers. “A manservant, eh?” He frowned. Driving carriages was good work. He liked horses better than most people. Manservant though-that meant bowing and scraping all day long. Even so… “Pour me another, in Baltro’s name, then I’ll head down for a look.”</p>
+   <p>Dully grinned. “That’s the spirit… uh…” his face reddened. “No reflection on Baltro’s, of course.”</p>
+   <empty-line/>
+   <p>The walk down to Fishmonger’s Round told him he’d drunk too much ale. He saw enough straight lines, but had trouble following them. By the time he reached the round, the world was swirling all around him, and when he closed his eyes it was as if his mind was endlessly falling down a dark tunnel. And somewhere in the depths waited Subly-who’d always said she’d follow him through Hood’s gate if his dying left her in debt or otherwise put-upon-he could almost hear her down there, giving the demons an earful. Cursing under his breath, he vowed to keep his eyes open. “Can’t die,” he muttered. “Besides, it’s jus the drink, is all. Not dying, not falling, not yet-a man needs a job, needs the coin, he’s got ’sponsibilities.”</p>
+   <p>The sun had nearly set, emptying the round as the hawkers and net-menders closed up their stalls, and the pigeons and seagulls walked unmolested through the day’s rubbish. Even Emancipor, leaning against a wall at the edge of the round, could sense the nervous haste among the fishmongers-darkness in Lamentable Moll had found a new terror, and no one was inclined to tarry in the lengthening shadows. He wondered at his own absence of fear. The courage of ale, no doubt; that and Hood’s tread having already come so near to his own life’s path somehow convinced him that nothing ill would claim him this night. “Of course,” he mumbled, “if I get the job then all bets are off. And, I gotta keep them eyes open, I do.”</p>
+   <p>A city guardsman watched Emancipor weave and stumble his way to the reading post in the round’s centre, near the Fountain of Beru, its trickling beard of briny froth splashing desultorily into a feather-clogged pool. Emancipor waved dismissively at the stone-faced guardsman. “I feel safe!” he shouted. “Hood’s Herald! That’s me, heh heh!” He frowned as the man made a hasty warding sign and backed away. “A joke!” Emancipor called out. “Hood’s truth-I mean, I swear by the Sisters! Health and Plague divvy my plate-I mean, fate-come back here, man! ’Twas a jest!”</p>
+   <p>Emancipor subsided into muttering. He looked around, and found that he was alone. Not a soul in sight-they’d cleared out uncommonly fast. He shrugged and turned his attention to the tarred wooden post.</p>
+   <p>The note was on fine linen paper, solitary and nailed at chest-height. Emancipor grunted. “ ’Spensive paper, that. S’prised it’s lasted this long.” Then he saw the ward faintly inked in the lower right-hand corner. Not a minor cantrip, like boils to the family of whoever was foolish enough to steal the note; not even something mildly nasty, like impotence or hair-loss; no, within the circular ward was a skull, deftly drawn. “Beru’s beard,” Emancipor whispered. “Death. This damned note will outlast the post itself.”</p>
+   <p>Nervous, he stepped closer to study the words. They showed the hand of a hired scribe, and a good one at that. Sober, he could have made inferences from all these details. Drunk as he was-and knew he was-he found the effort of serious consideration too taxing. It was careless, he knew, but when faced with returning to Subly unclothed in the raiment of the employed, he had to take the chance.</p>
+   <p>One arm on the post, he leaned closer and squinted. Thankfully, the statement was short.</p>
+   <p>Manservant required. Full time. Travel involved. Wage to be negotiated depending on experience. Call at Sorrowman’s Hostel.</p>
+   <p>Sorrowman’s… less than a block away. And “travel,” by Hood’s cowl, would mean… well, it’d mean exactly what it meant, meaning… He felt a wide grin stretching his rubbery face, until it ached with sheer delight. Coin for the wife, whilst far far away I go. School for the hairless rats, and far far away I go. Heh. Heh.</p>
+   <p>His arm slipped from the post and the next thing he knew he was lying on the cobbles, staring up at a cloudless night sky. His nose hurt, but it was a distant pain. He sat up and looked around, feeling woozy. The round was empty except for a half-dozen urchins eyeing him from an alleymouth, all looking disappointed to see him awake.</p>
+   <p>“That’s what you think,” Emancipor said as he climbed to his feet. “I’m getting me a job, right now.” He wobbled before straightening, then plucked at his coachman’s jacket and breeches-but it was too dark to see the shape they were in. Damp, of course, but that could be expected, given the heavy weave of the stiff-shouldered coat and its long, tight-cuffed sleeves. “ ’Spect they’ll have a uniform, anyways,” he muttered. “Tailored, maybe.” Sorrowman’s. That way.</p>
+   <p>The journey seemed to take forever, but he eventually made out the sign of the weeping man above the entrance to a narrow, four-storey inn. Yellow light descended from the lantern hooked under the sign, revealing a doorman leaning against the door’s ornate frame. A solid kout hung from the man’s leather belt, and one of his beefy hands moved to rest on the weapon as he watched Emancipor’s approach.</p>
+   <p>“On your way, old man,” he growled.</p>
+   <p>Emancipor stopped at the light’s edge, reeling slightly. “Got me an appointment,” he said, straightening up and thrusting out his chin.</p>
+   <p>“Not here you don’t.”</p>
+   <p>“Manservant. Got the job, I do.”</p>
+   <p>The doorman scowled, lifting a hand to scratch above his ridged brow. “Not for long, I’d say, from the look and smell of you. Mind…” He scratched some more, then grinned. “You’re on time, anyway. At least, I’m meaning, they’re awake by now, I’d guess. Go on in and tell the scriber-he’ll lead you on.”</p>
+   <p>“I’ll do just that, my good man.”</p>
+   <p>The doorman opened the door and, walking carefully, Emancipor managed to navigate through the doorway without bumping the frames. He paused as the door closed behind him, blinking in the bright light coming from a half-dozen candles set on ledges opposite the cloak rack-follower of D’rek, by the look of the gilded bowl on a ledge below the candles.</p>
+   <p>He stepped closer and looked into the bowl, to see a writhing mass of white worms, faintly pink with some poor animal’s blood. Emancipor gagged, hands pressing against the wall. He felt a rush of foamy, bitter ale at the back of his throat and-with nowhere else in range of his sight-he vomited into the bowl.</p>
+   <p>Through foam-flecked amber bile, the worms jerked about, as if drowning.</p>
+   <p>Reeling, Emancipor wiped at his mouth, then at the side of the bowl. He turned from the wall. The air was heady with some Stygg incense, sweet as rotting fruit-enough to mask the vomit, he hoped. Emancipor swallowed back another gag reflex, then drew a careful, measured breath.</p>
+   <p>A voice spoke from further in and to his right. “Yes?”</p>
+   <p>Emancipor watched as a bent, thin old man, his fingertips stained black with ink, stepped timidly into view. Upon seeing him, the scriber snapped upright, glaring. “Has Dalg that crag-headed ox gone out of his mind?” He rushed forward. “Out, out!” He shooed with his hands, then stopped in alarm as Emancipor said boldly, “Mind your manners, sir! I but paused to make an offering, uh, to the Worm of Autumn. I am the manservant, if you pl’zz. Arrived punctual, as instructed. Lead me to my employer, sir, and be quick abou’ it.” Before I let heave another offering, D’rek forgive me.</p>
+   <p>He watched the scriber’s wrinkled face race through a thespian’s array of emotions, ending on fearful regard, the black tip of his tongue darting back and forth over his dry lips. After a moment of this-which Emancipor watched with fascination-the scriber suddenly smiled. “Clever me, eh? Wisely done, sir.” He tapped his nose. “Aye. Burn knows, it’s the only way I’d show up to work for them two-not that I mean ill of them, mind you that. But I’m as clever as any man, I say, and fit to stinking drunk well suits the hour, the shadow’s cast from them two, and all right demeanor and the like, eh? Mind you,” he took Emancipor’s arm and guided him toward the stairs that led to the rooms, “you’ll likely get fired, this being your first night and all, but even so. They’re on the top floor, best rooms in the house, if you don’t mind the bats under the eaves, and I’d wager it’s rum to them and all.”</p>
+   <p>The climb and the lighter feeling in his stomach sobered Emancipor somewhat. By the time they reached the fourth landing, walked down the narrow hall and stopped in front of the last door on the right, he was beginning to realise that the scriber’s ramble had, however confusedly, imparted something odd about his new employers- new? Have I been hired, then? No, no recollection of that — and he tried to think of what it might be… without success. He came to his mind sufficiently to claw through his grey-streaked hair while the wheezing scriber softly scratched on the door. After a moment the latch lifted and the door swung silently open.</p>
+   <p>“Kind sir,” the scriber said hastily, ducking his head, “your manservant is here.” He bowed even further, then backed his way down the hall.</p>
+   <p>Emancipor drew a deep breath, then lifted his gaze to meet the cold regard of the man before him. A shiver rippled down his spine as he felt the full weight of those lifeless grey eyes, but somehow he managed not to flinch, nor drop his gaze, and so studied the man even as he himself was studied. The pale eyes were set far back in a chalky, angular face, the forehead high and squared at the temples, the greying hair swept back and of mariner’s length-long and tied in a single tail. An iron-streaked, pointed beard jutted from the man’s square, solid chin. He looked to be in his forties, and was dressed in a long, fur-trimmed morning robe-far too warm for Lamentable Moll-and had clasped his long-fingered, ringless hands in front of his silk-cord belt.</p>
+   <p>Emancipor cleared his throat. “Most excellent sir!” he boomed. Too loud, dammit.</p>
+   <p>The skin tightened fractionally around the man’s eyes.</p>
+   <p>In a less boisterous tone, Emancipor added, “I am Emancipor Reese, able manservant, coachman, cook-”</p>
+   <p>“You are drunk,” the man said, his accent unlike anything Emancipor had ever heard before. “And, your nose is broken, although it appears the bleeding has slowed.”</p>
+   <p>“My humblest apologies, sir,” Emancipor managed. “For the drink, I blame grief. For the nose, I blame a wooden post, or poss’bly the cobblestones.”</p>
+   <p>“Grief?”</p>
+   <p>“I mourn, sir, a most terr’ble personal trag’dy.”</p>
+   <p>“How unfortunate. Step inside, then, Mister Reese.”</p>
+   <p>The chambers within occupied a quarter of the top floor, opulently fitted with two large poster-beds, both covered in twisted linen, a scriber’s desk with drawers and a leather writing-pad, and a low stool before it. Bad frescos set in cheap panels adorned the walls. To the desk’s left was a large walk-in wardrobe, its doors open and nothing inside. Beside it was the entrance to a private bathing area, a bead-patterned, soft-hide curtain blocking it from view. Four battered chest-high travel trunks lined one wall; only one open and revealing fine clothes of foreign style, on iron hangers. There was no one else in the room, but somehow the presence of a second person remained to give proof to the tousled bed. The only truly odd thing in the room was a plate-sized piece of grey slate, lying on the nearest bed. Emancipor frowned at it, then he sighed and swung a placid smile at the man, who stood calmly by the door, which he now closed, setting the loop-lock over the latch. A tall one. Makes bowing easier to cheat.</p>
+   <p>“Have you any references, Mister Reese?”</p>
+   <p>“Oh yes, of course!” Emancipor found he was nodding without pause. He tried to stop, but couldn’t. “My wife, Subly. Thirty-one years-”</p>
+   <p>“I meant, your previous employer.”</p>
+   <p>“Dead.”</p>
+   <p>“Before him, then.”</p>
+   <p>“Dead.”</p>
+   <p>The man raised one thin eyebrow. “And before him?”</p>
+   <p>“Dead.”</p>
+   <p>“And?”</p>
+   <p>“And before that I was a cockswain on the able trader, Searime, for twenty years doing the Stygg run down Bloodwalk Strait.”</p>
+   <p>“Ahh, and this ship and her captain?”</p>
+   <p>“Sixty fathoms down, off Ridry Shelf.”</p>
+   <p>The second eyebrow rose to join the other one. “Quite a pedigree, Mister Reese.”</p>
+   <p>Emancipor blinked. How did he do that, with the eyebrows? “Yes, sir. Fine men, all of them.”</p>
+   <p>“Do you… mourn these losses nightly?”</p>
+   <p>“Excuse me? Oh. No sir, I do not. The day after, kind sir. Only then. Poor Baltro was a fair man-”</p>
+   <p>“Baltro? Merchant Baltro? Was he not the most recent victim of this madman who haunts the night?”</p>
+   <p>“Indeed he was. I, sir, was the last man to see him alive.”</p>
+   <p>The man’s eyebrows rose higher.</p>
+   <p>“I mean,” Emancipor added, “except for the killer, of course.”</p>
+   <p>“Of course.”</p>
+   <p>“I’ve never had a complaint.”</p>
+   <p>“I gathered that, Mister Reese.” He opened his hands to gesture with one to the stool at the desk. “Please be seated, whilst I endeavour to describe the duties expected of my manservant.”</p>
+   <p>Emancipor smiled again, then went over and sat down. “I read there’s travel involved.”</p>
+   <p>“This concerns you, Mister Reese?” The man stood at the foot of one of the beds, his hands once again clasped at his lap.</p>
+   <p>“Not at all. An incentive, sir. Now that the seas have subsided, and the blood-toll is no more, well, I itch for sea-spray, a pitching deck, rolling skylines, the tip and tumble and turn-is something wrong, sir?”</p>
+   <p>The man had begun to fidget, a greyish cast coming to his already pale face. “No, not at all. I simply prefer travelling overland. I take it you can read, or did you hire someone?”</p>
+   <p>“Oh no, I can read, sir. I’ve a talent for that. I can read Moll, Theftian and Stygg-from the chart-books, sir. Our pilot, you see, had a taste for the mead-”</p>
+   <p>“Can you scribe in these languages as well, Mister Reese?”</p>
+   <p>“Aye, sir. Both scrying and scribing. Why, I can read Mell’zan!”</p>
+   <p>“Malazan?”</p>
+   <p>“No, Mell’zan. The Empire, you know.”</p>
+   <p>“Of course. Tell me, do you mind working nights and sleeping during the day? I understood you are married-”</p>
+   <p>“Suits me perfectly, sir.”</p>
+   <p>The man frowned, then nodded. “Very good, then. The duties include arranging mundane matters related to the necessities of travel. Booking passage, negotiating with port authorities, arranging accommodation howsoever it suits our purposes, ensuring that our attire is well-maintained and scented and free of vermin, and so forth-have you done such work before, Mister Reese?”</p>
+   <p>“That, and worse-I mean, that and more, sir. I can also groom and shoe horses, r’pair tack, sew, read maps, sight by stars, tie knots, braid ropes-”</p>
+   <p>“Yes yes, very good. Now, as to the pay-”</p>
+   <p>Emancipor smiled helpfully. “I’m dirt cheap, sir. Dirt cheap.”</p>
+   <p>The man sighed. “With such talents? Nonsense, Mister Reese. You diminish yourself. Now, I will offer a yearly contract, depositing sufficient amount with a reputable money-holding agency, to allow for regular transferral of earnings to your estate. Your own personal needs will be accommodated free of charge whilst you accompany us. Is the annual sum of twelve hundred standard-weight silver sovereigns acceptable?”</p>
+   <p>Emancipor stared.</p>
+   <p>“Well?”</p>
+   <p>“Uh, uhm…”</p>
+   <p>“Fifteen hundred, then.”</p>
+   <p>“Agreed! Yes indeed. Most assur’dly, sir!” Hood’s Breath, that’s more than Baltro makes-I mean, ‘made.’ “Where do I sign the contract, sir? Shall I begin work now?” Emancipor rose to his feet, waited expectantly.</p>
+   <p>The man smiled. “Contract? If you wish. It is of no concern to me.”</p>
+   <p>“Uhm, what shall I call you, sir? Sir?”</p>
+   <p>“I am named Bauchelain. Master will suffice.”</p>
+   <p>“Of course, Master. And, uh, the other one?”</p>
+   <p>“The other one?”</p>
+   <p>“The one you travel with, Master.”</p>
+   <p>“Oh,” Bauchelain turned away, his gaze falling to rest pensively on the slab of slate. “He is named Korbal Broach. A very unassuming man, you might say. As manservant, you answer to me, and me alone. I doubt whether Master Broach foresees a use for you.” He turned and smiled slightly, his eyes as cold as ever. “Of course, in that I could be wrong. We’ll see, I imagine, won’t we? Now, I wish a meal, with meat, rare, and a dark wine, not overly sweet. You may place your order with the scriber below.”</p>
+   <p>Emancipor bowed. “At once, Master.”</p>
+   <empty-line/>
+   <p>Guld stood atop dead Sekarand’s creaking tower and scanned the city, squinting to see through the miasmic woodsmoke that hung almost motionless over the rooftops. The stillness below contrasted strangely with the night-clouds over his head, tumbling, rolling on out to sea, seeming so close above him that he found he’d instinctively hunched down as he leaned on the moss-slick parapet and waited, with dread, for the lantern signal poles to be raised.</p>
+   <p>It was the call of the season, when the sky seemed to heave itself over, trapping the city in its own breath for days on end. The season of ills, plagues, rats driven into the streets by the dancing moon.</p>
+   <p>Dead Sekarand’s Tower was less than a decade old, yet already abandoned and known to be haunted, but Guld had little fear, since he himself had been responsible for tending and nurturing the black weeds of hoary rumour-it suited the new purpose he’d found for the dull-stoned edifice. From this almost-central vantage point, his system of signal poles could be seen in any section of Lamentable Moll.</p>
+   <p>In the days when the Mell’zan Empire had first threatened the city-states of Theft-mostly on the other coast, where the Imperial Fist Greymane had landed his invasion force, coming close to conquering the entire island before being murdered by his own troops-in the days of smoke and threatening winds, Sekarand had come to Lamentable Moll. Calling himself a High Sorceror, he had contracted with King Seljure to aid in the city’s defense, and had raised this structure as his spar of power. What followed then was confused and remained so ever since, though Guld knew more details than most. Sekarand had raised liches to keep him company within these confines, and they’d either driven him mad, or murdered him outright-Sekarand had flung himself, or had been thrown, from these very merlons, down to his death on the cobbles below. Grim jokes about the High Sorceror’s swift descent had run through the streets for a time. In any case, like the Mell’zans-whose presence on Theft remained in but a single, downtrodden port on the northwest coast with half a regiment of jaded marines-Sekarand had been a promise unfulfilled.</p>
+   <p>Guld had used the tower for three years now. He’d seen a few shades, all of whom vowed service to a lich who dwelt under the tower’s foundations, but apart from proferring this tidbit of information, they’d said little and had never threatened him, and the nature of their service to the lich remained a mystery.</p>
+   <p>It had been Guld who’d asked them to moan and howl occasionally, keeping the plunderers and explorers at bay. They’d complied with tireless dedication.</p>
+   <p>The clouds felt heavy overhead as Guld waited-as if bloated with blood. The sergeant stood unmoving, expecting at any moment the first drops of something to come spattering against his face.</p>
+   <p>After a while, he sensed a presence beside him and slowly turned to find a shade hovering near the trapdoor.</p>
+   <p>Clothed in wispy rags, ghostly limbs sporting knotted strips of sailcloth, twine and faded silk-all that held it to this mortal world-its black-pit eyes, set in a pallid face, were fixed on the sergeant.</p>
+   <p>Guld sensed, with sudden alarm, that the shade had been but moments from launching itself at his back. One shove, and over I’d go…</p>
+   <p>Discovered, the ghostly figure now slumped, grumbling to itself.</p>
+   <p>“Pleased with the weather?” Guld asked, fighting down a chill shiver.</p>
+   <p>“An air,” the shade rasped, “to smother sound and scent. Dull the vision. Yet it dances unseen.”</p>
+   <p>“How so?”</p>
+   <p>“Among the Warrens, this air dances bright. My master, my lord, lich of liches, supreme ruler, He Who Awakened All Groggy after centuries of slumber but is now Bursting With Wit, my master, then, sends me-me, humourless serf, humble savant of social injustices, injustices that persist no doubt to this day, me, then, I come with a warning by his insistent command.”</p>
+   <p>“A warning? Is this weather fed by sorcery?”</p>
+   <p>“A hunter stalks the dark.”</p>
+   <p>“I know,” Guld growled. “What else,” he asked without expecting a comprehensible answer, “do you sense about him?”</p>
+   <p>“My master, my lord, lich of-”</p>
+   <p>“Your master,” Guld interrupted, “what of him?”</p>
+   <p>“-liches, supreme ruler, He Who-”</p>
+   <p>“Enough of the titles!”</p>
+   <p>“-Awakened All Groggy after-”</p>
+   <p>“Shall I call on an exorcist, shade?”</p>
+   <p>“If you’d not so rudely interrupted I’d be done by now!” the ghost snapped. “My master, then, has no desire to be among the hunted. There.”</p>
+   <p>Guld scowled. “Just how nasty is this killer? Never mind, you’ve answered me, haven’t you? At the moment, I can’t stop him, whoever he is. If he chooses to ferret out your master, well, I can only wish the lich luck.”</p>
+   <p>“Amusing,” the shade grumbled, then slowly vanished.</p>
+   <p>Amusing? The shades of this tower are damned odd, even for shades. In any case, keeping mulling, Guld. Lamentable Moll’s known for its sorcerors, its diviners and readers, its warlocks and well-sounders, seers and the like, but it’s mostly small fish-nobody’s ever claimed Theft to be an island of high civilisation. In Korel it’s said a demon prince runs a merchant company, and in the old city-swamps of the lowbeds the undead are as common as midges. Glad I don’t live in Korel. What was I thinking about? Oh, yes, suspects…</p>
+   <p>Nothing else of note marked the next hour. The fourth bell after midnight came and went. Even so, Guld was not surprised a short time later when three wavering lights rose in panicked haste above the dark buildings in a nearby quarter. The twelfth. Unending, each night…. Maybe Stul Ophan had been right-the beacons rose from the estate district, from the nobility’s pinched, bloodless heart.</p>
+   <p>He spun from the merlon and took a step to the trapdoor, then stopped, the shock of rain against his brow sending a superstitious chill through his bones. A moment later he shook himself. Not blood. Just water, nothing more. Nothing more. He pulled up the heavy wooden door with an angry wrench, and quickly plunged down into the darkness below.</p>
+   <p>The shades set up a howl all the way down, and this time, Guld knew that their gelid moans, ringing from the stone walls on all sides, had nothing to do with keeping thieves and adventurers at bay.</p>
+   <empty-line/>
+   <p>An hour before dawn, Bauchelain instructed Emancipor to ready his bed. Of the other man-Korbal Broach-there’d been no sign, which did not seem to perturb Bauchelain, who’d spent the night inscribing sigils and signs on the piece of slate. Bells, bells on end at the desk, the man hunched over the grey stone. Etching and scribing, muttering under his breath, and consulting from a half-dozen leather-bound books-each worth a year’s wage in paper alone.</p>
+   <p>Emancipor, hungover and dead tired, puttered here and there in the room, once he’d had the remains of the supper removed, tidying up as best he could. He found in Bauchelain’s travel chest a finely made hauberk of black-iron chain, long-sleeved and knee-length, which he oiled from a kit, using spare wire to repair old damage-cut and crushed links-the coat had known battle, and so too the man who owned it. And yet to look at him, as Emancipor often did from the corner of his eye, it was hard to believe Bauchelain had ever been a soldier. He scribed and mumbled and squinted and occasionally poked out his tongue as he worked over the slate. Like an artist, or an alchemist, or a sorceror.</p>
+   <p>A damned strange way to pass the night, Emancipor concluded. He bit back on his curiosity, which grew more tempered with his suspicions that the man indeed was a practitioner in the dark arts. The less gleaned the better, I always say.</p>
+   <p>He finished with the mail coat and, grunting under its slippery weight, returned it to its perch. As he adjusted the inside-padded shoulders on the heavy hanger, he noticed a long, flat box positioned below the coat-hooks. It had a latch, but was otherwise unlocked. He removed it, grunting again at its weight, and set it on the spare bed. A glance over at Bauchelain assured him that his master was taking no heed, so Emancipor unlatched the lid and lifted it away, to reveal a dismantled crossbow, a dozen iron-shod quarrels, and a pair of mail gauntlets open at the palm and the finger-tips.</p>
+   <p>His memory swept him back to his youth, on the battlefield that would in legend be known as Estbanor’s Grief, where the rag-tag militias of Theft-before each city found its own king-had thrown back an invading army from Korel. Among the Korelri legions were soldiers who carried Mell’zan weapons-each superbly made and superior to anything local. This was such a weapon, made by a master smith, constructed entirely of hardened, tempered iron-maybe even the famous D’Avorian Steel-even the stock was metal. “Hood’s Breath,” Emancipor whispered, running his fingers over the pieces.</p>
+   <p>“ ’Ware the heads,” Bauchelain murmured, having come up to stand behind Emancipor. “They kill at a touch, if blood be drawn.”</p>
+   <p>Emancipor’s hand recoiled. “Poison?”</p>
+   <p>“You think me an assassin, Mister Reese?”</p>
+   <p>Emancipor turned and met the man’s amused gaze.</p>
+   <p>“In my days,” Bauchelain said, “I’ve been many things… but poisoner is not among them. They are invested.”</p>
+   <p>“You’re a sorceror?”</p>
+   <p>Bauchelain’s lips quirked into a smile. “Many people call themselves that. Do you follow a god, Mister Reese?”</p>
+   <p>“My wife swears by ’em-I mean, uh, she prays to a few, Master.”</p>
+   <p>“And you?”</p>
+   <p>Emancipor shrugged. “The devout die too, don’t they? Clove to an ascendant just doubles the funeral costs, ’sfar as I can see, and that’s all. Mind, I’ve prayed fierce on occasion-maybe it saved my skin, but maybe it was just my cast to slip Hood’s shadow so far…”</p>
+   <p>Bauchelain’s gaze softened slightly, lost its focus. “So far…” he said, as if the words were profound. Then he clapped his manservant on the shoulder and returned to his desk. “A long life is yours, Mister Reese. I see no shadow’s shadow, and the face of your death is a distant one.”</p>
+   <p>“The face?” Emancipor licked his lips, which had become uncommonly dry. “You, uh, you divined my moment of death?”</p>
+   <p>“As near as one can,” Bauchelain replied. “Some veils are not easily torn aside. But I think I have as much as needed.” He paused, then added, “Even so, the weapon needs no cleaning. You may return it to its trunk.”</p>
+   <p>Not just a sorceror, then. A Hood-stained, death-delving necromancer. Damn you, Subly, the things I do… He replaced the lid and set the latches. “Master?”</p>
+   <p>“Hmm?” Bauchelain was busy over his slab again.</p>
+   <p>“My face at death-did you see it truly?”</p>
+   <p>“Your visage? Yes, as I said.”</p>
+   <p>“Was it, was it a face of fear?”</p>
+   <p>“No, surprisingly. It seems you die laughing.”</p>
+   <empty-line/>
+   <p>“Die laughing,” Emancipor muttered as he stum bled his way down the empty, dark streets, seeing only his soft, Subly-warmed bed hovering in his mind’s eye. “That’s likely a damned lie, I’d say, unless I quit-get as far away from that death-dealer as I can. Queen of Dreams, what a mess I’m in. It’s the Lad o’ Luck for certain, not the Lady. It’s the push, not the pull. I was drunk-too drunk to sniff it all out, and then it was too late. He’s seen my death, too. He has me. I can’t quit. He’ll send something after me-a ghoul, or a k’nip-trill, or some other damned spectre-to tear my heart out, and Subly’d be cursing the blood-stained sheets down at Beater’s Rock an’ all the lye she’d have to buy and that’d be a curse to my name even then, with me dead and gone and the brats fighting o’er my new boots and-”</p>
+   <p>He stopped with a grunt as he walked clean into another man, whose body felt as solid as a bale of hides, and who-as Emancipor stepped back in alarm-was as big as a half-blooded Trell. “M’pardon, sir,” Emancipor said, ducking his head.</p>
+   <p>The man raised a black-mailed arm, at the end of which was a massive, flat, pale and soft-looking-almost delicate-hand.</p>
+   <p>Emancipor took another step back as the air between them seemed to crackle and something tugged hard at his guts.</p>
+   <p>Then the hand twitched, the fingers fluttered, and the arm slowly dropped back down. A soft giggle came from under the stranger’s hood. “Sweet fate, he’s marked for me,” he said in a high, quavering voice.</p>
+   <p>“I said my pardon, sir,” Emancipor said again. He realised he was in the Estate District, having gone by the shortest route between Sorrowman’s and his house-damned stupid, what with blood-hungry private guards patrolling the nobles’ quarter, determined to catch the mad killer for their masters, and the rewards to follow. “If you’ll let me pass, sir,” Emancipor said, moving to step past. There was no one else about, and dawn was still a quarter-bell away.</p>
+   <p>The stranger giggled again, then said, “Such a mark, saving. You felt the chill, then?”</p>
+   <p>Damned strange accent. “It’s a hot enough night,” he mumbled as he hurried by. The stranger let him go, but Emancipor felt cold eyes on his back as he walked down the street.</p>
+   <p>A moment later he was surprised to see a cloaked figure hurrying its way down the other pavement-small, feminine. Then he was further startled by the passage of an armoured man, rustling and softly clanking, moving along on the woman’s trail. Hood’s Herald, the sun’s not even up yet!</p>
+   <p>He suddenly felt very tired. Somewhere ahead, he now saw, was a commotion of some kind. He saw lantern lights, heard shouting, then a woman’s scream. He hesitated, then took a side route that’d take him around the scene, and back onto more familiar ground.</p>
+   <p>Emancipor felt clammy under his clothes, as if he’d just brushed… something unpleasant. He shook himself. “Better get used to it, working nights and all. Anyway, I was safe enough-no chance of laughing this damned night, that’s for sure.”</p>
+   <empty-line/>
+   <p>“A messy one,” the chalk-faced guard muttered, wiping across his mouth with the back of his hand.</p>
+   <p>Guld nodded. It was the worst he’d seen yet. Young Lordson Hoom, ninth-removed from the throne’s own blood, had died ignobly, with most of his insides strewn and smeared halfway down the alley.</p>
+   <p>And yet no one had heard a sound. The sergeant had come upon the scene less than a quarter-bell after the two patrol guards had themselves stumbled onto it. The blood and bits of flesh weren’t yet cold.</p>
+   <p>Guld had sent off the tracking dogs. He’d dispatched his corporal to the palace with two messages-one to the king, and the other-far less softly worded-to Magus Stul Ophan. With the exception of his squad detachment and a lone terrified horse still hitched to the Lordson’s overturned carriage- overturned. Hood’s breath! — there was only one other person present at the scene, and that presence had Guld deeply, profoundly, worried.</p>
+   <p>He finally turned his gaze from the carriage to study the woman. Princess Sharn. King Seljure’s only child. His heir, and, if the rumours are true, a real dark piece of work in her own right.</p>
+   <p>Though it would mean trouble later, Guld had insisted on detaining the royal personage. After all, it’d been her screaming that had drawn the patrol, and the question of what the princess was doing out in the city well after the night’s fourth bell-with no guard, not even her maid-in-waiting-needed answering.</p>
+   <p>His eyes narrowed on the young girl. She was wrapped in a voluminous cloak, hooded with her face hidden in shadows. She’d regained her composure with alarming ease. Guld scowled, then approached her. He jerked his head to the two guardsmen flanking the princess, and they moved away.</p>
+   <p>“Highness,” Guld began, “your calm is an impressive example of royal blood. Frankly, I’m awed.”</p>
+   <p>She acknowledged this with a slight tilt of her head.</p>
+   <p>Guld rubbed at his jaw, glancing away for a moment, then swung upon her an intense professional expression. “I am also relieved, for it means I can question you here and now, whilst your memory remains fresh, unclouded-”</p>
+   <p>“You are presumptuous,” the princess said in a light, bored tone.</p>
+   <p>He ignored that. “It’s clear you and Lordson Hoom were involved in a clandestine relationship. Only this time, either you came later, or he came early. For you, then, a pull of the Lady. For the lad, a push of the Lord. I can imagine your relief, Princess, not to mention your father’s-who will have been duly informed by now.” He paused at hearing her quickly drawn breath. “So, what I need to know is what you saw, precisely, upon arriving. Did you see anyone else? Did you hear anything? Smell anything?”</p>
+   <p>“No,” she answered. “Hoomy was… was already, uh, like that,” she gestured toward the alley behind Guld.</p>
+   <p>“Hoomy?”</p>
+   <p>“Lordson Hoom, I mean.”</p>
+   <p>“Tell me, Princess, where is your handmaid? I can’t believe you would come here entirely alone. She’d be your messenger in this affair, obviously, since I imagine the secret love notes flew fast and often-”</p>
+   <p>“How dare you-”</p>
+   <p>“Save that for your cowering underlings,” Guld snapped. “Answer me!”</p>
+   <p>“Do nothing of the sort!” a voice commanded behind the sergeant.</p>
+   <p>He turned to see Magus Stul Ophan pushing his way past a line of guards at the alleymouth. It was nearing dawn, and the fat man’s arrival was peculiarly accompanied by the day’s first birdsong. “Highness,” Stul said, inclining his head, “your father the King wishes to see you immediately. You may take my carriage.” Stul turned a dagger glare on Guld. “The sergeant is, I believe, done with you.”</p>
+   <p>Both men stepped back as Princess Sharn hurried past and quickly disappeared inside the carriage. As soon as the door closed and the driver flicked the horses into motion, Guld rounded on the Magus. “Now, I gather that Lordson Hoom was anything but an appropriate hay-roller for the precious princess, and I can imagine that Seljure wants to bury any royal involvement in what’s happened here-but if you ever again step between me and my investigation, Ophan, I’ll leave what’s left of you for the crabs. Understood?”</p>
+   <p>The Magus went red, then white. He spluttered, “The King’s command, Guld-”</p>
+   <p>“And if I’d found him standing here over the lad’s mangled corpse, I’d be no less direct in my questioning. The king is one man-his fear is nothing compared to the city’s fear. And you can tell him, if he wants anything left to rule, he’d best stay out of my way and let me do my job. Gods, man, can’t you feel the panic?”</p>
+   <p>“I can! Burn’s Blood, I damned well share it!”</p>
+   <p>Guld took a handful of Stul Ophan’s brocaded cloak and pulled the man to the alley. “Take a long look, Magus. This was managed in silence-neither estate to each side awoke-even the garden hounds remained silent. Tell me, what did this?” He released Stul Ophan’s cloak and stepped back.</p>
+   <p>The air turned icy around the magus as he hastily cast a series of cantrips. “A spell of silence, Sergeant,” he rasped. “The lad screamed all right, gods how he screamed. And the air itself was closed, folded in on itself. High sorcery, Guld, the highest. No smell could escape to afright the dogs on the other sides of these walls-”</p>
+   <p>“And the carriage? It has the look of having been rammed, as if by a mad bull. Scry the horse, dammit!”</p>
+   <p>Stul Ophan staggered up to the quivering, lathered animal. As he reached up one hand the horse reared back, eyes rolling, ears flattening against its skull. The magus swore. “Driven mad! Its heart races but it cannot move. It will be dead within the hour-”</p>
+   <p>“But, what did it see? What image remains behind its eyes?”</p>
+   <p>“Obliterated,” Stul Ophan said. “Wiped clean.”</p>
+   <p>They both turned as the fast-approaching sound of shod hooves on the cobblestones. An armoured rider appeared, boldly pushing his white charger past the guards- Hood, what’s the point of having a cordon of guards? The newcomer wore a white fur-lined cloak, a white-enamelled iron helm, and a coat of silver mail. The pommel at the end of his broadsword looked to be a single polished opal.</p>
+   <p>Guld cursed under his breath, then called out to the rider. “What brings you here, Mortal Sword?”</p>
+   <p>The man reined in. He removed his helmet to reveal a narrow, scarred face and close-set eyes that glittered black. Those eyes now turned to the lantern-lit scene in the alley. “The foulest of deeds,” he rasped, his voice thin and ragged-the story went that a Drek assassin’s dagger had come near to opening the man’s throat a dozen years back-but Tulgord Vise, Mortal Sword to the Sisters, had survived, while the assassin hadn’t.</p>
+   <p>“This is not a religious matter,” Guld said, “though I thank you for your vow to scour the nights until the killer is found-”</p>
+   <p>“Found, sir? Carved into pieces, this I have sworn. And what do you, cynical unbeliever, know of matters of faith? Do you not smell the stench of Hood in this? You, Magus, can you deny the truth of my words?”</p>
+   <p>Stul Ophan shrugged. “A necromancer-most certainly, Mortal Sword, but that doesn’t perforce mean a worshipper of the God of Death. Indeed, the priesthood disavows necromancy. After all, those dark arts are an assault on the Warren of the Dead-”</p>
+   <p>“Political convenience, that disavowal. You are a spineless, mewling fool, Ophan. I have crossed swords with Hood’s Herald, or do you forget?”</p>
+   <p>Guld noted one of his guardsmen flinch at that. “Tulgord Vise,” the sergeant said, “Death was not the goal here-hasn’t been all along.”</p>
+   <p>“What do you mean, sir?”</p>
+   <p>“I mean the killer is… collecting-”</p>
+   <p>“Collecting?”</p>
+   <p>“Parts.”</p>
+   <p>“Parts?”</p>
+   <p>“Organs, to be more precise. Ones generally considered vital to life, Mortal Sword. Their removal results in death as a matter of course. Do you see the distinction?”</p>
+   <p>Tulgord Vise leaned on the horn of his saddle. “Semantics are not among the games I play, sir. If only organs are required, why then the destruction of souls?”</p>
+   <p>Guld turned to the magus. “Destruction, Stul Ophan?”</p>
+   <p>The man shrugged uneasily. “Or… theft, Sergeant, which is of course more difficult…”</p>
+   <p>“But why steal souls, if destroying them more easily serves the purpose of ensuring your inability to question them?”</p>
+   <p>“I don’t know.”</p>
+   <p>Tulgord Vise settled back in his saddle, one gauntleted hand resting on his sword. “Do not impede me, sir,” he said to Guld. “My blade shall deliver what is just.”</p>
+   <p>“Better the madman writhe on the hooks,” Guld replied, “unless you feel sufficient to the task of quelling a city’s bloodlust.”</p>
+   <p>This silenced the Mortal Sword, if only briefly. “They will sit well with my deed, sir-”</p>
+   <p>“It won’t be enough, Mortal Sword. Better still if we drag him through every street, but it’s not up to me. In any case,” Guld added, stepping forward, “it’s you who’d best stay out of my way. Interfere with me at your peril, Mortal Sword.”</p>
+   <p>Tulgord Vise half-drew his weapon before Stul Ophan leapt close and stilled the man’s arm.</p>
+   <p>“Tulgord, ’tis precipitous!” the magus bleated.</p>
+   <p>“Remove your feeble grip, swine!”</p>
+   <p>“Look about you, sir. I beg you!”</p>
+   <p>The Mortal Sword glanced around, then slowly resheathed his weapon. Clearly, unlike Stul Ophan, he hadn’t heard the locking of six crossbows, but the weapons were trained on him now, and the expressions on the faces of Guld’s squad left no doubt as to their intent.</p>
+   <p>The sergeant cleared his throat. “This is the twelfth night in a row, Mortal Sword. It has, I believe, become very personal to my men. We want the killer, and we’ll have him. So again, stay out of my way, sir. I seek no insult to you or your honour, but draw your blade again and you’ll be dropped like a rabid dog.”</p>
+   <p>Tulgord Vise kicked Stul Ophan away, then wheeled his mount. “You mock the gods, sir, and for that your soul will pay.” He put spurs to the charger’s flanks and rode off.</p>
+   <p>The moment was closed by the sudden collapse of the carriage horse, followed immediately by the heavy snap of quarrels released in the animal’s direction. Guld winced as the six bolts buried themselves in the horse’s body.</p>
+   <p>Dammit, those fingers itched, didn’t they. He swung a sour look on his sheepish men.</p>
+   <p>Stul Ophan occupied the embarrassed moment by straightening his clothing. Then he said without looking up, “Your killer’s a foreigner, Sergeant. No one in Lamentable Moll is of this high order in necromancy, including me.”</p>
+   <p>Guld acknowledged his thanks with a nod.</p>
+   <p>“I’ll report to the king,” the magus said as his own carriage returned, “to the effect that you’ve narrowed your list of suspects, Sergeant. And I shall add my opinion that, barring interference, you’re close to your quarry.”</p>
+   <p>“I hope you’re right,” Guld said in a moment of honest doubt that clearly startled Stul Ophan, who simply nodded then walked to his carriage.</p>
+   <p>Guld waited until the man left, then singled out one of his guards and pulled him to one side. He studied the young man’s face. “Death’s Herald crossed your trail, then?”</p>
+   <p>“Sir?”</p>
+   <p>“I saw you react to Vise’s words. Of course, he meant someone else in that sordid role, since it’s a claim he’s made for twenty years. But what did you hear in those words?”</p>
+   <p>“A superstition, Sergeant. A drunken old man, earlier this night, down in the wharf district-he called himself that, is all. Was nothing, in truth-”</p>
+   <p>“What was the man doing?”</p>
+   <p>“Reading a posted notice in Fishmonger’s Round, I think. It’s still there, warded, I heard.”</p>
+   <p>“Likely nothing to it, then.”</p>
+   <p>“As the gods decree, sir.”</p>
+   <p>Guld narrowed his gaze, then grunted. “Fair enough. Once I’ve done reporting to the king, let’s take a look at this notice.”</p>
+   <p>“Yes, sir.”</p>
+   <p>At this moment the dogger returned with his hounds. “It’s a mess,” he reported. “By their tuck they found a woman’s trail, or a man’s, or both, or neither. One, or two, then a third, heavy I’d say that last one with brine and sword-oil, or so the dogs danced, anyway.”</p>
+   <p>Guld studied the six hounds on their limp leashes, their heads hanging, their tongues lolling. “Those trails. Where did they all lead?”</p>
+   <p>“Lost them down in the wharfs-y’got rotting clams and fish guts to contend with, eh? Or else the trails were magicked. My children here all closed in on a sack of rotting fish-not like ’em, I say, not like ’em at all.”</p>
+   <p>“From the smell, your hounds did more than just close in on that sack of rotting fish.”</p>
+   <p>The dogger frowned. “We thought we might do better hiding our scent, sir.”</p>
+   <p>Guld stepped closer to the man, then flinched back. Hood take me, wasn’t just the dogs that rolled in those fish! He stared at the dogger.</p>
+   <p>The man looked away, licking his lips, then yawning.</p>
+   <empty-line/>
+   <p>Subly’svoice came from the main room. “Pigeons! They’re roosting over our heads, in the eaves, in the drain pipes-why haven’t you done anything about it, Emancipor? And now… and now, oh, Soliel forfend!”</p>
+   <p>It was a voice that could penetrate every corner of their house. A voice from which there was no domestic escape. “But soon…” Emancipor whispered, knowing his mood was miserable from lack of sleep and too much drink the night before, knowing he was being unfair to his poor wife, knowing all these things but unable to stop the dark torrent of his thoughts. He paused to examine in the tin mirror the blur of his lined face and the bloodshot eyes, before setting the blade once again to his whiskers.</p>
+   <p>The brats whined from their loft, their scratching so loud he could hear every scrape of grubby nails against flesh. They’d been sent home, both with the mange. Their mother was… mortified. There’d be need for an alchemist-at great expense-but the damage was done. The foul-smelling skin mould that was the curse of dogs and lowly street urchins had invaded their home, befouling their position, their prestige, mocking their pride. A bowlful of gold coins in Soliel’s temple could not reverse the disaster. And for Subly the cause was clear “The pigeons, Emancipor! I want them out! You hear me?”</p>
+   <p>She’d been in a good enough mood earlier in the day, doing a poor job of hiding her shock at his finding work so swiftly, and an even poorer job of disguising the avaricious glint that came into her eyes when he explained the financial arrangements that had already been made. For these rewards, Subly had yet to take the broom to him, driving him out into the muddy, garbage-strewn, slate-filled backyard to deal with the pigeons. She’d even allowed him an extra hour of sleep before wailing in horror at their children’s ignoble return from the tutor’s.</p>
+   <p>They could afford the alchemist, now. They could even afford to move closer to the school, into a finer neighbourhood, full of proper people thus far spared Subly’s dramatic life.</p>
+   <p>He told himself he shouldn’t be so mean-after all, she’d stood by him all these years. “Like a mountain…” And she’d had her own past, dark and messy and tainted with blood. And she’d done her share of suffering since, though not so much as to prevent her begetting two whelps during the years he’d mostly spent at sea. Emancipor paused again in his shaving to scowl. That had always nibbled at his insides, especially since neither child looked much like him. But he’d done his part raising them, so in a way it didn’t matter. Their contempt for him was truly and surely sufficient proof of his fatherhood, no matter the blood’s mix.</p>
+   <p>Emancipor washed the crusty suds from his face. Maybe tonight he’d meet the other man, the mysterious Korbal Broach. And he’d have his new uniform measured, and his travelling kit assembled.</p>
+   <p>“I want the traps set, Emancipor Reese! Before you leave, you hear me?”</p>
+   <p>“Yes, dear!”</p>
+   <p>“You’ll stop at the alchemist’s?”</p>
+   <p>He rose from the stool and reached to the bed-post for his coat. “Which one? N’sarmin? Tralp Younger?”</p>
+   <p>“Tralp, of course, you oaf!”</p>
+   <p>Add another two silver crowns to the cost, then. She’s already getting comfortable with the new state of affairs…</p>
+   <p>“Set the traps! Hood’s Herald visit those damned pigeons!”</p>
+   <p>Emancipor frowned. Hood’s Herald. Something, yesterday… He shook his head and shrugged. “Curse of the ale,” he muttered, as he turned to the hanging covering the bedroom entrance. “Dear Subly… The mountain that roars… but soon, so very soon…”</p>
+   <empty-line/>
+   <p>The King had shown him fear. in elder days that would have condemned Guld to the assassin’s knife. But Seljure was an old man, now-older than his years. His Highness had found tremulous uncertainty his bedmate, now that the concubines had been sent away. The king’s tight-skinned, snaked-eyed advisors remained, of course, but even they hadn’t been present for Guld’s report. Even so, if they caught a sniff-the king had shown his fear, not just of the killer in the city, but of the dark storm brewing in Stygg, and the rumbles from the Korelri Compact to the south. The king had… babbled. To a simple sergeant of the guard. And Guld now knew more about the precious Princess Sharn than he’d care to.</p>
+   <p>He shrugged to himself as he strode down the narrow, winding and barrow-humped Street of Ills, on his way to Fishmonger’s Round. Twilight had descended on Lamentable Moll, in every way, it seemed. In any case, he’d done his duty, made his report to King Seljure; he received the expected instructions to quell the rumours of the royal involvement. Lordson Hoom’s father, a landholder of some clout, had been taken care of-with a chestful of coin and promises, no doubt, and Guld had returned to the city’s quiet, tense streets.</p>
+   <p>He’d left the corporal standing guard over the posting, even though the death ward made the notice’s theft highly unlikely. Guld had been forced to await the audience with Seljure for most of the day, and now the sun was low in the sky over the bay. News of the noble son’s murder had deepened the fearful pall over the city; already the shops were closing up, the streets emptying, because tonight there would be hired killers out-shadowy extensions of noble wrath-indiscriminate with a vengeance. Tonight, anyone foolish enough to remain on the streets without good cause (or a bristling squad of bodyguards) was likely to get his entrails pulled out, if not worse.</p>
+   <p>Guld turned a corner and approached the Round. His corporal-standing nervously with a hand on his short-sword-was the only occupant left, save one skinny dog, a bedraggled crow perched atop the post, and a dozen seagulls squabbling over something in the sewer trench.</p>
+   <p>A breeze had come in from the sea, only marginally cooler than the turgid, sweltering heat in the city. Guld wiped sweat from his upper lip and walked up to his corporal.</p>
+   <p>“Anyone take the measure of you, lad?”</p>
+   <p>The young man shook his head. “No, sir. I’ve been here all day, sir.” Guld grunted. “Sorry, I was delayed at the king’s palace. Feet tired?”</p>
+   <p>“Yes, sir.”</p>
+   <p>“Well then, let’s exercise them-you have the address from the notice?”</p>
+   <p>“Yes, sir. And I heard from a rat-hunter that there’s two of them, foreigners, who came in on the Mist Rider… ”</p>
+   <p>“Go on.”</p>
+   <p>The corporal shifted weight. “Uh, well, the Mist Rider last called out of Korel, and has since picked up cargo after unloading some iron, and left for Mare this morning. Oh, and the foreigners hired their manservant.”</p>
+   <p>“Oh?”</p>
+   <p>“Yes, sir, and he was the coachman for Merchant Baltro, sir. Imagine that.”</p>
+   <p>Guld scowled. “All right, lad, let’s go then.”</p>
+   <p>“Yes sir. Sorrowman’s Hostel. It’s not far.”</p>
+   <empty-line/>
+   <p>Dalg the Doorman grinned knowingly at Guld. “Ain’t s’prised you come, Sergeant, ain’t s’prised at all. Come to see Obler, eh? Only he’s retired. Ain’t lending money no more, least not as I can see, and-”</p>
+   <p>Guld cut in, “You have a pair of guests. Foreigners.”</p>
+   <p>“O-Oh, yes, them. Odd pair.”</p>
+   <p>“What’s odd about them?”</p>
+   <p>The doorman frowned and scratched his head. “Well,” he said. “You know. Odd. One of ’em never leaves the room, eh?”</p>
+   <p>“And the other one?”</p>
+   <p>“Not so often neither, and hardly at all now that they got their manservant. Oh, they don’t visit nobody and nobody visits them, and they eat in their room, too.”</p>
+   <p>Guld nodded. “So, are they both in right now?”</p>
+   <p>“Yes, sir.”</p>
+   <p>The sergeant left the corporal with the doorman and entered Sorrowman’s. He was immediately confronted by the hostelier, who approached with an offerings bowl and a cloth in his hands. He quickly set the bowl on a ledge and tucked the cloth into his belt. “Guardsman, can I help you?”</p>
+   <p>Guld watched the man’s long, blackened fingers begin weaving a nervous pattern as they clasped and unclasped at the hostelier’s lap. “Obler, isn’t it? Keeping honest these days?”</p>
+   <p>The man blanched. “Oh yes indeed, Guardsman. For years! Run this establishment, y’see, and do scribing on the side. I’m respectable now, sir. Upstanding and all, sir.” Obler’s eyes darted.</p>
+   <p>“I want to speak to your two foreign guests, Obler.”</p>
+   <p>“Oh! Well, I’d best get them, then.”</p>
+   <p>“I’ll go with you.”</p>
+   <p>“Oh! Very well, follow me, sir, if you will.”</p>
+   <p>They headed up the narrow, heavily carpeted stairs, strode down the hallway. Obler knocked on the door. They waited a moment, then an old man’s voice spoke from the other side.</p>
+   <p>“What is it, Obler?”</p>
+   <p>The scriber leaned close to Guld. “That’s Reese,” he hissed. “The manservant.” He then called, “A guardsman to speak with your masters, Reese. Open, if you please.”</p>
+   <p>Guld glared at Obler. “Next time,” he rasped, “just get them to open the damned door.” He could hear the murmurs of conversation from within, and he reached up a hand to more forcefully pound on the door when it suddenly opened and the manservant quickly slipped out into the hallway, then shut the door once again behind him.</p>
+   <p>Emancipor’s eyes widened as he looked up and recognised the sergeant.</p>
+   <p>“Emancipor Reese,” Guld drawled. “I questioned you not two days ago, and now here you are again. How strange.”</p>
+   <p>“A man needs work,” Reese grumbled. “Nothing more to it.”</p>
+   <p>“Did I say there was?”</p>
+   <p>“You said ‘strange,’ but it’s nothing strange about it, ’cepting you coming here.”</p>
+   <p>Huh, the old bastard’s got a point. “I wish to speak with your masters. You may announce me now, or whatever it is they want you to do.”</p>
+   <p>“Ah, well, Sergeant. My master regrets to inform you he’s not receiving guests this evening, as he is at a crucial juncture in his research-”</p>
+   <p>“I’m not here as a guest, old man. Either announce me or step aside. I will speak to the men within.”</p>
+   <p>“There’s but one within,” Reese said. “Master Bauchelain is a scholar, Sergeant. He wishes no distractions-”</p>
+   <p>Guld growled and tried to push Reese aside, but the old man planted his feet and stood his ground. The sergeant was surprised at Reese’s deceptive strength, until he saw the old sword-scars on his right forearm. Damned veteran. I hate dealing with veterans-they don’t buckle. Guld stepped back, placing a hand on his sword. “You’ve done more than should be expected, Reese, protecting your master’s wish for privacy. But I’m a sergeant of the City Watch, and this is an official visit. If you impede me further, you’ll end up in the stock, Reese.” Guld felt his body tense as Reese’s lined face darkened dangerously. Damned veteran. “Don’t make this messy. Don’t.”</p>
+   <p>“If I let you in, Sergeant-” Reese’s voice was like gravel shifting in the surf, “I’ll likely get fired. A man needs to work. I need this job, sir. I ain’t had the best of luck, as you know. I need this job, and I mean to keep it. If you’ve questions, maybe I can answer ’em, maybe I can’t, but I won’t let you pass.”</p>
+   <p>“Hood’s breath,” Guld sighed, taking another step back. He turned to Obler, who had begun whimpering and throwing futile gestures at the two men. “Get my corporal, Obler. He’s out front. Tell him: double-time, weapon out. Understood?”</p>
+   <p>“Oh! I implore you-”</p>
+   <p>“Now!” The scriber scurried down the hall. Guld swung back to Reese, who looked resigned. The sergeant spoke quietly, “My corporal, Reese, will make a lot of noise coming up here. You’ll be disarmed and restrained. Loudly. You’ll have done all you could. No master worth his salt will find cause to fire you. Do it my way, Reese, and you’ll not get arrested. Or killed. Otherwise, we’ll work through you-we’ll take our time, until your breath is short and you’re done, then we’ll cut you down. Well, which way is it to be?”</p>
+   <p>Reese sagged. “All right, you bastard.”</p>
+   <p>They heard the corporal’s heavy boots on the stairs, the clatter of his scabbard as it struck the railing spokes, then his gasps as he appeared at the landing, his blade held out in front of him, his face flushed. The lad’s eyes widened upon seeing his sergeant and the manservant standing calmly watching him, then he ran forward as Guld waved him on.</p>
+   <p>Guld turned back to Reese. “All right,” he whispered, “make it sound convincing.” He reached out and grasped Reese by the coat’s brocaded collar. The old man bellowed, throwing a boot back to hammer the door, rattling it in its frame. Guld pulled Reese to one side and pushed him up against the wall. The corporal arrived.</p>
+   <p>“Your sword to the bastard’s neck!” Guld ordered, and the corporal complied with undue zeal, nearly slitting Reese’s throat until Guld pulled the lad’s arm back in alarm.</p>
+   <p>At that moment the door opened. The man in the threshold took in the scene in the hallway with one lazy, cool glance, then met Guld’s stare. “Release my servant, sir,” he said softly.</p>
+   <p>Guld felt a chill race along his veins. This one’s for real. The sergeant gestured at his corporal. “Step back, lad.” The guard, confused, did as he was told. “Sheathe,” Guld commanded. The sword slid into its scabbard with a rasp and click.</p>
+   <p>“That’s more agreeable,” the foreigner said. “Please come in, Sergeant, since you seem so eager to meet me. Emancipor, join us, please.”</p>
+   <p>Guld nodded to his corporal. “Wait out here, lad.”</p>
+   <p>“Yes sir.”</p>
+   <p>The three men entered the room, Reese closing the door and dropping the latch.</p>
+   <p>Guld looked around. A desk cluttered with… slabs of slate; the remains of a breakfast on a chair, recently finished. Odd, it’s near sunset. Two slept-in beds, travel trunks, only one open and revealing a city-dweller’s clothes, a coat of mail-a weapon box beneath it-and a false backing. The other three trunks were securely locked. Guld took a step closer to the desk, eyeing the slate. “I don’t recognise those runes,” he said, turning to the austere man. “Where are you from?”</p>
+   <p>“A distant land, Sergeant. Its name would, alas, mean nothing to you.”</p>
+   <p>“You have a facility for languages,” Guld noted.</p>
+   <p>The man raised an eyebrow. “Passing only. I understand my accent is, in fact, pronounced.”</p>
+   <p>“How long since you learned Theftian?”</p>
+   <p>“That is this language’s name? I thought it was Mollian.”</p>
+   <p>“Theft is the island. Moll is a city on it. I asked you a question, sir.”</p>
+   <p>“It’s an important one, then? Very well, about three weeks. During our passage from Korel, I hired one of the crewmen to instruct me-a native of this island. In any case, the language is clearly related to Korelri.”</p>
+   <p>“You are a sorceror, sir.”</p>
+   <p>The man assented with a slight nod. “I am named Bauchelain.”</p>
+   <p>“And your travelling companion?”</p>
+   <p>“Korbal Broach, a freed eunuch, sir.”</p>
+   <p>“A eunuch?”</p>
+   <p>Bauchelain nodded again. “An unfortunate practise among the people from whom he hails, done to all male slaves. For obvious reasons, Korbal Broach desires solitude, peace and quiet.”</p>
+   <p>“Where is he, then? In one of the trunks?”</p>
+   <p>Bauchelain smiled. “I did not say shy, did I, Sergeant? No, he remains outside the city, as crowds disturb him.”</p>
+   <p>“Where?”</p>
+   <p>“Precisely? I cannot be sure. He… wanders.”</p>
+   <p>Guld looked down at the slate slabs. “What are these?”</p>
+   <p>“Imperfect efforts, Sergeant. The local slate possesses some intriguing mineral properties-no doubt the reason why the ancient tomb-builders used them-there is within them a natural energy. I am seeking to harness it toward… order.”</p>
+   <p>“Do you intend to stay in Moll long?”</p>
+   <p>Bauchelain shrugged. “That will depend on whether I succeed in my efforts. Of course,” he smiled slightly, “even my patience has limits.”</p>
+   <p>Guld heard the implicit warning and ignored it. “How do you contact your friend, the eunuch…” Dammit, why does that bother me? Moll’s own history has its eras of slavery and castration… so why in Hood’s name is my skin crawling?</p>
+   <p>Bauchelain shrugged again. “A simple cantrip of communication. He will come to the locale appointed for rendezvous, punctually.”</p>
+   <p>“Are you a necromancer, Bauchelain?” Casually asked, but Guld turned to gauge the man’s reaction. There was none but faint amusement.</p>
+   <p>“That is a fell endeavour, Sergeant. I have no interest in delving into Hood’s Warren-”</p>
+   <p>“Is it Hood’s, then? Some say it’s the very opposite.”</p>
+   <p>“Many conjectures abound on the subject. I myself concur with the sage Kulp Elder’s theory that necromancy occupies the threshold of Hood’s Warren-the in-between of life and death, if you will. A necromancer might well know more, but it’s not in his or her nature to expound on the subject. Practitioners of the Death Arts are, of course, very secretive.”</p>
+   <p>Guld nodded. He walked slowly to the door. “Your manservant’s a stubborn man, Bauchelain. He was prepared to give his life, protecting your privacy.”</p>
+   <p>“Had I known,” Bauchelain said, glancing over at Reese, “I would have added a cautioning provision to my request, Sergeant, regarding those who do not take ‘no’ for an answer.”</p>
+   <p>Guld grunted. “Good idea. You almost lost yourself a good man.”</p>
+   <p>“That would have been unfortunate indeed. Thank you for your concern. Is that all you wish of me?”</p>
+   <p>“For now,” Guld said. He stopped at the door. “You’ve paid for this room in advance?”</p>
+   <p>“Until week’s end, Sergeant. Why?”</p>
+   <p>He opened the door, hiding his wry grimace. Suddenly dense, are we? “Good evening, sir.” He stepped out into the hallway, closing the door. The corporal and Obler waited outside, their eyes wide and fixed on the sergeant’s face. Guld headed down the hallway. Both men followed.</p>
+   <p>“He says they’ve paid for the week,” Guld said to Obler.</p>
+   <p>The hostelier nodded. “Aye, sir.”</p>
+   <p>“Four more days.”</p>
+   <p>“Aye.”</p>
+   <p>“Corporal?”</p>
+   <p>“Yes, sir?”</p>
+   <p>“Remain outside this building until you’re relieved. Obler, is there a back door?”</p>
+   <p>“Aye, but it’s thrice-bolted.”</p>
+   <p>“Meaning?”</p>
+   <p>The scriber tapped below his left eye and grinned. “All very loud to draw back. Wakes me up, sir, every time.”</p>
+   <p>“Used lately?”</p>
+   <p>“No, sir. Not in weeks, sir. Not since before they arrived.”</p>
+   <p>“So this Korbal Broach left by the front door?”</p>
+   <p>Obler paused at the landing. “Which one be him, sir?”</p>
+   <p>“The eunuch-the one who’s out right now.”</p>
+   <p>“One’s out right now? You’re certain, sir? I ain’t seen but the one of them out of that room since they arrived, sir, and that be the one you just seen, sir. That other one, he’s in there, sir, ’cause he ain’t never left.”</p>
+   <p>Guld’s frown deepened. “You’re mistaken, Obler.”</p>
+   <p>But the scriber just shook his head.</p>
+   <p>“Well, does the man eat?”</p>
+   <p>“Uh, no sir, he don’t.”</p>
+   <p>The frown became a scowl.</p>
+   <p>Obler’s eyes darted, and he licked his lips. “Come to think on it, sir, that’s kind of odd. Unless they share the meals, sir. Fasting, like.”</p>
+   <p>Guld moved on down the steps, the corporal on his heels. “The eunuch,” he said over his shoulder to Obler, who crowded behind the corporal, “what did he look like?”</p>
+   <p>“Big, sir. Huge. Didn’t say anything I don’t think. Just smiled a lot, sir. Clammy as a dead whale, sir, that’s how he looked. Never knowed he was a eunuch, but now that you’ve said it, it’s plain. Aye, a eunuch.”</p>
+   <empty-line/>
+   <p>“Have some wine,”Bauchelain said, pouring two goblets full and handing one to Reese, who took it gratefully.</p>
+   <p>“I’m sorry, Master-”</p>
+   <p>“Not at all. As the guard implied, it would have been unfortunate-and undesired-if you had come to any harm.” He turned an inquisitive gaze on the old man. “Why so stubborn? You seem a wise man, Mister Reese-to assault and defy a sergeant of the Watch…”</p>
+   <p>“Well, I didn’t want to fail you, Master. I, uh, I like this job.”</p>
+   <p>“You feared losing it? Do not be concerned on that account, Mister Reese. We find you ideal.”</p>
+   <p>Emancipor looked around. We?</p>
+   <p>“And besides,” the sorceror continued, sipping his wine, “I have foreseen a long acquaintance between us, Mister Reese.”</p>
+   <p>“Oh? Oh.”</p>
+   <p>“Although your mind still holds its mysteries.”</p>
+   <p>“It does, Master?”</p>
+   <p>“Mmhmm. For example, your wife of thirty years…”</p>
+   <p>“Subly? Well, I gripe a lot, Master, ’tis true, but she’s stayed by me all this time, and sometimes she’s been all I had to hold onto, sir, if you understand me. I love her dearly-”</p>
+   <p>“I know. It’s not that, Mister Reese. In your mind I can hear her voice, yet I cannot find an image-I cannot see her within you, and that is what I find so peculiar…”</p>
+   <p>They stared at each other over their gold cups, neither blinking, for a long moment, then Bauchelain downed the last of his wine, cleared his throat and turned away.</p>
+   <p>“I have work for you tomorrow, Mister Reese.”</p>
+   <p>“Master?”</p>
+   <p>“And…” Bauchelain refilled his goblet. “Book us passage. Eastward, as far as a ship will take us.”</p>
+   <p>Emancipor’s eyes narrowed. “Yes, Master. Should I get a refund from Obler?”</p>
+   <p>“No, leave that be. But I want us out of Moll in two days hence. Is this likely?”</p>
+   <p>“ ’Tis the turning of the season, Master. I can guarantee it.”</p>
+   <p>“Excellent. Oh, and Mister Reese?”</p>
+   <p>“Yes, Master?”</p>
+   <p>“Be circumspect.”</p>
+   <p>“Of course, Master.”</p>
+   <p>“You’ve met this sergeant before, Mister Reese?”</p>
+   <p>Emancipor nodded. “Twice. Once, a year back, when my employer was assassinated, and then when Merchant Baltro was murdered.”</p>
+   <p>Bauchelain nodded thoughtfully. “He seems a sharp man.”</p>
+   <p>“In every way, Master. He’s famous. The King himself commands that Sergeant Guld conduct investigations. Certain ones, that is. Murder, mostly. Guld’s never failed.”</p>
+   <p>“I take it he is the man investigating this night-killer haunting your city.”</p>
+   <p>“Yes, sir, he is.”</p>
+   <p>Bauchelain smiled. “Well, then, I suppose it was a matter of course that we, as foreigners, be sought out and questioned.”</p>
+   <p>“I’d guess, Master,” Reese made his tone flat.</p>
+   <p>“Even so,” Bauchelain continued, his gaze on the wine in his goblet. “I am a private man, and so dislike official… attention. Hence my decision to leave early, Mister Reese. I would not wish to unduly alarm the sergeant, however…”</p>
+   <p>“He’ll not hear a word, Master.”</p>
+   <p>“Excellent. Now, take to your bed here-I’ll need you sharp for your efforts tomorrow.”</p>
+   <p>“Yes, Master. Thank you, Master.” Emancipor went to the bed and laid down on it. Unduly alarm Guld. Of course. Who me, a necromancer? Really, sir. Huh. He was exhausted, but he didn’t expect to sleep well. Not well at all.</p>
+   <empty-line/>
+   <p>Guld stepped through the entrance to Squint’s. He paused in the unlit threshold, eyes already smarting with the thick, heavy wood smoke layering the crowded, low-ceilinged main room, a murky tide of noise washing over him.</p>
+   <p>The soldier he’d sent to trail the foreigner emerged from the press and stepped close. “He’s at the back, sir. We can get a better look at ’im from the bar.”</p>
+   <p>“Lead on,” Guld grunted.</p>
+   <p>Voices fell away to either side as the sergeant and his guardsman pushed their way to the long, sagging bar running the length of one side, voices that then rose again behind them with evident relief. Squint’s rated among the seediest establishments in Lamentable Moll. Had he wished-and had he another thirty guardsmen-Guld could have arrested everyone present, just on principle.</p>
+   <p>They reached the bar. The young soldier turned and gestured toward the tables at the back. “There, sir.”</p>
+   <p>Seated alone with his back to the rear wall was a grey-hooded figure, face hidden in shadows. The grey cloak covering his shoulders was threadbare. From Guld’s position the man’s right leg was visible from the knee down, moccasin-clad, a large hunting knife sheathed alongside the calf. The man’s lean, long-fingered hands, wrapped around a tankard, were deeply tanned and scarred. An unstrung longbow leaned against the wall behind him.</p>
+   <p>Frowning, Guld stepped forward, but was brought up short by the guardsman’s hand. “No, not him. That one.”</p>
+   <p>“Ah.” Was wondering about the sudden change of attire… The foreigner he’d noted at the last two murder scenes sat at the table next to the hooded man. Still armoured, his back to the room, he was eating, noisily-for even at six paces away and through the reverberating cacophony of the denizens, his lip-smacking, grunting and snorting was audible. “Wait here, soldier,” Guld ordered, then made his way toward the man.</p>
+   <p>A local was sharing the foreigner’s table, was talking nonstop. “-so I says to myself, self I says, ‘this ain’t my house! Least, I don’t think it is!’ The roof, y’see, started at barely my chest, and I ain’t a tall man as you can see. Were you here for the rains? Two weeks back? A deluge! So, anyway, what happened? Well, the house’d been sitting atop a barrow-no surprise there, not in Lamentable Moll, right? But a drain had blocked, and the water carved another way down to the sea-right through the barrow under us! The whole damned thing slumped, taking the house down with it! And if that wasn’t bad enough, there was my wife, in bed, but not alone! Oh no! Not my beloved, treacherous Mully! Four-count ’em, four — damned ghosts was in there wi’er. Minor ones, of course-that’s all y’ever get from those barrows-but powerful enough to tickle and poke and nudge and stroke and my, wasn’t they having fun with moaning Mully! And she whimperin’ and beggin’ f’more! ‘More!’ she cries. ‘More!’-”</p>
+   <p>“Enough,” Guld growled.</p>
+   <p>The local looked up and nodded. “That’s what I said! I said-”</p>
+   <p>“Be quiet!” the sergeant snapped. “Find another table. Now.”</p>
+   <p>The foreigner had glanced up at Guld’s interruption, then had resumed his meal.</p>
+   <p>“Uh,” the local stammered, pushing his chair back. “Okay. Right away. I hear you, Sergeant Guld-oh yes, I know you. Seen you. Hundreds of times-no, I wasn’t doing nothing illegal, nothing y’could prove anyway-”</p>
+   <p>“Get out right now,” Guld said, “or I will dispense with the need to prove anything, and throw you in the stocks for a week or three.”</p>
+   <p>“I’m getting out. Here, see, here I go-”</p>
+   <p>Guld watched the man slip into the crowd, then sighed and slowly settled down in the vacated chair beside the foreigner. “I have a few questions for you,” he said in a low voice.</p>
+   <p>The foreigner belched, then grunted and continued eating.</p>
+   <p>“Where are you from? And why are you so damned interested in murder scenes?”</p>
+   <p>The foreigner snorted and shook his head, still not meeting Guld’s eyes. “Just seeing the sights, Sergeant,” he said, his accent harsh.</p>
+   <p>“Moll’s not much, but it’s got more to offer than alleys with dismembered corpses.”</p>
+   <p>The man paused. “Does it now?”</p>
+   <p>“Unless, of course,” Guld resumed, “killing is what you do.”</p>
+   <p>The foreigner collected the last of his bread and began soaking up the broth in his bowl. “If it’s what I do, Sergeant, I don’t do it that way.”</p>
+   <p>“If that’s what you do,” Guld retorted, “then what are you doing here?”</p>
+   <p>“Passing through.”</p>
+   <p>“So you’ll be leaving tomorrow.”</p>
+   <p>The foreigner shrugged. “Could be.”</p>
+   <p>“Where are you staying?”</p>
+   <p>The man finally turned a broad smile on Guld. “That guard you’ve got following me should know.”</p>
+   <p>The sergeant narrowed his gaze. “He reports to me regularly. If I don’t hear from him at the appointed time, I am personally coming looking for you.”</p>
+   <p>“As you like.”</p>
+   <p>Guld rose. “You’ve left a piece of bread,” he observed.</p>
+   <p>“For the gods.”</p>
+   <p>“What if they’re not hungry?”</p>
+   <p>“They’re always hungry, Sergeant.”</p>
+   <p>Steven Erikson</p>
+   <p>Bauchelain and Korbal Broach</p>
+   <empty-line/>
+   <p>“Y’look horrible, Mancy,” Kreege said with a grin as Emancipor slumped down at the table. “Subly keepin’ you awake at night, old man?” Kreege winked broadly at Dully who sat opposite him. “Y’ask me, she looks to be a woman of, uh, considerable appetites…”</p>
+   <p>“I wasn’t asking you,” Emancipor growled, glaring down at his mug of dark ale, “and why should I? It’s not like I don’t know, is it?”</p>
+   <p>“ ’Course not!” Dully loudly agreed.</p>
+   <p>“Hey,” Kreege said, leaning back, “you ain’t picked up none of that mange your squeakers come down with, have you?”</p>
+   <p>“No.”</p>
+   <p>“Glad to hear,” Kreege sighed. “Had that once. Horrible. Gods forbid, the stuff behind your ears-”</p>
+   <p>“No more a that,” Dully growled.</p>
+   <p>Emancipor drank deep, then leaned forward on the table. “I need a ship. Sailing out tonight or tomorrow morning.”</p>
+   <p>Dully’s brows rose. He met Kreege’s eyes, then both men edged closer. “Well,” Dully muttered, “that ain’t too hard.”</p>
+   <p>“He’s right,” Kreege nodded. “Easy pickings. Though, it all depends on what exactly you’re looking for. Like, if you want circumspect, you don’t want the Barnsider, since that’s Captain Pummel and he’s an upright-by-the-ledger sort.”</p>
+   <p>“And if you’re looking for fast and seaworthy,” Dully said, “you don’t want Troughbucket, since she’s been shipping bad and Cap’n Turb’s owing half the lenders in Moll, including Obler, so’s he can’t get the repairs done.”</p>
+   <p>“ Swarmfly might be a good bet but I heard the rats chased the whole damn crew off and there’s no telling when or if they’ll try storming her.” Kreege frowned, then shook his head. “Maybe not so easy after all, come to think of it.”</p>
+   <p>Dully raised a stubby finger. “Hold on. There’s one. The Suncurl.”</p>
+   <p>Kreege choked on a mouthful of beer and the next few moments passed as Emancipor and Dully watched the man hack and gag and choke, his face turning purple before he finally managed to draw a clean breath.</p>
+   <p>Emancipor turned to Dully. “The Suncurl, you said? Don’t know that one-”</p>
+   <p>“Come in from Stratem,” Dully explained with a casual shrug. “Needed some refitting here. Me and Kreege did some off-loading, then swung them a good price on iron nails.”</p>
+   <p>Kreege, now recovered enough to speak, cleared his throat and said, “Yeah, Dully’s got a good notion there. A good-looking ship, a trough-runner for sure. Captain’s very quiet-Hood, the whole crew’s a quiet, private bunch. The Suncurl. Perfect for your needs, Mancy, whatever your needs might be. She’s at the Trader’s Dock, just back down off the rollers and sitting pretty.”</p>
+   <p>Emancipor finished his ale, then rose. He was exhausted, his thoughts seeming to swim behind a thick fog. “Thanks. I’ll head straight there. See you.”</p>
+   <p>“See you Mancy, and don’t mention it. Hey, did Subly have any luck at the alchemist’s?”</p>
+   <p>Funny, I don’t recall telling ’em about all that. Must have, though. Kreege dotes on our youngest lad-guess it’s a natural concern. Guess he’s just a nice, caring man, is Kreege. “She did well enough,” Emancipor replied as he stepped away from the table and turned toward the door. “Thanks for asking.”</p>
+   <p>“No problem, Mancy. Glad to hear it.”</p>
+   <p>“Me too,” Dully added. “See you, Mancy.”</p>
+   <empty-line/>
+   <p>Sergeant Guld made his way down doll street, seventy-seven winding paces through a tortured alley draped in shadow. Brushing his shoulders on either side, with restless clattering, were hundreds of wooden, bone, rag and feathered dolls, each hanging by the neck from shop overhangs on hairy strands of seaweed twine. Shell, studded or painted eyes seemed to follow his passage, as if every ghastly puppet and marionette was demon-possessed. At the very least, Guld well knew, some of them were. Doll Street did not rank among his favourite haunts in Lamentable Moll. If human eyes tracked him, they were hidden in the chill gloom of the shop interiors.</p>
+   <p>As luck would have it, Mercy Blackpug’s closet of a shop was at the far dead end, leaning against a warehouse wall and facing onto the heaved-cobble alley. A row of leather-bound, bestial and bristly dolls depended from the jutting overhang. Misshapen faces grinned beneath strands of oily hair, onyx eyes glittering. Drawing closer, Guld’s gaze narrowed on the dolls. Not leather, after all, rather, something more like pigskin, poorly tanned and wrinkled around the stitches.</p>
+   <p>Hood knows who buys these things.</p>
+   <p>A deep melodic voice sang out from beneath the overhang, “Buy a doll for your young tikes? Every child should know terror, and are not my little ones terrible?”</p>
+   <p>Guld pushed his way through the miniature gallows row. “Where’s the old woman?” he demanded.</p>
+   <p>The dark, exquisite face within its blanket shawl cocked to one side. Startling blue eyes regarded him curiously. “Old woman, soldier?”</p>
+   <p>“The one who’s said to own this shop,” Guld replied. “The one selling these dolls and other equally ugly… things. The one seen at every scene of murder this last fortnight. Mercy Blackpug.”</p>
+   <p>The woman’s laugh was low. “But I am Mercy Blackpug. You must be referring to my sister, Mince. She takes my wares to market.”</p>
+   <p>“Your sister? That hag? Do you think me a fool?”</p>
+   <p>The woman began filling a hookah. Her long-fingered hands moving in the darkness made Guld think of seasnakes. “Different lifestyles,” she murmured, “alas. Mince eats no meat, no fish. Only vegetables. And herbs. She drinks no alcohol. She smokes no durhang, nor my own favourite, rust-leaf. She is celibate, an early riser, asleep with the sunset. She jogs the cliff-trail out to More-Pity Point and back every day, no matter the weather. She is but a year older than me. Thirty-six.”</p>
+   <p>Smoke plumed, billowed to fill the shack with its swirling haze. “I, on the other hand,” Mercy continued, “imbibe all manner of vices, much to her disgust. In any case, my dear, I take it you are not here to sample my… wares.”</p>
+   <p>I’ll have to think about that. Dammit, do not get distracted! “I want to know the nature of Mince’s interest in the murders. Where is she?”</p>
+   <p>“Probably down at the docks, haranguing the sailors.”</p>
+   <p>“About what?”</p>
+   <p>“They are an offense to wellness. Mince would reform them-”</p>
+   <p>“Hold on, she’s not the woman who petitions the king every week?”</p>
+   <p>“The very same. My sister would be pleased to see Lamentable Moll a bastion of pure, righteous behaviour. Offenses punishable by death, of course. This rust-leaf is flavoured with essence of mint, would you care to try?”</p>
+   <p>“No.” Not now. Maybe later. Yes, later — “No, I said!”</p>
+   <p>Her blue eyes widened. “Was I insisting?”</p>
+   <p>“Sorry. No, you weren’t.”</p>
+   <p>“My sister likely attends murder scenes in search of converts. She preys on fear, as you might imagine.”</p>
+   <p>“So why is it she tolerates you? Enough to try and sell your dolls at market?”</p>
+   <p>Mercy laughed. “You of all people should know that the king’s spikes are rarely… unadorned. Lamentable Moll breeds criminals faster than rats, faster even than the king can hang them up.”</p>
+   <p>Guld glanced at a doll hanging close to him. Not pigskin, then.</p>
+   <p>Mercy drew on her mouthpiece, then continued, “The skin of criminals. My sister finds the irony delicious.”</p>
+   <p>Sudden nausea threatened the sergeant. He stared down at the woman, aghast.</p>
+   <p>She gave him a broad, white smile that seemed to sizzle right through him. She said, “Mostly relatives of the dead, my customers. Mementos of the departed. Who can fathom the human mind?”</p>
+   <p>“I may be back,” Guld managed, stepping outside.</p>
+   <p>“Who indeed?” she laughed. “Until later, then, Sergeant.”</p>
+   <p>He staggered up the alley, struggling to calm his thoughts. A voice cackled from the shadows to his right. “ ’Ware my sister, young man!”</p>
+   <p>Guld wheeled.</p>
+   <p>Mince’s crunched-leather face grinned humourlessly at him from between two hanging dolls. She had few teeth left, worn down to stumpy pegs. “She will be the death of you!” the hag rasped. “She is a pit! A whirlpool of licentiousness! A temptress. A knower of Moll’s most secret and vice-ridden lairs-you would not believe the extent of her business interests!”</p>
+   <p>Guld’s eyes thinned. “Lairs, you said? Tell me, Mince, would she also know details of who frequents such places?”</p>
+   <p>“She knows all, does my evil sister! Except how to take care of herself! Ill health stalks her, as yet unseen, but as sure as Hood himself! Soon, you shall see! Soon, unless she mends her ways!”</p>
+   <p>The sergeant glanced back down the alley. No reason to delay, is there? Not at all. I need to question Mercy. In detail. May take hours, but there’s nothing to be done for it.</p>
+   <p>“Do not succumb!” Mince hissed.</p>
+   <p>Ignoring the hag, Guld began marching back down Doll Street.</p>
+   <empty-line/>
+   <p>Knoll Barrow was by far the largest and the only grassy barrow in Lamentable Moll. It had been riven through countless times, and had the unique quality of containing absolutely nothing. Boulders, gravel, and potsherds were all that the endless looters and antiquarians unearthed.</p>
+   <p>Guld found the city’s two preeminent rat-hunters picnicking atop the Knoll. They had built a small fire over which they roasted skinned rats. A dusty bottle of fine wine waited to one side, beside a clay jar with a sealed lid.</p>
+   <p>Birklas Punth and Blather Roe were not quite typical among Moll’s professional rat-hunters. Nevertheless, the sergeant had on occasion made use of their vast knowledge of every conceivable facet of the city’s underworld, and had found them of sufficient value to tolerate their peculiarities.</p>
+   <p>“Such a serious regard!” Birklas observed with a fluttering wave of greasy fingers as Guld ascended the barrow. “Why is it, I wonder, that the lowborn are so often seen maundering, nay, burdened unto buckling with the seriousness of their hapless lot? Is it then the sole task of the pure-blooded denizens of fair Moll to while away the days-and indeed the nights-with unfeigned slovenity?”</p>
+   <p>“And what’s so pure about your blood, Punth?” Guld growled as he reached the two men.</p>
+   <p>“Singular intent, poor sergeant, is the most cleansing of endeavours. Witness here before you amiable myself, and, at my side, himself. We two are most singular.”</p>
+   <p>Both men wore little more than rags, apart from large, floppy, leather hats-Birklas’ dyed a sun-faded magenta and Blather’s a mottled yellow. Countless rat-tails hung from their twine belts, and encircling their wrists and ankles were more rat-tails, these ones braided in ingenious patterns.</p>
+   <p>Blather Roe reached for the jar and pried open the lid with a bloodstained dagger. “You’ve come jutht in time, Thergeant. The ratth are almotht roathted and the pickled pinkeeth offer uth a perfect appetither. Pleath, theat yourthelf at our thides.”</p>
+   <p>“And I,” Birklas added, “shall pour the vintage, whilst my partner fishes out some of those pickled pinkies.”</p>
+   <p>The vinegar had made the baby hairless rats pinker than was natural, a detail strangely adding to his horror as Guld watched Blather drawing one forth and raising it to his mouth. The pinky vanished between his lips with a sucking sound. The man swallowed, then sighed.</p>
+   <p>“A fine beginning,” Birklas observed. “Shucked like an oyster, true evidence of cultured breeding.”</p>
+   <p>Guld scowled. “Cultured breeding? Do you mean Blather, or the rats?”</p>
+   <p>“Oh, tho very droll, Thergeant,” Blather Roe tittered. “Join uth, pleath!”</p>
+   <p>“No thanks, I’ve already eaten.”</p>
+   <p>Birklas turned to his partner. “Can you not discern, friend, that Sergeant Guld here is sorely disposed? Dreadful murders every night! The bells peal! The rats scurry hither and thither, and even Whitemane himself hides in his deepest cove. Aye, something foul stalks fair Moll, and here is its chief hunter, come to us in need of assistance.”</p>
+   <p>Blather drew back. “Motht thertainly I wath cognithant of the thergeant’th therious plight! I wath but being courteouth!”</p>
+   <p>“No more arguing about civility,” the sergeant growled. “I’ve heard you talk about Whitemane a hundred times and I want to know once and for all, does he really exist?”</p>
+   <p>“Thertainly!”</p>
+   <p>“Indisputably, Sergeant.”</p>
+   <p>Guld fixed his gaze on Birklas. “And he’s a Soletaken?”</p>
+   <p>“Aye, he is. An unprepossessing man, when in that shape. But once he’s veered, the most intimidating of rats. A clever and vicious tyrant, Ruler of the Furred Kingdom, Slayer of All Challengers, Fornicator of the Highest-”</p>
+   <p>“Yes yes, all that. And you’re saying he’s hiding from our murderer?”</p>
+   <p>“Burrowed deep, Sergeant. Quivering-”</p>
+   <p>“I see. Should I then assume Whitemane has met the killer?”</p>
+   <p>Birklas shrugged. “Perhaps he has. More likely his runners have, or his junction guards, or his rooftop peepers-”</p>
+   <p>“But not hith food tathters,” Blather cut in.</p>
+   <p>“No,” Birklas solemnly agreed. “Not his food tasters indeed. Blather, how are his food tasters doing?”</p>
+   <p>Blather Roe prodded the skewered rats. “Done, I would thay.”</p>
+   <p>“Excellent! Now, Sergeant, is there anything else we can do for you?”</p>
+   <p>“Maybe. The princess and Lordson Hoom.”</p>
+   <p>Birklas’ eyebrows lifted. “Oh dear, not a conversation to accompany supper…”</p>
+   <p>Guld squatted down. “I can wait.”</p>
+   <empty-line/>
+   <p>Dead Sekarand’s tower creaked in the off shore breeze that had grown steadily since the sun had set. Guld wrapped his cloak around his shoulders, exhaustion more than the wind making him chilled. Below, the day’s haze of wood smoke had been stripped away. Oil-glow and candlelight spotted the sides of the tenements like muddy stars at Guld’s feet, as if they were all mortals could achieve to mirror the bristling night sky.</p>
+   <p>Guld heard a scuffing at the stairway, then Stul Ophan’s grunt as the magus climbed onto the platform. “Burn’s uneasy rest, Guld,” the old man gasped. “A simple rendezvous on a street corner would have done me better.”</p>
+   <p>The sergeant leaned on a merlon and looked down on the wharf district. “I may have the man, Stul,” he said.</p>
+   <p>The magus stopped cursing. From behind Guld, Stul Ophan said, “How certain are you? When will you make the arrest?”</p>
+   <p>“I haven’t worked that detail out yet. Am I certain? Well, my gut’s still in knots-something I’ve missed, but it may still point to the same man, once I’ve worked the unease loose.”</p>
+   <p>“What do you wish of me?”</p>
+   <p>Guld turned. Stul Ophan stood near the trapdoor, a silk cloth in one hand with which he blotted his brow. The magus shrugged feebly. “I’m not the best with heights, Sergeant. You’ll forgive me if I remain here, though it relieves me naught with the whole edifice swaying as it is.”</p>
+   <p>Guld opened his mouth to say something, then scowled and said instead, “You live in a damned tower!”</p>
+   <p>Ophan shrugged again. “It’s… expected of me. Isn’t it? I reside on the main floor, mostly.”</p>
+   <p>The sergeant studied the man a moment longer, then sighed. “I was thinking of the hounds. The ones I sent on the trails leading from Lordson Hoom’s murder. A man, maybe two men-one a warrior, or a veteran-the other unknown. And a woman’s scent as well, or two women, or none…”</p>
+   <p>“If the hounds danced to a woman’s scent, Guld, how could there be none?”</p>
+   <p>“Good question. Can you attempt an answer? Before you do, let me say there was a woman who fled the scene that night, but she’s not the killer.”</p>
+   <p>Stul Ophan frowned, mopped his forehead. “I don’t understand.”</p>
+   <p>Guld grimaced. “Recall your own discoveries, Magus. And your uncertainties. Answer me this: a man is not a man, and might be mistaken for a woman-if sorcerous paths are the means of investigation-or even if a hound finds the scent. Assume your efforts to ascertain the killer’s gender were not confused-that, as with the hounds, your answer was a true one. How could that be?”</p>
+   <p>“A man not a man? Mistaken for a woman, even by hounds? Sergeant, there is no answer to be culled from such confusion. We were deliberately misled-”</p>
+   <p>“No. It was more a matter of the murderer’s indifference-a past knowledge that such detection efforts would, inevitably, yield confusion. Like a demon’s riddle, Stul Ophan. The answer is too simple. Do not think so hard.”</p>
+   <p>The magus scowled. “You mock me, Guld.”</p>
+   <p>Guld turned back to gaze down on the city. “What, Stul Ophan, would be the mark of a eunuch?”</p>
+   <p>He heard the air slowly hiss through the man’s teeth.</p>
+   <p>“You are right, Sergeant. A demon’s riddle indeed. You’ve found the killer.”</p>
+   <p>“I know him,” Guld corrected. “I’ve not found him.” His gaze narrowed as he looked down at the Noble Quarter. “But I think,” he said, “someone else has. The knot begins to unravel.”</p>
+   <p>“What do you mean?”</p>
+   <p>“I mean, she’s on the move,” Guld said, as he watched lantern after lantern light up the rooftops, each marking a path taken by the one mystery that remained in this game. The sergeant spun and raced to the stairs. “Go home, Magus,” he said. “The night’s work begins in earnest.”</p>
+   <empty-line/>
+   <p>He’d made his inquiries, following his audience with the king. He’d asked enough questions, delivering the right kind of pressure when necessary, and had harvested enough details to put things together. Lordson Hoom’s unpleasant appetites included a taste for blood, the application of pain. It was what had drawn him and Princess Sharn together. It was what had made-for both the Lord and for Seljure-the union unattractive. Damned frightening, in fact.</p>
+   <p>There’d been no maid-in-waiting at her side last night, because the girl had already been sent off, close on the killer’s trail. Hoomy had been revealed as a mere acolyte in those twisted arts of flesh and pain. The killer had shown the princess just how far-how wonderfully far-things could be taken. A brush of promise on Sharn’s trembling lips, and now she thirsted for more.</p>
+   <p>The maid in waiting had done her job well. Guld’s man had reported her return at dawn; and now she and the princess were on their way, and they’d lead Guld and his men to the quarry.</p>
+   <p>He exited the tower’s gaping gateway and moved quickly down the streets. Sharn was making a terrible mistake. The last thing Guld wanted to do was to arrive too late-although it’d serve to deliver a message to the king: Impede my investigation at your peril, Sire. You should’ve let me question her. But the satisfaction of that wasn’t worth a young woman’s life-likely the lives of two young women, since the maid-in-waiting would probably share Sharn’s fate.</p>
+   <p>He’d worked out their route from the succession of lights revealed by his men, and arrived with, he guessed, moments to spare, at the mouth of an alley opening onto Fishmonger’s Round. A battered, partly slumped barrow marked the alleymouth. Guld crouched on the broken slate and recovered his breath.</p>
+   <p>The Round was empty, the post black and unadorned, save for the fiercely flapping notice, which had yet to be removed by Bauchelain. Atop the post sat a crow, asleep, rocking with the gusting salt-breeze. A dog loped across the cobblestones to lap at Beru’s Fount. Guld remained in the shadows. He slowly unsheathed his longsword, and fervently hoped that his squad had managed to stay on the trail, which they should have picked up outside the palace.</p>
+   <p>A lone knot of uncertainty remained for the sergeant. The eunuch had managed to leave Sorrowman’s unseen. There were sorceries that could achieve that, of course. A possibility that troubled Guld.</p>
+   <p>He stiffened as he saw a cloaked woman arrive from the street to his right. The handmaiden. Damn, a brave lass. He watched as she cautiously approached the wood post in the Round’s centre. There to await him? That makes no sense-I can’t imagine the girl actually spoke to the eunuch-it would’ve been enough to simply ascertain his daily hiding place. No, this makes no sense at all. He thought to voice a shout, to run out there, but instead remained motionless behind the slight mound, as a second robed figure-the princess-appeared, following the maid with languorous, appallingly confident strides.</p>
+   <p>The maid had stopped in front of the post, and seemed to be regarding its height as if about to supplicate herself before it. Sharn was about ten paces away and closing.</p>
+   <p>Atop the post, the crow bestirred itself.</p>
+   <p>Guld’s eyes widened with sudden understanding. He opened his mouth to bellow out a warning, then something hard and heavy hammered the base of his skull. Groaning, he sagged, fighting waves of blackness. Close, yet seeming from a great distance, he heard a deep voice whisper at his side.</p>
+   <p>“Apologies, Sergeant. This is but one, and I want them both. We need to wait. We need the blood, for only then will Korbal Broach be vulnerable-enough to call for help. And then my long hunt ends…”</p>
+   <p>Guld was unable to resist as the man beside him, massive and dark and armoured- the foreigner with the scimitar — pried the sword from the sergeant’s numbed fingers. The man had a heavy iron crossbow resting on his left forearm, a rune-crowded quarrel in place and nocked. “Don’t worry,” the man whispered in his appalling and barbaric accent, “you’ll get what’s left of ’em both, enough to appease the mob. But now leave me to my business. You have no idea what you face-be glad for that.”</p>
+   <p>Guld managed to lift his head. The scene spinning before his eyes, he could only half-discern what was happening at the post. The crow had spread its wings, then it drifted down toward the handmaid. There was a blur and a cold ripple and the crow became a man, a huge, chain-armoured, bald-headed man, who looked down on the maid. She said something and he giggled in reply. He raised a hand, gestured delicately and the girl buckled, gurgling, then flew limp and sprawling to one side with blood spraying onto the cobbles.</p>
+   <p>Princess Sharn groaned as if in ecstasy.</p>
+   <p>The eunuch slowly approached her.</p>
+   <p>Beside Guld, the hunter raised his weapon weapon and took careful aim.</p>
+   <p>“Shoot,” Guld managed to hiss. “Shoot, damn you!”</p>
+   <p>He heard creaking sounds come from the hunter, and turned to see the man’s face darken, as if with great strain. “What in Hood’s name is the matter with you?” Guld tried to push himself upright, but the pain lancing through his head was too much. He could only stare in dawning realisation as the hunter strained with all his might, yet could not move a muscle.</p>
+   <p>A cool, calm voice spoke behind them. “Steck Marynd, you are a stubborn one, aren’t you? You are welcome to struggle all you like, but I assure you that, although you cannot see it, the demon holding you fast exercises but a modest effort in restraining you. Gods,” Bauchelain continued as he stepped around both men, “what a wasted life, this maniacal pursuit. How many years since that unfortunate crossing of our paths? Far too many indeed. I suggest you retire, thankful that I’ve spared your life, once again-but, I add, for the last time. ’Tis not mercy that stays my hands, sir. But indifference, alas. You are, after all, naught but a minor irritation. Well,” he paused, then raised his voice to the eunuch even as the monstrosity began a sorcerous gesture of death in front of the princess. “Korbal Broach! Leave off the damsel, old friend. Her poor maid will suffice this night, surely?”</p>
+   <p>Korbal Broach hesitated, then cocked his head in Bauchelain’s direction. “Twice touched, this one, Bauchelain,” he said in a reedy thing voice. “She belonged to last night, yet deprived was I, humble servant to life.”</p>
+   <p>“The Lady pulled, then,” Bauchelain said easily, walking up to his companion. “Give her that.”</p>
+   <p>The eunuch pouted. “You would deprive me of begetting, again, Bauchelain?”</p>
+   <p>“I think you have enough for now,” the man replied. “Besides, detecting a hastening of events, I have dispatched our manservant to the docks-after imposing a long slumber on the corporal outside Sorrowman’s, of course. In any case, vast coin is even now being spent on our behalf, and so our departure is imminent.”</p>
+   <p>“But Bauchelain,” Korbal Broach said softly, “all who neared my trail are assembled. We could silence them each one, and the city would remain ours for many more weeks. Even the sergeant’s squad has been taken care of-who now could endanger our efforts? Kill the sergeant, kill Steck Marynd, kill the princess, and lo, we are at ease once again.”</p>
+   <p>“In a city plunged into violent chaos.” Bauchelain shook his head. “Steck’s death is not to be by our hand this night, Korbal. He will live many years yet, unfortunately. As for the sergeant, I admit to sufficient respect to warrant him a grave threat-should the princess die tonight-”</p>
+   <p>“Then kill him. ’Tis easily solved.”</p>
+   <p>“Not so,” Bauchelain answered smoothly. “Less than an hour past, the Mortal Sword, Tulgord Vise, swore a blood-vow, consecrated by the High Priestess of the Sisters. It seems our entourage of pursuers has grown by one, and like Steck Marynd, the goddess-charged fool will not relent in his hunt. So, let us not add Sergeant Guld to the train. The Mortal Sword, blooded by the Sisters, even now defies my wards, and approaches.”</p>
+   <p>“Kill him.”</p>
+   <p>Bauchelain shook his head. “Best to wait a year or two, when the power of the ritual has faded somewhat. I’ve no wish to stain my clothes-” He turned as the clash of horse hoofs sounded from down a side street. “Oh dear, it seems we’ve tarried too long as it is…”</p>
+   <p>Tulgord Vise had broken through the wards. The thundering charge of his warhorse fast approached from beyond the humped barrow that rose like a tiny hummock where the street opened onto the Round.</p>
+   <p>Bauchelain sighed. “The Mortal Sword’s sudden gift of power is… formidable.” He raised a hand. “Alas, he forgot to bless his horse.” A gesture. On the other side of the barrow there was a bestial scream, then a terrible crashing sound followed by a solid crunch. The stones of the barrow seemed to bulge momentarily in the low torchlight, then settled once more in a haze of dust. “It will,” Bauchelain spoke, “be some time before the Mortal Sword regains his senses, sufficient, that is, to extricate his head and shoulders from the barrow.” He swung back to Korbal Broach. “My friend, we’ve outstayed our welcome. Our manservant lays out the coin-our baggage is being carted to our transport. It is time, Korbal, we must move on.”</p>
+   <p>At that moment something white and the size of a fat cat darted from the shattered barrow. Spying it, Bauchelain murmured, “Oh, I like the look of that.” He gestured once more.</p>
+   <p>An ethereal demon rose hulking and massive in the white rat’s path. A taloned hand snapped down. The rat- Whitemane, Guld realized, it must be — had time for a single piteous squeal before it vanished into the demon’s fanged maw.</p>
+   <p>“Get that out of your mouth right now!” Bauchelain roared, stepping forward.</p>
+   <p>The towering demon flinched, shoulders hunching.</p>
+   <p>“Spit!”</p>
+   <p>The demon spat out a mangled, red-smeared lump of fur that bounced once on the cobbles then lay still.</p>
+   <p>“Korbal, examine the unfortunate Soletaken, if you please.”</p>
+   <p>The eunuch sniffed in the rat’s direction, then shrugged. “It will live.”</p>
+   <p>“Excellent.” Bauchelain addressed the demon once more, “Fortunate for you, Kenyll’rah. Now, gather up the hapless thing and return to my trunk-”</p>
+   <p>“Not tho fatht!” a voice cried from one side.</p>
+   <p>Guld managed to turn his head and saw Blather Roe and Birklas Punth standing on the other side of the fountain, their hats pulled low. Both held their long-shafted rat-stickers leaning over a shoulder.</p>
+   <p>“And who might you two be?” Bauchelain inquired.</p>
+   <p>“Kill them,” Korbal Broach whined. “I don’t like them. They make me nervous.”</p>
+   <p>“Remain calm, my friend,” Bauchelain cautioned. “While I share your unease, I am certain some amiable arrangement can be achieved.”</p>
+   <p>Guld stared at the two floppy-hatted men. They’re just rat-hunters-why all this anxiety?</p>
+   <p>Birklas was eyeing the Kenyll’rah demon with distaste. “Dreadful apparition, begone!”</p>
+   <p>The demon wilted, wavered, then vanished.</p>
+   <p>On the cobbles Whitemane suddenly lifted its head, glanced about, then scurried for the shadows.</p>
+   <p>“That was unkind of you,” Bauchelain complained. “I dislike having my servants dismissed by anyone other than myself.”</p>
+   <p>Birklas shrugged. “Moll may indeed be a modest city, Wizard, but only in outward appearance. It has its games, and its players, and we like things the way they are. You and your necromantic friend have… upset things.”</p>
+   <p>“Thingth,” Blather added, “that don’t like being upthet.”</p>
+   <p>“They smell of a barrow,” Korbal Broach said.</p>
+   <p>Bauchelain slowly nodded. “Indeed, they do. Yet this city’s barrows are so… insignificant, I cannot imagine…”</p>
+   <p>“Wards are not eternal,” Birklas murmured. “Although, I will grant you, it took us some time to find our way out of the Knoll. Only to find we had been preceded by almost every efficacious spirit and being once interred alongside us in the lesser barrows. They used the rats, you see. Blather and I, however, did not. In any case, enough of all this. Consider yourselves expelled from Lamentable Moll.”</p>
+   <p>Bauchelain shrugged. “Acceptable. We were just leaving in any case.”</p>
+   <p>“Good,” Blather smiled.</p>
+   <p>Slowly recovering, Guld leaned against a wall and pushed himself to his feet. “Damn you, Bauchelain-”</p>
+   <p>The sorceror turned in surprise. “Whatever for, Sergeant?”</p>
+   <p>“My men. That’s earned my own blood-vow-”</p>
+   <p>“Nonsense. They are not slain. They wander confused. Nothing more. This I swear.”</p>
+   <p>“If you lie, Mage, you’d best kill me now, for I-”</p>
+   <p>“I do not, Sergeant. And proof of that is found in my letting you live.”</p>
+   <p>“He speaks true,” Birklas said to Guld. “As I intimated earlier, we will tolerate only so much.”</p>
+   <p>Bauchelain laid a hand on Korbal Broach’s shoulder. “Let’s be on, friend. We can join our able manservant at the docks.”</p>
+   <p>Waves of pain half-blinding him, Guld watched the two men stride off.</p>
+   <p>Princess Sharn seemed to shake herself awake. Her face white as the moon, she stared after them as well. Then she hissed in outrage, “He meant to kill me!”</p>
+   <p>“He’s a damned eunuch,” Guld rasped. “What charms would you have offered him? He doesn’t even need to shave.”</p>
+   <p>Steck Marynd groaned, then slumped to the cobbles, his crossbow clattering but not discharging. Guld glanced down to see the man unconscious, a slightly stupid smile on his features.</p>
+   <p>Birklas Punth and Blather Roe offered Guld elegant tips of their hats, then sauntered off.</p>
+   <p>The sergeant took a step away from the wall, tottered, but managed to stay upright. Blood flowed down around his neck. He heard distant shouts. His men were finally on the way. Guld sighed, his eyes falling on the handmaiden. Her body lay in a spreading pool. He watched a mongrel dog trot purposefully in her direction. The sergeant’s stomach lurched. “Madness,” he whispered. “All madness!”</p>
+   <p>A hacking hiss sounded from the shadows further down the alley, then a rasping voice sang out, “See what comes of a life of vice?”</p>
+   <empty-line/>
+   <p>Emancipor Reese awoke groggily, and found himself staring at the four travel trunks strapped to the wall in front of him. Creaking sounds inundated him, and the cot he laid on pitched and rolled under him.</p>
+   <p>The Suncurl. I remember now. Hood, what an awful night!</p>
+   <p>He slowly sat up. The ship climbed and fell-they were in the Troughs, beyond Moll Bay and in the Tithe Strait. The air was hot and damp in the close cabin. Barely time to send her word. She’ll manage, might even be relieved once she’s calmed down some. He looked around. The other two berths were empty.</p>
+   <p>Emancipor glared at the trunks. Damn, but they’d been heavy. Come close to breaking the cart’s axle. Of course, Bauchelain’s second trunk had held a huge wrapped piece of slate-the man had taken it out, and set it on the floor. On its flat surface was an intricate scribed pattern. He blinked down at it, then frowned. There had been a sound, he suddenly recalled, a sound odd enough to awaken him. Something was slapping around in one of Korbal Broach’s trunks. Something had come loose.</p>
+   <p>Emancipor climbed to his feet. He unstrapped the retainers, examined the lock. The key was in it. He unlocked the latch and pulled back the trunk’s heavy lid.</p>
+   <p>There were no words to describe the horror of what he saw within. Gagging, Emancipor slammed the lid back, then, his hands fumbling, he reattached the retaining straps.</p>
+   <p>The cabin was suddenly too small. He needed air. He needed… to get away.</p>
+   <p>Emancipor staggered to the door, then out into the aisle and up the weathered, salt-bleached steps. He found himself amidships. Bauchelain stood near the prow, seemingly unaffected by the Suncurl’s pitching and yawning. Crewmen scrambled around both the necromancer and Reese-you sweated blood in the Troughs.</p>
+   <p>Gaping like a beached fish, Emancipor worked his way to Bauchelain’s side.</p>
+   <p>“You seem peaked, Mister Reese,” the mage observed. “I have some efficacious tinctures…”</p>
+   <p>Emancipor shook his head, gasping as he leaned on the rail.</p>
+   <p>“I’d have thought,” Bauchelain continued, “that you’d not be inclined toward seasickness, Mister Reese.”</p>
+   <p>“The, uh, the first day, master. My legs will find me soon enough.”</p>
+   <p>“Ahh, I see. Did you peruse my handiwork?”</p>
+   <p>Emancipor blanched.</p>
+   <p>“The slate, Mister Reese.”</p>
+   <p>“Oh, yes Master.”</p>
+   <p>“I indulge Korbal’s ceaseless efforts to beget,” Bauchelain said. “And so devise… platforms, if you will. The inscribed circle preserves and, if need be, provides sustenance. It never fails that, in such endeavours, I learn something new. And so we are all rewarded. Are you all right, Mister Reese?”</p>
+   <p>But Emancipor did not answer. He stared unseeing at the swelling grey waves that kept rising like a wall toward him with each plummet of the bow, and trembled without feeling the thundering repercussion through the ship’s hull. Begetting? Oh, the gods forgive! What lay within the trunk, heaped and throbbing and twitching, sewn one organ to another, each alive and no doubt retaining souls in a torturous prison from which escape was impossible-what lived there in Korbal Broach’s trunk… only to a mind twisted beyond sanity could such a… a monstrosity be deemed a child. The eunuch’s dreams of begetting yielded only nightmares.</p>
+   <p>“Does not this crisp, clean air revive one’s spirit?” Bauchelain said, breathing deep. “I am always… rejuvenated with the resumption of our wandering, our explorations of this world. ’Tis a good thing, the appeasement agreed with the Storm Riders. Passage on the seas should not cost more than a jar or two of blood-we can all agree on that, I’m sure. Now then, Mister Reese, allow me to treat you for this unfortunate illness of yours. My past efforts in dissection and vivisection have determined the cause of the malady-to be found in, of all places, the inside of your ears. As an alchemist of some skill, I have some talent in addressing this sensitivity from which you suffer. I assure you…”</p>
+   <p>Oh, Subly…</p>
+   <p>“Daylight is such a remarkable thing, isn’t it, Mister Reese? The gods know, I see so little of it. Oh, and there’s Korbal…”</p>
+   <p>Emancipor turned to where Bauchelain was pointing. There, in their wake, flew a single crow amidst a dozen wheeling seagulls. The black bird dipped and glided on the wind like a torn piece of darkness.</p>
+   <p>“He’s tireless, is Korbal Broach,” Bauchelain said, smiling fondly.</p>
+   <p>Tireless. Oh.</p>
+   <p>“I should warn you, Mister Reese. I have sensed something awry with this ship. The captain, she seems disinclined to provide details as to our destination, and then there’s the oddity of the nails, Mister Reese, the nails holding this ship together…”</p>
+   <p>He went on, but Emancipor had stopped listening. Destination? Damn you, Bauchelain-you say eastward, as far as anyone’d go. So I done what you said, damn you. And now, here I am… trapped. Beyond Tithe Strait lay the open sea, stretching… stretching away, for gods-damned forever, Bauchelain! That’s the ocean out there, dammit!</p>
+   <p>“Mister Reese?”</p>
+   <p>“Yeah?”</p>
+   <p>“Do you anticipate this journey to last very long?”</p>
+   <p>Forever, you bastard. “Months,” he snapped, his jaws grinding together.</p>
+   <p>“Oh my. This could prove… unpleasant. It’s the nails, you see, Mister Reese… they may affect my scribed circle. As I was saying, the iron’s aspected, in some mysterious manner. My concern is that Korbal’s child might well escape…”</p>
+   <p>Emancipor clamped his mouth shut. He felt a tooth crack.</p>
+   <p>His laughter, when it burst out, set off the seagulls astern. Their wild, echoing cackling ended abruptly. Sailors shouted. Emancipor fell to his knees, unable to stop, barely able to breathe.</p>
+   <p>“Unfortunate,” Bauchelain murmuered. “Even so, I had no idea seagulls burned so readily. Korbal so dislikes loud noises, Mister Reese. I do hope you succeed in restraining your odd mirth, soon. As soon as possible, Mister Reese. Korbal is looking agitated, very agitated indeed.”</p>
+  </section>
+ </body>
+ <binary id="_1.jpg" content-type="image/jpeg">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
+UqVKgBUqVKgBUqVKgBUqVKgBUqVKgD//2Q==</binary>
+</FictionBook>

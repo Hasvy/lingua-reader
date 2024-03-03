@@ -9,19 +9,21 @@ namespace BlazorApp.Components.Translator
     {
         [Inject] IJSRuntime JS { get; set; } = null!;
         [Inject] WordsService WordsService { get; set; } = null!;
+        [Inject] TranslatorService TranslatorService { get; set; } = null!;
         [Parameter] public WordInfo WordInfo { get; set; }
         [Parameter] public WordWithTranslations? WordWithTranslations { get; set; }
         [Parameter] public EventCallback SpeakWordCallback { get; set; }
+        [Parameter] public EventCallback OnWordChanged { get; set; }
         [Parameter] public bool Visible { get; set; } = false;
         [Parameter] public bool isSpeaking { get; set; } = false;
         [Parameter] public bool isLoading { get; set; } = false;
 
         private bool _isSaving = false;
         private bool _isDeleting = false;
+        private bool _isUpdating = false;
         private ElementReference translatorWindow;
         private string error = string.Empty;
         private WordTranslation? mainTranslation;
-        //private List<Dictionary<string, string[]>> tagWords = new List<Dictionary<string, string[]>>();
         private Dictionary<string, string> dict = new Dictionary<string, string>();
 
         protected override void OnParametersSet()
@@ -54,6 +56,10 @@ namespace BlazorApp.Components.Translator
                     //isLoading = false;
                 }
             }
+            //else
+            //{
+
+            //}
             //stopwatch.Stop();
             //Console.WriteLine(stopwatch.ElapsedMilliseconds);
         }
@@ -82,7 +88,7 @@ namespace BlazorApp.Components.Translator
         private async Task AddWord()
         {
             _isSaving = true;
-            bool result = await WordsService.SaveWord(WordWithTranslations);
+            bool result = await WordsService.SaveWord(WordWithTranslations.Id);
             if (result is true)
                 WordWithTranslations.IsWordSaved = true;
             _isSaving = false;
@@ -90,10 +96,21 @@ namespace BlazorApp.Components.Translator
         private async Task DeleteWord()
         {
             _isDeleting = true;
-            bool result = await WordsService.DeleteWord(WordWithTranslations);
+            bool result = await WordsService.DeleteWord(WordWithTranslations.Id);
             if (result is true)
                 WordWithTranslations.IsWordSaved = false;
             _isDeleting = false;
+        }
+        private async Task UpdateWord()
+        {
+            _isUpdating = true;
+            var result = await TranslatorService.UpdateWord(WordWithTranslations);
+            if (result is not null)
+            {
+                WordWithTranslations = result;
+                await OnWordChanged.InvokeAsync(WordWithTranslations);
+            }
+            _isUpdating = false;
         }
     }
 }

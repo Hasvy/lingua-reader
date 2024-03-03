@@ -47,3 +47,16 @@
     background-color: rgb(255, 255, 255, 0.14);
 }
 
+.custom-numeric {
+    width: 35px;
+    height: 25px;
+    position: absolute;
+}
+
+.custom-numeric .rz-inputtext {
+    padding: 0px!important;
+}
+
+.inline-icon {
+    vertical-align: middle;
+}

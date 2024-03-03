@@ -1,4 +1,6 @@
-﻿using Objects.Entities.Translator;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Objects.Entities.Translator;
+using Radzen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,21 +8,24 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Services
 {
     public class TranslatorService
     {
         private readonly HttpClient _httpClient;
+        private readonly NotificationService _notificationService;
 
-        public TranslatorService(HttpClient httpClient)
+        public TranslatorService(HttpClient httpClient, NotificationService notificationService)
         {
             _httpClient = httpClient;
+            _notificationService = notificationService;
         }
 
-        public async Task<HttpResponseMessage> SetLanguages(string bookLang, string targetLang)
+        public async Task<HttpResponseMessage> SetLanguage(string bookLang)
         {
-            string apiUri = $"api/Translator/Set-languages?bookLang={bookLang}&targetLang={targetLang}";
+            string apiUri = $"api/Translator/Set-languages?bookLang={bookLang}";
             var response = await _httpClient.PostAsync(apiUri, null);
             return response;
         }
@@ -30,13 +35,46 @@ namespace Services
             if (!string.IsNullOrWhiteSpace(word))
             {
                 WordWithTranslations? wordWithTranslations = await _httpClient.GetFromJsonAsync<WordWithTranslations?>($"api/Translator/TranslateWord?word={word}");
-                if (wordWithTranslations is not null)
+                if (wordWithTranslations is not null && wordWithTranslations.Translations.Any())
                 {
                     return wordWithTranslations;
                 }
             }
 
             return null;
+        }
+
+        public async Task<WordWithTranslations?> UpdateWord(WordWithTranslations word)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/Translator/UpdateWord", word);
+            if (response.IsSuccessStatusCode)
+            {
+                var wordWithTranslations = await response.Content.ReadFromJsonAsync<WordWithTranslations>();
+                if (wordWithTranslations != null && IsWordTranslationsEqual(word, wordWithTranslations))
+                {
+                    _notificationService.Notify(NotificationSeverity.Info, "Translations are actual", "Translator returns the same");
+                }
+                else
+                {
+                    _notificationService.Notify(NotificationSeverity.Success, "Word has been updated");
+                }
+                return wordWithTranslations;
+            }
+            else
+            {
+                _notificationService.Notify(NotificationSeverity.Error, "An error occurred");
+                return null;
+            }
+        }
+
+        private bool IsWordTranslationsEqual(WordWithTranslations word1, WordWithTranslations word2)
+        {
+            var oldTranslations = word1.Translations.Select(t => t.DisplayTarget);
+            var newTranslations = word2.Translations.Select(t => t.DisplayTarget);
+            if (oldTranslations.SequenceEqual(newTranslations))
+                return true;
+            else
+                return false;
         }
 
         public async Task<string?> GetTextTranslation()

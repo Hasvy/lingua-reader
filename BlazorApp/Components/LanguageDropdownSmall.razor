@@ -1,0 +1,20 @@
+﻿@using Objects.Constants;
+@using Objects.Entities;
+@using Services;
+@inject BookOperationsService BookOperationsService;
+
+<RadzenDropDown class="custom-dropdown" @bind-Value="BookCover.Language" TValue="string" Data="Data" Change="@(() => ChangeBookLang(BookCover))">
+    <Template Context="language">
+        <img src="@ConstLanguages.GetFlagPath(language)" />
+    </Template>
+</RadzenDropDown>
+
+@code {
+    [Parameter] public BookCover BookCover { get; set; } = null!;
+    [Parameter] public IEnumerable<string> Data { get; set; } = null!;
+
+    private async Task ChangeBookLang(BookCover bookCover)
+    {
+        await BookOperationsService.ChangeBookLang(bookCover.Language, bookCover.Id);
+    }
+}

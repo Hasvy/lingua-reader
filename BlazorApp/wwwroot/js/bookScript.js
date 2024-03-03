@@ -14,6 +14,8 @@ async function onInitialized(bookLang) {        //TODO Cleanup here
         lang_regexp = it_regexp
     } else if (bookLang === "es") {
         lang_regexp = es_regexp
+    } else if (bookLang === "ru") {
+        lang_regexp = ru_regexp
     }
 
     rzBody = document.querySelector(".rz-body");
@@ -42,7 +44,9 @@ async function onInitialized(bookLang) {        //TODO Cleanup here
     container = document.createElement("div");
     container.id = "container";
     const style = document.createElement("style");
-    style.textContent = "#container { width: 100%; height: 100%; overflow-x: clip; }";
+    style.textContent = "#container { width: 100%; height: 100%; overflow-x: clip; }\n" +
+                        "#txt-content p { margin: 0px; }";
+    //style.textContent = "";
     shadow.appendChild(container);
     shadow.appendChild(style);
 }
@@ -170,6 +174,10 @@ function adjustImages(container, containerHeight, containerWidth) {
         resolve();
     });
 }
+
+window.onpopstate = function () {
+    /*location.reload(true);*/
+};
 
 //function resizeHtml() {       //TODO
 //    if (globalHtml != null) {

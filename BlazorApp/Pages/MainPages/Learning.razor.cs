@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using Objects.Dto;
 using Objects.Entities.Translator;
 using Objects.Entities.Words;
 using Radzen;
 using Radzen.Blazor;
 using Services;
-using System.Diagnostics;
-using static Org.BouncyCastle.Asn1.Cmp.Challenge;
+using System.Text;
 
 namespace BlazorApp.Pages.MainPages
 {
@@ -17,9 +17,9 @@ namespace BlazorApp.Pages.MainPages
         [Inject] DialogService DialogService { get; set; } = null!;
         [Inject] NavigationManager NavigationManager { get; set; } = null!;
         [Inject] NotificationService NotificationService { get; set; } = null!;
+        [Inject] IJSRuntime JS { get; set; } = null!;
         private List<WordWithTranslations> _allUserWords = new List<WordWithTranslations>();
         private List<WordToLearn> _wordsToLearn = new List<WordToLearn>();
-        private WordsToLearnDto? _wordsToLearnDto = null;
         private bool _showStatistics = false;
         private bool _showPractice = false;
         private bool _isLoading;
@@ -80,18 +80,24 @@ namespace BlazorApp.Pages.MainPages
         private async Task AddWord(WordWithTranslations word)
         {
             _isSaving = true;
-            bool result = await WordsService.SaveWord(word);
+            bool result = await WordsService.SaveWord(word.Id);
             if (result is true)
+            {
                 word.IsWordSaved = true;
+                _allUserWords.Add(word);
+            }
             _isSaving = false;
         }
 
         public async Task DeleteWord(WordWithTranslations word)
         {
             _isDeleting = true;
-            var result = await WordsService.DeleteWord(word);
+            var result = await WordsService.DeleteWord(word.Id);
             if (result is true)
+            {
                 word.IsWordSaved = false;
+                _allUserWords.RemoveAll(w => w.Id == word.Id);
+            }
             _isDeleting = false;
         }
 
@@ -113,8 +119,36 @@ namespace BlazorApp.Pages.MainPages
             }
         }
 
-        public void ShowWordsList()
+        public async Task CsvExport()
         {
+            List<WordWithTranslations> wordsToExport;
+            if (_selectedWords is not null && _selectedWords.Any())
+                wordsToExport = _selectedWords.ToList();
+            else
+                wordsToExport = _allUserWords;
+
+            StringBuilder csvContent = new StringBuilder();
+            foreach (var word in wordsToExport)
+            {
+                StringBuilder translations = new StringBuilder();
+                foreach (var translation in word.Translations)
+                {
+                    translations.Append(translation.DisplayTarget).Append("; ");
+                }
+
+                csvContent.AppendLine($"{word.DisplaySource},{translations}");
+            }
+
+            byte[] data = Encoding.UTF8.GetBytes(csvContent.ToString());
+            var memoryStream = new MemoryStream(data);
+            var fileName = "my-words.csv";
+            using var streamRef = new DotNetStreamReference(memoryStream);
+            await JS.InvokeVoidAsync("downloadFileFromStream", fileName, streamRef);
+        }
+
+        public async Task ShowWordsList()
+        {
+            await grid.RefreshDataAsync();
             _showStatistics = false;
         }
 

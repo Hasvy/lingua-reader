@@ -1,0 +1,19 @@
+Nella societ`a di oggi, la conoscenza di una seconda lingua sta diventando sempre pi`u importante. Esistono diversi approcci che possono essere utilizzati per sviluppare la propria conoscenza di una seconda lingua, e la lettura `e senza dubbio uno dei metodi migliori.
+Leggere un libro in lingua originale non `e per`o semplice, e spesso lo studente si scoraggia e abbandona l’attivit`a. Da questo punto di vista, i libri con testo originale a fronte offrono molti vantaggi: lo studente pu`o leggere il testo nella lingua originale, e utilizzare la versione tradotta come una risorsa per verificare la comprensione del testo.
+In un libro di questo tipo, per`o, il passaggio da una lingua all’altra, per
+trovare la traduzione corrispondente ad un certa espressione, non `e facile: i
+lettori devono muovere gli occhi avanti e indietro dalla lingua originale alla
+traduzione, e ricercare il passo a cui si `e interessati. Questo causa continue
+interruzioni nell’attivit`a di lettura. Inoltre, avere costantemente il testo
+tradotto vicino al proprio campo visivo espone il lettore alla tentazione di
+guardarlo troppo spesso. Utilizzare due libri, il primo in lingua originale e il
+secondo contenente la traduzione, risolve quest’ultimo problema, ma acuisce
+il primo.
+Come soluzione, gli ebook possono essere usati per gestire dinamicamente
+il contenuto multilingue, mantenendo costantemente la concentrazione sul
+testo.
+In questa tesi, si presenta un’applicazione per la lettura di ebook mul-
+tilingue, sviluppata per iOS su iPad, che sfrutta la naturale ”dinamicit`a”
+degli ebook per unire il contenuto in lingua originale con la versione tradotta.
+L’applicazione sfrutta l’interfaccia gestuale per ridurre le fonti di distrazione
+e aumentare l’efficacia dell’attivit`a di lettura.

@@ -21,8 +21,13 @@ namespace BlazorApp.Pages.MainPages
             await base.OnInitializedAsync();
         }
 
-        private async Task ConfirmChanges()     //TODO check that languages are not same
+        private async Task ConfirmChanges()
         {
+            if (user.NativeLanguage == user.DesiredLanguage)
+            {
+                NotificationService.Notify(NotificationSeverity.Error, "Languages cannot be the same");
+                return;
+            }
             var result = await UserService.ChangeUserSettings(user);
             if (result.IsSuccessfulChange is true)
                 NotificationService.Notify(NotificationSeverity.Success, "Changes have been saved");

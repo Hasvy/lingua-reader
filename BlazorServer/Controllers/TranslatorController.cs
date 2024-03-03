@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AngleSharp.Io;
+using Azure;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Writers;
 using Newtonsoft.Json;
 using Objects.Constants;
 using Objects.Entities;
 using Objects.Entities.Translator;
-using Objects.Entities.Words;
+using System.Net;
 using System.Text;
 
 namespace BlazorServer.Controllers
@@ -44,48 +45,37 @@ namespace BlazorServer.Controllers
         //TODO return result of action
         [HttpPost]
         [Route("api/Translator/Set-languages")]
-        public void SetLanguages([FromQuery] string bookLang, [FromQuery] string targetLang)        
+        public async Task SetLanguages(string bookLang)
         {
             if (bookLang is not ConstLanguages.Undefined && bookLang is not null)
             {
                 _bookLang = bookLang;
-                _targetLang = targetLang;
+                var user = await _userManager.GetUserAsync(User);
+                _targetLang = user.NativeLanguage;
             }
         }
 
         [HttpGet]
         [Route("api/Translator/TranslateWord")]
-        public async Task<ActionResult<WordWithTranslations?>> TranslateWord(string word)
+        public async Task<ActionResult<WordWithTranslations>?> TranslateWord(string word)
         {
             existedWordId = 0;
+            HttpResponseMessage response;
+
             var translatorWordResp = await GetTranslationFromDb(word);
             if (translatorWordResp is not null)
             {
-                return translatorWordResp;
+                return Ok(translatorWordResp);
             }
 
             if (_bookLang is not ConstLanguages.English && _targetLang is not ConstLanguages.English)
             {
-                var englishWordResponse = await GetEngTranslation(word);
-                if (englishWordResponse is not null)
-                {
-                    var firstTranslation = englishWordResponse.Translations.FirstOrDefault();
-                    if (firstTranslation is not null)
-                    {
-                        word = firstTranslation.DisplayTarget;
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Translation of {englishWordResponse.DisplaySource} is not found.");
-                    }
-                }
-                //else
-                //{
-                //    throw new Exception("Error during translation to intrmediateLang.");
-                //}
+                response = await TranslateThroughEnglish(word);
             }
-
-            HttpResponseMessage response = await ConstructAndSendQuery(word, _intermediateLang, _targetLang);
+            else
+            {
+                response = await ConstructAndSendQuery(word, _intermediateLang, _targetLang);
+            }
 
             if (response.IsSuccessStatusCode)
             {
@@ -98,15 +88,36 @@ namespace BlazorServer.Controllers
                         firstResult.DisplaySource = word.ToLower();
                         firstResult.Language = _bookLang;
                         PostTranslationToDb(firstResult);
-                        Console.WriteLine("Word added to Db");
                         return Ok(firstResult);
                     }
                 }
-                return Ok(null);      //TODO if result is null or translations is empty => word did not found
+                return Ok(new WordWithTranslations { DisplaySource = "" });         //Result is null or translations is empty => word did not found
             }
             else
             {
-                return BadRequest("Error: " + response.StatusCode);
+                return Ok(new WordWithTranslations { DisplaySource = "" });         //Result of translation of englishWord is not found => word did not found
+            }
+        }
+
+        private async Task<HttpResponseMessage> TranslateThroughEnglish(string word)
+        {
+            var englishWordResponse = await GetEngTranslation(word);
+            if (englishWordResponse is not null)
+            {
+                var firstTranslation = englishWordResponse.Translations.FirstOrDefault();
+                if (firstTranslation is not null)
+                {
+                    var englishWord = firstTranslation.DisplayTarget;
+                    return await ConstructAndSendQuery(englishWord, _intermediateLang, _targetLang);
+                }
+                else
+                {
+                    return new HttpResponseMessage(HttpStatusCode.BadRequest);         //Translation of englishWord is not found => word did not found
+                }
+            }
+            else
+            {
+                throw new Exception("Error during translation to intrmediateLang.");
             }
         }
 
@@ -151,7 +162,7 @@ namespace BlazorServer.Controllers
                 }
                 if (existedWordId == 0)
                 {
-                    _dictionaryDbContext.Words.Add(wordWithTranslations);       //TODO Fix saving deutsch words in english, so them wont found because it searching german word, in db words in eng
+                    _dictionaryDbContext.Words.Add(wordWithTranslations);
                 }
                 else
                 {
@@ -193,7 +204,7 @@ namespace BlazorServer.Controllers
 
             using (var request = new HttpRequestMessage())
             {
-                request.Method = HttpMethod.Post;
+                request.Method = System.Net.Http.HttpMethod.Post;
                 request.RequestUri = new Uri(_endpoint + route);
                 request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
                 request.Headers.Add("Ocp-Apim-Subscription-Key", _key);
@@ -203,6 +214,66 @@ namespace BlazorServer.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/Translator/UpdateWord")]
+        public async Task<ActionResult<WordWithTranslations>?> UpdateWord([FromBody] WordWithTranslations wordWithTranslations)
+        {
+            HttpResponseMessage response;
+            if (_bookLang is not ConstLanguages.English && _targetLang is not ConstLanguages.English)
+            {
+                response = await TranslateThroughEnglish(wordWithTranslations.DisplaySource);
+            }
+            else
+            {
+                response = await ConstructAndSendQuery(wordWithTranslations.DisplaySource, _intermediateLang, _targetLang);
+            }
+
+            if (response.IsSuccessStatusCode)
+            {
+                List<WordWithTranslations>? result = await response.Content.ReadFromJsonAsync<List<WordWithTranslations>>();
+                if (result is not null)
+                {
+                    var firstResult = result.FirstOrDefault();
+                    if (firstResult is not null)
+                    {
+                        var updatedWord = UpdateTranslationInDb(wordWithTranslations, firstResult);
+                        if (updatedWord is not null)
+                            return Ok(updatedWord);
+                        else
+                            return BadRequest();
+                    }
+                }
+                return Ok(new WordWithTranslations { DisplaySource = "" });         //Result is null or translations is empty => word did not found
+            }
+            else
+            {
+                return BadRequest("Error: " + response.StatusCode);
+            }
+        }
+
+        private WordWithTranslations? UpdateTranslationInDb(WordWithTranslations updateFrom, WordWithTranslations updateTo)
+        {
+            var existingWord = _dictionaryDbContext.Words.FirstOrDefault(w => w.Id == updateFrom.Id);
+            if (existingWord != null)
+            {
+                existingWord.Translations = _dictionaryDbContext.Translations.Where(t => t.WordId == updateFrom.Id).ToList();
+                updateTo.Translations.ToList().ForEach(t => t.Language = _targetLang);
+                existingWord.DisplaySource = updateFrom.DisplaySource.ToLower();
+                existingWord.Language = _bookLang;
+                var oldTranslations = existingWord.Translations.Select(t => t.DisplayTarget);
+                var newTranslations = updateTo.Translations.Select(t => t.DisplayTarget);
+                if (!oldTranslations.SequenceEqual(newTranslations))
+                {
+                    existingWord.Translations = updateTo.Translations;
+                    _dictionaryDbContext.SaveChanges();
+                }
+                return existingWord;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         [HttpGet]
         [Route("api/Translator/TranslateText")]
@@ -217,7 +288,7 @@ namespace BlazorServer.Controllers
 
                 using (var request = new HttpRequestMessage())
                 {
-                    request.Method = HttpMethod.Post;
+                    request.Method = System.Net.Http.HttpMethod.Post;
                     request.RequestUri = new Uri(_endpoint + route);
                     request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
                     request.Headers.Add("Ocp-Apim-Subscription-Key", _key);

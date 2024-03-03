@@ -1,0 +1,2007 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">
+ <description>
+  <title-info>
+   <genre>humor_prose</genre>
+   <author>
+    <first-name>Dave</first-name>
+    <last-name>Barry</last-name>
+   </author>
+   <book-title>Babies and Other Hazards of Sex: How to Make a Tiny Person in Only 9 Months, with Tools You Probably Have Around the Home</book-title>
+   <annotation>
+    <p>In this classic crack-up of a book, Dave Barry gives his wacky perspective on sex, childbirth, parenting and other forms of slow, cruel torture.</p>
+    <p>In <emphasis>Babies and Other Hazards of Sex</emphasis>, Dave exposes natural childbirth for what it is: a pop phenomenon of the 1960s that, along with paisley bell-bottoms and creative sideburns, deserves a rest. He examines the new federal law requiring prospective fathers to free themselves from their self-made macho prisons—to laugh, cry, love and just generally behave like certified wimps.</p>
+    <p>Dave also reveals, for the first time in print, the secret chant for painless childbirth.</p>
+    <p>Then learn why no secret chant could possibly take a woman’s mind off the fact that she is in such pain that she wants a gigantic comet to crash into the earth and kill her and her husband and the doctor and the nurses and everyone else in the world.</p>
+   </annotation>
+   <date>1984</date>
+   <coverpage>
+    <image l:href="#cover.jpg"/></coverpage>
+   <lang>en</lang>
+  </title-info>
+  <document-info>
+   <author>
+    <first-name>Trills</first-name>
+    <last-name></last-name>
+    <email>trills@rambler.ru</email>
+   </author>
+   <program-used>FB Tools, FictionBook Editor Release 2.6</program-used>
+   <date value="2004-10-20">2004-10-20</date>
+   <id>5CE8583C-0491-42EC-BC73-49A0D58C43C2</id>
+   <version>1.1</version>
+   <history>
+    <p>1.1 - annotation, cover picture, changing titles appearance, source book info (Namenlos).</p>
+   </history>
+  </document-info>
+  <publish-info>
+   <book-name>Babies and Other Hazards of Sex: How to Make a Tiny Person in Only 9 Months, with Tools You Probably Have Around the Home</book-name>
+   <publisher>Rodale Books</publisher>
+   <city>New York</city>
+   <year>2005</year>
+   <isbn>978-0878575107</isbn>
+  </publish-info>
+ </description>
+ <body>
+  <title>
+   <p>Dave Barry</p>
+   <p>BABIES AND OTHER HAZARDS OF SEX</p>
+   <p><emphasis>How to Make a Tiny Person in Only 9 Months, with Tools You Probably Have Around the Home</emphasis></p>
+  </title>
+  <section>
+   <title>
+    <p>Author’s Qualifications to Write a Book About Babies</p>
+   </title>
+   <p>Dave Barry, 36, has a son, Robert, who began as a baby and successfully reached the age of 3 without becoming an ax murderer or anything, as far as anybody knows.</p>
+   <p>In addition, Mr. Barry has spent a number of hours thinking about babies, and has observed them in other people’s cars at traffic lights. He also owns a dog, and at the age of 15 completed much of the course required to obtain a Red Cross Senior Lifesaving Badge.</p>
+  </section>
+  <section>
+   <title>
+    <p>Chapter 1</p>
+    <p>SHOULD YOU HAVE A BABY? SHOULD ANYBODY?</p>
+   </title>
+   <section>
+    <title>
+     <p>Some Important Pompous Advice to Couples about to Get Pregnant</p>
+    </title>
+    <p>Getting pregnant is an extremely major thing to do, especially for the woman, because she has to become huge and bloated and wear garments the size of caf&#233; awnings. This is the woman’s job, and it is a tradition dating back thousands of years to a time when men were not available for having babies because they had to stand outside the cave night and day to fend off mastodons.</p>
+    <p>Of course, there is very little mastodon-fending to be done these days, but men still manage to keep themselves busy, what with buying tires and all. So it is still pretty much the traditional role of the woman to get pregnant and go through labor and have the baby and feed it and nurture it up until it is old enough to throw a football with reasonable accuracy.</p>
+    <p>In recent years, however, men have become more involved in childbirth and child-rearing as part of a federally mandated national trend. Under the terms of this trend, men are beginning to see that they can free themselves from the restrictions of their self-made macho prisons and allow themselves to show their emotions openly—to laugh, to cry, to love, to just generally behave like certified wimps. What this means to you males is that if you get a female pregnant, you are now expected to behave in an extremely sensitive manner and watch the baby come out. I will explain how to do this later.</p>
+    <p>My point here, young couples, is that baby-having is extremely serious business, and you probably don’t have the vaguest idea what you’re doing, as is evidenced by the fact that you’re reading a very sloppy and poorly researched book. So I think you should start off with the quiz below to test your knowledge of important baby facts.</p>
+   </section>
+   <section>
+    <title>
+     <p>Quiz for Young Couples Who Want to Have a Baby and Who Clearly Have No Idea What They’re Getting Into</p>
+    </title>
+    <p>1. HOW MANY TIMES DO YOU ESTIMATE THAT A BABY’S DIAPER MUST BE CHANGED BEFORE THE BABY BECOMES TOILET TRAINED?</p>
+    <p>a. One million billion jillion.</p>
+    <p>b. One skillion hillion drillion gazillion.</p>
+    <p>C. Many babies never become toilet trained.</p>
+    <p>2. WHAT IS THE MOST DISGUSTING THING YOU CAN IMAGINE THAT A BABY MIGHT DELIBERATELY PUT INTO ITS MOUTH?</p>
+    <p>a. A slime-covered slug.</p>
+    <p>b. A slime-covered slug that has just thrown up all over itself.</p>
+    <p>c. A slime-covered slug that has just thrown up all over itself because it has fallen into a vat of toxic sewage.</p>
+    <p>3. WHEN IS THE BEST TIME TO TAKE A BABY TO A NICE RESTAURANT?</p>
+    <p>a. During a fire.</p>
+    <p>b. On Easygoing Deaf People’s Night.</p>
+    <p>c. After the baby has graduated from medical school.</p>
+    <p>4. WHAT DO YOU DO IF YOUR TWO-MONTH-OLD BABY IS SCREAMING IN AN AIRPLANE AND REFUSES TO SHUT UP AND IS CLEARLY DISTURBING THE OTHER PASSENGERS?</p>
+    <p>A. Summon the stewardess and say: “Stewardess, whose baby is this?”</p>
+    <p>b. Summon the stewardess and say: “Stewardess, this baby is very interested in aviation. Please take it up and show it around the cockpit for the duration of the flight.”</p>
+    <p>c. Summon the stewardess and say: “Stewardess, please inform the captain that this infant has just handed me a note in which it threatens to continue crying unless it is taken to Havana immediately.”</p>
+    <p>HOW TO SCORE: Give yourself one point for each question you answered. If you scored three or higher, you are very serious about this, and you might as well go ahead and have a baby. If you scored two or lower, you either aren’t really interested in having a baby, or you have the I.Q. of a tree stump. In either case, you should read the section on birth control.</p>
+    <p>Those of you who are going to have babies should skip the sections on birth control, because they contain many sexually explicit terms, such as “rooster.” You can go directly to the section, “How Much Does It Cost to Have a Baby?”.</p>
+   </section>
+   <section>
+    <title>
+     <p>Male Birth Control</p>
+    </title>
+    <p>To understand the problems involved in birth control, let’s look at this quotation from the excellent 1962 medical reference work Where Do Babies Come From?, which I purchased from a nurse at a yard sale:</p>
+    <p>“The way the rooster gets his sperm inside the hen, to fertilize her egg, is very strange to us.”</p>
+    <p>The problem with this quotation, of course, is that it suggests we have given a great deal of thought to the question of how to get sperm inside a chicken. But it does bring up the basic issue in birth control, which is to avoid fertilization you somehow have to keep the male sperm away from the female egg. This is not easy, because men contain absurd quantities of sperm, produced by the same hormone that causes them to take league softball seriously.</p>
+    <p>The most effective method of birth control for males is the one where, just when the male and the female are about to engage in sex, the friends of the male burst out of the bushes and yell and jump up and down on the bumper and spray shaving cream all over the car. The problem is that this method is pretty much limited to teenage males. Another popular form of teenage birth control is the condom, which the male uses by placing it in his wallet and carrying it around for four years and pulling it out to show his friends in the Dairy Queen parking lot.</p>
+   </section>
+   <section>
+    <title>
+     <p>The Condom Lady</p>
+    </title>
+    <p>When I was a teenage male, it was very difficult to obtain condoms, because you had to buy them at the drugstore from the Condom Lady, who was about 65 and looked like your grandmother only more moral. She had a photographic memory so she knew exactly who you were, and as soon as you left the store, she would dial a special number that would connect her with a gigantic loudspeaker system so she could announce to your parents and your teachers and everybody in your church or synagogue and people on the street that you had just bought condoms. Now they sell condoms right out in the open on display racks, just like breath mints or something, and the Condom Lady has switched over to selling Penthouse magazine to middle-aged businessmen at the airport.</p>
+    <p>For older males, the most effective form of birth control is the vasectomy, which is a simple surgical procedure that can be done right in your doctor’s office. Notice I say your doctor’s office. I myself would insist on having it done at the Mayo Clinic surrounded by a team of several dozen crackerjack surgeons and leaders of all the world’s major religious groups. I don’t take any chances with so-called minor surgical procedures, because the last one I had was when the dentist took my wisdom teeth out, and subsequently I almost bled to death in the carpet department at Sears.</p>
+    <p>The way I understand it, what happens in a vasectomy is they tie some kind of medical knot in the male conduit so the sperm can’t get through. Of course, this leads to the obvious question, which is: Won’t the sperm back up? Will these poor pathetic males someday explode like water balloons, spewing sperm all over and possibly ruining an important sales presentation? I say the American Medical Association ought to get the hell off the golf course and answer this question before the public becomes needlessly alarmed.</p>
+   </section>
+   <section>
+    <title>
+     <p>Female Birth Control</p>
+    </title>
+    <p>Female birth control is much more complicated, because once sperm are safely inside a female, they become very aggressive. They barge up and down the various feminine tubes and canals, hooting and whistling, until they locate the egg. Then they strike up a conversation, feigning great interest in the egg’s personality, but actually looking for the first opportunity to penetrate.</p>
+    <p>There is no absolutely foolproof way to stop this fertilization process. The old wives’ tale, of course, is that a female could avoid getting pregnant by not having sex, but this was disproved by a recent experiment in which Harvard University biologists placed 50 old wives in a locked condominium for two years, and 35 percent of them got pregnant anyway merely by looking at pictures of Raymond Burr.</p>
+    <p>But there are things that a woman can do. She can insert one of the many feminine insertion devices shaped like alien space vehicles, which are designed to scare the sperm into stampeding right back out the vestibule. Or she can take the pill, which messes with her hormones in such a way that her body gets fooled into thinking it is already pregnant. The egg gets all bloated and starts to feel weepy and nauseous in the morning, and when it comes clomping down the fallopian tubes, the sperm all go stampeding right back out the vestibule.</p>
+    <p>What the public is eagerly awaiting, of course, is a birth-control pill for males. If you ever see members of the public gathering in eager little knots, that’s what they’re waiting for. The male medical establishment has been assuring us for years that such a pill is right around the corner. “Believe us,” they say, “there’s nothing we’d rather do than come up with a pill that messes with our hormones, so we can take this burden from the women, who have been unfairly forced to bear it for far too long. In fact, we’d probably finish developing the male birth-control pill tonight, but we have to play league softball.”</p>
+   </section>
+   <section>
+    <title>
+     <p>How Much Does It Cost to Have a Baby?</p>
+    </title>
+    <p>In primitive times, having a baby was very inexpensive. When women were ready to give birth, they simply went off and squatted in a field; this cost nothing except for a nominal field-rental charge. Today, of course, the medical profession prefers that you have your baby in a hospital, because only there can doctors, thanks to the many advances in medical equipment and techniques, receive large sums of money.</p>
+    <p>It is difficult to predict exactly what the doctor’s bill for your pregnancy will be, because every situation is different. If your doctor’s Mercedes-Benz is running well, he may charge you as little as $2,000; if there are complications, such as that he has been hearing a little ticking sound in the transmission lately, then he may be forced to charge you much more. It is a good idea to “shop around” before you settle on a doctor. Ask about the condition of his Mercedes. Ask about the competence of his mechanic. Don’t be shy! After all, you’re paying for it.</p>
+   </section>
+   <section>
+    <title>
+     <p>The Cost of Everything After the Baby Is Born Right Up Until It Goes to College or, God Help You, Graduate School</p>
+    </title>
+    <p>Again, it is very hard to be specific here, largely because I haven’t done any research. In my own case, I estimate that the cost of raising our son, Robert, to age three, which is where he is at the moment, breaks down as follows:</p>
+    <p>Little metal cars—$13,000</p>
+    <p>Everything else—$4,000</p>
+    <p>If we extrapolate this out for the next 18 years, assuming that inflation continues, and that we don’t have a nuclear war, which would pretty much render the point moot, we can conclude that in the long term a child can cost just scads of money. Maybe you should go back and read the section on birth control.</p>
+   </section>
+   <section>
+    <title>
+     <p>Should the Woman Quit Her Job to Have a Baby?</p>
+    </title>
+    <p>The advantage of quitting your job is that if you want to, you can make a really nasty speech to your boss, right in front of everybody, where you tell him he’s incompetent and has the worst case of bodily odor in the annals of medicine. The disadvantage is that you’ll lose your income, which means for the next eight or nine years the only new article of clothing you will be able to afford for yourself will be dress shields.</p>
+    <p>The advantage of keeping your job is that you will be able to stand around the Xerox machine for a couple of months showing pictures of your child to your co-workers, who will ooh and ahh even though very young infants tend to look like unwashed fruit.</p>
+   </section>
+   <section>
+    <title>
+     <p>What About Insurance?</p>
+    </title>
+    <p>Don’t worry. Your insurance needs will automatically be taken care of by squadrons of insurance salesmen, who can detect a pregnant woman up to 11 miles away on a calm day, and who will show up at your house carrying sleeping bags and enough freeze-dried food to enable them to stay for weeks if necessary.</p>
+   </section>
+   <section>
+    <title>
+     <p>The Intangible Benefits</p>
+    </title>
+    <p>Of course, you can’t reduce children to mere dollars and cents. There are many intangible benefits, by which I mean benefits that, when coupled with 50 cents, will buy you a cup of coffee.</p>
+    <p>For example, I know a person named Michael, who, although he does not personally own any children, once got a major benefit from his five-year-old nephew. What happened was they were at this big open-air concert in Boston to celebrate the Bicentennial, and when it was over the crowd was enormous and it looked as though they’d never get out. So Michael held his nephew aloft and yelled, “Sick child! Sick child! Make way!” loud enough so nobody could hear the nephew saying, “I’m not sick, Uncle Mike.” And the crowd made way, which meant Mike got home hours sooner than he would have otherwise.</p>
+    <p>So there is an example of a person getting a large intangible benefit from a child, and it wasn’t even technically his child. Also, you can get terrific tax deductions for children. Of course, the same can be said for insulation, but you’d look like an idiot, waving insulation aloft at an outdoor concert.</p>
+   </section>
+  </section>
+  <section>
+   <title>
+    <p>Chapter 2</p>
+    <p>PREGNANCY</p>
+   </title>
+   <section>
+    <p>What on earth is going on inside pregnant women that makes them become so large and weepy? This is the fascinating biological topic we will explore in this chapter, at least until we start to feel nauseous.</p>
+   </section>
+   <section>
+    <title>
+     <p>The Female Reproductive System</p>
+    </title>
+    <p>The female reproductive system is extremely complicated, because females contain a great many organs, with new ones being discovered every day. Connecting these organs is an elaborate network of over seven statute miles of tubes and canals. Nobody really understands this system. Burly male doctors called “gynecologists” are always groping around in there with rubber gloves, trying to figure out what’s going on. Or so they claim.</p>
+   </section>
+   <section>
+    <title>
+     <p>Fertilization</p>
+    </title>
+    <p>The fertilization process starts in the ovaries, which each month produce an egg. After a hearty breakfast, this egg treks down the fallopian tubes, where it is propositioned by millions of sperm, which are extremely small, totally insincere one-celled animals. Often, to attract the egg, the sperm will engage in ritual behavior, such as ruffling their neck feathers. No wait, I’m thinking of birds.</p>
+    <p>Anyway, the egg, a fat and globular kind of cell with very little self-esteem, finds itself in this dimly lit fallopian tube surrounded by all these sleek, well-traveled sperm, and sooner or later one of them manages to penetrate. Then the sperm all saunter off, winking and nudging each other toward the bile duct, while the fertilized egg slinks down to the uterus, an organ shaped like Webster Groves, Missouri. The egg attaches itself to the uterine wall, and thus begins an incredibly subtle and complex chain of hormonal secretions that signal to the woman’s body that it is time to start shopping around for fluffy little baby garments. Pregnancy has begun.</p>
+   </section>
+   <section>
+    <title>
+     <p>The Stages of Development of the Fetus</p>
+    </title>
+    <p>WEEK 5: The fetus is only 6.7 liters in circumference yet has already developed the ability to shriek in airplanes.</p>
+    <p>WEEK 10: The fetus is almost 12 millipedes in longitude and has a prehensile tail and wings. It will probably lose these things before it is born.</p>
+    <p>WEEK 20: The fetus measures 4 on the Richter scale and is perusing mail-order catalogs from the Fisher-Price company.</p>
+    <p>WEEKS 30-40: The fetus is on vacation.</p>
+    <p>WEEK 50: The fetus can run the 100meter dash in 10.23 seconds and has developed an interest in pottery.</p>
+   </section>
+   <section>
+    <title>
+     <p>Pregnancy and Diet</p>
+    </title>
+    <p>You must remember that when you are pregnant, you are eating for two. But you must also remember that the other one of you is about the size of a golf ball, so let’s not go overboard with it. I mean, a lot of pregnant women eat as though the other person they’re eating for is Orson Welles. The instant they find out they’re pregnant they rush right out and buy a case of Mallomars, and within days they’ve expanded to the size of barrage balloons.</p>
+    <p>Keep in mind that it’s a baby you’re eating for. If you’re going to eat for it, don’t eat like an adult; eat like a baby. This doesn’t mean you can’t have Mallomars; it means you must hold them in your hands until the chocolate melts and then rub it into your hair and the sofa. If you eat at a restaurant, feel free to order that steak you crave, but have the waiter cut it into 650,000 tiny pieces and then refuse to touch them, preferring instead to chew and swallow the cocktail napkin and then throw up a little bit on your dress.</p>
+   </section>
+   <section>
+    <title>
+     <p>Answers to Common Questions About Pregnancy</p>
+    </title>
+    <p>Q. WHAT WILL HAPPEN TO MY BODY DURING PREGNANCY BESIDES THAT I WILL BECOME HUGE AND TIRED AND THROW UP A LOT AND BE CONSTIPATED AND DEVELOP HEMORRHOIDS AND HAVE TO URINATE ALL THE TIME AND HAVE LEG CRAMPS AND VARICOSE VEINS?</p>
+    <p>A. Many women also have lower back pain.</p>
+    <p>Q. IS IT SAFE TO GAMBLE AND CURSE DURING PREGNANCY?</p>
+    <p>A. Yes, but during the first trimester you should avoid gaudy jewelry.</p>
+    <p>Q. HOW LONG WILL I BE PREGNANT?</p>
+    <p>A. Most of us learn in health class that the human gestation period is nine months. Like most things we learn in health class, this is a lie. The only people who still believe it are doctors, who make a big fuss out of giving you a “due date” nine months from when they think you were fertilized, as if it takes some kind of elaborate medical training to operate a calendar. I have done exhaustive research on this question in the form of talking to my friends and listening in on other people’s conversations in the supermarket checkout line, and I have concluded that no woman has ever given birth on her “due date.” About a quarter of all pregnant women give birth “prematurely,” which means during the doctor’s vacation that immediately precedes the “due date.” All other women—and ask them if you don’t believe me—remain pregnant for at least 14 months, and sometimes much longer if the weather has been unusually hot.</p>
+    <p>Q. CAN I HAVE SEX WITH MY HUSBAND WHILE I’M PREGNANT?</p>
+    <p>A. No.</p>
+    <p>Q. WELL, CAN I HAVE SEX WITH SOMEONE ELSE’S HUSBAND?</p>
+    <p>A. I don’t see why not.</p>
+   </section>
+   <section>
+    <title>
+     <p>Important Advice for Husbands</p>
+    </title>
+    <p>The key here is to be sensitive. You must not let your wife think you find her unattractive just because she’s getting tremendously fat. Go out of your way to reassure her on this point. From time to time, say to her: “I certainly don’t find you unattractive just because you’re getting tremendously fat.” If you go to a party where every woman in the room is slinky and lithe except your wife, who is wearing a maternity outfit that makes her look like a convertible sofa, be sure to remark from time to time, in a strident voice, that you can’t judge a book by its cover. Your wife is bound to remember this sensitive gesture.</p>
+    <p>During her pregnancy your wife will have many emotional moods caused by the fact that there are gallons of hormones racing around inside her. The two of you will be sitting in your living room, watching the evening news on television, when all of a sudden she’ll run into the bedroom in tears because of a report about a monsoon wiping out a distant Asian village. Follow her. Comfort her. Tell her: “They’re just distant Asians, for God’s sake.”</p>
+   </section>
+   <section>
+    <title>
+     <p>Teaching Your Child in the Uterus</p>
+    </title>
+    <p>Can you teach your child while it’s still in the uterus? The answer is yes, at least according to this couple I saw on the “Phil Donahue Show” once, and I don’t see why they would lie about it. Their kids all came out of the womb with a deep appreciation for classical music. Frankly, I don’t understand why parents think this is so important, because as I recall my youth, children who appreciated classical music were infinitely more likely to get beat up on the playground. The smart move, if you want your child to have the respect and admiration of its peers, would be to teach it how to spit convincingly or lead cheers.</p>
+    <p>But never mind what you teach the child while it’s in the uterus; the important thing is that you can teach it, and you’d better, if you want it to get into Harvard Medical School. Of course, the teaching method has to be very simple. I mean, you can’t go in there with slide projectors or anything. Where would you plug them in? So you’ll pretty much have to content yourself with yelling at the stomach. This is the man’s job, because let’s face it, the woman would look pretty stupid yelling at her own stomach.</p>
+    <p>So whenever the two of you have a spare moment together, such as when you’re waiting to cash a check at the bank, the man should lean over and yell, in the general direction of the woman’s uterus, something like “THE CAPITAL OF NORTH DAKOTA IS PIERRE.” Or maybe that’s South Dakota. I can never keep the state capitals straight, because when I was in the uterus, back in 1946, Phil Donahue hadn’t been invented yet.</p>
+   </section>
+   <section>
+    <title>
+     <p>The Baby Shower</p>
+    </title>
+    <p>Probably the single most grueling ordeal a woman must endure during pregnancy is the baby shower. What happens is you have to sit in the middle of a group of women and repeatedly open gifts, and every time you open one, you have to adopt a delighted expression, then hold the gift up—even if it is disposable diapers—and exclaim, “Oh! How cute!” In some cases this goes on for hours, and all you are permitted to eat is tiny sandwiches with the crusts cut off.</p>
+    <p>At one time, most women relied on drugs to get through their showers. But more and more, women are practicing “natural” shower techniques, which allow them, through careful preparation, to have perfectly safe showers without the use of artificial substances.</p>
+    <p>The key is teamwork between you and your husband. Well in advance of the expected shower date, the two of you should practice regularly at home. Sit on the sofa while your husband hands you various objects, and practice holding them up and exclaiming, “Oh! How cute!” You must practice this every night until no matter what he hands you—an ashtray, a snow tire, a reptile, etc.—you can still appear to be genuinely delighted.</p>
+   </section>
+  </section>
+  <section>
+   <title>
+    <p>Chapter 3</p>
+    <p>GETTING READY FOR BABY</p>
+   </title>
+   <section>
+    <title>
+     <p>Precautions around the Home</p>
+    </title>
+    <p>Babies are equipped at birth with a number of instinctive reflexes and behavior patterns that cause them to spend their first several years trying to kill themselves. If your home contains a sharp, toxic object, your baby will locate it; if your home contains no such object, your baby will try to obtain one via mail order. Therefore, you must comb through your house or apartment and eliminate all unsafe things, including: dirt, forks, old copies of Penthouse magazine, germs, spittoons, attics, stairs, stoves, water, etc.</p>
+    <p>You should also be sure to have the electrical system taken out. You cannot “childproof” it by plugging those little plastic caps into all the outlets. Children emerge from the womb knowing how to remove those caps by means of an instinctive outlet-cap-plucking reflex that doctors regard as one of the key indicators that the child is normal.</p>
+   </section>
+   <section>
+    <title>
+     <p>Baby’s Room</p>
+    </title>
+    <p>Baby’s room must be kept at a steady temperature of 72 degrees Fahrenheit and a relative humidity of 63 percent, and it must have wallpaper with clowns holding blue, red, and green balloons. Baby’s room should be close enough to your room so that you can hear baby cry, unless you want to get some sleep, in which case baby’s room should be in Peru.</p>
+   </section>
+   <section>
+    <title>
+     <p>Baby’s Crib</p>
+    </title>
+    <p>The important thing to remember here is that baby does not sleep in the crib. Baby sleeps in the car. Baby uses the crib as a place to cry and go to the bathroom, so the crib has to be fully protected. To make up the crib, first put down the mattress, then a rubber pad, then a yellow rain slicker, then a stout canvas tarpaulin, then a shower curtain, then a two-inch-thick layer of road tar, then a bale of highly absorbent rags, then a cute little sheet with pictures of clowns holding blue, red, and green balloons. You should have lots of spares of all these things.</p>
+   </section>
+   <section>
+    <title>
+     <p>Other Furniture for Baby’s Room</p>
+    </title>
+    <p>Your best bet is an industrial dumpster.</p>
+   </section>
+   <section>
+    <title>
+     <p>Baby’s Clothes</p>
+    </title>
+    <p>Have you ever stopped to ask yourself why so few high-level corporate executives are babies? The reason is that most babies do not dress for success.</p>
+    <p>Next time you’re in a shopping mall, take a look at what these unsuccessful babies are wearing. Somewhere on virtually every child’s outfit will be embroidered either a barnyard animal or a cretin statement such as “Lil’ Angel.” Many of the babies will be wearing bib overalls, despite overwhelming scientific evidence that such garments reduce the wearer’s apparent I.Q. by as many as 65 points. Some of the girl babies will be wearing tights and petticoats that stick straight out horizontally in such a way as to reveal an enormous unsightly diaper bulge, causing them to look like miniature ballerinas with bladder disorders. Really young babies will be encased in fluffy pastel zip-up sacks with no place for the poop to get out, so that after a few hours in the mall they are no more than little pastel sacks of poop with babies’ heads sticking out.</p>
+    <p>You look at these babies, and you realize that they will never be considered for responsible positions until they learn to dress more sensibly. So when you’re shopping for clothes for your baby, stick to the time-tested dress-for-success classics—your pinstripes, your lightweight wool suits in blue or gray, stout brogans, etc. And don’t neglect the accessories! A baby sucking on a cheap pink plastic rattle is likely to be passed over at promotion time in favor of a baby sucking on a leather rattle with brass fittings.</p>
+   </section>
+   <section>
+    <title>
+     <p>Baby’s Toys</p>
+    </title>
+    <p>Your friends and relatives will buy your baby lots and lots of cute dolls and stuffed animals, all of which you should throw in the trash compactor immediately. Sure, they look cute to you, but to the baby they appear to be the size of station wagons. So all night long, while you’re safe in your animal-free bedroom, your baby is lying there, surrounded by these gigantic creatures. Try to imagine sleeping with an eight-foot-high Raggedy Ann sitting just inches away, staring at you! Especially if you had no way of knowing whether Raggedy Anns were vicious! No wonder babies cry so much at night!</p>
+    <p>So you don’t want cute creatures with eyes. You also don’t want so-called educational toys that claim to teach “spatial relationships,” because the only spatial relationship newborn babies care about is whether they can fit things into their mouths. This means you want toys that will fit safely and comfortably in a baby’s mouth. The best way to select such toys is to try them out in your own mouth, bearing in mind that yours has eight times the volume of baby’s. When you go to the toy store, ask to see eight of each potential toy; if you can stuff them all comfortably in your mouth, you should buy one. Remind the salesclerk to sterilize the other seven, so as not to pass infectious diseases on to the next shopper. The clerk will appreciate this thoughtful reminder.</p>
+    <p>In a later chapter, I’ll talk about buying toys for your child when it has acquired the conceptual and manipulative skills necessary to break things.</p>
+   </section>
+   <section>
+    <title>
+     <p>Diapers: Cloth vs. Disposable</p>
+    </title>
+    <p>At one time, back during the Korean War, most people rejected disposable diapers because they preferred the natural soft feel of cloth. Then it finally began to dawn on people that the natural soft feel of cloth begins to lose some of its charm when it has been pooped and peed on repeatedly.</p>
+    <p>So now everybody uses disposable diapers. Oh, I realize there are diaper services that come to your house and drop off clean cloth diapers and pick up the dirty ones, but even those diapers are now disposable. The instant the driver is out of sight of your house, he hurls the dirty diapers into the street and drives off briskly.</p>
+    <p>The only problem with disposable diapers is that they are starting to overflow the world’s refuse-disposal facilities; scientists now predict that if the present trend continues, by the year 1997 the entire planet will smell like the men’s room in a bar frequented by motorcycle gangs. But this is not really as serious as it sounds, because, scientists also believe that several years before 1997 the polar ice caps are going to melt. Also, we could always have a nuclear war. So I would definitely go with the disposable diapers.</p>
+   </section>
+  </section>
+  <section>
+   <title>
+    <p>Chapter 4</p>
+    <p>PREPARING FOR BIRTH</p>
+   </title>
+   <section>
+    <title>
+     <p>An Important Message about Professional Childbirth-Preparation Terminology</p>
+    </title>
+    <p>Before you have your baby, you’re going to be dealing with a number of professional childbirth experts, so you ought to know that they all have this very strict rule: when they talk about childbirth, they never use the word “pain.” Granted, this is like talking about the Pacific Ocean without using the word “water,” but the way they see it, if they were to tell you women, in clear language, what is really involved in getting this largish object out of your body, none of you would have babies, and the professional childbirth experts would have to find another source of income.</p>
+    <p>So they use the International Childbirth Professional Code Word for pain, which is “contraction.” To the nonexpert, a “contraction” sounds like, at worst, maybe a mild muscle cramp, but it actually describes a sensation similar to that of having professional football players smash their fists into your uterine wall. In a “strong contraction,” the players are also wearing skis.</p>
+    <p>It’s quite natural for you to be apprehensive about the pain of childbirth. I was terrified of it myself, until I did a little research and learned there was no way I would ever have to go through it. So let’s take a thorough, informed, scientific look at this much-misunderstood topic, and maybe we can clear up your concerns, although I doubt it.</p>
+    <p>Here are two actual diagrams, drawn with the aid of modern medical expertise, showing the insides of a woman just before and just after giving birth. What these diagrams reveal to those of us trained to understand them is that there is an entire baby inside the pregnant woman, and somehow during childbirth it comes out. This is the part that stumps us, because despite all of our modern medical expertise, we frankly cannot see how such a thing is possible. All we really know about it is that it seems to hurt like crazy.</p>
+    <p>If you’d like more technical details on the childbirth process, I suggest you view one of the many fine prairie dramas on television wherein some pathetic wispy-haired pioneer woman goes into labor during a blizzard in the most god-awful desolate prairie place, such as Kansas. Nothing brings on labor like a prairie blizzard. Women have been known to give birth in prairie blizzards even when they weren’t actually pregnant.</p>
+    <p>Anyway, on these prairie dramas the pioneer woman lies around moaning and writhing, which should give you an idea of what childbirth is like, except that on television it takes about as long as an episode of “Little House on the Prairie,” whereas in real life it can take as long as “Roots.”</p>
+    <p>But don’t worry, because later in this chapter we’ll talk about a wonderful new modern natural technique for coping with contractions. I won’t describe this amazing technique right away, because I don’t want you to find out yet that it’s really just deep breathing.</p>
+   </section>
+   <section>
+    <title>
+     <p>How Your Mother Had Babies, and Why We Now Feel It Was All Wrong</p>
+    </title>
+    <p>Here is the system that was used for having babies during the Eisenhower Administration: At the first sign of pregnancy, the husband would rush the wife to the hospital, where she would be given modern medical drugs that would keep her from feeling contractions or anything else, including a volcanic eruption in the delivery room. This way the woman felt very little pain. Often she didn’t regain consciousness until her child was entering the fourth grade.</p>
+    <p>One big problem with this system was that drugs can have adverse effects on the baby, as is evidenced by the fact that every single person born during the 40s, 50s, or 60s is really screwed up. Another problem was that the father had very little to do with the birth. His job was to sit in the waiting room with the other fathers and smoke cigarettes and read old copies of Field and Stream and wonder what the hell was taking so long. When the baby was born, the nurses would clean it up as best as they could and show it to the father, then he’d go home to bumble around and have humorous kitchen episodes until his wife got back on her feet and could resume cooking. This system deprived the husband of the chance to witness the glorious moment when his child came into the world, not to mention all the other various solids and fluids that come into the world with the child.</p>
+    <p>So today we have a much better childbirth system. Federal law now requires the man to watch the woman have the baby, and the woman is not allowed to have any drugs unless she agrees, in writing, to feel guilty. In some ways, we’re back to the old prairie method of baby-having, only we do it in modern hospitals, so the husband doesn’t have to boil water. All the water-boiling is now done by trained health-care professionals for about $65 a gallon.</p>
+   </section>
+   <section>
+    <title>
+     <p>Choosing a Hospital</p>
+    </title>
+    <p>The most important thing to remember in choosing a hospital is that there must be no Dairy Queen between it and you. Medical science has been unable to develop a way to get a pregnant woman, even in the throes of labor, past a Dairy Queen without stopping for a chocolate milk shake. This could waste precious time on the way to the hospital. Even worse, the woman could start having the baby right there in the Dairy Queen, with nobody to help her except her husband and various teenage Dairy Queen employees all smeared with butterscotch and wearing those idiot hats.</p>
+    <p>Also, you should pick a hospital you feel comfortable in. Most people feel uneasy about hospitals, possibly because the instant you walk through the door medical personnel grab you and remove your blood and stick tubes up your nose. But in deciding where you’re going to have your baby, you must overcome these fears. You must barge right into the hospital and ask questions. If you have no questions, use these:</p>
+    <p>1. How much does this hospital weigh?</p>
+    <p>2. What’s that funny smell?</p>
+    <p>Don’t leave until you get the answers!</p>
+   </section>
+   <section>
+    <title>
+     <p>Childbirth Classes: Learning to Breathe</p>
+    </title>
+    <p>Before you can have your baby, you have to attend childbirth classes wherein you openly discuss the sexual organs with people you barely know. You get used to it. You’ll get so that when your instructor passes around a life-size plastic replica of the cervix, you’ll all hold it up and make admiring comments, as if it were a prize floral arrangement. You’ll get to know the uterus so well that you’d recognize one anywhere. Also, you’ll see actual color movies of babies being born, so that you’ll be prepared for the fact that they come out looking like Mister Potato Head.</p>
+    <p>But the main thing you’ll do in childbirth classes is learn the amazing new modern natural technique for getting through contractions, namely deep breathing. Now I will admit that when our instructor first talked about getting through labor with nothing but deep breathing, my immediate impulse was to rush out and buy three or four quarts of morphine, just in case. But after several weeks of practicing the breathing techniques, my wife and I became convinced that, by golly, they really worked! Obviously we were hyperventilating.</p>
+    <p>The key to the technique is to breathe in a different way for each stage of labor.</p>
+   </section>
+   <section>
+    <title>
+     <p>The Magic Word</p>
+    </title>
+    <p>One last thing. In childbirth classes, you will be taught, with much ceremony, a Secret Magical Anti-Contraction Word that the woman is supposed to say when things get really awful, when the professional football players in her uterus are wearing skis and carrying sharpened poles. Technically, this word is supposed to be revealed only in childbirth classes, but I have decided to print it below for use in case of emergency.</p>
+    <p>WARNING: THE NEXT PARAGRAPH CONTAINS THE SECRET MAGICAL ANTI-CONTRACTION WORD. DO NOT READ THIS PARAGRAPH UNLESS YOU ARE SINCERELY IN THE PROCESS OF HAVING A BABY.</p>
+    <p>The word is “hout.” Rhymes with “trout.” It may not look like much, but it has been scientifically shown to be over twice as effective against contractions as the next leading word, “Ohmigod.” You may hear another secret word in your childbirth classes, but “hout” did it for us. Our instructor had us practice it for hours in class—you have to get the tip of your tongue right on the edge of your front teeth—and it really helped my wife get through those first few contractions. After that, she switched over to “AAAAAAAAARRRRRRRGGGUUUNNNNH,” which is not an officially approved word, but seemed to work well for her.</p>
+   </section>
+  </section>
+  <section>
+   <title>
+    <p>Chapter 5</p>
+    <p>THE ACTUAL BLESSED EVENT</p>
+   </title>
+   <section>
+    <p>Childbirth is like vampires: it never strikes before sundown. If you feel something that seems like contractions during the day, you’re actually having what is called “false labor.” Sometimes false labor can be very realistic, in which case you may have to go to the hospital, where you will be examined by a false doctor, who may even deliver an anatomically correct doll.</p>
+    <p>But real labor always begins at 3:15 A.M. eastern standard time, because that is when every obstetrician in the country is in deepest sleep. As soon as the contractions start, you should call your obstetrician, who will answer the phone and, without even waking up, say: “How far apart are the contractions?” You can give any answer you want (“About two feet,” for example), and then the obstetrician will say, “You’d better come on in to the hospital.” Then he’ll roll over onto his side, still completely unconscious, and resume snoring.</p>
+    <p>At this time, you should gather up the things you’ll need in the hospital (don’t forget your passport!) and set off. Husbands, here is how you should drive: Sit on the edge of the driver’s seat with your face one inch from the windshield and grip the steering wheel so firmly that little pieces of it keep breaking off in your hands. Every eight or nine seconds, jerk your head down violently to look at the gas gauge, then give your wife’s knee a firm clench for one-tenth of a second and grimace at her and say, “Everything’s going to be fine.” But despite this reassuring exterior, husbands, you must be alert and prepared for any problem that could prevent you from getting to the hospital in time.</p>
+   </section>
+   <section>
+    <title>
+     <p>What to Do If You Can’t Get to the Hospital</p>
+    </title>
+    <p>At all costs, you must not panic. Stay calm. A good way to do this is to play word games, such as the one where you start with a letter, and then the other person adds a letter, and so on, the idea being that you are spelling an actual word, but you don’t want to supply the last letter. For extra fun, you can say that the loser has to get out and run around the car backwards three times at a red light. Besides livening up the game, this will attract the attention of the police, who might help deliver your baby in a gruff but kindly manner, the way they do in anecdotes from Reader’s Digest. Or they might beat you with clubs.</p>
+   </section>
+   <section>
+    <title>
+     <p>Three Problems That Could Prevent You from Getting to the Hospital in Time</p>
+    </title>
+    <p>1. Your car radio could explode for no apparent reason.</p>
+    <p>2. You could be stopped by police who are looking for escaped radicals, and who think your wife’s stomach is a bomb and call in the Explosives Disposal Unit to cover her with sand.</p>
+    <p>3. You could get stuck behind a member of the Elderly People with Enormous Cars Club, driving smack dab in the middle of the road at two miles an hour in search of an all-night drugstore to buy new batteries for his hearing aid, so he can’t hear you honk.</p>
+   </section>
+   <section>
+    <title>
+     <p>What Will Happen to You If You Get to the Hospital</p>
+    </title>
+    <p>At the maternity ward, you will be greeted by kindly nurses who will do a number of unspeakably degrading things to you while the hospital operator tries to wake up your obstetrician. Then you will be placed in a little room where your husband can sit with his little clipboard and stopwatch and time your contractions, just like you learned in childbirth class, until you swat his goddamn clipboard and stopwatch across the room and demand to be killed, which is the sign that you have gone from “contractions” to “strong contractions.”</p>
+    <p>At this time, you will be taken to the delivery room, where you will be placed in the Standard Childbirth Position. Medical researchers have tried for decades to come up with a childbirth position even more humiliating than this one, but they have had no success.</p>
+    <p>While you’re in this delicate position in the delivery room, you may be a bit embarrassed, especially since there are people standing around wearing masks and watching you. So let me explain who these people are. You have your obstetrician, of course, unless the hospital operator has been unable to rouse him, in which case he will actually be a life-size obstetrician puppet operated from behind by a nurse trained to mimic obstetricians’ voices. You also have your husband, assuming he has been able to wash away the little crumbled bits of steering wheel embedded in his hands.</p>
+    <p>Then you have your pediatrician, and an anesthesiologist to stand by in case the doctors decide that the delivery is not costing enough. Also you have at least one nurse to assist each of these doctors; you have three medical students; you have one law student; and you have Billy Ray Johnson, who is actually a retired beet farmer who just happens to like hanging around delivery rooms and watch people have babies.</p>
+    <p>So that’s it, just 12 of you, unless Billy Ray has brought friends to share this wondrous moment.</p>
+   </section>
+   <section>
+    <title>
+     <p>The Big Moment</p>
+    </title>
+    <p>And what is it like? That, of course, is what you want to know: What is it really like?</p>
+    <p>I don’t have the vaguest idea, of course. But I do remember what it sounded like when my wife had our son. I was at one end of my wife, shouting words of encouragement to her head, the doctor and nurse were shouting to the other end of her body. It sounded like a group of extremely sincere people trying to help an elephant dislodge a Volkswagen from its throat:</p>
+    <p>DOCTOR: You’re doing just great, Beth! Just great! Really! Isn’t she doing great?</p>
+    <p>NURSE: She sure is! She’s doing just great!</p>
+    <p>ME: You’re really doing great, honey! Really!</p>
+    <p>BETH: AAAAAAAAAAAAARRRRRRRRRRRRRRRRUU UUNNNNNNNNNNNNNNNNGGGGGGGGGGGGGGGGGGGGGGG GHHHHHHHHHHH.</p>
+    <p>DOCTOR: That was just great! Really!</p>
+    <p>And so on, for quite a while, until finally Robert came out, and immediately demanded to be put back in. My wife and I were very happy. I remember hugging her head.</p>
+   </section>
+   <section>
+    <title>
+     <p>What to Do Immediately after Birth</p>
+    </title>
+    <p>Close your eyes tightly. This is in case the doctor takes it into his head to show you the placenta, which is a highly unattractive object that comes out close on the heels of the baby. In the old days, when people were decent, the placenta was disposed of quickly and quietly and was never talked about in polite society. But now people bandy it about openly in public, as if it were a prize-winning bass.</p>
+   </section>
+   <section>
+    <title>
+     <p>Bonding</p>
+    </title>
+    <p>While the obstetrician is finishing up, the pediatrician will wrap your baby in a blanket and hand it to you so that you can marvel at the miracle of birth and everything. My only warning here is that you should not hold your baby too long, or you will become “bonded” to it and have to be tugged apart by burly hospital aides.</p>
+   </section>
+  </section>
+  <section>
+   <title>
+    <p>Chapter 6</p>
+    <p>THE HOSPITAL STAY</p>
+   </title>
+   <section>
+    <title>
+     <p>A Reassuring Word for First-Time Parents About Hospital Baby-Identification Procedures</p>
+    </title>
+    <p>A common fear among new parents is that, as a result of a mix-up in the nursery, some kind of terrible mistake will be made, such as that they’ll wind up taking home Yasser Arafat’s baby. This fear is groundless. When a baby is born, a hospital person immediately puts a little plastic tag around its wrist with the words “NOT YASSER ARAFAT’S BABY” printed on it in indelible ink. So whichever baby you wind up with, you can be sure it isn’t his.</p>
+   </section>
+   <section>
+    <title>
+     <p>Visitors in the Hospital</p>
+    </title>
+    <p>Maternity ward visitors are an excellent source of amusement, because they always feel obligated to say flattering things about newborn babies, which of course look like enormous fruit fly larvae. One fun trick is to show your visitors somebody else’s baby. “She definitely has your eyes!” your visitors will exclaim. For real entertainment, have the nurse bring you a live ferret, wrapped in a baby blanket. “She’s very alert!” your visitors will remark, as the ferret lacerates their fingers with needle-sharp teeth.</p>
+   </section>
+   <section>
+    <title>
+     <p>How Long Should the Mother Stay in the Hospital after the Baby Comes Out?</p>
+    </title>
+    <p>As long as possible. For one thing, as long as you’re in the hospital you can wear a bathrobe all day. This means you won’t have to face up to the fact that even after expelling the baby and all the baby-related fluids and solids, you still have hips the size of vending machines from all the Mallomars you ate back when you thought you were going to be pregnant forever.</p>
+    <p>For another thing, the hospital employs trained professional personnel to change the baby’s diapers, etc., so all you have to do is lounge around in your bathrobe looking serene and complaining about the food. If you go home, you’ll have to take care of the baby and confront the fact that you did not once clean behind any of the toilets during the last four months of your pregnancy because you couldn’t bend over.</p>
+    <p>The hospital personnel will try to make you leave after a couple of days, but all you have to do is waddle off to another room and plop down on the bed. There are so many comings and goings in a maternity ward that it will be several days before they catch on to you and try to make you leave again, at which time you can just waddle off to another room. You can probably keep this up until your baby starts to walk unassisted from the nursery to your room at feeding time.</p>
+   </section>
+   <section>
+    <title>
+     <p>Naming Your Baby</p>
+    </title>
+    <p>A good way to pass the time while you’re in the hospital is to argue loudly with your husband about what to name the baby. You should get started on this as soon as possible, because both of you are likely to have strong views. For example, he may want to name the baby “John,” after a favorite uncle, while you may hate “John” because it reminds you of a former boyfriend, not to mention that the baby is a girl.</p>
+    <p>There are some names new parents should avoid altogether. You shouldn’t name a boy “Cyril” or “Percy,” because the other boys will want to punch him repeatedly in the mouth, and I can’t say as I blame them. And you shouldn’t give a girl’s name a cute spelling, such as “Cyndi,” because no matter how many postgraduate degrees she gets she will never advance any further than clerk-typist.</p>
+    <p>In recent years, it has become fashionable to give children extremely British-sounding names, such as “Jessica.” I think this is an excellent idea. Despite the fact that Great Britain has been unable to produce a car that can be driven all the way across a shopping mall parking lot without major engine failure, Americans think that anything British is really terrific. So I recommend you give your baby the most British name you can think up, such as “Queen Elizabeth” or “Big Ben” or “Crumpet Scone-Hayes.”</p>
+   </section>
+   <section>
+    <title>
+     <p>Some Heavy Thoughts to Think during the Hospital Stay</p>
+    </title>
+    <p>The hospital stay is a good time for you, as new parents, to share some quiet moments together listening to the woman on the other side of the curtain discuss her bowel movements with her mother via telephone. This is also a time for you to marvel at your baby’s incredibly small feet and hands and to reflect on the fact that this is a real human life, a life that you have created, just the two of you; a tiny, helpless life that you are completely responsible for. Makes you want to hop right on a plane for the Azores, doesn’t it? I mean, what do the two of you know about being responsible for a human life? The two of you can’t even consistently locate clean underwear, for God’s sake!</p>
+    <p>Mother Nature understands this. That is why she has constructed babies so that even the most profoundly incompetent person, even a person who takes astrology seriously and writes angry, semiliterate letters to the television station when it changes the time at which it broadcasts “Family Feud,” can raise babies successfully. All a newborn baby really needs is food, warmth, and love, pretty much like a hamster, only with fewer signs of intelligence.</p>
+    <p>So don’t worry; you’ll do fine. Some day, when your child has grown into a teenager and gotten drunk and crashed your new car into the lobby of the home for the aged during the annual Christmas party, you’ll look back on the hamster era and laugh about how worried you were.</p>
+    <p>In the next chapter, we’ll talk about how laughably easy it is to take care of a newborn baby, provided you don’t do anything else.</p>
+   </section>
+  </section>
+  <section>
+   <title>
+    <p>Chapter 7</p>
+    <p>MAINTENANCE OF A NEW BABY</p>
+   </title>
+   <section>
+    <p>Finally will come the big day when the hospital authorities order the wife to leave, and the two of you take your new baby home. There is nothing quite like the moment when a young couple leaves the hospital, walking with that characteristic new-parent gait that indicates an obsessive fear of dropping the baby on its head. Finally! It’s just the three of you, on your own!</p>
+    <p>This independence will last until you get maybe eight feet from the hospital door, where you’ll be assaulted by grandmothers offering advice. The United States Constitution empowers grandmothers to stop any young person on the street with a baby and offer advice, and they take this responsibility very seriously. If they see your baby without a little woolen hat, they will advise you that your baby is too cold. If your baby has a hat, they will advise you that your baby is too warm. Always they will offer this advice in a tone of voice that makes it clear they do not expect your baby to survive the afternoon in the care of such incompetents as yourselves.</p>
+    <p>The best way to handle advice from random grandmothers is to tell them that you appreciate their concern, but that you feel it is your responsibility to make your own decisions about your child’s welfare. If that doesn’t work, try driving them off with sticks. Otherwise, they’ll follow you home and hang around under your windows.</p>
+    <p>Now let’s talk about maintaining your new baby.</p>
+   </section>
+   <section>
+    <title>
+     <p>The Basic Baby Mood Cycle</p>
+    </title>
+    <p>This is the Basic Baby Mood Cycle, which all babies settle into once they get over being born:</p>
+    <p>MOOD ONE: Just about to cry</p>
+    <p>MOOD TWO: Crying</p>
+    <p>MOOD THREE: Just finished crying</p>
+    <p>Your major job is to keep your baby in Mood Three as much as possible. Here is the traditional way to do this. When the baby starts to cry, the two of you should pass it back and forth repeatedly and recite these words in unison: “Do you suppose he’s hungry? He can’t be hungry. He just ate. Maybe he needs to be burped. No, that’s not it. Maybe his diaper needs to be changed. No, it’s dry. What could be wrong? Do you think maybe he’s hungry?” And so on, until the baby can’t stand it any more and decides to go to sleep.</p>
+    <p>When your baby is awake and not crying, it will follow specific air molecules around the room with its eyes. For years, scientists thought the reason newborn babies waved their eyes around in such seemingly random ways was that they couldn’t really focus on anything, but we now know that, thanks to the fact that they have such small eyes, they can actually see molecules whooshing around, which is a much more interesting thing to watch than a bunch of parents and relatives waving stupid rattles in their faces.</p>
+    <p>Also, babies receive signals from outer space, bringing messages from other galaxies that only babies can detect. These messages cause the baby to smile (if the message is a joke) or look startled (if it is bad news, such as the explosion of a popular star).</p>
+   </section>
+   <section>
+    <title>
+     <p>When Should You Feed Your Baby?</p>
+    </title>
+    <p>During the day, you should feed your baby just before the phone rings. At night, you should feed your baby immediately after you have fallen asleep. After each feeding, you should pat your baby gently on the back until it pukes on your shoulder.</p>
+   </section>
+   <section>
+    <title>
+     <p>Should You Breast-Feed or Bottle-Feed Your Baby?</p>
+    </title>
+    <p>I’m surprised you even have to ask. All of us modern childbirth experts feel very strongly that you should breast-feed your child. There are two major reasons:</p>
+    <p>1. Your mother didn’t breast-feed, and as I pointed out in the chapter on childbirth, we now know that everything your mother did was wrong.</p>
+    <p>2. Breast-feeding is better for the baby. Much has been written on this subject, reams and reams of information in hundreds of excellent books and articles which I frankly have been unable to read because I would never get this book finished on time. But the basic idea, as I understand it, is that bottle milk is designed primarily for baby cows, whereas your baby is not a cow at all! It can’t even stand up! Am I getting too technical here?</p>
+    <p>Anyway, all your really smart, with-it trend-setters are into breast-feeding today. Go into any swank New York City night spot and you’ll see dozens of chic women such as Leona Helmsley breast-feeding, many of them with rented babies.</p>
+   </section>
+   <section>
+    <title>
+     <p>Learning to Breast-Feed</p>
+    </title>
+    <p>Like many new mothers, you may feel ashamed that you don’t just automatically know how to breast-feed. You know there must be more to it than just shoving the breast into the baby’s mouth, because otherwise people wouldn’t keep writing enormous books about it. But just what are you supposed to do? You look at pictures in National Geographic of women in some primitive South American jungle tribe, women who have never even seen Tupperware, casually breast-feeding their infants, and you think: “How come they know how to do it and I don’t? What’s wrong with me?”</p>
+    <p>Don’t be so hard on yourself. Those primitive women have undergone hours and hours of intensive breast-feeding instruction at special training centers funded by the United Nations, and only the top graduates are chosen to appear in National Geographic photographs. Yes, they have to be taught, too, so don’t be the least bit ashamed to ask a nurse for help. My wife finally had to ask a nurse, who came in and stuck her (my wife’s) breast into my son’s mouth. Without the nurse’s technical know-how, my wife might have stuck her breast into my son’s ear or something, and serious nutritional complications could have developed.</p>
+   </section>
+   <section>
+    <title>
+     <p>Common Problems with Breast-Feeding</p>
+    </title>
+    <p>Well, for one thing, you’re supposed to switch the baby from one side to the other, but usually the baby wants to stay where it is, and babies develop suction that has been measured at upwards of 6,000 pounds per square inch. You can’t get them off with crowbars.</p>
+    <p>Another common problem is milk supply. Babies love to play little pranks wherein one day they drink about six gallons of milk, which causes a mother to produce like crazy, and the next day the baby drinks maybe an ounce and a half. Some mothers have been known to explode from the pressure.</p>
+   </section>
+   <section>
+    <title>
+     <p>What Is Colic?</p>
+    </title>
+    <p>Colic is when your baby cries all the time, and people keep telling you how their kid had the colic for 71 straight months. If your baby gets colic, you should take it to the pediatrician so he can say, “There’s nothing to worry about,” which is of course absolutely true from his perspective, since he lives in a colic-free home many miles from your baby.</p>
+    <p>“There’s nothing to worry about” is a typical example of the kind of easy-for-you-to-say remarks that pediatricians like to make. Another one is, “Take his temperature rectally every hour,” an instruction which, if actually followed, would scar both parent and child emotionally for life. If your baby has diaper rash, your pediatrician may say, “Just leave the diaper off for a while.” This would be a wonderful idea if the baby would stop shooting wastes out of its various orifices, but of course the baby cannot do this, which is why it is wearing a diaper in the first place. Not that the pediatrician knows about any of this. His baby is tended by domestics from third world nations.</p>
+   </section>
+   <section>
+    <title>
+     <p>Changing Your Baby’s Diapers</p>
+    </title>
+    <p>First of all, you must understand that as far as your baby is concerned, you never have to change its diapers. There is no creature on earth so content as a baby with a full diaper. Pooping is one of the few useful skills that very small babies have mastered, and they take tremendous pride in it, especially when they have an audience, such as grandparents or the assembled guests at the christening. They’ll wrinkle their little faces up into determined frowns, and they’ll really work at it, with appropriate loudish grunting noises that will at times drown out the clergyman. After all that effort, they want some time to enjoy their achievement, to wriggle and squirm until poop has oozed into every wrinkle and crevice of the cute little $45</p>
+    <p>designer baby outfit you bought especially for the christening. So when you change your baby’s diaper, don’t think you’re doing your baby any great favor. As far as your baby is concerned, you’re taking away the fruits of its labor. “Why don’t you get your own poop?” is what newborn babies would say if they could talk, which thank God they can’t.</p>
+    <p>Now let’s talk about diaper-changing technique. The problem with most baby books is that when they show you how to change diapers, they use photographs showing a clean changing table in a well-lit room, and a baby that is devoid of any sign of bodily eliminations. Why would anybody, except maybe some kind of pervert, want to change such a baby? No, what you need to know is how to change a really filthy baby, and under difficult conditions, such as in bus station rest rooms where even the germs have diseases.</p>
+    <p>I’d say restaurants pose the biggest diaper-changing challenge. When my son was three months old, my wife and I took him to a dimly lit, semielegant restaurant, and by the time we examined him closely he had managed to get poop up as far as his hat. I mean, we had a major failure of the containment vessel, and there was no sterile little changing table around, just lots of people hoping to dine in a romantic environment. So what you have to do in these situations is go on laughing and chatting as though nothing is wrong, but meanwhile work away like madmen under the table with moist towelettes, which you should buy in freight-car loads.</p>
+    <p>What I’m saying here is that you need to learn to change diapers furtively, in the dark, and you need to be able to saunter unobtrusively carrying huge wads of reeking towelettes past amorous couples to the rest room trash container, and you do not learn these things in books.</p>
+    <p>How to Get Your Body Back into Shape after Childbirth the Way All the Taut-Bodied Entertainment Personalities Such As Jane Fonda Do</p>
+    <p>Don’t kid yourself. Those women have never had babies. Their children were all borne by professional stunt women.</p>
+   </section>
+  </section>
+  <section>
+   <title>
+    <p>Chapter 8</p>
+    <p>THE FIRST SIX MONTHS</p>
+   </title>
+   <section>
+    <title>
+     <p>Baby’s Development during the First Six Months</p>
+    </title>
+    <p>The first six months is a time of incredibly rapid development for your baby. It will learn to smile, to lift its head, to sit, to play the cello, and to repair automatic transmissions.</p>
+    <p>Ha ha. Just kidding here, poking a little fun at new parents who watch like hawks for their babies to pass the Major Milestones of Infant Development, when the truth is that during the first six months, babies mainly just lie around and poop. They haven’t even developed brains at this point. If you were to open up a baby’s head—and I am not for a moment suggesting that you should—you would find nothing but an enormous drool gland.</p>
+    <p>Nevertheless, this is definitely the time to buy your baby its first computer. It’s never too soon to start learning about computers, as you know if you have been watching those television commercials wherein children whose parents didn’t buy them computers at an early age wind up as rag-pickers with open sores all over their bodies.</p>
+    <p>Computers are the way of the future. You can buy them at K-Mart, for God’s sake. You see families wandering through the computer department, clutching K-Mart purchases such as huge bags of caramel popcorn manufactured in Korea, and they’re saying things like, “I think we should get this computer, because it has a built-in modem and the software support is better.” These are not nuclear physicists talking this way; these are K-Mart shoppers, and if they know about computers, your kid damn well better know about them, too.</p>
+    <p>What kind of computer is best for a baby aged 0 to 6 months? There are many models, ranging widely in memory size, telecommunications facilities, and expansion capabilities, but the critical thing is that your baby’s computer should be red, and it should have no sharp edges. Also, you should immediately cut off the plug, because otherwise your baby could receive a dangerous electrical shock from drooling on the keyboard.</p>
+   </section>
+   <section>
+    <title>
+     <p>Disciplining a New Baby</p>
+    </title>
+    <p>During the 1950s and 60s, parents were told to be permissive with their children, and the result was juvenile delinquency, drug abuse, Watergate, Pac-Man, California, etc. So we experts now feel you should start disciplining your baby immediately after birth. At random intervals throughout the day, you should stride up to your baby and say, in a strict voice, “There will be no slumber party for you tonight, young lady.”</p>
+    <p>You may think this is a waste of time, but scientists have determined that babies as young as three days old can tell, just from the tone of an adult’s voice, when they are being told they can’t go to a slumber party. You should keep up this tough discipline until your child is in junior high school and thus has access to weapons.</p>
+   </section>
+   <section>
+    <title>
+     <p>Baby-Tending for Men</p>
+    </title>
+    <p>During the first six months, your baby will need more care than at any other time in its life except the following 30 months. We modern sensitive husbands realize that it’s very unfair to place the entire child-care burden on our wives, so many of us are starting to assume maybe three percent of it. Even this is probably too much. I know I’ll be accused of being sexist for saying this, but the typical man has had his nurturing instincts obliterated by watching professional football, and consequently he has no concept of how to tend a baby. He feels he’s done a terrific job if the baby isn’t stolen by gypsies. You’d get better infant care from an affectionate dog.</p>
+    <p>But men keep reading articles in the newspaper Style section about how they’re supposed to help. So what happens is the family goes to, say, a picnic, and on the way the man, feeling magnanimous, says, “I’ll take care of the baby, honey. You just relax and enjoy yourself.” So they get to the picnic, and the husband, feeling very proud of himself, tends to the baby by poking it affectionately in the stomach every 45 minutes on his way to the cooler for a new beer. Between pokes the wife comes over maybe 35 times to change the baby’s diaper, feed it, cuddle it, arrange its blanket, put the pacifier back in its mouth, brush enormous stinging insects off it, etc.</p>
+    <p>On the way home, the man remarks on how easy the baby is to take care of, how it hardly cried at all, etc., and the woman plunges the red-hot car cigarette lighter deep into his right thigh. This is bad for a relationship.</p>
+    <p>So what I’ve done, men, is I’ve prepared a little automotive-style maintenance chart for you to follow when you’re in charge of the baby.</p>
+   </section>
+   <section>
+    <title>
+     <p>Men’s Baby-Maintenance Chart</p>
+    </title>
+    <p>MAINTENANCE INTERVAL ACTIVITY Every 5 minutes Lean over baby and state the following in a high-pitched voice: “Yes! We’re a happy boy or girl! Yes we are! Watcha watcha watcha!” Every 10 minutes Check all orifices for emerging solids and liquids; wipe and change containment garments as needed Every 30 minutes Attempt feeding and burping procedures Every 60 minutes Examine entire baby surface for signs of redness, flaking, major eye boogers, etc. Every 2 hours Call pediatrician about something</p>
+   </section>
+   <section>
+    <title>
+     <p>Advice to Women about Babies and Jobs</p>
+    </title>
+    <p>If you’re like many young mothers who held jobs before childbirth, you face a cruel dilemma: Your family could really use another income, yet you feel strongly that you should stay home for at least the first few critical years.</p>
+    <p>The solution to this dilemma is to have your baby get a job. Under federal law, it is now illegal for employers to discriminate against any person solely because that person is a baby. And to their surprise, many employers are finding that babies often make excellent employees, the kind who are always at their desks and never make personal telephone calls. In fact, one major corporation now shows all of its financial proposals to a team of handpicked babies: If they cry at a proposal, it is rejected out of hand; if they attempt to eat it, it is sent on to the board of directors.</p>
+    <p>What kind of job should you seek for your baby? Your best bet is the kind of job that even the most pathetic incompetent can handle:</p>
+    <p>State legislator</p>
+    <p>Vice president of anything</p>
+    <p>Paperweight</p>
+    <p>Consultant</p>
+    <p>Clerk in a state motor vehicle bureau</p>
+    <p>Anything in marketing</p>
+   </section>
+   <section>
+    <title>
+     <p>Choosing a Pediatrician</p>
+    </title>
+    <p>You should choose your pediatrician carefully, for his job is to examine your baby, give it shots, weigh it, measure it—in short, to do everything except attend to the baby when it is actually sick. When the baby is sick, either you or your pediatrician will be on vacation. This is an immutable law of nature.</p>
+   </section>
+   <section>
+    <title>
+     <p>Babysitters</p>
+    </title>
+    <p>The best babysitters, of course, are the baby’s grandparents. You feel completely comfortable entrusting your baby to them for long periods, which is why most grandparents flee to Florida at the earliest opportunity.</p>
+    <p>If no grandparents are available, you will have to rent a teenager. You don’t want a modern teenager, the kind that hangs around the video-game arcade smoking Marlboros and contracting herpes. No, you want an old-fashioned, responsible teenager, the kind who attends Our Lady of Maximum Discomfort High School and belongs to the 4-H Club and wants to be a nun. Even then you don’t want to take any chances. The first time she takes care of your baby, you should never actually leave the house. Drive your car until it’s out of sight, then sneak back and crouch in the basement, listening for signs of trouble. In later visits, as you gain confidence in the sitter, you should feel free to eat sandwiches in the basement, and maybe even listen to the radio quietly. After all, this is your night out!</p>
+   </section>
+   <section>
+    <title>
+     <p>Safety Tip</p>
+    </title>
+    <p>Be sure to leave the babysitter a firstaid kit with tourniquet; the phone numbers of the pediatrician, the ambulance, the fire department, the police, the Poison Control Center, all your neighbors, the Mayo Clinic, all your relatives, the State Department, etc; and a note telling her where you are (“We’re in the basement”) and what to do in the event of an emergency (“Pound on the floor”).</p>
+   </section>
+   <section>
+    <title>
+     <p>Songs for New Babies</p>
+    </title>
+    <p>One fun thing to do with a small baby while it’s lying around is to sing it the traditional baby songs, the ones your mother sang when you were a baby. The words sometimes seem strange to us now, because your mother learned them from her mother, who learned them from her mother, and so on back to medieval England, when most people had the intelligence of kelp. Here are three of my favorites:</p>
+    <p>LADYBUG</p>
+    <p>(Robert Frost)</p>
+    <p>Ladybug, Ladybug Fly away home</p>
+    <p>Your children are all burned</p>
+    <p>They look like charred Raisinets</p>
+    <p>(Tickle baby under chin.)</p>
+    <p>HEG-A-LEG MOLLY</p>
+    <p>(Anonymous)</p>
+    <p>Heg-a-leg Molly</p>
+    <p>Daddy’s got a bunting</p>
+    <p>Why do you sleep so soon?</p>
+    <p>Wet his bed</p>
+    <p>And he broke his head</p>
+    <p>And Myron has gone to Vermont.</p>
+    <p>(Hold baby up and laugh as if you have just said something immensely amusing.)</p>
+    <p>LAND OF 1,000 DANCES</p>
+    <p>(Cannibal and the Headhunters)</p>
+    <p>I said a na Na na na na Na na na na na na na na na na Na na na na</p>
+    <p>(Check baby’s diaper.)</p>
+   </section>
+   <section>
+    <title>
+     <p>Three Traditional Baby Games</p>
+    </title>
+    <p>OKLAHOMA BABY CHICKEN HAT</p>
+    <p>Grasp your baby firmly and place it on your head, stomach side down, then stride about the room, bouncing on the balls of your feet and clucking to the tune of “Surrey with the Fringe on Top.”</p>
+    <p>HERE COMES THE BABY EATER</p>
+    <p>Place your baby on the carpet, face up, then crawl around on all fours and announce, “I’m so hungry! I could eat a baby!” Then crawl over and gobble up the baby, starting at the feet, and periodically raising your head and shouting, “Great baby! Delicious!” Babies love this game, but you don’t want to play it when other grown-ups are around, because they will try to take custody away from you.</p>
+    <p>ATTACK OF THE SPACE BABIES</p>
+    <p>Lie on your back on the floor and hold your baby over you, face down. Move the baby around in the manner of a hovering spacecraft while making various high-pitched science fiction noises such as “BOOOOOOOWEEEEEEEOOOOO.” Feign great fear as the baby attempts to land on the planet Earth. (NOTE: Wear protective clothing, as space babies often try to weaken the earth’s resistance by spitting up on it.)</p>
+   </section>
+   <section>
+    <title>
+     <p>Babies and Pets</p>
+    </title>
+    <p>First of all, get rid of your cat. Cats are scum. You’ve read newspaper stories about elderly widows who die and leave their entire estates to their pet cats, right? Well, your cat reads those stories too, and has spent most of its skulking, devious little life dreaming about inheriting all your money. You know where it goes when it disappears for hours at a time? Investment seminars, that’s where.</p>
+    <p>So if you bring a baby into the home, the cat will see the baby as a rival for your estate and will do anything to turn you against it. Many instances of so-called colic are really nothing more than a cat repeatedly sneaking into a baby’s room in the dead of night and jabbing the baby in the stomach.</p>
+    <p>Dogs, of course, would never do anything like that. They’re far too stupid to think of it. So you can keep your dog. In fact, many dogs come to love their masters’ babies, often carrying them around gently by the scruffs of their necks, licking them incessantly and refusing to let anybody—even the parents!—near the baby. It’s the cutest thing you ever saw, and it really cuts down on child-care costs. Of course, you have to weigh this against the fact that the child develops a tendency to shed and attack squirrels.</p>
+   </section>
+   <section>
+    <title>
+     <p>Baby Albums</p>
+    </title>
+    <p>Baby albums are probably the single biggest cause of violent death in America today. The reason is that when people have their first baby, they record everything that happens. By the time these people have their second baby, they’re sick of albums. Oh, they try to slap something together, but it’s obvious that their hearts aren’t really in it.</p>
+    <p>So Byron grows up, seemingly normal on the outside, but knowing on the inside that he has this pathetic scrawny album while his brother’s looks like the Manhattan telephone directory, and eventually he runs amok in a dentist’s office with a Thompson submachine gun. So if you want to do a baby album, fine, go ahead, but have the common decency to notify the police first.</p>
+   </section>
+  </section>
+  <section>
+   <title>
+    <p>Chapter 9</p>
+    <p>SIX MONTHS TO A YEAR</p>
+   </title>
+   <section>
+    <title>
+     <p>Development During the Second Six Months</p>
+    </title>
+    <p>During the second six months, your baby will begin to start crawling around looking for hazards. It will start to become aware of the mysteries of language, perhaps even learning to understand simple phrases such as “No!” and “Spit that out!”</p>
+    <p>Physically, you’ll find your baby is getting hardier and more portable now, so that you can more easily take it to restaurants, although you still can’t go inside. By now baby should have gotten over early medical problems such as the colic; if not, you should see your pediatrician and get something you can use to kill yourself.</p>
+    <p>So all in all, you can look forward in the next six months to a period of change and growth, with a 60 percent chance of afternoon or evening thundershowers.</p>
+   </section>
+   <section>
+    <title>
+     <p>Baby’s First Solid Food</p>
+    </title>
+    <p>We’re using the term “food” loosely here. What we’re talking about are those nine zillion little jars on the supermarket shelf with the smiling baby on the label and names like “Prunes with Mixed Leeks.” Babies hate this stuff. Who wouldn’t? It looks like frog waste.</p>
+    <p>Babies are people, too; they want to eat what you want to eat. They want cheeseburgers and beer. If we simply fed them normal diets, they’d eat like crazy. They’d weigh 150 pounds at the end of the first year. This is exactly why we don’t feed them normal diets: The last thing we need is a lot of 150-pound people with no control over their bowel movements. We have enough trouble with the Congress.</p>
+   </section>
+   <section>
+    <title>
+     <p>How to Feed Solid Food to a Baby</p>
+    </title>
+    <p>The key thing is that you should not place the food in the baby’s mouth. At this stage, babies use their mouths exclusively for chewing horrible things that they find on the floor. The way they eat food is by absorbing it directly into their bloodstreams through their faces. So the most efficient way to feed a baby is to smear the food on its chin.</p>
+    <p>Unfortunately, many inexperienced parents insist on putting food into the baby’s mouth. They put in spoonful after spoonful of, say, beets, sincerely believing they are doing something constructive, when in fact the beets are merely going around the Baby Food-Return Loop which all humans are equipped with until the age of 18 months. After the parents finish “feeding” the baby, they remove the bib and clean up the area, at which point the baby starts to spew beets from its mouth under high pressure, like a miniature beet volcano, until its face is covered with beets, which it can then absorb.</p>
+   </section>
+   <section>
+    <title>
+     <p>What to Do When a Baby Puts a Horrible Thing in Its Mouth</p>
+    </title>
+    <p>The trick is to distract the baby with something even worse than what’s in its mouth. Next time you’re in a bus station rest room, scour the floor for something really disgusting that might appeal to a baby. Stick it in your freezer, so you can quickly defrost it in a microwave oven (allow about 40 seconds) and wave it enticingly in front of the baby until the baby spits out its horrible thing and lunges for yours.</p>
+    <p>Of course, as your baby catches on to your tricks, you’ll need new and different things to entice it with, which means you’ll have to spend a great deal of time on your hands and knees in bus station rest rooms. This is a perfectly normal part of being a responsible parent. Remember to say that when the police come.</p>
+   </section>
+   <section>
+    <title>
+     <p>Traveling with Baby</p>
+    </title>
+    <p>By now you’re probably thinking how nice it would be to take a trip somewhere and stay in a place where there isn’t a hardened yellowish glaze consisting of bananas mixed with baby spit smeared on every surface below a height of two feet. Great idea! My wife and I took many trips with our son, Robert, when he was less than a year old, and we found them all to be surprisingly carefree experiences right up until approximately four hours after we left home, which is when his temperature would reach 106 degrees Fahrenheit. Often we didn’t even have to take his temperature, because we could see that his pacifier was melting.</p>
+    <p>Almost all babies contain a virus that activates itself automatically when the baby is 200 miles or more from its pediatrician. The first time this happened to Robert, we wound up in a pediatric clinic where the doctor got his degree from the University of Kuala Lumpur Medical School and Textile College. He said, “Baby very hot! Bad hot! Could have seezhah!” And we said, “Oh no! My God! Not seezhah!” Then we said, “What the hell is ‘seezhah’?” We were afraid it was some kind of horrible Asian disease. Then the doctor rolled his eyes back in his head and went, “Aaaarrgh,” and we said, “Oh! Seizure!”</p>
+    <p>The lesson to be learned from this is that when you travel with a baby, you must be prepared for emergencies. Let’s say you’re planning a trip to the seashore. Besides baby’s usual food, formula, bottles, sterilizer, medicine, clothing, diapers, reams of moist towelettes, ointments, lotions, powders, pacifier, toys, portable crib, blankets, rectal thermometer, car seat, stroller, backpack, playpen, and walker, don’t forget to take:</p>
+    <p>• One of those things that look like miniature turkey basters that you use to clear out babies’ noses, for when your baby develops a major travel cold and sounds like a little cauldron of mucus gurgling away in the motel room six feet away from you all night long.</p>
+    <p>• A potent infant-formula anti-cholera drug, for when you’re lying on the beach and look up to discover that baby has become intimately involved with an enormous buried dog dropping.</p>
+    <p>• Something to read while you’re sitting in the emergency ward waiting room.</p>
+    <p>• Plenty of film, so you can record these and the many other hilarious adventures you’re bound to have traveling with a baby. You might also take a camera.</p>
+   </section>
+   <section>
+    <title>
+     <p>Taking a Baby on an Airplane</p>
+    </title>
+    <p>First, you should notify the airline in advance that you will be traveling with an infant, so they can use their computers to assign you a seat where your baby will be in a position to knock a Bloody Mary into the lap of a corporate executive on his way to make an important speech. Also, you should be aware that your baby will insist on standing up in your lap all the way through the flight, no matter how long it is. If you plan to fly with a baby to Japan, all I can say is you’d better have thighs of steel.</p>
+    <p>Some people try to get their babies to sit down on flights, by giving them sedatives. On our doctor’s suggestion, we tried this on a cross-country flight, and all it did was make Robert cranky. The only thing that cheered him up was to grab the hair of the man sitting in front of us, who tried to be nice about it, but if you have a nine-month-old child with a melted Hershey bar all over his pudgy little fingers grabbing your hair all the way from sea to shining sea, you’d start to get a little cranky yourself. So I think it might be a good idea if, on flights featuring babies, the airline distributed sedatives to all the adults, except maybe the pilot.</p>
+   </section>
+   <section>
+    <title>
+     <p>Teething</p>
+    </title>
+    <p>Teething usually begins on March 11 at 3:25 P.M., although some babies are off by as much as 20 minutes. The major symptom of teething is that your baby becomes irritable and cries a lot. Of course, this is also the major symptom of everything else, so you might try the old teething test, which is to stick your finger in baby’s mouth and see whether baby bites all the way through to your bone, indicating the presence of teeth.</p>
+    <p>Most teething babies want to chew on something, so it’s a good idea to keep a plastic teething ring in the freezer, taking care not to confuse it with the frozen horrible things from bus station rest rooms (see above).</p>
+    <p>The first teeth to appear will be the central divisors, followed by the bovines, the colons, the insights, and the Four Tops, for a total of 30 or 40</p>
+    <p>in all. Your pediatrician will advise you to brush and floss your baby’s teeth daily, but he’s just kidding.</p>
+   </section>
+   <section>
+    <title>
+     <p>Quick-Reference Baby Medical-Emergency Chart</p>
+    </title>
+    <p>SYMPTOM CAUSE TREATMENT Baby is chewing contentedly Baby has found something horrible on floor Follow enticement procedure described on page 61</p>
+    <p>Baby is crying It could be teething, colic, snake bite, some kind of awful rare disease or something Don’t worry: most likely it’s nothing Baby has strange dark lines all over face and body Baby has gotten hold of laundry marking pen Wait for baby to grow new skin Baby’s voice sounds muffled Baby’s two-year-old sibling, jealous of all the attention the New Arrival is getting, has covered the New Arrival with dirt Vacuum baby quickly; explain to sibling that you love him or her just as much as baby, but you will kill him or her if he or she ever does that again</p>
+   </section>
+  </section>
+  <section>
+   <title>
+    <p>Chapter 10</p>
+    <p>THE SECOND YEAR</p>
+   </title>
+   <section>
+    <title>
+     <p>Major Developments during the Second Year</p>
+    </title>
+    <p>Your baby will learn to walk and talk, but that’s nothing. The major development is that your baby will learn how to scream for no good reason in shopping malls.</p>
+   </section>
+   <section>
+    <title>
+     <p>What to Do when a One-Year-Old Starts Screaming in a Shopping Mall, and the Reason Is That You Won’t Let It Eat the Pizza Crust That Somebody, Who Was Probably Diseased, Left in the Public Ashtray amid the Sand and the Saliva-Soaked Cigar Butts, but the Other Shoppers Are Staring at You as if to Suggest That You Must Be Some Kind of Heartless Child-Abusing Nazi Scum</p>
+    </title>
+    <p>First of all, forget about reason. You can’t reason with a one-year-old. In fact, reasoning with children of any age has been greatly overrated. There is no documented case of any child being successfully reasoned with before the second year of graduate school.</p>
+    <p>Also you can’t hit a one-year-old. It will just cry harder, and women the age of your mother will walk right up and whap you with their handbags. So what do you do when your child decides to scream in public? Here are several practical, time-tested techniques:</p>
+    <p>Explain your side to the other shoppers. As they go by, pull them aside, show them the pizza crust, and talk it over with them, adult to adult (“Look! The little cretin wants to eat this! Ha ha! Isn’t that CRAZY?”).</p>
+    <p>Threaten to take your child to see Santa Claus if it doesn’t shut up. All children are born with an instinctive terror of Santa Claus.</p>
+    <p>Let your child have the damn pizza crust. I mean, there’s always a chance the previous owner wasn’t diseased. It could have been a clergyman or something.</p>
+   </section>
+   <section>
+    <title>
+     <p>Walking</p>
+    </title>
+    <p>Most babies learn to walk at about 12 months, although nobody has ever figured out why they bother, because for the next 12 months all they do is stagger off in random directions until they trip over dust molecules and fall on their butts. You cannot catch them before they fall. They fall so quickly that the naked adult eye cannot even see them. This is why diapers are made so thick.</p>
+    <p>During this phase, your job, as parent, is to trail along behind your child everywhere, holding your arms out in the Standard Toddler-Following Posture made popular by Boris Karloff in the excellent parent-education film The Mummy, only with a degree of hunch approaching that of Neanderthal Man, so you’ll be able to pick your child up quickly after it falls, because the longer it stays on the ground the more likely it is to find something to put in its mouth.</p>
+   </section>
+   <section>
+    <title>
+     <p>Talking</p>
+    </title>
+    <p>There are two distinct phases in the baby’s language development. The second phase is when the baby actually starts talking, which is at about 18</p>
+    <p>months. The first phase is when the parents imagine that the baby is talking, which is somewhere around 12 months, or even earlier if it’s their first baby.</p>
+    <p>What happens is that one day the baby is holding a little plastic car, trying to get it all the way into his mouth, and he makes some typical random baby sound such as “gawanoo,” and the parents, their brains softened from inhaling Johnson’s Baby Oil fumes, say to each other: “Did you hear that? Teddy said ‘car’!!!!!” If you’ve ever been around young parents going through this kind of self-delusion, you know how deranged they can get:</p>
+    <p>YOU: So! How’s little Jason?</p>
+    <p>PARENT: Talking up a storm! Listen!</p>
+    <p>JASON: Poomwah arrrr grah.</p>
+    <p>PARENT: Isn’t that incredible!</p>
+    <p>YOU: Ah. Yes. Hmmm.</p>
+    <p>PARENT: I mean, 13 months old, and already he’s concerned about restrictions on imported steel!</p>
+    <p>YOU: Ah.</p>
+    <p>JASON: Brrrrroooooooooooooooooper.</p>
+    <p>PARENT: No, Jason, I believe that was during the Kennedy administration.</p>
+    <p>Eventually, your child will start to learn some real words, which means you’ll finally find out what he’s thinking. Not much, as it turns out. The first words our son, Robert, said were “dog” and “hot,” and after that he didn’t seem the least bit interested in learning any more. For the longest time, our conversations went like this:</p>
+    <p>ME: Look, Robert. See the birds?</p>
+    <p>ROBERT: Dog.</p>
+    <p>ME: No, Robert. Those are birds.</p>
+    <p>ROBERT: Dog dog dog dog dog dog dog dog dog.</p>
+    <p>ME: Those are birds, Robert. Can you say “bird?”</p>
+    <p>ROBERT (emphatically): Dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog.</p>
+    <p>ME (giving up): Okay. Those are dogs.</p>
+    <p>ROBERT: Hot.</p>
+    <p>Sometimes we’d think we were making real progress on the language front. I remember once my wife called me into the living room, all excited. “Watch this,” she said. “Robert, where’s your head?” And by God, Robert pointed to his head. I was stunned. I couldn’t believe what a genius we had on our hands. Then my wife, bursting with pride, said, “Now watch this. Robert, where’s your foot?” Robert flashed us a brilliant smile of comprehension, pointed to his head, and said, “dog.”</p>
+   </section>
+   <section>
+    <title>
+     <p>Books for One-Year-Olds</p>
+    </title>
+    <p>The trouble with books for small children is that they all have titles like, Ted the Raccoon Visits a Condiments Factory and are so boring that you doze off after two or three pages and run the risk that your child will slide off your lap and sustain a head injury. So what you want to do is get a book that has more appeal for adults, such as, Passionate Teenage Periodontal Assistants, then cut out the pages and paste them over the words in your child’s book. This way you can maintain your interest while the child looks at the pictures:</p>
+    <p>YOU (pretending to read out loud): “My, my,” said Ted the Raccoon. “These pickles taste good!” Just look at all those pickles, Johnny! (While Johnny looks at the pickles, you read: “Brad looked up from U.S. News and World Report as a blond, full-breasted periodontal assistant swayed into the waiting room on shapely, nylon-sheathed legs. ‘My name is Desiree,’she breathed through luscious, pouting lips, ‘and if you’ll follow me, I’ll show you how to operate the Water Pik oral hygiene appliance.’”)</p>
+   </section>
+   <section>
+    <title>
+     <p>Teaching Small Children to Read</p>
+    </title>
+    <p>Children are capable of learning to read much earlier than we give them credit for. Why, Mozart was only two years old when he wrote Moby Dick!</p>
+    <p>When our son was about 18 months old, my wife, who has purchased every baby-improvement book ever published, got one called How to Teach Your Baby to Read. The chapter headings started out with “Can Babies Learn to Read?” and worked up to “Babies Definitely Can Learn to Read” and finally got around to “If You Don’t Teach Your Baby to Read Right Now, You Are Vermin.”</p>
+    <p>Me, I was dubious. I thought it was better to teach our child not to pull boogers out of his nose and hand them to us as if they were party favors. But my wife gave it the old college try. She did what the book said, which was to write words like DOG in big letters on pieces of cardboard, then show them to Robert and say the words out loud as if she were having a peck of fun. She did this conscientiously for a couple of weeks, three times a day, and then she realized that Robert was paying no attention whatsoever, and her I.Q. was starting to drop, so she stopped.</p>
+    <p>My theory is that there is a finite amount of intelligence in a family, and you’re supposed to gradually transfer it to your children over a period of many years. This is why your parents started to get so stupid just at the time in your life when you were getting really smart.</p>
+   </section>
+   <section>
+    <title>
+     <p>How to Put a One-Year-Old to Bed</p>
+    </title>
+    <p>Children at this age move around a lot while they sleep. If we didn’t keep them in cribs, they’d be hundreds of miles away by dawn. So the trick is to put the blankets as far as possible from the child, on the theory that eventually the child will crawl under them.</p>
+   </section>
+   <section>
+    <title>
+     <p>Bedtime Songs</p>
+    </title>
+    <p>I advise against “Rock-a-Bye Baby,” because it’s really sick, what with the baby getting blown out of the tree and crashing down with the cradle. Some of those cradles weigh over 50 pounds. A much better song is “Go to Sleep”:</p>
+    <p>Go to sleep</p>
+    <p>Go to sleep</p>
+    <p>Go right straight to sleep</p>
+    <p>And stay asleep until at least 6:30 A.M.</p>
+   </section>
+   <section>
+    <title>
+     <p>Potty Training</p>
+    </title>
+    <p>Child psychologists all agree that bodily functions are a source of great anxiety for children, so we can safely assume this isn’t true. It certainly wasn’t true for our son. He was never happier than when he had a full diaper. We once took him to a department store photographer for baby pictures, and just before we went into the studio, when it was too late to change his diaper, he eliminated an immense quantity of waste, far more than could be explained by any of the known laws of physics. The photographer kept remarking on what a happy baby we had, which was easy for him to say, because he was standing 15 feet away. The pictures all came out swell. In every one, Robert is grinning the insanely happy grin of a baby emitting an aroma that would stun a buffalo. So much for the child’s anxiety.</p>
+    <p>I’ll tell you who gets anxious: the parents, that’s who. Young parents spend much of their time thinking and talking about their children’s bodily functions. You can take an educated, sophisticated couple who, before their child was born, talked about great literature and the true meaning of life, and for the first two years after they become parents, their conversations will center on the consistency of their child’s stool, to the point where nobody invites them over for dinner.</p>
+    <p>Around the child’s second birthday, the parents get tired of waiting for the child to become anxious about his bodily functions, and they decide to give him some anxiety in the form of potty training. This is probably a good thing. A child can go only so far in life without potty training. It is not mere coincidence that six of the last seven presidents were potty trained, not to mention nearly half of the nation’s state legislators.</p>
+   </section>
+   <section>
+    <title>
+     <p>The Traditional Potty Training Technique</p>
+    </title>
+    <p>The traditional potty training technique is to buy a book written by somebody who was out getting graduate school degrees when his own children were actually being potty trained. My wife bought a book that claimed we could potty train our child in one day, using a special potty that (I swear this is true) played “Twinkle, Twinkle Little Star” when the child went in it. She also got a little book for our son that explained potty training in terms that a small child could understand, such as “poo-poo.</p>
+    <p>Now there may well be some parents, somewhere, who managed to potty train their child in one day, but I am willing to bet they used a cattle prod. My wife read that book all the way through, and she did exactly what it said, which was that you should feed your child a lot of salty snacks so that it would drink a lot of liquids and consequently would have to pee about every 20</p>
+    <p>minutes, which would give it lots of opportunities to practice going in the musical potty, so that it would have the whole procedure nailed down solid by the end of the day. That was the theory.</p>
+    <p>When I left home that morning, my wife was reading the poo-poo book to Robert. She had a cheerful, determined look on her face. When I got home that evening, more than ten hours later, there were cracker crumbs everywhere, and piles of soiled child’s underpants, seemingly hundreds of them, as if the entire junior class of St. Swithan’s School for Incontinent Children had been there on a field trip. My wife was still in her nightgown. I don’t think she had even brushed her teeth. It is extremely fortunate for the man who wrote the potty training book that he did not walk in the door with me, because the police would have found his lifeless body lying in the bushes with an enormous bulge in his throat playing “Twinkle, Twinkle Little Star.”</p>
+    <p>We did, in the end, get Robert potty trained. We did it the same way everybody does, the same way you will, by a lot of nagging and false alarms and about 30,000 accidents and endless wildly extravagant praise for bowel movements (“Honey! Come and see what Robert did!” “Oh Robert, that’s wonderful!” etc.).</p>
+    <p>The big drawback to potty training is that, for a while, children assume that all adults are as fascinated with it as their parents seem to be. Robert would walk up to strangers in restaurants and announce, “I went pee-pee.” And the strangers would say, “Ah.” And Robert would say, “I didn’t do poop.” And the strangers would say, “No?” And Robert would say, “I’m gonna do poop later.” And so on.</p>
+   </section>
+   <section>
+    <title>
+     <p>Nutrition</p>
+    </title>
+    <p>By the middle of the second year, your baby’s Food-Return Loop has disappeared, so its mouth is connected directly to its stomach. At this point, you want to adjust its diet to see that each day it gets food from all three Basic Baby Food Nutrition Groups (see chart). You also should encourage your baby to feed itself, so that you won’t have to be in the room.</p>
+   </section>
+   <section>
+    <title>
+     <p>The Basic Baby Food Nutrition Groups</p>
+    </title>
+    <p>FOODS THAT BABIES HURL AT THE CEILING</p>
+    <p>• Anything from jars with babies on the labels</p>
+    <p>• Anything the baby ate the day before, so you went out and bought $30 worth of it</p>
+    <p>FOODS THAT BABIES HURL AT THE DOG</p>
+    <p>• Anything in a weighty container</p>
+    <p>• Taffy</p>
+    <p>• Zwieback (NOTE: Zwieback has sharp edges, so the dog should wear protective clothing)</p>
+    <p>FOODS THAT BABIES EAT</p>
+    <p>• Anything from vending machines</p>
+    <p>• Caulking</p>
+    <p>• Anything with dead ants on it</p>
+    <p>• Sand</p>
+   </section>
+  </section>
+  <section>
+   <title>
+    <p>Chapter 11</p>
+    <p>THE THIRD YEAR</p>
+   </title>
+   <section>
+    <p>This period is often referred to as the “terrible twos,” not so much because children this age start behaving any worse than before, but because they reach the size where if they swing at you, they’ll hit you square in the crotch.</p>
+    <p>The important thing to remember here is that your child is only trying to establish its independence. This is a necessary part of its development: It must learn to make its own decisions, to interact with the world directly rather than through the protective mediation of its parents. Your child must also learn that when it hits a bigger person in the crotch, it should pretend to be very, very sorry.</p>
+   </section>
+   <section>
+    <title>
+     <p>How to Discipline a Two-Year-Old</p>
+    </title>
+    <p>Discipline during this phase consists of choosing the appropriate Escalating Futile Parental Disciplinary Threat. A handy reference chart is printed here for your use.</p>
+    <p>Remember that when your two-year-old “misbehaves,” it’s usually because of his natural curiosity. It is not cruelty that causes him to thrust a Bic pen deep into the dog’s nostril; it is a genuine desire to find out how you will react.</p>
+    <p>The time-tested way to react is to work your way up the ladder of Traditional Escalating Futile Parental Disciplinary Threats.</p>
+   </section>
+   <section>
+    <title>
+     <p>The Traditional Escalating Futile Parental Disciplinary Threats</p>
+    </title>
+    <p>1. “You’re going to poke somebody’s eye out.”</p>
+    <p>2. “You’re going to make me very angry.”</p>
+    <p>3. “You’re going straight to your room.”</p>
+    <p>4. “I’m going to tell your father.”</p>
+    <p>5. “I’m going to tell Santa Claus.”</p>
+    <p>6. “I’m not going to give you any dessert.”</p>
+    <p>7. “I’m not going to buy you any more Hot Wheels.”</p>
+    <p>8. “I’m very angry now.”</p>
+    <p>9. “I’m going to give you a good smack.”</p>
+    <p>10. “I mean it.”</p>
+    <p>11. “I really mean it.”</p>
+    <p>12. “I’m not kidding.”</p>
+    <p>13. (SMACK).</p>
+    <p>NOTE: If there’s a real discipline emergency, such as your child has somehow gotten hold of an acetylene torch, you may have to start right in at Threat Number 8. But many two-year-olds also develop seemingly irrational fears. They get these from Mister Rogers. He tries to reassure his young viewers about standard childhood fears, but the children would never have thought of them if Mister Rogers hadn’t brought them up. My son and I once watched Mister Rogers sing this song in which he said over and over, in the most cheerful voice imaginable, that “You can never go down the drain.” By the time he finished, we were both very concerned about going down the drain. And this came at a time when I had just gotten over the fear of being stabbed to death in the shower, which I got from Psycho.</p>
+    <p>Recently, my son became convinced that a horse was coming into his bedroom at night to get him. The way to cope with this kind of fear is to allow the child to confront it openly. We took Robert to visit some real horses, so he could see for himself that they are nothing more than huge creatures with weird eyeballs and long teeth and hard feet that could stomp him to the consistency of grits in seconds. Aided by this kind of understanding and support from us, Robert eventually stopped imagining his horse, which was good because it was ruining the carpet.</p>
+    <p>So unless you want your child to develop a set of irrational fears, I advise you not to let him watch Mister Rogers. A far better alternative is the Saturday morning cartoon shows, which instill the healthy and rational fear that evil beings with sophisticated weapons are trying to destroy the planet.</p>
+   </section>
+   <section>
+    <title>
+     <p>Fears Your Mother Teaches You during Childhood</p>
+    </title>
+    <p>You needed these fears to become a responsible adult, and now it’s time to start passing them on to your child.</p>
+    <p>• The fear that if you cross your eyes, they’ll get stuck that way.</p>
+    <p>• The fear that if you go in the water less than an hour after eating, you will get a cramp and sink to the bottom, helpless, and possibly catch cold.</p>
+    <p>• The fear that public toilet seats have germs capable of leaping more than 20 feet.</p>
+    <p>• The fear that if you wear old underwear, a plane will crash on you and rip your clothes off and your underwear will be broadcast nationally on the evening news. (“The victim shown here wearing the underwear with all the holes and stains has been identified as…”)</p>
+    <p>• The fear that if you get in trouble at school, it will go on your Permanent Record and follow you for the rest of your life. (“Your qualifications are excellent, Mr. Barry, but I see here in your Permanent Record that in the eighth grade you and Joseph DiGiacinto flushed a lit cherry bomb down the boys’ room toilet at Harold C. Crittenden Junior High School. Frankly, Mr. Barry, we’re looking for people with more respect for plumbing than that.”)</p>
+   </section>
+   <section>
+    <title>
+     <p>Toys for Two-Year-Olds</p>
+    </title>
+    <p>Pay no attention to the little statements on the boxes that say things like “For Ages 1 to 3.” If you heed these statements, all you’ll buy for the first few years are little plastic shapes that the child is supposed to put in corresponding little holes, which is so exceedingly boring that after five minutes the child will develop an ear infection just for a change of pace. The best toys for a child aged 0 to 3 is a toy that says “For Ages 10 to 14.” The best toy for a child aged 10 to 14 is cash, or its own apartment.</p>
+    <p>You should also buy Fisher-Price toys. Not for your child. For your own protection. Every Fisher-Price toy has been approved by a panel consisting of dozens of child psychologists and pediatricians and Ralph Nader and Mister Rogers, and in most states failure to own at least a half dozen of these toys is considered legal proof of child abuse.</p>
+    <p>Another reason why you should buy Fisher-Price toys is that they are built better than any other products you can buy, even in Japan. They’re made out of some plastic-like substance that Fisher-Price imports from another planet, and nothing can harm it. If Fisher-Price had any marketing sense, it would make its cars much bigger and put real engines in them and change the seats so that real people could sit in them. Right now, the seats are designed for little toy ball-headed Fisher-Price people, which have no arms or legs (the Fisher-Price factory employees whack off the arms and legs with little machetes just before shipment). Consumers would snork these cars up like hotcakes. We’d forget all about Toyota.</p>
+   </section>
+   <section>
+    <title>
+     <p>How to Hold a Birthday Party for Two-Year-Olds</p>
+    </title>
+    <p>Not in your house. Outdoors, I don’t care if you live in Juneau, Alaska, and it’s January. You want to hold it outdoors, and you want the fire department to stand by to hose the area down immediately after you put the ice cream in front of them. And you want all the adults inside the house where they can drink in relative safety.</p>
+   </section>
+   <section>
+    <title>
+     <p>A Word about Smurfs, Snoopy, Strawberry Shortcake, and All the Other Nauseating Little Characters That You Swear You Will Never Allow in Your Home</p>
+    </title>
+    <p>Forget it. These toys are creatures of the multi-billion-dollar Cuteness Industry, which is extremely powerful and has influence everywhere. The Voyager II space probe found traces of a Snoopy toothbrush on Mars. If you fail to buy Smurfs, agents of the Smurf Corporation will mail them to you, or smuggle them into your house baked inside loaves of bread, until you reach the national average of 24 Smurfs per child under eight.</p>
+    <p>So you have to live with them. The only defense you have is to encourage your child to play hostile games with them, such as “Smurf War Tribunal” and “Mr. Smurf Visits the Toaster Oven.”</p>
+   </section>
+   <section>
+    <title>
+     <p>Questions</p>
+    </title>
+    <p>Starting at around age two, your child will start asking you a great many questions. This can be annoying, but you must remember that if children couldn’t ask questions, they would have no way to irritate you when they’re strapped in the car seat.</p>
+    <p>The most popular question for small children is “Why?” They can use it anywhere, and it’s usually impossible to answer:</p>
+    <p>CHILD: What’s that?</p>
+    <p>YOU: That’s a goat.</p>
+    <p>CHILD: Why?</p>
+    <p>Our son would lie awake at night thinking of questions that nobody could answer:</p>
+    <p>ROBERT: Which is bigger, five or six?</p>
+    <p>ME (confidently): Six.</p>
+    <p>ROBERT: What if it’s a great big five made out of stone?</p>
+    <p>ME: Um.</p>
+    <p>ROBERT: And a little six made out of wood.</p>
+    <p>Once I hauled out my guitar to sing traditional folk songs to Robert. It was going to be togetherness. It was going to be meaningful. It was going to be just like on “The Waltons.” Here is a verbatim transcript:</p>
+    <p>ME (singing): “Puff, the Magic Dragon, lived by the sea…”</p>
+    <p>ROBERT: What’s a dragon?</p>
+    <p>ME: It’s a great big animal that has fire coming out of its nose. (Singing)</p>
+    <p>“Little Jackie Paper, loved that rascal…”</p>
+    <p>ROBERT: Did Jackie Paper have fire coming out of his nose?</p>
+    <p>ME: No, he was a little boy, like you. Do you have fire coming out of your nose?</p>
+    <p>ROBERT (thoughtfully): No. Boogies.</p>
+    <p>ME: Um. Right. (Singing) “Little Jackie Paper, loved that…”</p>
+    <p>ROBERT: Did Jackie Paper have boogies coming out of his nose?</p>
+    <p>The point here is that your child will never ask you where babies come from, or why the sky is blue, or any other question that has a real answer. Your child is going to want to know whether Jackie Paper had boogies coming out of his nose, and whether you answer “yes” or “no,” your child will want to know why.</p>
+   </section>
+   <section>
+    <title>
+     <p>Preschool Programs</p>
+    </title>
+    <p>Near the end of the second year, most parents start thinking about putting their child in a preschool program, which is a place that has all these little tables and chairs where your child makes these pathetic drawings that you put on your refrigerator. Also they eat snacks and take naps. That’s the core of the curriculum.</p>
+    <p>You must choose your child’s preschool program carefully, because it determines how well the child does in kindergarten, which affects how well the child does in grade school, which is an important factor in how well the child does in junior high school, which forms the basis for how well the child does in high school, which of course determines which college the child gets into.</p>
+    <p>On the other hand, all the child will do in college is listen to loud music and get ready for dates, so you don’t have to be all that careful about choosing the preschool program. Just kick the little chairs a few times to make sure they’re sturdy, and say a few words to the staff to let them know you’re a Concerned Parent (“Anything happens to my kid, I come in here and break some thumbs. Got it?”).</p>
+    <p>Also, make sure the preschool doesn’t have any guinea pigs. I don’t know why, but somewhere along the line, preschool educators picked up the insane notion that guinea pigs are educational, when in fact all they do is poop these little pellets that look exactly like the pellets you give them to eat. You don’t want your child exposed to that.</p>
+   </section>
+   <section>
+    <title>
+     <p>The Little Boy and the Toad (A Child-Participation Bedtime Story)</p>
+    </title>
+    <p>It’s good to encourage your child to participate in making up stories. Here’s a bedtime story I used to tell Robert, with his help:</p>
+    <p>ME: Once upon a time, there was a little boy named John.</p>
+    <p>ROBERT: No. Lee.</p>
+    <p>ME: Okay. There was a little boy named Lee, and one day he was walking along, and he …</p>
+    <p>ROBERT: No. He was driving.</p>
+    <p>ME: Okay, he was driving along, and he saw …</p>
+    <p>ROBERT: In a Jeep.</p>
+    <p>ME: He was driving along in a Jeep, and he saw a little toad.</p>
+    <p>ROBERT: No. He saw a dump truck.</p>
+    <p>ME: And they all lived happily ever after. Now go to sleep.</p>
+    <p>ROBERT: Why?</p>
+   </section>
+  </section>
+  <section>
+   <title>
+    <p>Epilogue</p>
+    <p>SHOULD YOU HAVE ANOTHER?</p>
+   </title>
+   <p>Well! So here we are! We’ve taken your baby from a little gourd-like object with virtually no marketable skills to a real little human being, capable of putting the cat in the dryer and turning it on all by himself or herself.</p>
+   <p>Sure, it’s been a lot of work for you. Sure, you would have liked to have had a few more quiet evenings alone, just the two of you sipping wine and talking instead of sitting in the hospital X-ray department, waiting to find out whether your child had, in fact, swallowed the bullets that it snatched out of the belt of the policeman who was writing a traffic ticket because you smashed into the furniture store when your child threw your glasses out the car window. But take a minute to look at the positive side of parenthood.</p>
+   <p>(Pause)</p>
+   <p>Give it time. You’ll come up with something. And when you do, think about how much fun it would be to do the whole thing over again. Not with the same child, of course; there is no way you could get it back into the uterus. I’m talking about a completely new baby, only this time around you’ll have a chance to avoid the mistakes you made last time, such as labor. I understand from reading the publications sold at supermarket checkout counters that you can now have a baby in a test tube! I don’t know the details, but it sounds much less painful than the usual route, although you’d have to balance that against the fact that the baby would be extremely small and cylindrical. It would look like those little Fisher-Price people.</p>
+   <p>But whether you have another child or not, the important thing is that you’ve experienced the fulfillment that comes with being a parent. You may feel your efforts will never be rewarded, but believe me, you have sown the seeds of love and trust, and I guarantee you that there will come a time, years from now, when your child—now an adult with children of his or her own—will come to you, and, in a voice quaking with emotion, ask for a loan for a down payment on a house much nicer than yours.</p>
+  </section>
+  <section>
+   <title>
+    <p><emphasis>Index</emphasis></p>
+   </title>
+   <subtitle>A</subtitle>
+   <p>Ann, Raggedy, 113</p>
+   <subtitle>B</subtitle>
+   <p>Benz, Mercedes, 101</p>
+   <p>Boogers eye, 145</p>
+   <p>Little Jackie Paper and, 177</p>
+   <p>nose, 177</p>
+   <p>Burr, Raymond, 100</p>
+   <subtitle>C</subtitle>
+   <p>Claus, Santa, 160, 171</p>
+   <p>Condom Lady, 97</p>
+   <subtitle>D</subtitle>
+   <p>Dick, Moby, 163</p>
+   <p>Donahue, Phil, 106</p>
+   <p>“Dragon, Puff the Magic,” 177</p>
+   <subtitle>E</subtitle>
+   <p>Easygoing Deaf People’s Night, 95</p>
+   <p>Eisenhower Administration, 118</p>
+   <p>Elderly People with Enormous Cars Club, 124</p>
+   <subtitle>F</subtitle>
+   <p>“Family Feud,” 131</p>
+   <p>Ferret, 129</p>
+   <p>Field and Stream, 119</p>
+   <p>Fonda, Jane, 141</p>
+   <p>Four Tops, 158</p>
+   <p>Frog waste, 152</p>
+   <subtitle>G</subtitle>
+   <p>Grandmothers, U.S. Constitution and, 133</p>
+   <p>Gypsies, 144</p>
+   <subtitle>H</subtitle>
+   <p>Head, Mister Potato, 120</p>
+   <p>Headhunters, Cannibal and the, 147</p>
+   <p>Helmsley, Leona, 135</p>
+   <p>“Hout,” 121</p>
+   <subtitle>I</subtitle>
+   <p>Ice caps, polar, 115</p>
+   <subtitle>J</subtitle>
+   <p>Johnson, Billy Ray, 127</p>
+   <subtitle>K</subtitle>
+   <p>K-Mart, 143</p>
+   <p>Kansas, 117</p>
+   <p>Karloff, Boris, 161</p>
+   <p>Korean War, 114</p>
+   <subtitle>L</subtitle>
+   <p>“Little House on the Prairie,” 118</p>
+   <subtitle>M</subtitle>
+   <p>Mallomars, 104, 130</p>
+   <p>Mary, Bloody, 156</p>
+   <p>Mastodons, 93</p>
+   <p>Mecca, 121</p>
+   <p>“Molly, Heg-a-Leg,” 147</p>
+   <p>Motor Vehicles Bureau, 145</p>
+   <p>Mozart, 163</p>
+   <subtitle>O</subtitle>
+   <p>Oklahoma Baby Chicken Hat, 148</p>
+   <p>Our Lady of Maximum Discomfort High School, 146</p>
+   <subtitle>P</subtitle>
+   <p>Pacific Ocean, 116</p>
+   <p>Penthouse, 110</p>
+   <p>Peru, 111</p>
+   <p>Pierre, N. Dak., 107</p>
+   <subtitle>Q</subtitle>
+   <p>Queen, Dairy, 97, 119</p>
+   <subtitle>R</subtitle>
+   <p>Raccoon, Ted the, 163</p>
+   <p>Raisinets, charred, 147</p>
+   <p>Rogers, Mister, 171, 173</p>
+   <p>“Roots,” 118</p>
+   <subtitle>S</subtitle>
+   <p>Scone-Hayes, Crumpet, 131</p>
+   <p>Space, outer, 134</p>
+   <subtitle>T</subtitle>
+   <p>Teeth, wisdom, 99</p>
+   <p>“Turkey in the Straw,” 121</p>
+   <subtitle>V</subtitle>
+   <p>Vampires, 122</p>
+   <p>Vermont, 147</p>
+   <subtitle>W</subtitle>
+   <p>Watergate, 143</p>
+   <p>Webster Groves, Mo., 104</p>
+   <p>Welles, Orson, 104</p>
+   <p>Wheels, Hot, 171</p>
+   <p>Wives, old, 99-100</p>
+  </section>
+ </body>
+ <binary id="cover.jpg" content-type="image/jpeg">/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRof
+Hh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwh
+MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgAR
+CAHbAdIDASIAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAAAAYEBQECAwf/xAAZAQEAAwEB
+AAAAAAAAAAAAAAAAAQIDBAX/2gAMAwEAAhADEAAAAXwxwJBHCQRwkEcJBwwSCOEgjBJIwSSM
+EkjBJ14UooUeBOenXlE+sWXnDJEMZXSLRJIwSSNkkEfBJIwSSMEkjBJIwSSMEkjBJIwSSMEk
+jBJIwSSP1NwCN536IhZdmMWN/hqn5bK22dGNVNG1djqR28joQ5nQOed8p5nQOZ0DnFnc7Yrk
+6z6b+Ztz7TMeig9OQ/QN+NeWPTKmCXvpK5/V0GCwtxp/G9tVk3EvhXv5464jTmdMGhuGh0Dm
+dMGh0DnjrqjTHTBpnYQNK4x7+cwAa8EdCfkHPty4pzjj0QVZpWprYNae6zih63eufTTYv4ka
+1hciaYndyrxZy0UJeUzTncUb5rxbIz+m68mu0KZj2RWSsiTi9brFxvyUdG7ouPex3VPbuZFe
+1RoTTUO9pn1VWL/Su1GWE5egzd91FzN1ImVwuJ8QsDDzmaOfmbFOyuwluWgL+rr3cWJdYtuV
+iA6POjoL6g49uzinOOXTBWWZZmst2S3WcqzFTKjkiMEK00iktkx7iyJc9azK7UtuCRtmx1VT
+xz6MPKJb3m2i1ce+POyquNb39bElzDTzVOdqPaTIjZbsV1SXTJVYUhqjWPZTaGeevbae6mE1
+mXmKmpXd1K1mViRHtmsWazCr0N0pYdb86N0tVbPZksF5nnKi3ZKaaL7GtstuthA38+MgvyFj
+27t6zJyvZL0/DOVNoqixulrNrOfNhS7ZWmZVeRTpt13A2e1LlZW5auXippviPOjXtT7WNl0e
+cvDGRK70v+qFvZl7JWLDEnDtvbZS6OeKz0WkaMNp51dXy1Z1HtESbag51m5WJ0F0znJK3jLE
+CZAr19XBOvJjhT6dV7vWnsZ5uDNRVNsRoW2O+rGBtwcEp7xW6OPBF0jDwCRl2BJ1eARx4BI2
+dRCRl2wJOjzmSLs8Aj6PZBDt7yhiOsiL0pPXFf3lPq9r2aJ/V3xa6QO4JA7kkkdiJSMuwhJ2
+dASsOwJOHcEmU11udlyRK6VrSdXfG0pGHgEbZ3BIv7nNqgE5gAAAAAAAAAGMq9qsUbzyw1j0
+HIYXAwGKVN1r6aI7vSeVZdFJpbGSGMhIAAMGQAAAAAAAAAxHkkKqz2AAkAAAAAAGOUPz3Wno
+nHz/ABrHpcvyuyq9DK+fhfIESAAvMNbavnkuLv209RNN+DUAEtc9QWejNZ9PXmLO25zV6y2H
+nGda+jFNbY2zSUNFvS8gRN9Y9LkU9xxagryy9FnqMJG5lRYLrKS0a36lY6pNuMCz3XD0IAAA
+AAAADh5n6l5r0UiS4rfrCry9M87iMeh+atdJajFTz3tym6zFpw23ifLjvH7s3qnXdc5Z2ny2
+2qcvOfS/NTb0Tzp8KNc66axnV2jZypuSVZXV2xtY0MCuz8kzDFDnezQZ8Y1u6toKOtzcC56E
+puQnsiy0FMs3fEj8m1SL2+TuR2YqqvOtnR+gm4AAGEJ+TtqLjItXO0PaG2oOTgyrjhcxebek
+qOVlrDDA6Kw3dEsKxvVMa5ed2WvfcJ84gOSZtDetdu1YqXRKbEqxnTSHKuX+lJ5dCdKyXfRI
+uMou82u3h41TfRuayD0e6jK1EwXGgrVPotcI3pddZi9Ab1UX2G71OapdwjlGsrwjWKRelQ+I
+7wAAAAtslTeqBvrntpjEuPCZ6D5fb5S/HGm5r3apRxemhvrnSGpSb0+k2XovmHp2Nq7zr07z
+LSubymvLwvsa7aTMOPf0Eww3qs881s9YS5WXEqZ1Z6edMij0V1eEl4OSuy0XNf0Dx/1/yQ9b
+yLYyEWsL089nDoabgHI6gBV2iUMtguMYAAAEWVojy/bbn35+i8uNxxX8u1sa3trZVucI2Yd2
+3nt5hzlwuireoNynnJ6X5l0l6L5vvzR0k1+3L0a9eRno5qvO71xpN50Hrx1x2vazCkttbjKJ
+tPvtYpPQMb811WBKVaz6r5TLinrKveq4res+Q+ui7QwvRSMg+pUhEXueDq35oS/W+FGeg3KL
+WnpfWjvAADGQ86r7yk7sXBjRO/PeqiZ26a55tKxC7nqZWTXtyvDLQyOWMxpWLeYX8OqdlrWb
+yIvPeVrC7xPXpCnxb1Ih2OuOm2QMZDBkAASpEC2LzzZ/RyM7IrKUDn5/ak138/llVPwwi3Hm
+wT07yn1fyM9b8/8AQPOQsmZJPRMrLMAAACetOS515QS5nTK2029hz2KG/wAUnzie8F4qE/0f
+nDzqrlV1k65hyNM4eu22WllRcufNvMuFq2mvKw42U0c8mtxtz6AabgAAAu2Flgh1bCFRHvwS
+HXKaNNd1tTy6X6JXipC9F6mfLfUoIuKT3sXi3ZqpMdOPYAAAMZAAAAAAAAXGPB5ONinaZ8Xp
+TxpeyKuTne0qmqtzmhgb8dua29HWWo6abQiR3hTZc+tdYgAAAAAGCPXK8wcEXvQnqymw+UHO
+U8sZE7nlg+2Xn1YeuQJPjx7PygL44dUR6MgAAAAAAAAAABzwoVt1o98c3tbr7RQ6edL1qGi+
+UQ44y7YnCfG6PNeLfzpprdpgTIds8zYGE72KjiLOBEl2oGtdCzF63JWu2JefuyHNOsZjXR88
+39J5HlnpiDWDzQSVU9k8rjxT01VYZYr0UBxk4SsZgAAAAAAAAAAYzgXYfbHJ2rnW1rLdPPG2
+tVFb1fbp8qwqp0aultU2tHXptG6juc6cYs6GmB35716eWjXppzZveW+/HSdYkvLfMWusEMQG
+2MaNZByqbsMZNTHkHovm0rG9kqkPWCHqT6W28xKX0mhgnqBjIAAAAAAAAGM15304VcOe0GZx
+9tiv2il0ZSoeMU14wmao14pRS9V5Uqs7THrtNYrd6XlZAlykQpHSXFloqTOzRG275awekPWt
++s4uNcAC9QAAATHPQ8ieGfJqjPeDxyV61gT1v0jkTfIfY+ZGmgAAAAAAAABDmVUKqmta3PPH
+TMKqHJO1rR5F6ozrN1rZVevrTbmnFtzzNms5mW2nWsyJ2gp1reLLTSgsLZdyuyRd6HHaw6b1
+8nDKpOnmvCowi5IU3eAr8SsSPudSN0OpXaFoVsw7Gm4AAAAAAAAAAABFlVcQmVtvAzy5TYVr
+ERZ9SwNdlm54Raj79NumbKv73nPuo6MkvTno72h57VYYtYx00WL6Tty9Nku3VVFeNtwsORAh
+z9ehWbjFXLaFv25Y72NZZ+tSqgMnC6l2tpBVwWOMV8FlyKvRmyQJ4AAAAAAAAAAAAL+1OzxC
+XCbKXKcac49uaPbV/fTeZzoLHn002jY7KsfLnK5dc9oVvyaddDXHKnspG2rc0MY1lRtiURts
+3antMaWW7mXz1r1jTl1LhIxn0s6zbvtKhkWAROU2RCjkWWpX4sAxPjSZAAAAAAAAAYxDYxmU
+KR1DGu8Y870sq7qrjtxzMd4eM8t9d899qhzmRa4sq+f4emTTOUbbce0zgyQNgmDG2KtTYTz5
+c4u1o+0Sd3dDeGOjhj68K4sNNoEJ0qq6Sk8ZnA494GsLqDwjyu+1JNLQAAAMcc2eedfPvki1
+1V2LmN4bcxJXXXOu1DoVa3Dfn0KTD100yldWctmuwm9LpbpRdqTn6yyYKG82eNc5duY3fVHT
+HHozz34d4t0001raSQo85Tuca5tSou87b4MwGnLjSuroX/RasZd+9NqX3Re2LfpS6jDlbYzI
+AAAAcV66quGy1Gs5usyqG/rstKqy5w7bO0pSZq42Cuz+Wd2HH1LzHrz+i5y15z14sgXz1RnL
+yyt41xS3OfZedF98nKr5NcC1Em0o7TLq3j8pU10431vMJmX3lNUrRxo1qV+RH+c1zpFsEXYG
+nNrpXcSz2jRizxFjFiV+SyxVTTtJrpxuAAAAFcnuSpw9vHPSwb8oc/nGVP3vbqhRZe21+aV4
+77D5D21t99Dk91qYK+w7PAAJqecv/llLZsY/Xm93LupN2/mWPnr15jbG8hx88vozuWesT1Ik
+GYe7hRbuzyigv1+L0rwmucXU7Wptom4A05q7WyCl53wUO15GhSWcjsVGl5BI1pp3lkAAAAOE
+awh4T0pLKJw2UpdhJ6oX32olZTvY8+vZSs8valyeiy352nP6zrtjPX4IAVHmjcqTM/py24vd
+tGpMct/NsvOvRfOtOSPwuF3PoYZbLDitPDgQ5egXESXpgLrEuV2itiq1ySWSfspnGS1KSKx4
+F3LFgWMsoLurMFVXsuBXw04Fu2n5NgAAAA5R5pVWlkRMWRsWgxkl5ZHY1WnRY8usLH0PVZKy
+zdPjgAnp3qq1ck3dbDy6rH0HzL0e2N9576EhKT1z0HNLbp7l5rTXblpYxp6PtjO/GLLMr030
+a1lmmgBbMAAX4dbtgpizYKeRrFQGsU8jWKgNYpiGwU7qa2QE1AAAAAAAAKnzX1ZQko3lZcaH
+6QGQACPICppm8ElgtgEl2W4W2/LvE6VdyQRbK5gV1ZQNcRSbecXoGPTdUAmAAReXeHy+xL0x
+iNM4zhPThthHTU4w3lRNZiTz1CM0rDNfnYQN/MyBIAAAAAACFNBbsrHIAAAAAAAAGMhC4WhC
+q2swrZ+5IAAAAAAAAqot+RNCXwmhL4KEvgoC/CgL8KAvwoLOYIwZJqAJAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//EADIQAAICAQQBAQcEAQUBAQEAAAIDAQQABRES
+ExQhEBUgIzAzNCIkMTIGJTVAQVBCNnD/2gAIAQEAAQUC/wCLM7RqF4rLt533wSkSo2PJq/8A
+gfxncvO5ed6s7153rzvXncrO5Wd6s7053pzvTnenO9OeQnPITnkJzyE55Cc8hOapaEaPshBT
+HHbNOsvCB1FsYq9WcPkJzyE53pzyE53pzvTnkJzyE55Cc8hOeQnPITnkJzyE55Cc8hOeQnPI
+TnenO9OeQnPITnkJzvTnenO9Od6c704JCUZY/HUhHjeOic8dGeOjPGRkprxnTWzprZ01s6a+
+dNfOqvnVXzqr50186q+dNfOmvnVXzpr49a4VASWITywA2y1XggqExDDUB5b0wGxKFpnqr4KE
+zPjBnirzxQyU14zqr51IzqRnUjOqvnVXzqr51IzqRnVXzqr51V86q+dVfOqvnVXzqr511866
++dVfISic0b0oY/8AHV+IuwABXCGxZ60Z5laZgFvh9eVT9WRlheOVZi2L3ZyFg+uWpAK4FzXl
+qqLh4yti2wvKxDYlygWtdpLDOqLVuV0n/wANf86N+Bj/AMdX4mU/66r9kQjjTLhLVdoMHrb9
+OZ2jTEcssKhqOHzJH9ITl1fOvXvVgSJQUZqdf9MbTGn5a+xW/IrfY1Tjxj61ZUHL6kcP/r2L
+/nRvwcf9hX4mU/41X7A/1R91Xqm8jkyEDERWE88cQIacHBVRXkKHs8deRXEi8YQwqkEBjwJk
+c4rDskzgYthEnBzGAPrGP2hOm7hQhs4/YkDHAtPy19ivWIWwYIC2/wAhqa28RCsdUjgpMbBU
+WzG1RXKkrZh11gUUY2hS4LxRYAUwYLKwLxa1zIrARIpmYrAEyCpiwjpxf86N+DjvsL/Eyn/X
+VvsD/VP3k/Zf6OsuVK9K/pZD9OnvkseMytCyi2RTySvgNquywdQZiNSVECH5HLggh5518cmC
+Bix9PTNvOdJrGIcEYJiWH6WtPyxMin3mfJUhZC1W4kh64AiE9Sr+te8MrdS/remBVTuDIttQ
+dkPt23AmwNsRVSaM5cXzVSVIssu4Orktzb1aXhWT40alYAlKzR/wcf8Ajr/Eyn/XVfsD/VH9
+wjiFqCsO8XYEcYY/7NQuLln2KJfWxLOy1j7TFu8x+MsNYI/paVufHO2MTNtW7HJbENMckuzI
+t11BOoZ554m+BQU72tPy19gP50/LEbpRSiZ+Ws0fY1T79L+uqT8iA3GsEC0Pt3/yuoZyqXWU
+bMWXysie1lflyXZ9OSnxcpjIpnfNG/Byx+Ov8SBIsp/xqYyahQ3aoj1uWhWNKezL3Lq05XVj
+/skglRSdyjU7HWNbZcpbDAuLkXisjmxxGsUc02WkWR7Npzac2zbOOQOJD5yAM4oDIFan5AVz
+3pr45bZBBERx6C8uv6IuI7n1PTNSGTXxJeJWcGH27ajZYzfaajOQ6o/eRjjFKRzUvmYjyOT2
+fta3rmjfg4/8df4gWVqAdTWGTqiyn3gjGanvBc2kiz0SWqK4xe3bOpqIH2+6KzoTlhvkPxVk
+kzN5LMZcREGZWDyQ5ZX8br46fvMadn+m5y07Ibpw55dLAeRY2d4B3VkajtM6oc5GpRhamZZB
+t7F6lCxdqMsxWo9cFqYycajI5OoyWOdLiK9EZ71PPPicgpM8r8lLM+2xglISN5eefXGXWDs4
+mNp0b8HHRJJXW1BavHv549/PHv549/PHv50X86L+eNezx7+eNezx78Z4+oZ49/PH1DOjUM8S
+9OeJezx9Qzx9Qw6l8wWBLtTUQzIoIwaSYw6qd4ppzx1BDrBGQVL4R4+oZ4+oZ41/PGv549/P
+H1DPH1DPGv541/IrXs8e/nj388e/nj388a/nj38BDJEQfzsSfUFS8A+PqGePqGeNfzxb2eNq
+GePqGaYhler/AMd6F2FkizVwdQXsV7jAX2ERaiEYKrdyUVl1w/4E4DOvN5yqvub/AMcmCOBb
+Uxnw7+1iVtidKpzPuqnutClR/wAM1QeeHvkDAx/xtTa1RSZFNH8r4L9zxomw0iqaia5j1/8A
+FloDhXa457yrYFpLPo6sG9fK07P+DVlF3ZAlMBHEPimYiH6mpeM1R553tIkH2I+PWHtRX04i
+OgxgqWWq3bDKmsM7PY3UjDUvo3omaszM+3+MReaia1sLI/FeDnUwZ2wZ3H2tAGAemhE111Kp
+D64RQMWNW2krzzwL1gJp3hsRM7RdvE4823zbjOmkU1cv6k2pYp6oq4VjVvHuHrNQJQ4LCn2k
+1s1l63VKMbUNcZxp6MqAo66iIxNvbR9MttuCz9X+RfRaPNUxtOCiTwgIfYphKZWdD0/C2OSi
+9CH1wLi102aue6dXLdbBYN0eVTecX/enP7HU7MkeccmNsA5AitdunZEYjS9xVXSmPY6whMIJ
+Z67qC4ZrNrTaiKOjM4UaVb3o/UtPijlT0qf5AWaePHT9e/DMbMaTpyb/AFk0Fa77+r822Vqr
+TqeoOzTr3mqdqDUatR1Jtu17Z/iyPGxmkz+lqQaL19Ls0k53/jJ1GvE+862DqFYsBgMz/qwP
+GxHpkzv7adoq7JmHIn0IPQ6Jf6YwuTI/nT6ggjVa8deViz+Midpr6oQ4mwt8Zq1kq1ShpQ2F
+VViOv2fX/INUnbTK36dB0H8T/IJxUbJ/yCJyjO9DX2fpsh1/47pI8dMrqC5rOt11JHUDkdMR
+qtNNXRTjzxSNnXhGBj4NSHjbzSS+fmpfl5pP38sRtZ9gMJZU7fkBqI8bmQO+I0s5i5X8d+aW
+/lFkeNjKhf6dkZGqpWt+pk0MCZ3tVOxf8ewTJc0r/fmroKxSq3rvRpYEGsM//SayXHTKKe3Q
+tLvjSzUbg33j/XWUS6npWoJCmclq2p63HGhp0x7t0b11P/ICzVlTFSvWpPrhWQotO+Zrfw6s
+PzM04+Nt9laAayWtiN80lfyssae47Hup+WKbK45Sb12dXHZ+aZO13NXXunKjOuxqI8buadO6
+J/n2cCzbF1WlNNZrqP08G4+oxE4E8TrN7q7mrrKqu09lrqXzJiSgREYPT6rGnQrH7JjeG6Ek
+2VaaqgXasW62m1LFZOk031resU7Fhj6o2qY1dUqTp6rwM0dDVXfh1cd05BSOT6ziFqYwOPD2
+EYjF+6pq8GeOatG6cozxt5eHnTyPXNS/X7NLP5zx4WMpVAsxGm1YwVgEe2YiYtBC7WaXP7fW
+f9t0KN7+HHLUPq27y6UVLQXFfDqI8qebZ457SMx7Kl00ELBMLOpArG2GPn/vI9Zs/M0jFTxP
+HRunF/ctRvpuUC4WtVVxflGz0OFonDLSVZY1SSylYl6jcC4saoAwRSRD6zpYyNLW/wDbv8fH
+9zif1ajk6zXFqbCbEapaZVQOvujB1+JyJ/T7JYEF7df/AK6JH+nfDYHlXwY3KmfZTsVAeEjw
+LIsmNXIjK+mtPGxs2J2lHzNHyMSyGLstFaMieMsuMKoXIcBpLZFhOppMCWWRMx7aPb5OqK4u
+yI3mpUm0cRxjXZ/Z/wCP5Mxxo+uo47REMn5mnXo9R1di01tFp9rtQUx1KfeFCNL1Erea5+ee
+rt6tMaxlOdTpieuME80iNtMIxGAYDPgL1hkcWb7Tpk/s8vjxue3Skwbct/lZps8q0/zkEQ4R
+kfs/7iMn09gMNJpP3jLabVZxwV85RpbDxSVoDU1c6qqjmYnSYwRgYzX/AMapQdcAtKvBGmRv
+qL7Cq4P18IxzjtWY9BvvK9fqoGtXy7arRW0T/cNbn/UKVFdRetXSDE6GxiLNZtVk3SqaSmhb
+vZptEqK/guDxt5pJ7j/1aPss5I7RmnWRSdvUx4z7NJL5z44WJjhnTJhO2bjhcpITmJ5RnP1k
+omVulRgXMJWBZAwP0P8AIJ/RoEftLPpV0j11K+0reoVdKr1xu+ur6ta8enodTkxrBSplu3qL
+p0Ul19Cj99qkc9Wy5Pfqma9+XdrFOnaXqQ8fh1QdreUbI1is6lLRyM93z4ExtPs4/oym6Eva
+3k8D9FlIYOo1pFnzWwEzBxI4ISc9JDn8EhZWCpIOsj6Ovl8zQo20/US46fokb6laEq2ou10O
+pckd7Ve51ytrBVlXNWVao6FIxa1S4pdXQfyrE89bwp21LNdn99WD9jqem+NmjW5sJ+DV4+Z7
+dtso6fMFl2hDsKswCRpzmy2mEUk1Wvl4SlklGyZ5TI7D6MY2eLdPmJVaUSmV94jkkrBqiA0j
+dWoezeI+hqGmeadGvNWpaR5NelpQ0n3NPTcyvpNavJ6XYPUsOslue6qkEzS7amzpBqp6B98a
+tgdSzVUSm8rXVQi9a8x4RxXq9xcVdBVO3waouTAarSwdOsTgaUycRSTX+MiFYNmZbI8iQvbH
+M6oUMnNlYQlTCWxrzcQEQQFnsNhlx0ZEkzImJwpGPZG+/wBS9qjos6f5Pj4RCMHcp7LFfD2W
+aqrSw0WoEv0lD2X0G+nX0JskpYJX9fWBbNSJ5YO0YJ8YJ3oqwMAIxcltFXSYqhs+sR6ZSreX
+ZAVoCf4XMEDuXHI/t9Fr1oANVpsI2rWNEhLXs1PVJQRMY4hoWjyrBDVMxWM6tRiVPU8cddro
+9jGApYMBg/X/AJyzpAQKo5xKw2xB/Kru6pEo421RONYUjmlV9jIORZUL5Nrbpxf5X0W76nq9
+/SFLraePvDT69OX3aypTXeUlY0hCRqYZwsLdpt+x7mtdVWydOwcdyGBK2ae/yKOu2do0NBSX
+1yMQi1fluf1gBNhTlR6Vp3GGhMYyZ2BRWDICE9ItwxLpnt/nKf2rn2F7cA9Lf0J/jRv9yszE
+Vf8AH4+Xo0ctSzVqZIsU7rKbK9ldpWtt66OhKg7WaqHXqOmH2adrdfrsaJZhcsM712uka6Pr
+GcBGpWSemY29lZopK1xh/H0sqSMQfooRfKhZENEBmqXHBtE4OY5U/rbn5R3UKydR6zjVjXlZ
+3kIyZ2ibysjUZ5rdDJ9jeWmare1QLFepX8PT9B9bOMAWhqGmFVypbZTdrjIYlbHLzy7uHLWF
+ou/u/Ua/kUomYzQ6v6vrvKW2HB2LGfZPqNpUeL6ZSVNqbACCYnYpsQSXxEMph2lMRt46Yizt
+XSC/l/xhQO85p4uWvLzBk4jaMqB12/Y5CngihWrkYQYUtPCkfsKIIbK4VZfvOm6BMZtGbR7N
+TteLUzRnw2n9cfX2JoxcCxWYh2QHI53EkPKsc916wKeJ/wDUFMxRRYTnYtkFIRjx7lCD4yYM
+ZoCvqsaeLMCJFeTO90/6biKqUydr45mIy5qSawzyYy1R46NSteJaVbQ4GXqyoBgmvVLXk250
+6Q0XSrPj3fqsaK8F8EX8M2zTvx7jO21/GeRMttHJtiMr3IBIkTicZTOnoixdwlA290VkxWt1
+1AepJ5NeFqKTUJzf0ZZ/VIuLAGFY54JzkIqpViV9DX4/Qms2xOn6V45bel7RzgiruAlafadN
+gy07StOq+VbIINcoZ31SYVb6d38UVLAxtJeamExnLKtuvXqNsSxiVxYCsxijRXjtegkswDkJ
+/ma7Ol/evoO8xrOhjMJClBCoMBQITwGV0gJi1rgPZZZKTXNmzlalCp+hIiXxvqpsDVprpxgg
+I/VsgJp8ywMdRxi+SjJ5GLlGQAbZQNfriyHXJ/MwYGDtVOko/tOD/NcjPEjI5/ECIqhrpCQs
+OJrLFsY06PkTk2Alt6d6VNnCx/4FjdjbZ7kTYDIKJhrtiWWyaYNeAafvG+xE9m3As9OuYzbF
+BGRIecAj2cvX5ZtMpbbSACufWET412WRls4g/Q0qHkhbjII7pyZdMGxgLqtJqcsuJWd5eZ3B
+kmMYbwXPMd2WJXbmzPmPs9auwMgoKPruSDYkxCZ32QSwb48TNmeI0bLFoYy41fR151/PIpjB
+qQtc1CYTUsrnBmEVlhATYEJP1nvkzkSTZSyzMhvx1AeLebCYpQAFT9IN5VrT+hiadd6HZHzm
+1d9suLJmWKzCc2sTyRWd5FlREwUNgLSjbJpsQTKz5GUNnK4cI+vfZwqkoSzoEs2LFlJg+dy8
+zhMXbEzbguTkiJ8YliV74Thr14pc126tZQzHE+Rbr5ONNcEwRr3E8hmwuIrJqryJRG0WBkcZ
+80GWUeQEiQtkpmBgBqTv7TaC5B6j9svUJRO//DLUxG5qUfpcXBYhHOY3yS4jMZBP267x5ITG
+T+tkfdpL5WCmL160+RIBnfriYKuo8sJlFqFlYyFLHJSuc8VOREDHtFVhQkqxySuKSFhIY58w
+5IQtWWXknJ4urDsFQ7TxALDZczl7yqm4FRYsEIXCM/MbyrtM5+tqgCuwgosV26eUYSegpaES
+ZSfscxvhzD1z0sXRH5a1HJY0DIlurVq3jMsxCTzi6M/cRnKxE8252MzunPIjO8NosKnO5Wdq
+87lb+QiMV80pn0o8m6n7GIWyeoerxlcJrL4JXPPpDtJC5KK6oHx1Z4qsBILL6zqqrGAArjC2
+gSKTPbf2LMwgnuIjnlMzBLSPWrgHKZylP7T6XGM2jOMRjBHrTOymvNw6Z/uPsNnE4sKnCaR2
+V2YBlixsmLC+LWlNiLBNo+Z/p6rAwmbChmxcGAB65gGAz6O8fE9ctTZqnVzlnrOf9l/JN2gI
+ksKcESLBrHOU+uK3Ic5DnIcBgHP0bRca9wvU9gHR9ys+ywLJbCHQglmNh9VzVWEuYQK3uvGS
+Eq/CgVVvMEOFcV2BPjP6moYc1FsX8XPPXNs2z1jIZ8E5qOpS90NtZFj9VOmu2mdJPPdODpUY
+6oKHxvOP1DgcG7EN7i4DnWMZIRhFAFLXDKzb1i9hTybGeQ7bvcMBbbtN8gy1aOV+s40T56P8
+BEIibQWPKNvMRigABYwVjvE5D1kQMFg/QL1nbJMYybSYXOqLwtSKTq3TsOgphvs1S1FerWCN
+qunwxd/TVgjQgKPg1DUQ77N4JShcTidNkgRArPtjOwc7RyTXJHIkSvVIrFc+nsKBMVxEY77r
+/wCKdfyM1CP3Ojx8v2WWsS0rDSqPktlmXkvPquMsMrhaYQjFk4ZcHi8Xs6UWmmPxFOXLLEP8
+hrp35ZpsTNaR+WCmsxFZqm9gsFP9M1tapqqIencYi5ZX0Ua3i1vZMwMOTXtufCxbRJazt6h3
+Ciu1yvCfhUrER5G0RVfIzWaOQjbJXERuuM3Cc/ROQvfDVxY71xYwAX/yNH/F9kxE5KwKPHVO
+QlcF1BzFKxzx1RHQqJJQHPSuC6FR8czBneRL58XrmaSV16C0ZNhknLzssJh8VbJvqiAbmoXm
+WmKmIVHTmmr7LHteruRtYqSn7vPFer6H4WWXApPUbIO7ZGfLuYF+4MjqJRirCneyUqnJqV5y
+9USrCjd+X5/c6XH7T2XTJeLucGxbSUItbYdgCyvZ7a1a5BV7LZjPI/eRbUReanBKCj4ZKO0p
+5SXozn+2otBTNx7w3EoXL3LU1jE9Xf8A9fcs5vmlDsj4NQn9tVjYMXHzKH4OE/ut4xckQqXG
+En1z+c0+z5Nf2aj/ACA87+ah+Rpn4PsspJ2MURWJqFw8RpL8V0sCq2AGvGPUbTdXcbopn1zT
+4tCOIfCfOGNHpepDhGvR3xlNapQlEprvqTMDAww4Aa/2y/qj1fm+2Ug66ntafWqxYFyEfZKd
+oiOOUPSk9fakg6yGeIg9myyaQ7nksZGEyTnR5P26jP66kctSzUPydMjah8ZtEGMIEwMwQTkW
+gIVMhq/iYMmAx7NRg+ERznTi/crnhOfOM8uWgqrr/ewQ7GRG3waiyArPTCZV6LPfYvVlGeVH
+LHq5tbiABzKtQcaS01+0aQWWKw1w00dqXs1H79CP3+agUd1EZCp7LreMgw3vFjJELHIgayFC
+fI7E7WexiV1p/WE/JQ0uiXN6XWGKbWmefwGhe4kzeyuLiA06Sz3ckRhFdMQHeYAKxzWnjDqs
+ezT43vfBrLy7rDOwlF8qeU528jofg478i2fCmr1aERvcswkbN+wLAe101h4VvZqH5Gmx+6yR
+ifgmInOMZtGcYzjGcRzbNozaM4xnEc4DnGMiIj4jAWQaN4mtMR4uQgBZ7dSCYajfr4b4ckiU
+NhyPbeqyxsxvC2SBRMTDXjmlzvp2N+/arG6tXoWDkI2lpdtm2uTxAdWR6R7L8/u9L9bH/gaw
+nK5wMywRxr4INDKZo+16e4bFKLJvrsUe05AZpLYZSxkTzT6Lr/bGf1XexZ0ymHVksZqvtvfm
+6QPp8NvUZrWPfB574PPfB574PPfB574PPfBZ74PPfBZ74LPfBZ74LPfBZ74LKdry0/TtjHY+
+tKX9c5ptZL7SkrQv4GJBsGpsCVOoeRQqRNFEJDHfkL/oqNgVl6lFggreNlH5lz23JiLukfY+
+HUv9yQuGSyt6xWLBrFJeMzOiOZpMBKuWeMW4K/UKVSZVtmeKzJjiWj/h7fTeruTdSTwzSN/e
+H07CeFpbA4CY4O0Z/wDdwi6tLjcvaQwUDEDHw6j/ALkDJXPklt5BZFk4jvKM7y5k2SUViclp
+FhOmbENmGTYOS7ymSmSLR/w/qNRzkqPIq9bq+qdVDJ8IYzxnZ4p7eEspEYCPpP09Fhnuirnu
+irnuirnuirnuirnuirnuirnuernuernuernuernuernuernuirlesFVf/wDMv//EACsRAAIC
+AQIGAAYDAQEAAAAAAAABAgMRBBIQExQhMVEiMDIzQEEFICNCUP/aAAgBAwEBPwH5m1/haOKl
+LDLJxg8OIrov/kqsqk8NHT1ejp6/R09fo6ev0dPX6Onr9F9VcYN4K4p9zapdiyO1kJ7X3Ntc
+q90UO6KeHE50F9USuFViykciv0dPX6Onr9HT1+jp6/R09fo6ev0civ0dPX6NZCMcY4aH6z+Q
+8I0KTNbHbPsVauMYfELW1s62sesrHra0VamFnY19nfYUvApFlW7ubGaGeJbDUfdZfNSxg01n
+JhmQtdD9olrK0PXQ/R11Y9fA66sv1UXHaijUOvyQ1cJPazXfrhofrP5D6Ufx/wCzX/WYwN/E
+WR2sb39ytNvsRpsU9xql/p3OwrsE7d3Y3JGm72LBqPusuoUa1NG7dHDJvKRL7SNPRzYl9XKe
+0q0vMjkurdU8FcebM1FfLn2IyzJNms8LhofuGrlOb24KZ2VeEKqd08ssplGQ65ecEoSnX3NL
+RmDybJU2Zwcyd0l2NZV2UhRybDabTTQlGLmicJzluwTds47WiWnmkOqbXg2WNbcGmc6njBer
+LZZwaSUl8Mka+K25NHXiOTUUyjZu8mxzl2Rq1hLhCbh4OomdRM6iZ1EzqJnUWezqLDqJnUTH
+fYxSGzcOQr5o6iZ1Fh1Fh1Fh1EzqJnUWHUTJWSl5OomdRZ7OomTtlPz8hvBl8WxPP4bkZZu/
+pLx/RoRk3GRt/PlwfYiZMrjliZIjweeKa+dIXkkLyS4LtwS/vjgvmy8cYsbwN54fsiPz/RYM
+mR9xfP8AK4pcc4MlVSfklVEnW134tGGJY+fu454eeEYZZhwOYzflfh4MCXDBjgyMtsiU8oTQ
+/wAmFcpvES3TuryKiHnJOHof5MY5ZRTGtdjVuUpdymWGStjGHfyPuOppJ8Es+Dly44/CqjhF
+eqT+E1VTmtwnhkU7JGohGuO0jPKwS2fsrnX+iV/dpoZBYRNds/hQ+konGNm6Rdq3YtsTBCxw
+JTcvPDJl/oWZM2IljBKWfwZv0Rsn4IvBBxz3HdVsxFEuD4QhnubcMUfZJLbg2mPwExsgNehR
+e7aTp2RyzBtK68+SMNv7GTlnsRfYbz+AyEtkHHHkUSJkz8W4lPc+5Nxz2Mm7+ilgfcx2z+Dg
+8CfYYqpmOxgx/WMcvBfFQhhfMxxfBVqMd0h4fcwQwpZJT3PESGN2Ez4SSi0RrjkVMf2h0Q9E
+tPEahT3LG5V7n8vBtkyNMpdhaV57suht8cHRzIruWR2S28IeTT1KScn2J/5fSK+zwSc/+Tdb
+6HfOPlHWP0R1O6SWDVv4if2V8vTNdyU4L9nNry37HqvSLLHIqWZoxhE3mTfCLxkoSjUjVFDS
+llnMg/J8DJTjjBLyUfWjU/WWfaXy0+GOOljmxGoltrfFCkuX2NUIjPBzJ5wh7s4fCj7iL/rZ
+KxuKj83PHTNKxZNRKtwaz/SnVSqLbXY8sRkomoS3Mm01zVw0/wBxFv1vjGqcu6RyLPRyLPRy
+LPRyLPRyZ+jk2eiUJR8r5y4ytbht4Vz2SySeXnjpsujEfJ/slgzcf6oXNHG2X7Erl5Nd9Cz+
+OpNG+Xs3y9m+Xs3y9m+Xs3y9jbfn/wAD/8QAKREAAgICAgEEAgIDAQEAAAAAAAECEQMSITEQ
+IjAyQRNRIEAEQmFQcf/aAAgBAgEBPwH3LNl/Ryvgi5tnqQ3I3Zuzdm7NmbMjJ2SkXQnsiS/R
+JyQtmrsSmbSNmbyN2bs3ZuzeRuzZmJ2WZejH8jJ2Yfsa5oaaKf68JN9FMxomNEJ1wWZEY/gz
+H3ZLllMSb6NZfo1ZrL9GshIaX+pTMPjL0YvkZOzD2x9uiPxZCmtRomqVG3FEDkcGxY2jWTJ3
+9mP4Mi+aGnGXBj+RH5mR82Y3bbN2nZB7Kiv2QkqpmrSMXjL0Y+HZPkT1XBBqqItJMXDsm7HL
+ZFGOXI5o3/4b/wDD8hllZB1GhcOxT5E6dn+2xPlkOBog6ZJkXxQuDF4as0RojRGiNEaRNEaI
+0RohrwxRNUaI0RpE0RojRGkScVdEFb5NEaI0iJJexGOzoeGlfmGJy5JR19yiv5Qx7H4EPB+h
+qvMHUiXXmGTijJK2Ri5dH4GNNOmQxfsail72AyScVaMeTYzrixJs0kdH0LFFdk8X6MP6M30R
+WqI5bdE43z4nGX372F+oy/EwJ9mZ8UYpJdinFmSNog/SjLN3RjdoiqmZfrwscUSkiOX6ZaZl
+jT493H8vCa+jJjvlCi2QxVyxmLozfIwdEvmjJ8SLtGS7FBsp3Rhi12Z+vdR9F0xcoSoyZHdI
+XRi+zJDYhDUzZXtwfmmYctcMtDyKJHJ6rJZUiUtn70eh45OR0iMtj8au/FuMmbMlmlRdlFf0
+4TWo8kSeRsjJx6HlbFkaVeF0ThcRR5GmL+y5pIWbYeWVakJ88/2nJInKzGSK5EKSvxZsvN/0
+pv1Dx/ZB0x8o6RB7MnF2R3slGX2LHwIkyHf8V7lkvkSXpoUKE0OIlRVmhqiVRRsRXJGP3/Rb
+Kvx/8NZN8i8Q68TyKPBKWyHITp2fniuxf5MHx/QTGzI3GKowzkpeoTTjsfkt0jZIjJUZMtdE
+sl/RuieT9EJ2rMuRxjVC9KMfxXv6kMbkz/Jj0jU4/HqhRaVk5cVYr+mPJJqipD2NWQlJfQ8k
+pL1dGCG87fu3/CLVDhGXZPHUuEY1XLJZYIyL1MpleH4sgtlyYo17eTIoK2TzTkKOR9EPyQ5Z
+jnur8OfNIUmbyJuTiQh9yGUUUjVGq/QscX9EILpC7r25STy0zeERT9Toc2+DD6J14sh14kTd
+cC57NUJxPSJRfTPxjhRj6F8vbaqbG0f9J5NfowNzlZLrwuvEu0S5kYyfKNGjkjF2Il0Q6F8v
+bzYtuSCcZ+oeSHRKLyvgxwUFSJ8RIK35r7K5MfhnB/3xPoj0V7jSZpH9FeMnKIKV+Yy+mTxb
+H49F5ktuEK16X4n0R687I3RujdG6N0bItfzj2SSr+Ld+foWNXfhqxeZ/I9J6Tg4ODgxFe/X8
+6KRSKRSKRS/8H//EAEMQAAEDAgIFCAkDAgUEAwEAAAEAAhEDIRIxECJBUWETMjM0cYGRkgQg
+QlJicqGxwSMwgkDRFENjc6JQg+HwJFPxcP/aAAgBAQAGPwL+lkqMmN5v99IcLEJtQ55H/oXS
+M8y6RnmXSM8y6RnmXSM8y6RnmXSM8y6RniulZ5l0rPMulZ5l0rPMulZ5l0rPMulZ5l0rPMul
+Z5l0rPMulZ5l0rPMn8nUaS61j6l0aVLB70OC/U9HxDfSOKO5Ym1W95hdKzzLpqfmXSs8y6an
+5l0rPMulZ5l0rPMulZ5l0rPMulZ5l0rPMulZ5l0rPMump+ZdNT8y6VnmXSs8y6VnmXSs8y6V
+nmXTU/MulZ5l0rPMulZ5l0rPMulZ5l0rPMulZ5lLSCOGip8pVNzqWIkb1b0b/kurf8l1b6rq
+v1V/R/8Akur/APJdXHmXVx5l1ceZdAPMurjzLq48y6uPMurjzLq48y6AeK6AeK6AeK6u3xU0
+6WE7wVZEnJcEXjMJvpI5rXAFazQeKmMXH2v/ACgyrQDt1Teugb4q3owPeuqfddU+66ourjxX
+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
+zs+H+SrlF3RKoo/+Sf/Z</binary>
+</FictionBook>

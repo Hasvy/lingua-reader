@@ -12,16 +12,19 @@ namespace BlazorApp.Pages.MainPages
         [Inject] NavigationManager NavigationManager { get; set; } = null;
         [Parameter] public string BookId { get; set; } = null!;
         public string? BookLang { get; set; } = null!;
-        public string? UserMainLang { get; set; } = null!;
+        //public string? UserMainLang { get; set; } = null!;
         private string BookFormat { get; set; } = null!;
+        private bool _isLoading = false;
 
         protected override async Task OnInitializedAsync()
         {
+            _isLoading = true;
             ParseQueryString();
             BookFormat = await LocalStorageService.GetItemAsStringAsync("bookFormat");      //19-30 msec
             //NativeLanguage = await LocalStorageService.GetItemAsStringAsync("NativeLanguage");
-            UserMainLang = await UserService.GetNativeLanguage();
+            //UserMainLang = await UserService.GetNativeLanguage();
             await base.OnInitializedAsync();
+            _isLoading = false;
         }
 
         private void ParseQueryString()

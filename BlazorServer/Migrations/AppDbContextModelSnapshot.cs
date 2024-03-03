@@ -348,6 +348,17 @@ namespace BlazorServer.Migrations
                     b.ToTable("PdfBooks", (string)null);
                 });
 
+            modelBuilder.Entity("Objects.Entities.Books.TxtBook.TxtBook", b =>
+                {
+                    b.HasBaseType("Objects.Entities.Books.AbstractBook");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("TxtBooks", (string)null);
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -431,6 +442,15 @@ namespace BlazorServer.Migrations
                     b.HasOne("Objects.Entities.Books.AbstractBook", null)
                         .WithOne()
                         .HasForeignKey("Objects.Entities.Books.PdfBook.PdfBook", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Objects.Entities.Books.TxtBook.TxtBook", b =>
+                {
+                    b.HasOne("Objects.Entities.Books.AbstractBook", null)
+                        .WithOne()
+                        .HasForeignKey("Objects.Entities.Books.TxtBook.TxtBook", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

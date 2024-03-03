@@ -1,7 +1,10 @@
 ﻿using BlazorApp.Components.DisplayBooks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using Objects.Constants;
+using Objects.Entities.Books;
 using Objects.Entities.Books.PdfBook;
+using Objects.Entities.Books.TxtBook;
 using Objects.Entities.Translator;
 using Services;
 
@@ -14,6 +17,7 @@ namespace BlazorApp.Components.DisplayBooks
         [Parameter] public string BookId { get; set; } = null!;
         [Parameter] public string BookLanguage {  get; set; } = null!;
         [Parameter] public string UserMainLang {  get; set; } = null!;
+        [Parameter] public string BookFormat {  get; set; } = null!;
 
         public int CurrentPageNumber { get; set; } = 0;
         public int PagesCount { get; set; } = 0;
@@ -21,15 +25,30 @@ namespace BlazorApp.Components.DisplayBooks
         private PdfBook? _book;
         private bool _isLoading;
 
-        protected override async Task OnInitializedAsync()
+        //protected override async Task OnInitializedAsync()
+        //{
+
+        //    await base.OnInitializedAsync();
+        //}
+
+        public async Task AfterReaderReady()
         {
             _isLoading = true;
-            _book = await BookOperationsService.GetBookText(Guid.Parse(BookId));
             await JS.InvokeVoidAsync("onInitialized", BookLanguage);
-            PagesCount = await JS.InvokeAsync<int>("embedHtmlOnPage", _book.Text);
             CurrentPageNumber = 1;
+
+            if (BookFormat is ConstBookFormats.pdf)
+            {
+                var pdfBook = await BookOperationsService.GetPdfBookText(Guid.Parse(BookId));
+                PagesCount = await JS.InvokeAsync<int>("embedHtmlOnPage", pdfBook.Text);
+            }
+
+            if (BookFormat is ConstBookFormats.txt)
+            {
+                var txtBook = await BookOperationsService.GetTxtBookText(Guid.Parse(BookId));
+                PagesCount = await JS.InvokeAsync<int>("embedHtmlOnPage", txtBook.Text);
+            }
             _isLoading = false;
-            await base.OnInitializedAsync();
         }
 
         public async void JumpToPage(int? pageNumber)

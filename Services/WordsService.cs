@@ -1,15 +1,7 @@
-﻿using Objects.Dto;
-using Objects.Dto.Authentication;
-using Objects.Entities.Translator;
+﻿using Objects.Entities.Translator;
 using Objects.Entities.Words;
 using Radzen;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Services
 {
@@ -23,55 +15,23 @@ namespace Services
             _notificationService = notificationService;
         }
 
-        public async Task<bool> SaveWord(WordWithTranslations wordWithTranslations)
+        public async Task<bool> SaveWord(int id)
         {
-            var result = await _httpClient.PostAsJsonAsync("api/words/SaveWord", wordWithTranslations.Id);
-            if (result.IsSuccessStatusCode)
-            {
-                _notificationService.Notify(NotificationSeverity.Success, "Word has been saved");
-                return true;
-            }
-            else
-            {
-                _notificationService.Notify(NotificationSeverity.Error, "An error occurred");
-                return false;
-            }
+            var result = await _httpClient.PostAsJsonAsync("api/words/SaveWord", id);
+            return NotifyAndReturn(result.IsSuccessStatusCode);
         }
 
-        public async Task<bool> DeleteWord(WordWithTranslations wordWithTranslations)
+        public async Task<bool> DeleteWord(int id)
         {
-            var result = await _httpClient.DeleteAsync($"api/words/DeleteWord/{wordWithTranslations.Id}");
-            if (result.IsSuccessStatusCode)
-            {
-                _notificationService.Notify(NotificationSeverity.Info, "Word has been deleted");
-                return true;
-            }
-            else
-            {
-                _notificationService.Notify(NotificationSeverity.Error, "An error occurred");
-                return false;
-            }
+            var result = await _httpClient.DeleteAsync($"api/words/DeleteWord/{id}");
+            return NotifyAndReturn(result.IsSuccessStatusCode);
         }
         public async Task<bool> DeleteWords(IList<WordWithTranslations> wordsWithTranslations)
         {
             var wordsIds = wordsWithTranslations.Select(w => w.Id).ToList();
             var result = await _httpClient.PostAsJsonAsync("api/words/DeleteWords", wordsIds);
-            if (result.IsSuccessStatusCode)
-            {
-                _notificationService.Notify(NotificationSeverity.Success, "Words have been deleted");
-                return true;
-            }
-            else
-            {
-                _notificationService.Notify(NotificationSeverity.Error, "An error occurred");
-                return false;
-            }
+            return NotifyAndReturn(result.IsSuccessStatusCode);
         }
-
-        //public async Task<int> GetWordsCount()
-        //{
-        //    return await _httpClient.GetFromJsonAsync<int>("api/words/GetWordsCount");
-        //}
 
         public async Task<List<WordToLearn>> GetWordsToLearn()
         {
@@ -87,6 +47,20 @@ namespace Services
             if (result is not null)
                 return result;
             return new List<WordWithTranslations>();
+        }
+
+        private bool NotifyAndReturn(bool StatusCode)
+        {
+            if (StatusCode is true)
+            {
+                _notificationService.Notify(NotificationSeverity.Success, "Words have been deleted");
+                return true;
+            }
+            else
+            {
+                _notificationService.Notify(NotificationSeverity.Error, "An error occurred");
+                return false;
+            }
         }
     }
 }

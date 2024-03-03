@@ -2,6 +2,7 @@
 cs_regexp = /^[\wčďěňřšťžáéíóúůýČĎĚŇŘŠŤŽÁÉÍÓÚŮÝ]*$/;
 it_regexp = /^[\wàèéìòóùÀÈÉÌÒÓÙ]*$/;
 es_regexp = /^[\wáéíóúñÑÁÉÍÓÚüÜ]*$/;
+ru_regexp = /^[\wwа-яёА-ЯЁ]*$/;
 lang_regexp = /^\w*$/;
 
 function getSelectedWord(hostElement) {
@@ -13,7 +14,7 @@ function getSelectedWord(hostElement) {
         var wordRegexp = lang_regexp;
         var s = hostElement.shadowRoot.getSelection();
         var node = s.anchorNode;
-        if (!node) {            //Mb node.nodeName !== '#text'
+        if (node.nodeName != '#text') {            //Mb node.nodeName !== '#text'
             return;
         }
         var range = s.getRangeAt(0);
@@ -23,6 +24,7 @@ function getSelectedWord(hostElement) {
             range.setStart(node, (range.startOffset - 1));
         }
         if (!range.toString().match(wordRegexp)) {
+
             range.setStart(node, range.startOffset + 1);
         }
 
@@ -31,7 +33,9 @@ function getSelectedWord(hostElement) {
             range.setEnd(node, range.endOffset + 1);
         }
         if (!range.toString().match(wordRegexp)) {
-            range.setEnd(node, range.endOffset - 1);
+            if (range.endOffset <= node.length) {
+                range.setEnd(node, range.endOffset - 1);
+            }
         }
 
         // Gets a word, removes selection
@@ -41,7 +45,7 @@ function getSelectedWord(hostElement) {
         }
         window.getSelection().removeAllRanges();
 
-        //Get started position to draw translator window (right upon the clicked word)
+        //Get started position to draw translator window loading (right upon the clicked word)
         var rangePosition = range.getBoundingClientRect();
         var height = rangePosition.height;
         var width = rangePosition.width;
@@ -52,12 +56,16 @@ function getSelectedWord(hostElement) {
 }
 
 function addSpan(range) {
-    range.surroundContents(span);
+    if (range.startContainer.nodeType === Node.TEXT_NODE && range.endContainer.nodeType === Node.TEXT_NODE) {
+        range.surroundContents(span);
+    }
 }
 
 function removeSpan() {
     var cont = document.createTextNode(span.innerHTML);
-    span.parentNode.replaceChild(cont, span);
+    if (span.parentNode != null) {
+        span.parentNode.replaceChild(cont, span);
+    }
 }
 
 function speakWord(word, language) {
@@ -76,5 +84,11 @@ function setWindowSizeVars() {
         const rect = translatorWindow.getBoundingClientRect();
         translatorWindow.style.setProperty("--translator-height", Math.ceil(rect.height) + "px");
         translatorWindow.style.setProperty("--translator-width", (Math.ceil(rect.width) / 2) + "px");
+
+        var diff = rect.top - rect.height;
+        if (diff < 0) {
+            var changeTop = Math.abs(diff) + rect.top;
+            translatorWindow.style.setProperty("top", changeTop + "px");
+        }
     }
 }

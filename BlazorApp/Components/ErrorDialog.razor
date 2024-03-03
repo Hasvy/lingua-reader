@@ -1,0 +1,14 @@
+﻿@code {
+    [Parameter] public ErrorBoundary? ErrorBoundary { get; set; }
+    [Inject] DialogService DialogService { get; set; } = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        bool? isOkClicked = await DialogService.Alert($"An unhandled error has occurred.", "Error",
+                                new AlertOptions() { OkButtonText = "Reload", CloseDialogOnOverlayClick = false });
+        if (isOkClicked is true)
+            ErrorBoundary?.Recover();
+        
+        await base.OnInitializedAsync();
+    }
+}
