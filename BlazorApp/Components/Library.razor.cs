@@ -54,6 +54,9 @@ namespace BlazorApp.Components
                     case ConstBookFormats.epub:
                         book = await AddBookService.AddNewEpubBook(e);
                         break;
+                    case ConstBookFormats.txt:
+                        book = await AddBookService.AddNewTxtBook(e);
+                        break;
                     case ConstBookFormats.fb2:
                         //TODO
                         break;
@@ -61,6 +64,7 @@ namespace BlazorApp.Components
                         //TODO
                         break;
                     default:
+                        NotificationService.Notify(NotificationSeverity.Error, "Unsupported file format");
                         DialogService.Close();
                         break;
                 }
@@ -94,7 +98,7 @@ namespace BlazorApp.Components
             //    NotificationService.Notify(NotificationSeverity.Error, "Please specify your language in settings");
             //    return;
             //}
-            string userMainLang = await UserService.GetNativeLanguage();
+            //string userMainLang = await UserService.GetNativeLanguage();
             await LocalStorageService.SetItemAsStringAsync("bookFormat", choosenBook.Format);
             NavigationManager.NavigateTo("read/" + choosenBook.BookId + $"?lang={choosenBook.Language}");
             //NavigationManager.NavigateTo("read/" + choosenBook.BookId + $"?bookFormat={choosenBook.Format}", true);
@@ -118,11 +122,6 @@ namespace BlazorApp.Components
                     _userBooks.Remove(bookCover);
                 }
             }
-        }
-
-        private async Task ChangeBookLang(BookCover bookCover)
-        {
-            await BookOperationsService.ChangeBookLang(bookCover.Language, bookCover.Id);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Objects.Dto.Authentication;
+using Radzen;
 using Services.Authentication;
 
 namespace BlazorApp.Pages.Authentication.Registration
@@ -8,6 +9,7 @@ namespace BlazorApp.Pages.Authentication.Registration
     {
         [Inject] public IAuthenticationService AuthenticationService { get; set; } = null!;
         [Inject] public NavigationManager NavigationManager { get; set; } = null!;
+        [Inject] public NotificationService NotificationService { get; set; } = null!;
         public bool ShowRegistrationErrors { get; set; }
         public IEnumerable<string>? Errors { get; set; }
         private UserForRegistrationDto _userForRegistration = new UserForRegistrationDto();
@@ -16,6 +18,11 @@ namespace BlazorApp.Pages.Authentication.Registration
 
         public async Task Register()
         {
+            if (_userForRegistration.NativeLanguage == _userForRegistration.DesiredLanguage)
+            {
+                NotificationService.Notify(NotificationSeverity.Error, "Languages cannot be the same");
+                return;
+            }
             ShowRegistrationErrors = false;
             var result = await AuthenticationService.RegisterUser(_userForRegistration);
             if (!result.IsSuccessfulRegistration)

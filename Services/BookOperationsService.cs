@@ -3,6 +3,7 @@ using Objects.Entities;
 using Objects.Entities.Books;
 using Objects.Entities.Books.EpubBook;
 using Objects.Entities.Books.PdfBook;
+using Objects.Entities.Books.TxtBook;
 using Objects.Entities.Translator;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -47,11 +48,25 @@ namespace Services
             }
         }
 
-        public async Task<PdfBook> GetBookText(Guid id)      //Pdf
+        public async Task<PdfBook> GetPdfBookText(Guid id)      //Pdf
         {
             try
             {
                 var book = await _httpClient.GetFromJsonAsync<PdfBook>($"api/PdfBook/Get/{id}");
+                return book;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<TxtBook> GetTxtBookText(Guid id)      //Pdf
+        {
+            try
+            {
+                var book = await _httpClient.GetFromJsonAsync<TxtBook>($"api/TxtBook/Get/{id}");
                 return book;
             }
             catch (Exception)
@@ -95,6 +110,20 @@ namespace Services
             try
             {
                 var response = await _httpClient.PostAsJsonAsync("api/PdfBook/Post", book); ;
+                return response;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<HttpResponseMessage> SaveTxtBook(TxtBook book)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync("api/TxtBook/Post", book); ;
                 return response;
             }
             catch (Exception)

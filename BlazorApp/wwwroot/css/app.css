@@ -46,3 +46,14 @@ body {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+.loading-progress {
+    position: relative;
+    height: 25px!important;
+    width: 50%;
+    margin: 50vh auto 1rem auto;
+}
+
+.loading-text:after {
+    content: var(--blazor-load-percentage-text, "Loading");
+}

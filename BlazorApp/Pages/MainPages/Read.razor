@@ -4,28 +4,35 @@
 
 @attribute [Route(Routes.Read)]
 
-@* @if (_isLoading)
+@if (_isLoading)
 {
      <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
-    <RadzenIcon class="centered-element" Icon="sync" Style="animation: reverse rotation 750ms linear infinite; font-size: 50px"/>
-} *@
-
-@if (BookFormat == ConstBookFormats.epub)
-{
-    <DisplayEpubBook BookId="@BookId" BookLanguage="@BookLang" UserMainLang="@UserMainLang" />
+    @* <RadzenIcon class="centered-element" Icon="sync" Style="animation: reverse rotation 750ms linear infinite; font-size: 50px"/> *@
 }
-
-@if (BookFormat == ConstBookFormats.pdf)
+else
 {
-    <DisplayPdfBook BookId="@BookId" BookLanguage="@BookLang" UserMainLang="@UserMainLang" />
-}
+    @if (BookFormat == ConstBookFormats.epub)
+    {
+        <DisplayEpubBook BookId="@BookId" BookLanguage="@BookLang" />
+    }
 
-@if (BookFormat == ConstBookFormats.fb2)
-{
+    @if (BookFormat == ConstBookFormats.pdf)
+    {
+        <DisplayPdfBook BookId="@BookId" BookLanguage="@BookLang" BookFormat="@BookFormat" />
+    }
 
-}
+    @if (BookFormat == ConstBookFormats.txt)
+    {
+        <DisplayPdfBook BookId="@BookId" BookLanguage="@BookLang" BookFormat="@BookFormat" />
+    }
 
-@if (BookFormat == ConstBookFormats.mobi)
-{
-    
+    @if (BookFormat == ConstBookFormats.fb2)
+    {
+
+    }
+
+    @if (BookFormat == ConstBookFormats.mobi)
+    {
+
+    }
 }

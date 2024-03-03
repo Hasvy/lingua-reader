@@ -26,7 +26,6 @@ namespace BlazorApp.Components.DisplayBooks
         protected override async Task OnInitializedAsync()
         {
             _isLoading = true;
-            //Stopwatch stopwatch = Stopwatch.StartNew();
             Sections = await BookOperationsService.GetBookSections(Guid.Parse(BookId));
 
             await JS.InvokeVoidAsync("onInitialized", BookLanguage);
@@ -41,7 +40,6 @@ namespace BlazorApp.Components.DisplayBooks
                 {
                     throw new Exception();
                 }
-                //TODO Fix Epub display styles from inner html tag
             }
 
             CurrentPageNumber = 1;
@@ -51,8 +49,6 @@ namespace BlazorApp.Components.DisplayBooks
             await JS.InvokeVoidAsync("showContent");
             _isLoading = false;
             await base.OnInitializedAsync();
-            //stopwatch.Stop();
-            //Console.WriteLine("Time: " + stopwatch.ElapsedMilliseconds + " msec");
         }
 
         public async void JumpToPage(int? pageNumber)

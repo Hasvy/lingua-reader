@@ -1,49 +1,61 @@
 ﻿@using System.Globalization;
 
-<RadzenCard id="translator-window" class="translator-window" Visible="@Visible" Style=@($@"position: absolute; padding: 0px 10px 0px 10px;
+<RadzenCard id="translator-window" class="translator-window" Visible="@Visible" Style=@($@"position: absolute; padding: 0px; max-width: 500px;
                                                 left: {(WordInfo.Left).ToString(CultureInfo.InvariantCulture)}px;
                                                 top: {WordInfo.Top.ToString(CultureInfo.InvariantCulture)}px; z-index: 10;")>
     @if (!isLoading)
     {
-        <RadzenRow>
-            <RadzenColumn Size="10">
-                @if (WordWithTranslations is not null)
-                {
-                    if (mainTranslation is not null)
+        if (WordWithTranslations is not null)
+        {
+            <RadzenStack Orientation="Orientation.Horizontal" class="rz-pl-3">
+                <RadzenCard Variant="Variant.Text" class="rz-p-0">
+                    @if (WordWithTranslations is not null)
                     {
-                        <RadzenRow>
-                            <strong>@mainTranslation.DisplayTarget</strong>
-                        </RadzenRow>
-                        foreach (var posTag in dict)
+                        if (mainTranslation is not null)
                         {
                             <RadzenRow>
-                                <RadzenColumn Size="4">
-                                    @posTag.Key
-                                </RadzenColumn>
-                                <RadzenColumn Size="8">
-                                    @posTag.Value
-                                </RadzenColumn>
+                                <strong>@mainTranslation.DisplayTarget</strong>
                             </RadzenRow>
+                            <RadzenCard Variant="Variant.Text" class="rz-p-0">
+                                @foreach (var posTag in dict)
+                                {
+                                    <RadzenStack Orientation="Orientation.Horizontal">
+                                        <RadzenCard Variant="Variant.Text" class="rz-p-0">
+                                            @posTag.Key
+                                        </RadzenCard>
+                                        <RadzenCard Variant="Variant.Text" class="rz-p-0">
+                                            @posTag.Value
+                                        </RadzenCard>
+                                    </RadzenStack>
+                                }
+                            </RadzenCard>
                         }
                     }
-                }
-            </RadzenColumn>
-            <RadzenColumn Size="2">
+                </RadzenCard>
+                <RadzenCard Variant="Variant.Text" class="rz-p-0">
+                    <RadzenStack Orientation="Orientation.Horizontal" Gap="0">
+                        <RadzenButton IsBusy="@isSpeaking" Icon="volume_up" Variant="Variant.Text" Click="SpeakWord" />
+                        @if (WordWithTranslations.IsWordSaved)
+                        {
+                            <RadzenButton IsBusy="@_isDeleting" Icon="done" Variant="Variant.Text" Click="DeleteWord" />
+                        }
+                        else
+                        {
+                            <RadzenButton IsBusy="@_isSaving" Icon="add" Variant="Variant.Text" Click="AddWord" />
+                        }
+                        <RadzenButton IsBusy="@_isUpdating" Icon="sync" Variant="Variant.Text" Click="UpdateWord" />
+                    </RadzenStack>
+                </RadzenCard>
+            </RadzenStack>
+        }
+        else
+        {
+            <RadzenStack class="rz-pb-5 rz-px-4">
                 <RadzenRow>
-                    <RadzenButton IsBusy="@isSpeaking" Icon="volume_up" Variant="Variant.Text" Click="SpeakWord" />
+                    <strong>Translations are not found</strong>
                 </RadzenRow>
-                <RadzenRow>
-                    @if (WordWithTranslations.IsWordSaved)
-                    {
-                        <RadzenButton IsBusy="@_isDeleting" Icon="done" Variant="Variant.Text" Click="DeleteWord" />
-                    }
-                    else
-                    {
-                        <RadzenButton IsBusy="@_isSaving" Icon="add" Variant="Variant.Text" Click="AddWord" />
-                    }
-                </RadzenRow>
-            </RadzenColumn>
-        </RadzenRow>
+            </RadzenStack>
+        }
     }
     else
     {

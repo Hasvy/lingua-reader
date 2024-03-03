@@ -16,19 +16,26 @@
     <link href="css/animations.css" rel="stylesheet" />
     <script src="js/bookScript.js"></script>
     <script src="js/translatorScript.js"></script>
+    <script src="js/learningScript.js"></script>
 
     <!-- If you add any scoped CSS files, uncomment the following to load them
-    <link href="BlazorApp.styles.css" rel="stylesheet" /> -->
+    <link href="BlazorApp.styles.css" rel="stylesheet" />-->
 </head>
 
 <body>
-    <div id="app">Loading...</div>
-
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
+    <div id="app">
+        <div aria-valuemax="100" aria-valuemin="0" role="progressbar" class="rz-progressbar rz-progressbar-determinate rz-progressbar-primary loading-progress rounded-3">
+            <div class="rz-progressbar-value rz-progressbar-value-animate rounded-3" style="width: var(--blazor-load-percentage, 0%) "></div>
+            <div class="rz-progressbar-label loading-text"></div>
+        </div>
     </div>
+
+    <!--<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+    </div>-->
+
     <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
 </body>

@@ -5,6 +5,7 @@ using Objects.Entities;
 using Objects.Entities.Books;
 using Objects.Entities.Books.EpubBook;
 using Objects.Entities.Books.PdfBook;
+using Objects.Entities.Books.TxtBook;
 using Objects.Entities.Translator;
 using Objects.Entities.Words;
 using System.Net;
@@ -43,11 +44,17 @@ namespace BlazorServer
 
             modelBuilder.Entity<PdfBook>().ToTable("PdfBooks");
 
+            modelBuilder.Entity<TxtBook>().ToTable("TxtBooks");
+
             modelBuilder.Entity<EpubBook>()     //Epub book column Id refers to Abstract book Id column
                 .Property(b => b.Id)
                 .HasColumnName("Id");
 
             modelBuilder.Entity<PdfBook>()
+                .Property(b => b.Id)
+                .HasColumnName("Id");
+
+            modelBuilder.Entity<TxtBook>()
                 .Property(b => b.Id)
                 .HasColumnName("Id");
 
@@ -83,6 +90,7 @@ namespace BlazorServer
         public DbSet<AbstractBook> AbstractBooks { get; set; }
         public DbSet<EpubBook> EpubBooks { get; set; }
         public DbSet<PdfBook> PdfBooks { get; set; }
+        public DbSet<TxtBook> TxtBooks { get; set; }
         public DbSet<BookCover> BookCovers { get; set; }
         public DbSet<BookSection> BookSections { get; set; }
         public DbSet<SavedWord> SavedWords { get; set; }

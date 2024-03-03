@@ -39,7 +39,7 @@ namespace BlazorApp.Components.Learning
                 rightButton.ButtonStyle = ButtonStyle.Success;
                 clickedButton.ButtonStyle = ButtonStyle.Danger;
             }
-            //await Task.Delay(2000);
+            await Task.Delay(2000);
             if (rightButton is not null)
             {
                 rightButton.ButtonStyle = ButtonStyle.Primary;

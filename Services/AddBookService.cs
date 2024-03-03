@@ -1,11 +1,15 @@
-﻿using iText.Kernel.Pdf.Canvas.Parser;
+﻿using AngleSharp.Html.Parser;
+using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf.Canvas.Parser.Listener;
+using iText.StyledXmlParser.Jsoup.Parser;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 using Objects.Constants;
 using Objects.Entities;
 using Objects.Entities.Books.EpubBook;
 using Objects.Entities.Books.PdfBook;
+using Objects.Entities.Books.TxtBook;
+using Radzen;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Processing;
@@ -23,21 +27,25 @@ namespace Services
         private readonly BookOperationsService _bookOperationsService;
         private readonly HtmlParserService _htmlParserService;
         private readonly ProgressService _progressService;
+        private readonly NotificationService _notificationService;
         private readonly IJSRuntime _JS;
         private long _maxFileSize = 1024 * 1024 * 10;       //10Mb
-        public AddBookService(BookOperationsService bookOperationsService, ProgressService progressService, HtmlParserService htmlParserService, IJSRuntime jSRuntime)
+        public AddBookService(BookOperationsService bookOperationsService, ProgressService progressService, HtmlParserService htmlParserService, IJSRuntime jSRuntime, NotificationService notificationService)
         {
             _bookOperationsService = bookOperationsService;
             _progressService = progressService;
             _htmlParserService = htmlParserService;
             _JS = jSRuntime;
+            _notificationService = notificationService;
         }
 
         #region Epub book processing
         public async Task<Objects.Entities.Books.EpubBook.EpubBook?> AddNewEpubBook(InputFileChangeEventArgs e)
         {
-            
-            MemoryStream memoryStream = await GetMemoryStreamFromInput(e);
+            _progressService.UpdateProgress(0);
+            MemoryStream? memoryStream = await GetMemoryStreamFromInput(e);
+            if (memoryStream is null)
+                return null;
             //EpubBook epubBook = await EpubReader.ReadBookAsync(memoryStream);       //TODO add ePubSharp library like additional try to read a book when versone cant read a book, maybe it will read Sheakspere book file
             EpubBookRef epubBook = await EpubReader.OpenBookAsync(memoryStream);
             Objects.Entities.Books.EpubBook.EpubBook book = await SetBookData(epubBook);
@@ -53,15 +61,6 @@ namespace Services
                 return null;
                 //Notification and log
             }
-        }
-
-        private async Task<MemoryStream> GetMemoryStreamFromInput(InputFileChangeEventArgs e)
-        {
-            //TODO progress info
-            var ms = new MemoryStream();        //Possible memory leak?
-            await e.File.OpenReadStream(_maxFileSize).CopyToAsync(ms);
-            return ms;
-
         }
 
         private async Task<Objects.Entities.Books.EpubBook.EpubBook> SetBookData(EpubBookRef epubBook)     //Assign epubBook data to EpubBook object
@@ -100,6 +99,7 @@ namespace Services
                 bookSection.EpubBookId = book.Id;
                 sectionList.Add(bookSection);
                 index++;
+                await UpdateProgress(index, readingOrder.Count());
             }
             return sectionList;
         }
@@ -171,6 +171,8 @@ namespace Services
         //        //The file will be on server, but I need it on a client, so I cant work with the file.
         //        //BLOB in database then wirte it in memory - for images
         //        //css and images to datauri string and then apply it to code +
+        //
+        //        //UPD. Send file from server as byte array? Or at least images
         //    }
         //    return contentList;
         //}
@@ -183,7 +185,9 @@ namespace Services
         public async Task<PdfBook?> AddNewPdfBook(InputFileChangeEventArgs e)
         {
             _progressService.UpdateProgress(0);
-            MemoryStream memoryStream = await GetMemoryStreamFromInput(e);
+            MemoryStream? memoryStream = await GetMemoryStreamFromInput(e);
+            if (memoryStream is null)
+                return null;
             memoryStream.Seek(0, SeekOrigin.Begin);
 
             iText.Kernel.Pdf.PdfReader reader = new iText.Kernel.Pdf.PdfReader(memoryStream);
@@ -202,12 +206,9 @@ namespace Services
             for (int pageNumber = 1; pageNumber <= pagesCount; pageNumber++)
             {
                 PdfCanvasProcessor processor = new PdfCanvasProcessor(strategy);    //I will renew the processor with every page, otherwise start and end of a segment in strategy
-                var page = pdfDoc.GetPage(pageNumber);                              //will create a very short interval, so the code will stop create new lines, I don't know why, its a bug.
+                var page = pdfDoc.GetPage(pageNumber);                              //will create a very short interval, so the code will stop create new lines, I don't know why.
                 processor.ProcessPageContent(page);
-
-                await Task.Delay(1);
-                _progressService.GetCancellationToken().ThrowIfCancellationRequested();
-                _progressService.UpdateProgress(pageNumber * 100 / pagesCount);
+                await UpdateProgress(pageNumber, pagesCount);
             }
 
             PdfBook book = SaveBookData(pdfDoc);
@@ -241,7 +242,59 @@ namespace Services
         }
         #endregion
 
-        private async void UpdateProgress(int progress, int taskCount)
+        public async Task<TxtBook?> AddNewTxtBook(InputFileChangeEventArgs e)
+        {
+            _progressService.UpdateProgress(0);
+            TxtBook book = new TxtBook();
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("""<div id="txt-content">""");
+            using (StreamReader reader = new StreamReader(e.File.OpenReadStream(), Encoding.UTF8))
+            {
+                string? line;
+                int totalBytesRead = 0;
+                while ((line = await reader.ReadLineAsync()) != null)
+                {
+                    totalBytesRead += Encoding.UTF8.GetByteCount(line);
+                    if (line == string.Empty)
+                        stringBuilder.Append("<br/>");
+                    else
+                        stringBuilder.Append("<p>" + line + "</p>");
+                    await UpdateProgress(totalBytesRead, (int)e.File.Size);
+                }
+            }
+
+            stringBuilder.AppendLine("</div>");
+            book.Text = stringBuilder.ToString();
+            book.BookCover = new BookCover();
+            book.BookCover.Format = ConstBookFormats.txt;
+            book.BookCover.Title = Path.GetFileNameWithoutExtension(e.File.Name);
+            book.BookCover.BookId = book.Id;
+
+            var response = await _bookOperationsService.SaveTxtBook(book);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return book;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private async Task<MemoryStream?> GetMemoryStreamFromInput(InputFileChangeEventArgs e)
+        {
+            var ms = new MemoryStream();
+            if (_maxFileSize < e.File.Size)
+            {
+                _notificationService.Notify(NotificationSeverity.Error, "Maximum allowed file size is 10 Mb");
+                return null;
+            }
+            await e.File.OpenReadStream(_maxFileSize).CopyToAsync(ms);
+            return ms;
+        }
+
+        private async Task UpdateProgress(int progress, int taskCount)
         {
             await Task.Delay(1);
             _progressService.GetCancellationToken().ThrowIfCancellationRequested();

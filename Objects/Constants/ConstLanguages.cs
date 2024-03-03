@@ -41,6 +41,7 @@ namespace Objects.Constants
 
         public static readonly string[] NativeLanguagesSet = new string[] { English, German, Russian, Czech, Italian, Spanish, Ukrainian, French };
         public static readonly string[] DesiredLanguagesSet = new string[] { English, German, Russian, Czech, Italian, Spanish };
+        public static readonly string[] DesiredLanguagesSetForPdf = new string[] { English, German, Russian, Italian, Spanish };
 
         public static string GetFlagPath(string language)
         {

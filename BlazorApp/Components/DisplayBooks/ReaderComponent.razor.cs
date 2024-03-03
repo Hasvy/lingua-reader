@@ -18,36 +18,49 @@ namespace BlazorApp.Components.DisplayBooks
         [Parameter] public EventCallback PreviousPageCallback { get; set; }
         [Parameter] public EventCallback NextPageCallback { get; set; }
         [Parameter] public EventCallback<int?> JumpToPageCallback { get; set; }
+        [Parameter] public EventCallback Ready { get; set; }
         [Parameter] public string BookLanguage { get; set; } = null!;
-        [Parameter] public string UserMainLang { get; set; } = null!;
 
         private int? insertedPageNumber;
         private ElementReference host;
         private bool visible = false;
         private bool isBusy = false;
         private bool isLoading = false;
+        private bool isComponentLoading = false;
         private WordInfo? wordInfo = new WordInfo();
         private WordWithTranslations? translatorWordResponse;
         private string pressedKey = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
-            await TranslatorService.SetLanguages(BookLanguage, UserMainLang);
+            isComponentLoading = true;
+            await TranslatorService.SetLanguage(BookLanguage);
             await base.OnInitializedAsync();
+            await Ready.InvokeAsync();
+            isComponentLoading = false;
         }
 
         private async Task GetSelectedWord()        //TODO reorganize the method and rename
         {
             visible = false;
+            translatorWordResponse = null;
             wordInfo = await JS.InvokeAsync<WordInfo>("getSelectedWord", host);
-            if (!string.IsNullOrWhiteSpace(wordInfo.Word) && wordInfo.Word.Length < 30)
+            if (!string.IsNullOrWhiteSpace(wordInfo.Word) && wordInfo.Word.Length < 30 && !wordInfo.Word.Contains(" "))
             {
                 visible = true;          //ShowTranslatorWindow, unhide
                 isLoading = true;
                 StateHasChanged();
                 //await Task.Yield();
                 await Task.Delay(1);
-                translatorWordResponse = await TranslatorService.GetWordTranslation(wordInfo.Word);
+                var wordWithTranslations = await TranslatorService.GetWordTranslation(wordInfo.Word);
+                if (wordWithTranslations != null)
+                {
+                    translatorWordResponse = wordWithTranslations;
+                }
+                else
+                {
+
+                }
             }
             //StateHasChanged();
             //translatorWindow.ProcessResponse();
@@ -63,6 +76,11 @@ namespace BlazorApp.Components.DisplayBooks
                 await JS.InvokeVoidAsync("speakWord", wordInfo.Word, BookLanguage);
                 isBusy = false;
             }
+        }
+
+        private void HandleWordChanged(object wordWithTranslations)
+        {
+            translatorWordResponse = (WordWithTranslations)wordWithTranslations;
         }
 
         private async void HandleKeyPress(KeyboardEventArgs e)

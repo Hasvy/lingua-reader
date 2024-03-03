@@ -1,0 +1,56 @@
+﻿@using BlazorApp.Components.Translator
+@using Objects.Constants;
+
+<RadzenRow JustifyContent="JustifyContent.End">
+    <RadzenImage @onclick="() => _lang = ConstLanguages.Czech" @bind-value="_lang" Path="img/czech-republic-32.png"></RadzenImage>
+    <RadzenImage @onclick="() => _lang = ConstLanguages.English" @bind-value="_lang" Path="img/great-britain-32.png"></RadzenImage>
+</RadzenRow>
+
+@if (_lang == ConstLanguages.English)
+{
+    <div style="text-align: justify">
+        <p>LinguaReader application allows you to upload and read your own digital books in foreign languages. It enables you to click on any word in the book text and provides translations for that word. Clicked words can be saved and then practiced.</p>
+        <p><b>Reading</b> – on this tab, you can add electronic books in formats .epub, .pdf, and .txt. After adding a book, set the language in which this book is written. Then you can open it by clicking, and the text of the opened book will be displayed.</p>
+        <p>While reading the book, you can click on individual words in the text. When clicked, a window will appear with possible translations of the clicked word and its word types. The window has several buttons.</p>
+        <ul style="list-style: none">
+            <li><RadzenIcon Icon="volume_up" class="rz-color-primary inline-icon" /> – pronounce the clicked word.</li>
+            <li><RadzenIcon Icon="add" class="rz-color-primary inline-icon" /> – save the clicked word and translations to the list to practice them later.</li>
+            <li><RadzenIcon Icon="sync" class="rz-color-primary inline-icon" /> – retranslate the clicked word. If you think the translation is incorrect.</li>
+        </ul>
+        <p><b>Learning</b> – on this tab, you can manage and practice your saved words. When clicked, you will see a list of all saved words in the selected studied language.</p>
+        <ul style="list-style: none">
+            <li>"Practice words" – randomly selects 10 words from the list of saved words and displays cards for practicing these words. You need to select the correct translation given on the word card.</li>
+            <li>"Delete selected words" – deletes selected words.</li>
+            <li>"Export words to csv" – exports selected words to a .csv file. If you do not select any words, it exports all saved words.</li>
+        </ul>
+        <p><b>Profile</b> – you can change the languages set at registration.</p>
+        <ul style="list-style: none">
+            <li>"Native language" – your native language, into which translations are made and in which all translations will be displayed.</li>
+            <li>"Language to learn" – the language you are studying. It affects the language in which you will see words on the "Learning" tab and in the list. It does not affect the language in which you read, for each book you need to select a language separately.</li>
+        </ul>
+    </div>
+}
+else if (_lang == ConstLanguages.Czech)
+{
+    <div style="text-align: justify">
+        <p>LinguaReader aplikace umožňuje nahrávat a číst vlastní digitální knihy v cizích jazycích. Umožňuje kliknuti na jakékoli slovo v textu knihy a poskytuje překlady tohoto slova. Kliknuta slova je možné uložit a pak procvičit.</p>
+        <p><b>Reading</b> – na této záložce můžete přidat elektronické knihy ve formátech .epub, .pdf a .txt. Po přidaní knihy nastavte jazyk, ve kterém je tato kniha napsána. Pak můžete jí otevřít kliknutím a zobrazí se vám text otevřené knihy.</p>
+        <p>Pří čtení knihy můžete klikat na jednotlivá slova v textu. Při kliknuti se vám zobrazí okno s možnými překlady kliknutého slova a jejích slovní druhy. Okno má několik tlačítek.</p>
+        <ul style="list-style: none">
+            <li><RadzenIcon Icon="volume_up" class="rz-color-primary inline-icon" /> – pronést kliknuté slovo.</li>
+            <li><RadzenIcon Icon="add" class="rz-color-primary inline-icon" /> – uložit kliknuté slovo a překlady do seznamu pro následující procvičení.</li>
+            <li><RadzenIcon Icon="sync" class="rz-color-primary inline-icon" /> – přeloží kliknuté slovo znovu. Pokud si myslíte že překlad není správný.</li>
+        </ul>
+        <p><b>Learning</b> – na této záložce můžete zpravovat a procvičit své uložená slova. Při kliknuti uvidíte seznam všech uložených slov ve vybraném studovaném jazyce.</p>
+        <ul style="list-style: none">
+            <li>"Practice words" – náhodně vybírá 10 slov ze seznamu uložených slov a zobrazuje karty pro procvičení těchto slov. Je třeba vybrat správný překlad uvedeného na kartě slova.</li>
+            <li>"Delete selected words" – smaže označená slova.</li>
+            <li>"Export words to csv" – exportuje označená slova do .csv souboru. Pokud neoznačíte žádné slovo – vyexportuje všechna uložena slova.</li>
+        </ul>
+        <p><b>Profile</b> – můžete změnit jazyky nastavené pří registraci.</p>
+        <ul style="list-style: none">
+            <li>"Native language" – váš mateřský jazyk, do kterého se překládá a ve kterém budou ukázány vše překlady.</li>
+            <li>"Language to learn" – jazyk který studujete. Ovlivňuje, v jakém jazyce uvidíte slova na záložce "Learning" a v seznamu. Neovlivňuje jazyk, ve kterém čtete, pro každou knihu je třeba vybrat jazyk zvlášť.</li>
+        </ul>
+    </div>
+}

@@ -10,6 +10,7 @@ namespace Objects.Constants
     {
         public const string pdf = ".pdf";
         public const string epub = ".epub";
+        public const string txt = ".txt";
         public const string fb2 = ".fb2";
         public const string mobi = ".mobi";
     }

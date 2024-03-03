@@ -26,15 +26,21 @@ namespace BlazorServer.Controllers
         public async Task<ActionResult<IEnumerable<BookCover>>> Get()
         {
             List<BookCover>? bookCovers = new List<BookCover>();
-            List<AbstractBook>? abstractBooks = null;
+            //List<AbstractBook>? userBooks = null;
             var user = await _userManager.GetUserAsync(User);
             if (user is not null)
             {
-                abstractBooks = await _appDbContext.AbstractBooks.Where(ab => ab.OwnerId == Guid.Parse(user.Id)).ToListAsync();
-                foreach (var book in abstractBooks)
-                {
-                    bookCovers.Add(_appDbContext.BookCovers.Single(bc => bc.BookId == book.Id));
-                }
+                //userBooks = await _appDbContext.AbstractBooks.Where(ab => ab.OwnerId == Guid.Parse(user.Id)).ToListAsync();
+                bookCovers = (from book in _appDbContext.AbstractBooks
+                              join cover in _appDbContext.BookCovers
+                                  on book.Id equals cover.BookId
+                              where book.OwnerId == Guid.Parse(user.Id)
+                              select cover).ToList();
+
+                //foreach (var book in abstractBooks)
+                //{
+                //    bookCovers.Add(_appDbContext.BookCovers.Single(bc => bc.BookId == book.Id));
+                //}
             }
 
             if (bookCovers == null)

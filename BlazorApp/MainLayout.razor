@@ -7,7 +7,9 @@
     <RadzenHeader>
         <RadzenRow AlignItems="AlignItems.Center" class="h-100">
             <RadzenColumn Size="12" SizeMD="4">
-
+                <RadzenLink Path="https://www.ef.jcu.cz" class="rz-ml-4" IconColor="white">
+                    <RadzenImage Path="img/EF_SYMBOL_NEGATIVE.png" Style="width: 40px; height: auto;" />
+                </RadzenLink>
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMD="4" class="h-100 flex-center custom-active">
                 <AuthorizeView>
@@ -45,8 +47,13 @@
                 <AuthorizeView>
                     <Authorized>
                         <RadzenRow Gap="0" AlignItems="AlignItems.Center" class="h-100 w-100">
-                            <RadzenColumn Size="12" SizeMD="8">
-
+                            <RadzenColumn Size="12" SizeMD="7">
+                                
+                            </RadzenColumn>
+                            <RadzenColumn Size="12" SizeMD="1" class="h-100">
+                                <div class="h-100 w-100 flex-center">
+                                    <RadzenIcon class="m-0" Style="color: white; cursor: pointer;" Icon="info_outline" @onclick="ShowInfoDialog"></RadzenIcon>
+                                </div>
                             </RadzenColumn>
                             <RadzenColumn Size="12" SizeMD="2" class="h-100">
                                 <NavLink>
@@ -65,7 +72,14 @@
         </RadzenRow>
     </RadzenHeader>
     <RadzenBody>
-        @Body
+        <ErrorBoundary @ref="errorBoundary">
+            <ChildContent>
+                @Body
+            </ChildContent>
+            <ErrorContent>
+                <ErrorDialog ErrorBoundary="errorBoundary" />
+            </ErrorContent>
+        </ErrorBoundary>
     </RadzenBody>
 </RadzenLayout>
 

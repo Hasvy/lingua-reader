@@ -9,6 +9,7 @@ using Objects.Entities;
 using Objects.Entities.Books;
 using Objects.Entities.Books.EpubBook;
 using Objects.Entities.Books.PdfBook;
+using Objects.Entities.Books.TxtBook;
 using System.IO.Compression;
 using EpubBook = Objects.Entities.Books.EpubBook.EpubBook;
 
@@ -37,6 +38,37 @@ namespace BlazorServer.Controllers
                 {
                     book.OwnerId = Guid.Parse(user.Id);
                     _appDbContext.EpubBooks.Add(book);
+                    await _appDbContext.SaveChangesAsync();
+                    return Ok();
+                }
+
+                //byte[] bytes = Convert.FromBase64String(epubBook.BookContentFile);
+                //string filename = book.Id.ToString();
+                //string path = "Uploads\\Users\\user1\\Books\\" + filename;
+
+                //TODO security check before save!!!
+                //TODO save confidence, save files encrypted.   Maybe use File.Encrypt
+                //using (var stream = System.IO.File.Create(path))
+                //{
+                //    stream.Write(bytes, 0, bytes.Length);
+                //}
+
+            }
+
+            return BadRequest();
+        }
+
+        [HttpPost]
+        [Route("api/TxtBook/Post")]
+        public async Task<IActionResult> SaveTxtBook([FromBody] TxtBook book)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if (user is not null)
+                {
+                    book.OwnerId = Guid.Parse(user.Id);
+                    _appDbContext.TxtBooks.Add(book);
                     await _appDbContext.SaveChangesAsync();
                     return Ok();
                 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Objects.Entities.Books.EpubBook;
+using Objects.Entities.Books.PdfBook;
+using Objects.Entities.Books.TxtBook;
 using static System.Reflection.Metadata.BlobBuilder;
 
 namespace BlazorServer.Controllers
@@ -29,6 +31,22 @@ namespace BlazorServer.Controllers
             else
             {
                 return Ok(bookSections);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/TxtBook/Get/{Id:Guid}")]
+        public ActionResult<TxtBook> GetTxtBook(Guid id)
+        {
+            var book = _appDbContext.TxtBooks.First(b => b.Id == id);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(book);
             }
         }
 
