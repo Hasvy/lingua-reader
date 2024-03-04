@@ -13,7 +13,7 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7049/") }.EnableIntercept(sp));
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://delightful-ground-0824b8703.4.azurestaticapps.net/") }.EnableIntercept(sp));
 //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 //Radzen
 builder.Services.AddScoped<DialogService>();
