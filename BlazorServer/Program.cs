@@ -88,7 +88,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(policy =>
-    policy.WithOrigins("https://kind-glacier-04b730203.4.azurestaticapps.net", "http://kind-glacier-04b730203.4.azurestaticapps.net")
+    policy.WithOrigins("https://localhost:7215", "http://localhost:5284")
     .AllowAnyHeader()
     .AllowAnyMethod()
     .AllowCredentials()
