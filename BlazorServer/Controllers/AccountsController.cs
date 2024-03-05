@@ -1,8 +1,6 @@
 ﻿using EmailService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
-using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using Objects.Dto.Authentication;
 using Objects.Entities;
@@ -10,7 +8,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Web;
-using System.Xml;
 
 namespace BlazorServer.Controllers
 {
@@ -54,7 +51,7 @@ namespace BlazorServer.Controllers
         [Route("api/accounts/Login")]
         public async Task<IActionResult> Login([FromBody] UserForAuthenticationDto userForAuthentication)
         {
-            var user = await _userManager.FindByNameAsync(userForAuthentication.Email);
+            var user = await _userManager.FindByEmailAsync(userForAuthentication.Email);
 
             if (user is not null)
             {
