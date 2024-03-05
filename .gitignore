@@ -400,3 +400,6 @@ FodyWeavers.xsd
 /BlazorServer/appsettings.json
 /BooksExamples/PDF
 /BooksExamples/EPUB
+/BlazorServer/appsettings.Local.json
+/BlazorServer/appsettings.Development.json
+/BlazorServer/appsettings.Production.json
