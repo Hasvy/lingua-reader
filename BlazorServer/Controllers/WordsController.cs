@@ -1,13 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
-using Objects.Dto;
 using Objects.Entities;
 using Objects.Entities.Translator;
 using Objects.Entities.Words;
-using System;
-using System.Diagnostics;
 
 namespace BlazorServer.Controllers
 {
@@ -72,27 +68,12 @@ namespace BlazorServer.Controllers
                                 join id in wordsToDeleteIds
                                     on savedWord.WordId equals id
                                 select savedWord;
-
-            //var wordToDelete = await _appDbContext.SavedWords.Where(w => w.UserId.ToString() == user.Id && w.WordId == wordsWithTranslations.Where(p => p.Id == ));
             if (wordsToDelete is null)
                 return NotFound();
 
             _appDbContext.SavedWords.RemoveRange(wordsToDelete);
             await _appDbContext.SaveChangesAsync();
             return Ok();
-        }
-
-        //[HttpGet]
-        //[Route("api/wordsWithTranslations/GetWordsCount")]
-        private int GetWordsCount(ApplicationUser user)
-        {
-            var usersWordsIds = _appDbContext.SavedWords.Where(w => w.UserId.ToString() == user.Id).ToList();
-            int wordsCount = (from savedWord in usersWordsIds
-                              join word in _dictionaryDbContext.Words
-                                  on savedWord.WordId equals word.Id
-                              where word.Language == user.DesiredLanguage
-                              select word).Count();
-            return wordsCount;
         }
 
         [HttpGet]
@@ -103,12 +84,6 @@ namespace BlazorServer.Controllers
             if (user is null)
                 return BadRequest();
 
-            //int wordsCount = GetWordsCount(user);
-            //if (wordsCount < 10)
-            //{
-            //    return Ok( new WordsToLearnDto { WordsCount = wordsCount, WordsToLearn = null });
-            //}
-
             int count = 10;
             var usersWordsIds = _appDbContext.SavedWords.Where(w => w.UserId.ToString() == user.Id);
             var wordsWithTranslations = JoinWordsWithTranslations(usersWordsIds, user, true);
@@ -117,19 +92,10 @@ namespace BlazorServer.Controllers
             foreach (var word in wordsWithTranslations)
             {
                 wordsToLearn.Add(new WordToLearn { WordWithTranslations = word });
-                //var variantToAnswer = new VariantToAnswer
-                //{
-                //    Text = word.Translations.First(),
-                //    isRight = true
-                //};
-                //var wordToLearn = new WordToLearn { WordWithTranslations = word };
-                //wordToLearn.VariantsToAnswer.Add(variantToAnswer);
-                //wordsToLearn.Add(wordToLearn);
             }
             foreach (var word in wordsToLearn)
             {
                 word.WrongVariants = GetWrongVariants(3, word, user);
-                //word.VariantsToAnswer.AddRange((IEnumerable<VariantToAnswer>)word.WrongVariants.ToList());
             }
             return Ok(wordsToLearn);
         }
@@ -148,24 +114,6 @@ namespace BlazorServer.Controllers
             var completeQuery = JoinWordsWithTranslations(usersWordsIds, user, true);
             var usersWords = completeQuery.ToList();
             return Ok(usersWords);
-
-            //var completeQuery = from savedWord in usersWordsIds
-            //                    join wordWithTranslations in _dictionaryDbContext.Words
-            //                        .Where(w => w.Language == user.DesiredLanguage)
-            //                        .DefaultIfEmpty()
-            //                        on savedWord.WordId equals wordWithTranslations?.Id
-            //                    join translation in _dictionaryDbContext.Translations
-            //                        .Where(t => t.Language == user.NativeLanguage)
-            //                        .DefaultIfEmpty()
-            //                        on savedWord.WordId equals translation.WordId into translationsGroup
-            //                    select new WordWithTranslations
-            //                    {
-            //                        Id = wordWithTranslations.Id,
-            //                        DisplaySource = wordWithTranslations.DisplaySource,
-            //                        Translations = translationsGroup.ToList(),
-            //                        Language = wordWithTranslations.Language,
-            //                        IsWordSaved = wordWithTranslations.IsWordSaved
-            //                    };
         }
 
         private IEnumerable<WordWithTranslations> JoinWordsWithTranslations(IEnumerable<SavedWord> savedWords, ApplicationUser user, bool isWordsSaved = false)
@@ -177,8 +125,8 @@ namespace BlazorServer.Controllers
                        on savedWord.WordId equals wordWithTranslations?.Id
                    join translation in _dictionaryDbContext.Translations
                        .Where(t => t.Language == user.NativeLanguage)
-                       .DefaultIfEmpty()
                        on savedWord.WordId equals translation.WordId into translationsGroup
+                   where translationsGroup.Any()
                    select new WordWithTranslations
                    {
                        Id = wordWithTranslations.Id,
