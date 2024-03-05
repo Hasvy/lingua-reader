@@ -15,9 +15,11 @@ namespace BlazorApp.Pages.Authentication.Registration
         private UserForRegistrationDto _userForRegistration = new UserForRegistrationDto();
         private bool _isPasswordVisible = false;
         private bool _isConfirmPasswordVisible = false;
+        private bool _isRegistering = false;
 
         public async Task Register()
         {
+            _isRegistering = true;
             if (_userForRegistration.NativeLanguage == _userForRegistration.DesiredLanguage)
             {
                 NotificationService.Notify(NotificationSeverity.Error, "Languages cannot be the same");
@@ -34,6 +36,7 @@ namespace BlazorApp.Pages.Authentication.Registration
             {
                 NavigationManager.NavigateTo("/SuccessRegistration");
             }
+            _isRegistering = false;
         }
 
         private void TogglePassword()
