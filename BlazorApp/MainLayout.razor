@@ -6,21 +6,21 @@
 <RadzenLayout>
     <RadzenHeader>
         <RadzenRow AlignItems="AlignItems.Center" class="h-100">
-            <RadzenColumn Size="12" SizeMD="4">
+            <RadzenColumn Size="2" SizeXS="4">
                 <RadzenLink Path="https://www.ef.jcu.cz" class="rz-ml-4" IconColor="white">
                     <RadzenImage Path="img/EF_SYMBOL_NEGATIVE.png" Style="width: 40px; height: auto;" />
                 </RadzenLink>
             </RadzenColumn>
-            <RadzenColumn Size="12" SizeMD="4" class="h-100 flex-center custom-active">
+            <RadzenColumn Size="6" SizeXS="4" class="h-100 flex-center custom-active">
                 <AuthorizeView>
                     <Authorized>
                         <RadzenRow Gap="0" AlignItems="AlignItems.Center" class="h-100 w-100">
-                            <RadzenColumn Size="12" SizeMD="6" class="h-100">
+                            <RadzenColumn Size="6" class="h-100">
                                 <NavLink>
                                     <RadzenLink class="h-100 flex-center h4" Path="@Routes.Reading" Text="Reading" />
                                 </NavLink>
                             </RadzenColumn>
-                            <RadzenColumn Size="12" SizeMD="6" class="h-100">
+                            <RadzenColumn Size="6" class="h-100">
                                 <NavLink>
                                     <RadzenLink class="h-100 flex-center h4" Path="@Routes.Learning" Text="Learning" />
                                 </NavLink>
@@ -29,12 +29,12 @@
                     </Authorized>
                     <NotAuthorized>
                         <RadzenRow Gap="0" AlignItems="AlignItems.Center" class="h-100 w-100">
-                            <RadzenColumn Size="12" SizeMD="6" class="h-100">
+                            <RadzenColumn Size="6" class="h-100">
                                 <NavLink>
                                     <RadzenLink class="h-100 flex-center h4" Path="@Routes.Registration" Text="Register" />
                                 </NavLink>
                             </RadzenColumn>
-                            <RadzenColumn Size="12" SizeMD="6" class="h-100">
+                            <RadzenColumn Size="6" class="h-100">
                                 <NavLink>
                                     <RadzenLink class="h-100 flex-center h4" Path="@Routes.Login" Text="Log in" />
                                 </NavLink>
@@ -43,24 +43,24 @@
                     </NotAuthorized>
                 </AuthorizeView>
             </RadzenColumn>
-            <RadzenColumn Size="12" SizeMD="4" class="h-100 flex-center custom-active">
+            <RadzenColumn Size="4" SizeXS="4" class="h-100 flex-center custom-active">
                 <AuthorizeView>
                     <Authorized>
-                        <RadzenRow Gap="0" AlignItems="AlignItems.Center" class="h-100 w-100">
-                            <RadzenColumn Size="12" SizeMD="7">
+                        <RadzenRow Gap="0" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" class="h-100 w-100">
+                            <RadzenColumn Size="1" SizeSM="4" SizeMD="7">
                                 
                             </RadzenColumn>
-                            <RadzenColumn Size="12" SizeMD="1" class="h-100">
+                            <RadzenColumn Size="1" SizeSM="2" SizeMD="1" class="h-100">
                                 <div class="h-100 w-100 flex-center">
                                     <RadzenIcon class="m-0" Style="color: white; cursor: pointer;" Icon="info_outline" @onclick="ShowInfoDialog"></RadzenIcon>
                                 </div>
                             </RadzenColumn>
-                            <RadzenColumn Size="12" SizeMD="2" class="h-100">
+                            <RadzenColumn Size="5" SizeSM="3" SizeMD="2" class="h-100">
                                 <NavLink>
                                     <RadzenLink class="h-100 flex-center h6" Path="@Routes.Profile" Text="Profile" />
                                 </NavLink>
                             </RadzenColumn>
-                            <RadzenColumn Size="12" SizeMD="2" class="h-100">
+                            <RadzenColumn Size="5" SizeSM="3" SizeMD="2" class="h-100">
                                 <NavLink>
                                     <RadzenLink class="h-100 flex-center h6" Path="@Routes.Logout" Text="Log out" />
                                 </NavLink>
