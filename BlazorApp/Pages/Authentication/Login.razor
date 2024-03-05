@@ -45,7 +45,7 @@
                 </RadzenFormField>
                 <RadzenRow AlignItems="AlignItems.Center">
                     <RadzenColumn class="rz-text-align-left">
-                        <RadzenButton ButtonType="ButtonType.Submit" Size="ButtonSize.Large" Text="Submit"></RadzenButton>
+                        <RadzenButton ButtonType="ButtonType.Submit" Size="ButtonSize.Large" Text="Submit" IsBusy="_isLogging"/>
                     </RadzenColumn>
                     <RadzenColumn class="rz-text-align-right">
                         <a class="rz-link" @onclick="GoToForgotPassword">Forgot password?</a>

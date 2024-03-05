@@ -85,14 +85,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
 
-app.UseCors(policy =>
+    app.UseCors(policy =>
     policy.WithOrigins("https://localhost:7215", "http://localhost:5284")
     .AllowAnyHeader()
     .AllowAnyMethod()
     .AllowCredentials()
-);
+    );
+}
 
 app.UseHttpsRedirection();
 
