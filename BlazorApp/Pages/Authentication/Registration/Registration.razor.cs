@@ -23,6 +23,7 @@ namespace BlazorApp.Pages.Authentication.Registration
             if (_userForRegistration.NativeLanguage == _userForRegistration.DesiredLanguage)
             {
                 NotificationService.Notify(NotificationSeverity.Error, "Languages cannot be the same");
+                _isRegistering = false;
                 return;
             }
             ShowRegistrationErrors = false;
