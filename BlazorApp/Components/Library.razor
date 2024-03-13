@@ -43,15 +43,7 @@ else
                     </RadzenColumn>
                     <RadzenColumn Size="2">
                         <RadzenButton Icon="delete" Variant="Variant.Text" ButtonStyle="ButtonStyle.Danger" @onclick:stopPropagation="true" Click="@(() => DeleteBook(bookCover))" />
-                        @if (bookCover.Format == ConstBookFormats.pdf)
-                        {
-                            <LanguageDropdownSmall BookCover="bookCover" Data="ConstLanguages.DesiredLanguagesSetForPdf" />
-                        }
-                        else
-                        {
-                            <LanguageDropdownSmall BookCover="bookCover" Data="ConstLanguages.DesiredLanguagesSet" />
-                        }
-
+                        <LanguageDropdownSmall BookCover="bookCover" Data="ConstLanguages.DesiredLanguagesSet" />
                     </RadzenColumn>
                 </RadzenRow>
             </RadzenCard>

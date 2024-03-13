@@ -26,17 +26,15 @@ namespace BlazorServer.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                if (user is not null)
-                {
-                    book.OwnerId = Guid.Parse(user.Id);
-                    _appDbContext.PdfBooks.Add(book);
-                    await _appDbContext.SaveChangesAsync();
+                var user = await _userManager.GetUserAsync(User);
+                if (user is null)
+                    return BadRequest();
 
-                    return Ok();
-                }
+                book.OwnerId = Guid.Parse(user.Id);
+                _appDbContext.PdfBooks.Add(book);
+                await _appDbContext.SaveChangesAsync();
+                return Ok();
             }
-
             return BadRequest();
         }
 
