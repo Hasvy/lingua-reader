@@ -1,5 +1,4 @@
-﻿using AngleSharp.Html.Parser;
-using iText.Kernel.Pdf.Canvas.Parser;
+﻿using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf.Canvas.Parser.Listener;
 using iText.StyledXmlParser.Jsoup.Parser;
 using Microsoft.AspNetCore.Components.Forms;

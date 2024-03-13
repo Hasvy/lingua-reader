@@ -33,14 +33,14 @@ namespace BlazorServer.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                if (user is not null)
-                {
-                    book.OwnerId = Guid.Parse(user.Id);
-                    _appDbContext.EpubBooks.Add(book);
-                    await _appDbContext.SaveChangesAsync();
-                    return Ok();
-                }
+                var user = await _userManager.GetUserAsync(User);
+                if (user is null)
+                    return BadRequest();
+
+                book.OwnerId = Guid.Parse(user.Id);
+                _appDbContext.EpubBooks.Add(book);
+                await _appDbContext.SaveChangesAsync();
+                return Ok();
 
                 //byte[] bytes = Convert.FromBase64String(epubBook.BookContentFile);
                 //string filename = book.Id.ToString();
