@@ -18,7 +18,7 @@ function getSelectedWord(hostElement) {
         if (node.nodeName !== '#text') {
             return;
         }
-        var range = selection.getRangeAt(0);
+        var range = s.getRangeAt(0);
 
         // Finds a start point of a clicked word
         while ((range.startOffset > 0) && range.toString().match(wordRegexp)) {
