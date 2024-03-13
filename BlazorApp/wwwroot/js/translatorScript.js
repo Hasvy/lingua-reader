@@ -12,12 +12,13 @@ function getSelectedWord(hostElement) {
         }
 
         var wordRegexp = lang_regexp;
-        var s = hostElement.shadowRoot.getSelection();
-        var node = s.anchorNode;
+        //var selection = hostElement.shadowRoot.getSelection();
+        var selection = getSelectionText(hostElement);
+        var node = selection.anchorNode;
         if (node.nodeName != '#text') {            //Mb node.nodeName !== '#text'
             return;
         }
-        var range = s.getRangeAt(0);
+        var range = selection.getRangeAt(0);
 
         // Finds a start point of a clicked word
         while ((range.startOffset > 0) && range.toString().match(wordRegexp)) {
@@ -66,6 +67,16 @@ function removeSpan() {
     if (span.parentNode != null) {
         span.parentNode.replaceChild(cont, span);
     }
+}
+
+function getSelectionText(hostElement) {
+    var selection;
+    if (document.getSelection()) {
+        selection = document.getSelection();                //For Firefox
+    } else {
+        selection = hostElement.shadowRoot.getSelection();  //For Chrome and others
+    }
+    return selection;
 }
 
 function speakWord(word, language) {
