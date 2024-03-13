@@ -74,7 +74,7 @@ function getSelectionText(hostElement) {
     try {
         selection = hostElement.shadowRoot.getSelection();  //For Chrome and others
     } catch (e) {
-        selection = document.getSelection();                //For Firefox
+        selection = document.getSelection();                //For Firefox test
     }
     if (!selection || !selection.rangeCount) {
         return;
