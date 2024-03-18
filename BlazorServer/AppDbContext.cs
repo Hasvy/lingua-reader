@@ -22,11 +22,6 @@ namespace BlazorServer
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            //modelBuilder.Entity<AbstractBook>()
-            //    .HasOne(b => b.BookCover)
-            //    .WithOne(bc => bc.book);
-
             modelBuilder.Entity<AbstractBook>(entity =>
             {
                 entity.HasKey(ab => ab.Id);
@@ -41,12 +36,10 @@ namespace BlazorServer
             });
 
             modelBuilder.Entity<EpubBook>().ToTable("EpubBooks");       //Table-per-type configuration
-
             modelBuilder.Entity<PdfBook>().ToTable("PdfBooks");
-
             modelBuilder.Entity<TxtBook>().ToTable("TxtBooks");
 
-            modelBuilder.Entity<EpubBook>()     //Epub book column Id refers to Abstract book Id column
+            modelBuilder.Entity<EpubBook>()     //Book Id refers to Abstract book Id
                 .Property(b => b.Id)
                 .HasColumnName("Id");
 
@@ -57,34 +50,6 @@ namespace BlazorServer
             modelBuilder.Entity<TxtBook>()
                 .Property(b => b.Id)
                 .HasColumnName("Id");
-
-            //modelBuilder.Entity<SavedWord>(entity =>
-            //{
-            //    entity.HasOne<WordWithTranslations>()
-            //        .WithMany(twr => twr.Id)
-            //        .HasForeignKey<WordWithTranslations>(w => w.Id);
-            //});
-
-            //modelBuilder.Entity<BookSection>()
-            //    .HasOne(s => s.EpubBook)
-            //    .WithMany(b => b.Sections)
-            //    .HasForeignKey(s => s.EpubBook);
-
-            //modelBuilder.Entity<EpubBook>()
-            //    .HasMany(b => b.Sections)
-            //    .WithOne(s => s.EpubBook)
-            //    .HasForeignKey(s => s.EpubBookId);
-
-            //modelBuilder.Entity<EpubBook>()
-            //    .HasMany(b => b.Content)
-            //    .WithOne(c => c.EpubBook)
-            //    .HasForeignKey(s => s.BookId);
-
-            //modelBuilder.Entity<BookSection>()
-            //    .HasMany(s => s.Pages)
-            //    .WithOne(p => p.Section)
-            //    .HasForeignKey(p => p.SectionId)
-            //    .HasPrincipalKey(s => s.Id);
         }
 
         public DbSet<AbstractBook> AbstractBooks { get; set; }
@@ -94,7 +59,5 @@ namespace BlazorServer
         public DbSet<BookCover> BookCovers { get; set; }
         public DbSet<BookSection> BookSections { get; set; }
         public DbSet<SavedWord> SavedWords { get; set; }
-        //public DbSet<Page> Pages { get; set; }
-        //public DbSet<BookContent> BookContent { get; set; }
     }
 }

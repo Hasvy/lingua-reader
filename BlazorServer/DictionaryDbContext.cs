@@ -26,29 +26,9 @@ namespace BlazorServer
             {
                 entity.HasKey(wt => wt.Id);
             });
-
-            //modelBuilder.Entity<TranslationEnglish>()
-            //   .Property(te => te.Id)
-            //   .HasColumnName("Id");
-
-            //modelBuilder.Entity<TranslationGerman>()
-            //   .Property(te => te.Id)
-            //   .HasColumnName("Id");
-
-            //modelBuilder.Entity<TranslationRussian>()
-            //   .Property(te => te.Id)
-            //   .HasColumnName("Id");
-
-            //modelBuilder.Entity<TranslationEnglish>().UseTptMappingStrategy().ToTable("Translations");
-            //modelBuilder.Entity<TranslationEnglish>().ToTable("TranslationsEnglish");
-            //modelBuilder.Entity<TranslationGerman>().ToTable("TranslationsGerman");
-            //modelBuilder.Entity<TranslationRussian>().ToTable("TranslationsRussian");
         }
 
         public DbSet<WordWithTranslations> Words { get; set; }
         public DbSet<WordTranslation> Translations { get; set; }
-        //public DbSet<TranslationEnglish> TranslationsEnglish { get; set; }
-        //public DbSet<TranslationGerman> TranslationsGerman { get; set; }
-        //public DbSet<TranslationRussian> TranslationsRussian { get; set; }
     }
 }

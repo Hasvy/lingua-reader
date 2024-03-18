@@ -71,13 +71,9 @@ namespace BlazorApp.Components.DisplayBooks
             {
                 CurrentPageNumber++;
                 if (CurrentPageNumber > Sections[currentSectionNumber].LastPage)
-                {
                     NextSection();
-                }
                 else
-                {
                     await JS.InvokeVoidAsync("nextPage", CurrentPageNumber - Sections[currentSectionNumber].FirstPage);
-                }
             }
         }
 

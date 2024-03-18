@@ -18,19 +18,19 @@ namespace Services
         public async Task<bool> SaveWord(int id)
         {
             var result = await _httpClient.PostAsJsonAsync("api/words/SaveWord", id);
-            return NotifyAndReturn(result.IsSuccessStatusCode);
+            return NotifyAndReturn(result.IsSuccessStatusCode, "Word has been saved");
         }
 
         public async Task<bool> DeleteWord(int id)
         {
             var result = await _httpClient.DeleteAsync($"api/words/DeleteWord/{id}");
-            return NotifyAndReturn(result.IsSuccessStatusCode);
+            return NotifyAndReturn(result.IsSuccessStatusCode, "Word has been deleted");
         }
         public async Task<bool> DeleteWords(IList<WordWithTranslations> wordsWithTranslations)
         {
             var wordsIds = wordsWithTranslations.Select(w => w.Id).ToList();
             var result = await _httpClient.PostAsJsonAsync("api/words/DeleteWords", wordsIds);
-            return NotifyAndReturn(result.IsSuccessStatusCode);
+            return NotifyAndReturn(result.IsSuccessStatusCode, "Words have been deleted");
         }
 
         public async Task<List<WordToLearn>> GetWordsToLearn()
@@ -49,11 +49,11 @@ namespace Services
             return new List<WordWithTranslations>();
         }
 
-        private bool NotifyAndReturn(bool StatusCode)
+        private bool NotifyAndReturn(bool StatusCode, string message)
         {
             if (StatusCode is true)
             {
-                _notificationService.Notify(NotificationSeverity.Success, "Words have been deleted");
+                _notificationService.Notify(NotificationSeverity.Success, message);
                 return true;
             }
             else

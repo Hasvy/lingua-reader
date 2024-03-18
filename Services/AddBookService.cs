@@ -45,7 +45,7 @@ namespace Services
             MemoryStream? memoryStream = await GetMemoryStreamFromInput(e);
             if (memoryStream is null)
                 return null;
-            //EpubBook epubBook = await EpubReader.ReadBookAsync(memoryStream);       //TODO add ePubSharp library like additional try to read a book when versone cant read a book, maybe it will read Sheakspere book file
+            
             EpubBookRef epubBook = await EpubReader.OpenBookAsync(memoryStream);
             Objects.Entities.Books.EpubBook.EpubBook book = await SetBookData(epubBook);
             book.BookContentFile = Convert.ToBase64String(memoryStream.ToArray());
@@ -191,32 +191,20 @@ namespace Services
 
             iText.Kernel.Pdf.PdfReader reader = new iText.Kernel.Pdf.PdfReader(memoryStream);
             iText.Kernel.Pdf.PdfDocument pdfDoc = new iText.Kernel.Pdf.PdfDocument(reader);
-
-            //memoryStream.Seek(0, SeekOrigin.Begin);
-            //string base64 = Convert.ToBase64String(memoryStream.ToArray());
-
-            //List<string> _pages = new List<string>();
             var pagesCount = pdfDoc.GetNumberOfPages();
-            //PdfResources resourses = pdfDoc.GetPage(1).GetResources();
             Encoding encoding = Encoding.UTF8;
             ITextExtractionStrategy strategy = new CustomTextExtractionStrategy(encoding);
-            //ITextExtractionStrategy strategy2 = new SimpleTextExtractionStrategy();
-
             for (int pageNumber = 1; pageNumber <= pagesCount; pageNumber++)
             {
-                PdfCanvasProcessor processor = new PdfCanvasProcessor(strategy);    //I will renew the processor with every page, otherwise start and end of a segment in strategy
-                var page = pdfDoc.GetPage(pageNumber);                              //will create a very short interval, so the code will stop create new lines, I don't know why.
+                PdfCanvasProcessor processor = new PdfCanvasProcessor(strategy);                //I will renew the processor with every page, otherwise start and end of a segment in strategy
+                var page = pdfDoc.GetPage(pageNumber);                                          //will create a very short interval, so the code will stop create new lines, I don't know why.
                 processor.ProcessPageContent(page);
                 await UpdateProgress(pageNumber, pagesCount);
             }
-
             PdfBook book = SaveBookData(pdfDoc);
             book.Text = strategy.GetResultantText();
-            //foreach (var item in _pages)
-            //{
-            //    book.Text += item;
-            //}
-            var response = await _bookOperationsService.PostPdfBook(book);      //Here will add 
+
+            var response = await _bookOperationsService.PostPdfBook(book);                      //Here will add 
 
             if (response.IsSuccessStatusCode)
             {

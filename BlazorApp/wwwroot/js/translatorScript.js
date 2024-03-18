@@ -18,9 +18,9 @@ function getSelectedWord(hostElement) {
         if (node.nodeName !== '#text') {
             return;
         }
-        var range = s.getRangeAt(0);
+        var range = selection.getRangeAt(0);
 
-        // Finds a start point of a clicked word
+        // Finds the start point of a clicked word
         while ((range.startOffset > 0) && range.toString().match(wordRegexp)) {
             range.setStart(node, (range.startOffset - 1));
         }
@@ -46,13 +46,11 @@ function getSelectedWord(hostElement) {
         }
         window.getSelection().removeAllRanges();
 
-        //Get started position to draw translator window loading (right upon the clicked word)
+        //Gets start position to draw translator window loading (right upon the clicked word)
         var rangePosition = range.getBoundingClientRect();
-        var height = rangePosition.height;
-        var width = rangePosition.width;
         var top = rangePosition.top - rzHeader.clientHeight + rzBody.scrollTop - 5;
-        var left = rangePosition.left + (width / 2);
-        resolve({ word, height, width, top, left });
+        var left = rangePosition.left + (rangePosition.width / 2);
+        resolve({ word, top, left });
     });
 }
 

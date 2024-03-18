@@ -58,10 +58,7 @@ async function embedHtmlOnPage(htmlString) {
     var pagesCount;
     var bookDocument = await addBookOnPage(htmlString);
     if (bookDocument) {
-        //const shadowRoot = container.shadowRoot;
-
         await container.appendChild(bookDocument);
-        //await addListener(bookDocument);
         await adjustImages(container, container.clientHeight, container.clientWidth);
         pagesCount = separateBookDocument(container);
     }
@@ -84,19 +81,6 @@ function addBookOnPage(htmlString) {
         xhr.send();
     });
 }
-
-//async function sendWordToDotNet(word, range) {                      //To delete
-//    var rangePosition = range.getBoundingClientRect();
-//    //var containerPosition = container.getBoundingClientRect();
-//    var rzBody = document.querySelector(".rz-body");
-//    var rzHeader = document.querySelector(".rz-header");
-
-//    var height = 40;
-//    var width = rangePosition.width;
-//    var left = rangePosition.left;
-//    var top = rangePosition.top - height - rzHeader.clientHeight + rzBody.scrollTop;
-//    await DotNet.invokeMethodAsync('BlazorApp', 'GetWordFromJS', word, height, left, top, window.translatorServiceInstance);
-//}
 
 async function separateBookDocument(container) {
     body = container.querySelector("html body");

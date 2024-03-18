@@ -8,10 +8,10 @@ namespace Objects.Entities.Translator
 {
     public class WordInfo
     {
-        public WordInfo() { }
+        //public WordInfo() { }
         public string Word { get; set; } = string.Empty;
-        public float Height { get; set; }       //Mb delete
-        public float Width { get; set; }        //del
+        //public float Height { get; set; }
+        //public float Width { get; set; }
         public float Top { get; set; }
         public float Left { get; set; }
     }

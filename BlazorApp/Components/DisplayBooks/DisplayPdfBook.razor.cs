@@ -22,14 +22,8 @@ namespace BlazorApp.Components.DisplayBooks
         public int CurrentPageNumber { get; set; } = 0;
         public int PagesCount { get; set; } = 0;
 
-        private PdfBook? _book;
+        //private PdfBook? _book;
         private bool _isLoading;
-
-        //protected override async Task OnInitializedAsync()
-        //{
-
-        //    await base.OnInitializedAsync();
-        //}
 
         public async Task AfterReaderReady()
         {
