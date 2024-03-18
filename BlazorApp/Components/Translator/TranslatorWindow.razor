@@ -60,29 +60,24 @@
     else
     {
         //Skeleton loading
-        <RadzenRow>
-            <RadzenColumn Size="10">
+        <RadzenStack Orientation="Orientation.Horizontal" class="rz-pl-3">
+            <RadzenCard Variant="Variant.Text" class="rz-p-0">
                 <RadzenRow>
-                    <div class="skeleton-box" style="height: 10px; width: 50px; margin-top: 5px;"></div>
+                    <div class="skeleton-box" style="height: 10px; width: 50px; margin-top: 8px;"></div>
                 </RadzenRow>
-                <RadzenRow>
-                    <RadzenColumn Size="4">
-                        <div class="skeleton-box" style="height: 15px; width: 40px; margin-top: 8px;"></div>
-                    </RadzenColumn>
-                    <RadzenColumn Size="8">
-                        <div class="skeleton-box" style="height: 5px; width: 100px; bottom: 0;"></div>
-                        <div class="skeleton-box" style="height: 5px; width: 25px; top: 0"></div>
-                    </RadzenColumn>
-                </RadzenRow>
-            </RadzenColumn>
-            <RadzenColumn Size="2">
-                <RadzenRow>
-                    <RadzenIcon class="skeleton-box" Style="background-color: white;" Icon="volume_up" IconColor="gray" />
-                </RadzenRow>
-                <RadzenRow>
-                    <RadzenIcon class="skeleton-box" Style="background-color: white;" Icon="add" IconColor="gray" />
-                </RadzenRow>
-            </RadzenColumn>
-        </RadzenRow>
+                <div class="skeleton-box" style="height: 15px; width: 40px; margin-top: 8px;"></div>
+            </RadzenCard>
+                <RadzenCard Variant="Variant.Text" class="rz-p-0">
+                    <RadzenStack Orientation="Orientation.Vertical">
+                        <div class="skeleton-box" style="height: 5px; width: 100px; margin-top: 30px;"></div>
+                        <div class="skeleton-box" style="height: 5px; width: 25px; top: 0px; margin-bottom: 8px;"></div>
+                    </RadzenStack>
+                </RadzenCard>
+            <RadzenCard Variant="Variant.Text" class="rz-p-0">
+                <RadzenIcon class="skeleton-box" Style="background-color: white;" Icon="volume_up" IconColor="gray" />
+                <RadzenIcon class="skeleton-box" Style="background-color: white;" Icon="add" IconColor="gray" />
+                <RadzenIcon class="skeleton-box" Style="background-color: white;" Icon="sync" IconColor="gray" />
+            </RadzenCard>
+        </RadzenStack>
     }
 </RadzenCard>
