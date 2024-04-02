@@ -2,6 +2,8 @@
 @using Objects.Entities.Translator;
 @using Services;
 
+@attribute [Authorize]
+
 @if (isComponentLoading)
 {
     <div style="background-color: var(--rz-base-100); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100;"></div>
@@ -13,11 +15,6 @@
 
     <TranslatorWindow WordInfo="@wordInfo" WordWithTranslations="translatorWordResponse" isLoading="@isLoading" isSpeaking="@isBusy" Visible="@visible" 
         SpeakWordCallback="SpeakWord" OnWordChanged="HandleWordChanged"/>
-
-    @*     <div style="display: flex; justify-content: center">
-<RadzenStack Gap="0" Wrap="FlexWrap.Wrap" Orientation="Orientation.Horizontal">
-</RadzenStack>
-</div> *@
 
     <div style="display: flex; justify-content: center; align-items: center">
         <RadzenButton Size="ButtonSize.Large" class="change-page-button" Variant="Variant.Text" Icon="arrow_back_ios_new" Click="PreviousPage" />

@@ -2,6 +2,7 @@
 using Services.Authentication;
 using Toolbelt.Blazor;
 using Radzen;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Services
 {
@@ -51,6 +52,7 @@ namespace Services
             if (diff.TotalMinutes <= 0)
             {
                 await LogoutAndNotify();
+                DisposeEvent();
             }
         }
 

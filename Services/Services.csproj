@@ -13,7 +13,7 @@
     <PackageReference Include="itext7" Version="8.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.14" />
-    <PackageReference Include="Radzen.Blazor" Version="4.25.1" />
+    <PackageReference Include="Radzen.Blazor" Version="4.29.1" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.2" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.3.1" />
     <PackageReference Include="Toolbelt.Blazor.HttpClientInterceptor" Version="10.2.0" />

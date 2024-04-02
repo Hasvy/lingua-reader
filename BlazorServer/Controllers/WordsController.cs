@@ -139,16 +139,18 @@ namespace BlazorServer.Controllers
 
         private WordTranslation[] GetWrongVariants(int count, WordToLearn wordToLearn, ApplicationUser user)
         {
-            List<string> posTags = new List<string>();      //Types of speech of the right variant - noun, adv, verb...
-            foreach (var translation in wordToLearn.WordWithTranslations.Translations)
-            {
-                if (!posTags.Contains(translation.PosTag))
-                    posTags.Add(translation.PosTag);
-            }
+            //List<string> posTags = new List<string>();      //Types of speech of the right variant - noun, adv, verb...
+            //foreach (var translation in wordToLearn.WordWithTranslations.Translations)
+            //{
+            //    if (!posTags.Contains(translation.PosTag))
+            //        posTags.Add(translation.PosTag);
+            //}
+            string posTag = wordToLearn.WordWithTranslations.Translations.First().PosTag;
 
             var variants = _dictionaryDbContext.Translations
                 //Get only variants in user's native language and wordsWithTranslations of the same type of speech as the right variant
-                .Where(v => v.Language == user.NativeLanguage && posTags.Contains(v.PosTag)).AsEnumerable()
+                //.Where(v => v.Language == user.NativeLanguage && posTags.Contains(v.PosTag)).AsEnumerable()
+                .Where(v => v.Language == user.NativeLanguage && v.PosTag == posTag).AsEnumerable()
                 //Prevent all right translations of the word from being in WrongVariants
                 .Where(v => !wordToLearn.WordWithTranslations.Translations.Any(t => t.DisplayTarget == v.DisplayTarget))
                 .OrderBy(r => Guid.NewGuid())

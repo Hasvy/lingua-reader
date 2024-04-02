@@ -172,6 +172,9 @@ window.onpopstate = function () {
 //    //iframeDocument.style.width = Math.round(iframeDocument.clientWidth) + 'px';
 //}
 
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
 function showContent() {
     document.getElementById("reading-page").style.visibility = "visible";
 }

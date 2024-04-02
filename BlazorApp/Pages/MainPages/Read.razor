@@ -3,11 +3,11 @@
 @using Objects.Constants;
 
 @attribute [Route(Routes.Read)]
+@attribute [Authorize]
 
 @if (_isLoading)
 {
      <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
-    @* <RadzenIcon class="centered-element" Icon="sync" Style="animation: reverse rotation 750ms linear infinite; font-size: 50px"/> *@
 }
 else
 {

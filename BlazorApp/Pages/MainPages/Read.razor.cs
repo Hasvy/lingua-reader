@@ -7,6 +7,7 @@ namespace BlazorApp.Pages.MainPages
 {
     public partial class Read : ComponentBase
     {
+        [Inject] HttpInterceptorService HttpInterceptorService { get; set; } = null!;
         [Inject] ILocalStorageService LocalStorageService { get; set; } = null!;
         [Inject] UserService UserService { get; set; } = null!;
         [Inject] NavigationManager NavigationManager { get; set; } = null;
@@ -19,6 +20,7 @@ namespace BlazorApp.Pages.MainPages
         protected override async Task OnInitializedAsync()
         {
             _isLoading = true;
+            HttpInterceptorService.RegisterEvent();
             ParseQueryString();
             BookFormat = await LocalStorageService.GetItemAsStringAsync("bookFormat");      //19-30 msec
             //NativeLanguage = await LocalStorageService.GetItemAsStringAsync("NativeLanguage");
@@ -36,5 +38,7 @@ namespace BlazorApp.Pages.MainPages
                 BookLang = query.Get("lang");       //Maybe exception or handle if lang is not set
             }
         }
+
+        public void Dispose() => HttpInterceptorService.DisposeEvent();
     }
 }

@@ -1,9 +1,9 @@
-﻿
+﻿@attribute [Authorize]
+
 @if (_isLoading)
 {
     <RadzenProgressBar ProgressBarStyle="ProgressBarStyle.Primary" Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" Style="z-index: 101" />
     <div style="background-color: var(--rz-base-100); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100;"></div>
-    @* <RadzenIcon class="centered-element" Icon="sync" Style="animation: reverse rotation 750ms linear infinite; font-size: 50px" /> *@
 }
 
 <ReaderComponent CurrentPageNumber="@CurrentPageNumber" PagesCount="@PagesCount" BookLanguage="@BookLanguage"
