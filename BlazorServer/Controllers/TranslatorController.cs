@@ -22,10 +22,10 @@ namespace BlazorServer.Controllers
         private static readonly string _endpoint = "https://api.cognitive.microsofttranslator.com/";
         private static readonly string _location = "westeurope";
         private static readonly string _intermediateLang = ConstLanguages.English;          //Because microsoft translator supports translation only with english source or target language
-        private static string _bookLang = ConstLanguages.English;       //Default value
-        private static string _targetLang = ConstLanguages.Czech;       //Default value
+        //private static string _bookLang = ConstLanguages.English;       //Default value
+        //private static string _targetLang = ConstLanguages.Czech;       //Default value
         private static string _key = string.Empty;
-        private int existedWordId = 0;
+        //private int existedWordId = 0;
 
         //TODO Mb for test and filling db with data use recurse translation with backtranslations
         public TranslatorController(DictionaryDbContext dictionaryDbContext, UserManager<ApplicationUser> userManager, IConfiguration configuration, AppDbContext appDbContext)
@@ -43,38 +43,43 @@ namespace BlazorServer.Controllers
         }
 
         //TODO return result of action
-        [HttpPost]
-        [Route("api/Translator/Set-languages")]
-        public async Task SetLanguages(string bookLang)
-        {
-            if (bookLang is not ConstLanguages.Undefined && bookLang is not null)
-            {
-                _bookLang = bookLang;
-                var user = await _userManager.GetUserAsync(User);
-                _targetLang = user.NativeLanguage;
-            }
-        }
+        //[HttpPost]
+        //[Route("api/Translator/Set-languages")]
+        //public async Task SetLanguages(string bookLang)
+        //{
+        //    if (bookLang is not ConstLanguages.Undefined && bookLang is not null)
+        //    {
+        //        _bookLang = bookLang;
+        //        var user = await _userManager.GetUserAsync(User);
+        //        _targetLang = user.NativeLanguage;
+        //    }
+        //}
 
         [HttpGet]
         [Route("api/Translator/TranslateWord")]
-        public async Task<ActionResult<WordWithTranslations>?> TranslateWord(string word)
+        public async Task<ActionResult<WordWithTranslations>?> TranslateWord(string word, string sourceLang)
         {
-            existedWordId = 0;
+            int existedWordId = 0;
+            var user = await _userManager.GetUserAsync(User);
+            if (user is null)
+                return BadRequest();
+            string bookLang = sourceLang;
+            string targetLang = user.NativeLanguage;
             HttpResponseMessage response;
 
-            var translatorWordResp = await GetTranslationFromDb(word);
+            var translatorWordResp = await GetTranslationFromDb(word, bookLang, targetLang, existedWordId);
             if (translatorWordResp is not null)
             {
                 return Ok(translatorWordResp);
             }
 
-            if (_bookLang is not ConstLanguages.English && _targetLang is not ConstLanguages.English)
+            if (bookLang is not ConstLanguages.English && targetLang is not ConstLanguages.English)
             {
-                response = await TranslateThroughEnglish(word);
+                response = await TranslateThroughEnglish(word, bookLang, targetLang);
             }
             else
             {
-                response = await ConstructAndSendQuery(word, _intermediateLang, _targetLang);
+                response = await ConstructAndSendQuery(word, _intermediateLang, targetLang);
             }
 
             if (response.IsSuccessStatusCode)
@@ -86,8 +91,8 @@ namespace BlazorServer.Controllers
                     if (firstResult is not null)
                     {
                         firstResult.DisplaySource = word.ToLower();
-                        firstResult.Language = _bookLang;
-                        PostTranslationToDb(firstResult);
+                        firstResult.Language = bookLang;
+                        PostTranslationToDb(firstResult, existedWordId, targetLang);
                         return Ok(firstResult);
                     }
                 }
@@ -99,16 +104,16 @@ namespace BlazorServer.Controllers
             }
         }
 
-        private async Task<HttpResponseMessage> TranslateThroughEnglish(string word)
+        private async Task<HttpResponseMessage> TranslateThroughEnglish(string word, string bookLang, string targetLang)
         {
-            var englishWordResponse = await GetEngTranslation(word);
+            var englishWordResponse = await GetEngTranslation(word, bookLang);
             if (englishWordResponse is not null)
             {
                 var firstTranslation = englishWordResponse.Translations.FirstOrDefault();
                 if (firstTranslation is not null)
                 {
                     var englishWord = firstTranslation.DisplayTarget;
-                    return await ConstructAndSendQuery(englishWord, _intermediateLang, _targetLang);
+                    return await ConstructAndSendQuery(englishWord, _intermediateLang, targetLang);
                 }
                 else
                 {
@@ -121,13 +126,13 @@ namespace BlazorServer.Controllers
             }
         }
 
-        private async Task<WordWithTranslations?> GetTranslationFromDb(string word)       //TODO divide word saving to different language database and search in target language db
+        private async Task<WordWithTranslations?> GetTranslationFromDb(string word, string bookLang, string targetLang, int existedWordId)       //TODO divide word saving to different language database and search in target language db
         {
-            var wordWithTranslations = _dictionaryDbContext.Words.SingleOrDefault(w => w.DisplaySource == word && w.Language == _bookLang);     //RODO fix language in which word is saved
+            var wordWithTranslations = _dictionaryDbContext.Words.SingleOrDefault(w => w.DisplaySource == word && w.Language == bookLang);     //RODO fix language in which word is saved
             if (wordWithTranslations is not null)
             {
                 existedWordId = wordWithTranslations.Id;      //This will used in PostTranslationToDb to decide if word exist or not
-                IList<WordTranslation> wordTranslations = _dictionaryDbContext.Translations.Where(t => t.WordId == wordWithTranslations.Id && t.Language == _targetLang).ToList();
+                IList<WordTranslation> wordTranslations = _dictionaryDbContext.Translations.Where(t => t.WordId == wordWithTranslations.Id && t.Language == targetLang).ToList();
                 if (!wordTranslations.Any())
                 {
                     return null;
@@ -144,7 +149,7 @@ namespace BlazorServer.Controllers
             }
         }
 
-        private ActionResult<WordWithTranslations> PostTranslationToDb(WordWithTranslations wordWithTranslations)
+        private ActionResult<WordWithTranslations> PostTranslationToDb(WordWithTranslations wordWithTranslations, int existedWordId, string targetLang)
         {
             //TODO dont put word in db if it does not contain any translation
             //TODO put word in db in right language, not in english (before try to change translation logic)
@@ -153,7 +158,7 @@ namespace BlazorServer.Controllers
                 //bool isWordExist = _dictionaryDbContext.Words.Contains();
                 foreach (var translation in wordWithTranslations.Translations)
                 {
-                    translation.Language = _targetLang;
+                    translation.Language = targetLang;
                     if (existedWordId != 0)         //If word already exist in Db, FK of translations changes to it, so word is not duplicated in DB
                     {
                         translation.WordId = existedWordId;
@@ -178,9 +183,9 @@ namespace BlazorServer.Controllers
             return BadRequest();
         }
 
-        private async Task<WordWithTranslations?> GetEngTranslation(string word)
+        private async Task<WordWithTranslations?> GetEngTranslation(string word, string bookLang)
         {
-            HttpResponseMessage response = await ConstructAndSendQuery(word, _bookLang, _intermediateLang);
+            HttpResponseMessage response = await ConstructAndSendQuery(word, bookLang, _intermediateLang);
             if (response.IsSuccessStatusCode)
             {
                 List<WordWithTranslations>? result = await response.Content.ReadFromJsonAsync<List<WordWithTranslations>>();
@@ -219,13 +224,13 @@ namespace BlazorServer.Controllers
         public async Task<ActionResult<WordWithTranslations>?> UpdateWord([FromBody] WordWithTranslations wordWithTranslations)
         {
             HttpResponseMessage response;
-            if (_bookLang is not ConstLanguages.English && _targetLang is not ConstLanguages.English)
+            if (wordWithTranslations.Language is not ConstLanguages.English && wordWithTranslations.Translations.First().Language is not ConstLanguages.English)
             {
-                response = await TranslateThroughEnglish(wordWithTranslations.DisplaySource);
+                response = await TranslateThroughEnglish(wordWithTranslations.DisplaySource, wordWithTranslations.Language, wordWithTranslations.Translations.First().Language);
             }
             else
             {
-                response = await ConstructAndSendQuery(wordWithTranslations.DisplaySource, _intermediateLang, _targetLang);
+                response = await ConstructAndSendQuery(wordWithTranslations.DisplaySource, _intermediateLang, wordWithTranslations.Translations.First().Language);
             }
 
             if (response.IsSuccessStatusCode)
@@ -257,9 +262,9 @@ namespace BlazorServer.Controllers
             if (existingWord != null)
             {
                 existingWord.Translations = _dictionaryDbContext.Translations.Where(t => t.WordId == updateFrom.Id).ToList();
-                updateTo.Translations.ToList().ForEach(t => t.Language = _targetLang);
+                updateTo.Translations.ToList().ForEach(t => t.Language = updateFrom.Translations.First().Language);
                 existingWord.DisplaySource = updateFrom.DisplaySource.ToLower();
-                existingWord.Language = _bookLang;
+                existingWord.Language = updateFrom.Language;
                 var oldTranslations = existingWord.Translations.Select(t => t.DisplayTarget);
                 var newTranslations = updateTo.Translations.Select(t => t.DisplayTarget);
                 if (!oldTranslations.SequenceEqual(newTranslations))

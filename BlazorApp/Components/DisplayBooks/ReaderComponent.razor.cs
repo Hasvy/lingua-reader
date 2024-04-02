@@ -34,8 +34,9 @@ namespace BlazorApp.Components.DisplayBooks
         protected override async Task OnInitializedAsync()
         {
             isComponentLoading = true;
-            await TranslatorService.SetLanguage(BookLanguage);
+            //await TranslatorService.SetLanguage(BookLanguage);
             await base.OnInitializedAsync();
+            await Task.Delay(1);
             await Ready.InvokeAsync();
             isComponentLoading = false;
         }
@@ -52,7 +53,7 @@ namespace BlazorApp.Components.DisplayBooks
                 StateHasChanged();
                 //await Task.Yield();
                 await Task.Delay(1);
-                var wordWithTranslations = await TranslatorService.GetWordTranslation(wordInfo.Word);
+                var wordWithTranslations = await TranslatorService.GetWordTranslation(wordInfo.Word, BookLanguage);
                 if (wordWithTranslations != null)
                 {
                     translatorWordResponse = wordWithTranslations;

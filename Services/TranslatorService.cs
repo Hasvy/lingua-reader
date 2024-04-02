@@ -23,18 +23,18 @@ namespace Services
             _notificationService = notificationService;
         }
 
-        public async Task<HttpResponseMessage> SetLanguage(string bookLang)
-        {
-            string apiUri = $"api/Translator/Set-languages?bookLang={bookLang}";
-            var response = await _httpClient.PostAsync(apiUri, null);
-            return response;
-        }
+        //public async Task<HttpResponseMessage> SetLanguage(string bookLang)
+        //{
+        //    string apiUri = $"api/Translator/Set-languages?bookLang={bookLang}";
+        //    var response = await _httpClient.PostAsync(apiUri, null);
+        //    return response;
+        //}
 
-        public async Task<WordWithTranslations?> GetWordTranslation(string word)
+        public async Task<WordWithTranslations?> GetWordTranslation(string word, string sourceLang)
         {
             if (!string.IsNullOrWhiteSpace(word))
             {
-                WordWithTranslations? wordWithTranslations = await _httpClient.GetFromJsonAsync<WordWithTranslations?>($"api/Translator/TranslateWord?word={word}");
+                WordWithTranslations? wordWithTranslations = await _httpClient.GetFromJsonAsync<WordWithTranslations?>($"api/Translator/TranslateWord?word={word}&sourceLang={sourceLang}");
                 if (wordWithTranslations is not null && wordWithTranslations.Translations.Any())
                 {
                     return wordWithTranslations;
@@ -49,16 +49,23 @@ namespace Services
             var response = await _httpClient.PostAsJsonAsync("api/Translator/UpdateWord", word);
             if (response.IsSuccessStatusCode)
             {
-                var wordWithTranslations = await response.Content.ReadFromJsonAsync<WordWithTranslations>();
-                if (wordWithTranslations != null && IsWordTranslationsEqual(word, wordWithTranslations))
+                WordWithTranslations wordWithTranslations;
+                var updatedWord = await response.Content.ReadFromJsonAsync<WordWithTranslations>();
+                if (updatedWord != null)
                 {
-                    _notificationService.Notify(NotificationSeverity.Info, "Translations are actual", "Translator returns the same");
+                    if (IsWordTranslationsEqual(word, updatedWord))
+                    {
+                        wordWithTranslations = word;
+                        _notificationService.Notify(NotificationSeverity.Info, "Translations are actual", "Translator returns the same");
+                    }
+                    else
+                    {
+                        wordWithTranslations = updatedWord;
+                        _notificationService.Notify(NotificationSeverity.Success, "Word has been updated");
+                    }
+                    return wordWithTranslations;
                 }
-                else
-                {
-                    _notificationService.Notify(NotificationSeverity.Success, "Word has been updated");
-                }
-                return wordWithTranslations;
+                return null;
             }
             else
             {

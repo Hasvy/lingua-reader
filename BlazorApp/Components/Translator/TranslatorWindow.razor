@@ -1,5 +1,7 @@
 ﻿@using System.Globalization;
 
+@attribute [Authorize]
+
 <RadzenCard id="translator-window" class="translator-window" Visible="@Visible" Style=@($@"position: absolute; padding: 0px; max-width: 500px;
                                                 left: {(WordInfo.Left).ToString(CultureInfo.InvariantCulture)}px;
                                                 top: {WordInfo.Top.ToString(CultureInfo.InvariantCulture)}px; z-index: 10;")>
