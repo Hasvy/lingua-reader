@@ -25,7 +25,7 @@ namespace BlazorServer.Controllers
         //private static string _bookLang = ConstLanguages.English;       //Default value
         //private static string _targetLang = ConstLanguages.Czech;       //Default value
         private static string _key = string.Empty;
-        //private int existedWordId = 0;
+        private int existedWordId = 0;
 
         //TODO Mb for test and filling db with data use recurse translation with backtranslations
         public TranslatorController(DictionaryDbContext dictionaryDbContext, UserManager<ApplicationUser> userManager, IConfiguration configuration, AppDbContext appDbContext)
@@ -59,7 +59,7 @@ namespace BlazorServer.Controllers
         [Route("api/Translator/TranslateWord")]
         public async Task<ActionResult<WordWithTranslations>?> TranslateWord(string word, string sourceLang)
         {
-            int existedWordId = 0;
+            existedWordId = 0;
             var user = await _userManager.GetUserAsync(User);
             if (user is null)
                 return BadRequest();
@@ -67,11 +67,9 @@ namespace BlazorServer.Controllers
             string targetLang = user.NativeLanguage;
             HttpResponseMessage response;
 
-            var translatorWordResp = await GetTranslationFromDb(word, bookLang, targetLang, existedWordId);
+            var translatorWordResp = await GetTranslationFromDb(word, bookLang, targetLang);
             if (translatorWordResp is not null)
-            {
                 return Ok(translatorWordResp);
-            }
 
             if (bookLang is not ConstLanguages.English && targetLang is not ConstLanguages.English)
             {
@@ -92,7 +90,7 @@ namespace BlazorServer.Controllers
                     {
                         firstResult.DisplaySource = word.ToLower();
                         firstResult.Language = bookLang;
-                        PostTranslationToDb(firstResult, existedWordId, targetLang);
+                        PostTranslationToDb(firstResult, targetLang);
                         return Ok(firstResult);
                     }
                 }
@@ -126,9 +124,9 @@ namespace BlazorServer.Controllers
             }
         }
 
-        private async Task<WordWithTranslations?> GetTranslationFromDb(string word, string bookLang, string targetLang, int existedWordId)       //TODO divide word saving to different language database and search in target language db
+        private async Task<WordWithTranslations?> GetTranslationFromDb(string word, string bookLang, string targetLang)       //TODO divide word saving to different language database and search in target language db
         {
-            var wordWithTranslations = _dictionaryDbContext.Words.SingleOrDefault(w => w.DisplaySource == word && w.Language == bookLang);     //RODO fix language in which word is saved
+            var wordWithTranslations = _dictionaryDbContext.Words.FirstOrDefault(w => w.DisplaySource == word && w.Language == bookLang);     //RODO fix language in which word is saved
             if (wordWithTranslations is not null)
             {
                 existedWordId = wordWithTranslations.Id;      //This will used in PostTranslationToDb to decide if word exist or not
@@ -149,7 +147,7 @@ namespace BlazorServer.Controllers
             }
         }
 
-        private ActionResult<WordWithTranslations> PostTranslationToDb(WordWithTranslations wordWithTranslations, int existedWordId, string targetLang)
+        private ActionResult<WordWithTranslations> PostTranslationToDb(WordWithTranslations wordWithTranslations, string targetLang)
         {
             //TODO dont put word in db if it does not contain any translation
             //TODO put word in db in right language, not in english (before try to change translation logic)
