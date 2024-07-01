@@ -11,12 +11,12 @@ namespace BlazorServer.Controllers
     public class WordsController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
-        private readonly DictionaryDbContext _dictionaryDbContext;
+        //private readonly DictionaryDbContext _dictionaryDbContext;
         private readonly UserManager<ApplicationUser> _userManager;
-        public WordsController(AppDbContext appDbContext, DictionaryDbContext dictionaryDbContext, UserManager<ApplicationUser> userManager)
+        public WordsController(AppDbContext appDbContext, UserManager<ApplicationUser> userManager)
         {
             _appDbContext = appDbContext;
-            _dictionaryDbContext = dictionaryDbContext;
+            //_dictionaryDbContext = dictionaryDbContext;
             _userManager = userManager;
         }
 
@@ -119,11 +119,11 @@ namespace BlazorServer.Controllers
         private IEnumerable<WordWithTranslations> JoinWordsWithTranslations(IEnumerable<SavedWord> savedWords, ApplicationUser user, bool isWordsSaved = false)
         {
             return from savedWord in savedWords
-                   join wordWithTranslations in _dictionaryDbContext.Words
+                   join wordWithTranslations in _appDbContext.Words
                        .Where(w => w.Language == user.DesiredLanguage)
                        .DefaultIfEmpty()
                        on savedWord.WordId equals wordWithTranslations?.Id
-                   join translation in _dictionaryDbContext.Translations
+                   join translation in _appDbContext.Translations
                        .Where(t => t.Language == user.NativeLanguage)
                        on savedWord.WordId equals translation.WordId into translationsGroup
                    where translationsGroup.Any()
@@ -147,7 +147,7 @@ namespace BlazorServer.Controllers
             //}
             string posTag = wordToLearn.WordWithTranslations.Translations.First().PosTag;
 
-            var variants = _dictionaryDbContext.Translations
+            var variants = _appDbContext.Translations
                 //Get only variants in user's native language and wordsWithTranslations of the same type of speech as the right variant
                 //.Where(v => v.Language == user.NativeLanguage && posTags.Contains(v.PosTag)).AsEnumerable()
                 .Where(v => v.Language == user.NativeLanguage && v.PosTag == posTag).AsEnumerable()
@@ -163,7 +163,7 @@ namespace BlazorServer.Controllers
             }
             else
             {
-                return _dictionaryDbContext.Translations
+                return _appDbContext.Translations
                     .Where(v => v.Language == user.NativeLanguage).AsEnumerable()
                     .Where(v => !wordToLearn.WordWithTranslations.Translations.Any(t => t.DisplayTarget == v.DisplayTarget))
                     .OrderBy(r => Guid.NewGuid())
