@@ -80,9 +80,9 @@ namespace BlazorServer.Controllers
                 return Unauthorized(GetErrorWithResendLink(user, "The Email is not confirmed. Please confirm your email using a link, that is sent to your email address."));
 
             var signingCredentials = GetSigningCredentials();
-            //var claims = GetClaims(user);
-            var tokenOptions = GenerateTokenOptions(signingCredentials, await _userManager.GetClaimsAsync(user));
-            //var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
+            var claims = GetClaims(user);
+            //var tokenOptions = GenerateTokenOptions(signingCredentials, await _userManager.GetClaimsAsync(user));
+            var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
             var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
             await _userManager.ResetAccessFailedCountAsync(user);
             return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });
@@ -190,6 +190,7 @@ namespace BlazorServer.Controllers
 
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
         }
+
         private List<Claim> GetClaims(ApplicationUser user)
         {
             var claims = new List<Claim>

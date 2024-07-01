@@ -18,7 +18,7 @@ namespace BlazorServer.Controllers
         private readonly HttpClient _httpClient;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly AppDbContext _appDbContext;
-        private readonly DictionaryDbContext _dictionaryDbContext;
+        //private readonly DictionaryDbContext _dictionaryDbContext;
         private static readonly string _endpoint = "https://api.cognitive.microsofttranslator.com/";
         private static readonly string _location = "westeurope";
         private static readonly string _intermediateLang = ConstLanguages.English;          //Because microsoft translator supports translation only with english source or target language
@@ -28,12 +28,12 @@ namespace BlazorServer.Controllers
         private int existedWordId = 0;
 
         //TODO Mb for test and filling db with data use recurse translation with backtranslations
-        public TranslatorController(DictionaryDbContext dictionaryDbContext, UserManager<ApplicationUser> userManager, IConfiguration configuration, AppDbContext appDbContext)
+        public TranslatorController(UserManager<ApplicationUser> userManager, IConfiguration configuration, AppDbContext appDbContext)
         {
             _httpClient = new HttpClient();
             _userManager = userManager;
             _appDbContext = appDbContext;
-            _dictionaryDbContext = dictionaryDbContext;
+            //_dictionaryDbContext = dictionaryDbContext;
             _configuration = configuration;
             var key = _configuration["Keys:TranslatorApiKey"];
             if (key is not null)
@@ -126,11 +126,11 @@ namespace BlazorServer.Controllers
 
         private async Task<WordWithTranslations?> GetTranslationFromDb(string word, string bookLang, string targetLang)       //TODO divide word saving to different language database and search in target language db
         {
-            var wordWithTranslations = _dictionaryDbContext.Words.FirstOrDefault(w => w.DisplaySource == word && w.Language == bookLang);     //RODO fix language in which word is saved
+            var wordWithTranslations = _appDbContext.Words.FirstOrDefault(w => w.DisplaySource == word && w.Language == bookLang);     //RODO fix language in which word is saved
             if (wordWithTranslations is not null)
             {
                 existedWordId = wordWithTranslations.Id;      //This will used in PostTranslationToDb to decide if word exist or not
-                IList<WordTranslation> wordTranslations = _dictionaryDbContext.Translations.Where(t => t.WordId == wordWithTranslations.Id && t.Language == targetLang).ToList();
+                IList<WordTranslation> wordTranslations = _appDbContext.Translations.Where(t => t.WordId == wordWithTranslations.Id && t.Language == targetLang).ToList();
                 if (!wordTranslations.Any())
                 {
                     return null;
@@ -160,18 +160,18 @@ namespace BlazorServer.Controllers
                     if (existedWordId != 0)         //If word already exist in Db, FK of translations changes to it, so word is not duplicated in DB
                     {
                         translation.WordId = existedWordId;
-                        _dictionaryDbContext.Translations.Add(translation);
+                        _appDbContext.Translations.Add(translation);
                     }
                 }
                 if (existedWordId == 0)
                 {
-                    _dictionaryDbContext.Words.Add(wordWithTranslations);
+                    _appDbContext.Words.Add(wordWithTranslations);
                 }
                 else
                 {
                     wordWithTranslations.Id = existedWordId;
                 }
-                int updNumber = _dictionaryDbContext.SaveChanges();
+                int updNumber = _appDbContext.SaveChanges();
                 if (updNumber > 0)
                 {
                     return Ok(wordWithTranslations);
@@ -256,10 +256,10 @@ namespace BlazorServer.Controllers
 
         private WordWithTranslations? UpdateTranslationInDb(WordWithTranslations updateFrom, WordWithTranslations updateTo)
         {
-            var existingWord = _dictionaryDbContext.Words.FirstOrDefault(w => w.Id == updateFrom.Id);
+            var existingWord = _appDbContext.Words.FirstOrDefault(w => w.Id == updateFrom.Id);
             if (existingWord != null)
             {
-                existingWord.Translations = _dictionaryDbContext.Translations.Where(t => t.WordId == updateFrom.Id).ToList();
+                existingWord.Translations = _appDbContext.Translations.Where(t => t.WordId == updateFrom.Id).ToList();
                 updateTo.Translations.ToList().ForEach(t => t.Language = updateFrom.Translations.First().Language);
                 existingWord.DisplaySource = updateFrom.DisplaySource.ToLower();
                 existingWord.Language = updateFrom.Language;
@@ -268,7 +268,7 @@ namespace BlazorServer.Controllers
                 if (!oldTranslations.SequenceEqual(newTranslations))
                 {
                     existingWord.Translations = updateTo.Translations;
-                    _dictionaryDbContext.SaveChanges();
+                    _appDbContext.SaveChanges();
                 }
                 return existingWord;
             }

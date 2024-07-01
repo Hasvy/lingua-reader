@@ -21,9 +21,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"))
 );
 
-builder.Services.AddDbContext<DictionaryDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Dictionary"))
-);
+//builder.Services.AddDbContext<DictionaryDbContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("Dictionary"))
+//);
 
 //Authentication
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(opt =>

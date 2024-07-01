@@ -46,6 +46,19 @@ namespace BlazorServer
             modelBuilder.Entity<TxtBook>()
                 .Property(b => b.Id)
                 .HasColumnName("Id");
+
+            modelBuilder.Entity<WordWithTranslations>(entity =>
+            {
+                entity.HasKey(twr => twr.Id);
+                entity.HasMany(wt => wt.Translations)
+                .WithOne()
+                .HasForeignKey(wt => wt.WordId);
+            });
+
+            modelBuilder.Entity<WordTranslation>(entity =>
+            {
+                entity.HasKey(wt => wt.Id);
+            });
         }
 
         public DbSet<AbstractBook> AbstractBooks { get; set; }
@@ -55,5 +68,8 @@ namespace BlazorServer
         public DbSet<BookCover> BookCovers { get; set; }
         public DbSet<BookSection> BookSections { get; set; }
         public DbSet<SavedWord> SavedWords { get; set; }
+
+        public DbSet<WordWithTranslations> Words { get; set; }
+        public DbSet<WordTranslation> Translations { get; set; }
     }
 }
