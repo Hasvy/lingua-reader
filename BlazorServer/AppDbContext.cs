@@ -22,10 +22,6 @@ namespace BlazorServer
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<AbstractBook>(entity =>
-            {
-                entity.HasKey(ab => ab.Id);
-            });
 
             modelBuilder.Entity<BookCover>(entity =>
             {
