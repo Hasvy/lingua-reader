@@ -34,15 +34,20 @@ namespace BlazorServer.Controllers
             if (userForRegistration == null || !ModelState.IsValid)
                 return BadRequest();
             var user = new ApplicationUser { UserName = "user_" + Guid.NewGuid().ToString(),
-                                             Email = userForRegistration.Email,
-                                             NativeLanguage = userForRegistration.NativeLanguage,
-                                             DesiredLanguage = userForRegistration.DesiredLanguage };
+                Email = userForRegistration.Email,
+                NativeLanguage = userForRegistration.NativeLanguage,
+                DesiredLanguage = userForRegistration.DesiredLanguage };
             var result = await _userManager.CreateAsync(user, userForRegistration.Password);
             if (!result.Succeeded)
             {
                 var errors = result.Errors.Select(e => e.Description);
                 return BadRequest(new RegistrationResponseDto { Errors = errors });
             }
+            await _userManager.AddClaimsAsync(user, new List<Claim>() 
+            {
+                new Claim(ClaimTypes.Name, user.Email),
+                new Claim("UserID", user.Id)
+            });
             await SendAddressConfirmationEmail(user);
             return StatusCode(201);
         }
@@ -75,8 +80,9 @@ namespace BlazorServer.Controllers
                 return Unauthorized(GetErrorWithResendLink(user, "The Email is not confirmed. Please confirm your email using a link, that is sent to your email address."));
 
             var signingCredentials = GetSigningCredentials();
-            var claims = GetClaims(user);
-            var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
+            //var claims = GetClaims(user);
+            var tokenOptions = GenerateTokenOptions(signingCredentials, await _userManager.GetClaimsAsync(user));
+            //var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
             var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
             await _userManager.ResetAccessFailedCountAsync(user);
             return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });
@@ -98,7 +104,7 @@ namespace BlazorServer.Controllers
             
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             var encodedToken = HttpUtility.UrlEncode(token);
-            var callback = $"{Request.Scheme}://{_configuration["ClientAddress"]}/ResetPassword?token={encodedToken}&email={Uri.EscapeDataString(user.Email)}";
+            var callback = $"https://{_configuration["ClientAddress"]}/ResetPassword?token={encodedToken}&email={Uri.EscapeDataString(user.Email)}";
 
             var message = new Message(new string[] { user.Email }, "Password reset link", callback);    //TODO check user emails
             await _emailSender.SendEmailAsync(message);
@@ -172,7 +178,7 @@ namespace BlazorServer.Controllers
         {
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var encodedToken = HttpUtility.UrlEncode(token);
-            var confirmationLink = $"{Request.Scheme}://{_configuration["ClientAddress"]}/ConfirmEmail?token={encodedToken}&email={Uri.EscapeDataString(user.Email)}";
+            var confirmationLink = $"https://{_configuration["ClientAddress"]}/ConfirmEmail?token={encodedToken}&email={Uri.EscapeDataString(user.Email)}";
             var message = new Message(new string[] { user.Email }, "Confirmation email link", confirmationLink);
             await _emailSender.SendEmailAsync(message);
         }
@@ -194,7 +200,7 @@ namespace BlazorServer.Controllers
 
             return claims;
         }
-        private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
+        private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, IList<Claim> claims)
         {
             var tokenOptions = new JwtSecurityToken(
                 issuer: _jwtSettings["validIssuer"],
