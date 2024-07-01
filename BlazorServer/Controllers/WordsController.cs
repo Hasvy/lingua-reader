@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Objects.Entities;
 using Objects.Entities.Translator;
 using Objects.Entities.Words;
@@ -10,11 +11,13 @@ namespace BlazorServer.Controllers
     [ApiController]
     public class WordsController : ControllerBase
     {
+        //private readonly IDbContextFactory<AppDbContext> _appDbContextFactory;
         private readonly AppDbContext _appDbContext;
         //private readonly DictionaryDbContext _dictionaryDbContext;
         private readonly UserManager<ApplicationUser> _userManager;
         public WordsController(AppDbContext appDbContext, UserManager<ApplicationUser> userManager)
         {
+            //_appDbContextFactory = appDbContextFactory;
             _appDbContext = appDbContext;
             //_dictionaryDbContext = dictionaryDbContext;
             _userManager = userManager;
@@ -35,6 +38,7 @@ namespace BlazorServer.Controllers
             var savedWord = new SavedWord { UserId = Guid.Parse(user.Id), WordId = id };
             await _appDbContext.SavedWords.AddAsync(savedWord);
             await _appDbContext.SaveChangesAsync();
+
             return Ok();
         }
 
@@ -46,12 +50,14 @@ namespace BlazorServer.Controllers
             if (user is null)
                 return BadRequest();
 
+
             var wordToDelete = await _appDbContext.SavedWords.SingleOrDefaultAsync(w => w.UserId.ToString() == user.Id && w.WordId == id);
             if (wordToDelete is null)
                 return NotFound();
-
+                
             _appDbContext.SavedWords.Remove(wordToDelete);
             await _appDbContext.SaveChangesAsync();
+
             return Ok();
         }
 
@@ -73,6 +79,7 @@ namespace BlazorServer.Controllers
 
             _appDbContext.SavedWords.RemoveRange(wordsToDelete);
             await _appDbContext.SaveChangesAsync();
+
             return Ok();
         }
 
@@ -85,7 +92,7 @@ namespace BlazorServer.Controllers
                 return BadRequest();
 
             int count = 10;
-            var usersWordsIds = _appDbContext.SavedWords.Where(w => w.UserId.ToString() == user.Id);
+            var usersWordsIds = _appDbContext.SavedWords.Where(w => w.UserId.ToString() == user.Id).ToList();
             var wordsWithTranslations = JoinWordsWithTranslations(usersWordsIds, user, true);
             wordsWithTranslations = wordsWithTranslations.OrderBy(r => Guid.NewGuid()).Take(count).ToList();
             List<WordToLearn> wordsToLearn = new List<WordToLearn>();
