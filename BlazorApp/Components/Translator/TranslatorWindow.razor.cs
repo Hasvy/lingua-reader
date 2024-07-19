@@ -2,6 +2,8 @@
 using Objects.Entities.Translator;
 using Microsoft.JSInterop;
 using Services;
+using Microsoft.AspNetCore.Components.Authorization;
+using Radzen;
 
 namespace BlazorApp.Components.Translator
 {
@@ -10,6 +12,8 @@ namespace BlazorApp.Components.Translator
         [Inject] IJSRuntime JS { get; set; } = null!;
         [Inject] WordsService WordsService { get; set; } = null!;
         [Inject] TranslatorService TranslatorService { get; set; } = null!;
+        [Inject] AuthenticationStateProvider AuthenticationStateProvider { get; set; } = null!;
+        [Inject] NotificationService NotificationService { get; set; } = null!;
         [Parameter] public WordInfo WordInfo { get; set; }
         [Parameter] public WordWithTranslations? WordWithTranslations { get; set; }
         [Parameter] public EventCallback SpeakWordCallback { get; set; }
@@ -87,6 +91,11 @@ namespace BlazorApp.Components.Translator
 
         private async Task AddWord()
         {
+            if (!(await CheckIfAuthorized()))
+            {
+                NotificationService.Notify(NotificationSeverity.Info, "You are not logged in", "Please log in to add words to your dictionary");
+                return;
+            }
             _isSaving = true;
             bool result = await WordsService.SaveWord(WordWithTranslations.Id);
             if (result is true)
@@ -95,6 +104,11 @@ namespace BlazorApp.Components.Translator
         }
         private async Task DeleteWord()
         {
+            if (!(await CheckIfAuthorized()))
+            {
+                NotificationService.Notify(NotificationSeverity.Info, "You are not logged in", "Please log in to use this function");
+                return;
+            }
             _isDeleting = true;
             bool result = await WordsService.DeleteWord(WordWithTranslations.Id);
             if (result is true)
@@ -103,6 +117,11 @@ namespace BlazorApp.Components.Translator
         }
         private async Task UpdateWord()
         {
+            if (!(await CheckIfAuthorized()))
+            {
+                NotificationService.Notify(NotificationSeverity.Info, "You are not logged in", "Please log in to use this function");
+                return;
+            }
             _isUpdating = true;
             var result = await TranslatorService.UpdateWord(WordWithTranslations);
             if (result is not null)
@@ -111,6 +130,12 @@ namespace BlazorApp.Components.Translator
                 await OnWordChanged.InvokeAsync(WordWithTranslations);
             }
             _isUpdating = false;
+        }
+
+        private async Task<bool> CheckIfAuthorized()
+        {
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            return (authState.User.Identity is null || !authState.User.Identity.IsAuthenticated) ? false : true;
         }
     }
 }

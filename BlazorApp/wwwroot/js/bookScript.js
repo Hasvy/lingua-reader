@@ -89,13 +89,21 @@ async function separateBookDocument(container) {
     var containerWidth = host.clientWidth;
 
     var pagesCount = Math.floor(totalHeight / containerHeight) + 1;
-    body.style.margin = 0;
-    body.style.width = (containerWidth * pagesCount) + "px";
+    //body.style.margin = 0;
+    //body.style.width = (containerWidth * pagesCount) + "px";
     //body.style.maxHeight = "100%";
-    body.style.columnCount = pagesCount;
-    body.style.position = "relative";
-    body.style.columnGap = 0 + "px";
-    body.style.columnFill = "balance";
+    //body.style.columnCount = pagesCount;
+    //body.style.position = "relative";
+    //body.style.columnGap = 0 + "px";
+    //body.style.columnFill = "balance";
+
+    //host = document.getElementById("host");
+    //shadow = host.attachShadow({ mode: "open" });
+
+    const style = document.createElement("style");
+    style.textContent = `body { margin: 0; width: ${containerWidth * pagesCount}px; position: relative; text-align: justify;` +
+                        `column-count: ${pagesCount}; column-gap: 0px; column-fill: balance; }`;
+    shadow.appendChild(style);
 
     //body.style.height = containerHeight + "px";               //Makes problem with last pages in sections
     //body.style.columnWidth = container.clientWidth + "px";
