@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using MimeKit;
 using Objects.Dto.Authentication;
 using Objects.Entities;
 using System.IdentityModel.Tokens.Jwt;
@@ -104,9 +105,9 @@ namespace BlazorServer.Controllers
             
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             var encodedToken = HttpUtility.UrlEncode(token);
-            var callback = $"https://{_configuration["ClientAddress"]}/ResetPassword?token={encodedToken}&email={Uri.EscapeDataString(user.Email)}";
-
-            var message = new Message(new string[] { user.Email }, "Password reset link", callback);    //TODO check user emails
+            var resetPasswordLink = $"https://{_configuration["ClientAddress"]}/ResetPassword?token={encodedToken}&email={Uri.EscapeDataString(user.Email)}";
+            string htmlContent = MessageHtmlBodies.GetResetPasswordBody(resetPasswordLink);
+            var message = new Message(new string[] { user.Email }, "LinguaReader Password Reset E-mail", htmlContent);    //TODO check user emails
             await _emailSender.SendEmailAsync(message);
 
             return Ok();
@@ -179,7 +180,8 @@ namespace BlazorServer.Controllers
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var encodedToken = HttpUtility.UrlEncode(token);
             var confirmationLink = $"https://{_configuration["ClientAddress"]}/ConfirmEmail?token={encodedToken}&email={Uri.EscapeDataString(user.Email)}";
-            var message = new Message(new string[] { user.Email }, "Confirmation email link", confirmationLink);
+            string htmlContent = MessageHtmlBodies.GetConfirmationBody(confirmationLink);       
+            var message = new Message(new string[] { user.Email }, "LinguaReader Confirm E-mail Address", htmlContent);
             await _emailSender.SendEmailAsync(message);
         }
 
