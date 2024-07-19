@@ -43,6 +43,7 @@ builder.Services.AddScoped<AuthStateProvider>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<HttpInterceptorService>();
 builder.Services.AddScoped<WordsService>();
+builder.Services.AddScoped<FileService>();
 
 builder.Services.AddSingleton<ProgressService>();
 

@@ -59,12 +59,16 @@ namespace BlazorServer.Controllers
         [Route("api/Translator/TranslateWord")]
         public async Task<ActionResult<WordWithTranslations>?> TranslateWord(string word, string sourceLang)
         {
+            string targetLang;
+            string bookLang;
             existedWordId = 0;
             var user = await _userManager.GetUserAsync(User);
             if (user is null)
-                return BadRequest();
-            string bookLang = sourceLang;
-            string targetLang = user.NativeLanguage;
+                targetLang = ConstLanguages.Czech;
+                //return BadRequest();
+            else
+                targetLang = user.NativeLanguage;
+            bookLang = sourceLang;
             HttpResponseMessage response;
 
             var translatorWordResp = await GetTranslationFromDb(word, bookLang, targetLang);
@@ -137,7 +141,8 @@ namespace BlazorServer.Controllers
                 }
                 wordWithTranslations.Translations = wordTranslations;
                 var user = await _userManager.GetUserAsync(User);
-                wordWithTranslations.IsWordSaved = _appDbContext.SavedWords.Any(w => w.UserId.ToString() == user.Id && w.WordId == wordWithTranslations.Id);
+                if (user is not null)
+                    wordWithTranslations.IsWordSaved = _appDbContext.SavedWords.Any(w => w.UserId.ToString() == user.Id && w.WordId == wordWithTranslations.Id);
                 return wordWithTranslations;
             }
             else
@@ -302,12 +307,12 @@ namespace BlazorServer.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         List<TranslatorTextResponse?>? result = await response.Content.ReadFromJsonAsync<List<TranslatorTextResponse?>?>();
-                        return Ok(result.FirstOrDefault());
+                        if (result is not null)
+                        {
+                            return Ok(result.FirstOrDefault());
+                        }
                     }
-                    else
-                    {
-                        return BadRequest("Error: " + response.StatusCode);
-                    }
+                    return BadRequest("Error: " + response.StatusCode);
                 }
             }
             catch (Exception ex)

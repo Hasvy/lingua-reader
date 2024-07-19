@@ -1,0 +1,12 @@
+﻿@using Objects;
+@using BlazorApp.Components.DisplayBooks;
+@using Objects.Constants;
+@using Microsoft.AspNetCore.Components;
+@using Objects.Dto.Authentication;
+@using Microsoft.AspNetCore.Components.Forms
+
+@attribute [Route(Routes.TryApp)]
+@attribute [AllowAnonymous]
+
+<ReaderComponent CurrentPageNumber="@CurrentPageNumber" PagesCount="@PagesCount" BookLanguage="@BookLanguage"
+                 NextPageCallback="NextPage" PreviousPageCallback="PreviousPage" JumpToPageCallback="JumpToPage" Ready="AfterReaderReady" />

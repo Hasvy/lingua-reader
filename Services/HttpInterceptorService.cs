@@ -31,7 +31,7 @@ namespace Services
 
             if (!absPath.Contains("token") && !absPath.Contains("accounts"))
             {
-                await CheckToken();
+                await CheckIfTokenExpired();
 
                 //var token = await _refreshTokenService.TryRefreshToken();
                 //if (!string.IsNullOrEmpty(token))
@@ -41,18 +41,21 @@ namespace Services
             }
         }
 
-        private async Task CheckToken()
+        private async Task CheckIfTokenExpired()
         {
             var authState = await _authProvider.GetAuthenticationStateAsync();
             var user = authState.User;
-            var exp = user.FindFirst(c => c.Type.Equals("exp"))!.Value;
-            var expTime = DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt64(exp));
-            var timeUTC = DateTime.UtcNow;
-            var diff = expTime - timeUTC;
-            if (diff.TotalMinutes <= 0)
+            if (user is not null)
             {
-                await LogoutAndNotify();
-                DisposeEvent();
+                var exp = user.FindFirst(c => c.Type.Equals("exp"))!.Value;
+                var expTime = DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt64(exp));
+                var timeUTC = DateTime.UtcNow;
+                var diff = expTime - timeUTC;
+                if (diff.TotalMinutes <= 0)
+                {
+                    await LogoutAndNotify();
+                    DisposeEvent();
+                }
             }
         }
 
