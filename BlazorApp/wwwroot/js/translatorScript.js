@@ -4,6 +4,7 @@ it_regexp = /^[\wàèéìòóùÀÈÉÌÒÓÙ]*$/;
 es_regexp = /^[\wáéíóúñÑÁÉÍÓÚüÜ]*$/;
 ru_regexp = /^[\wwа-яёА-ЯЁ]*$/;
 lang_regexp = /^\w*$/;
+whitespace_regexp = /\s/;
 
 function getSelectedWord(hostElement) {
     return new Promise(function (resolve) {
@@ -12,7 +13,6 @@ function getSelectedWord(hostElement) {
         }
 
         var wordRegexp = lang_regexp;
-        //var selection = hostElement.shadowRoot.getSelection();
         var selection = getSelectionText(hostElement);
         var node = selection.anchorNode;
         if (node.nodeName !== '#text') {
@@ -20,16 +20,21 @@ function getSelectedWord(hostElement) {
         }
         var range = selection.getRangeAt(0);
 
-        // Finds the start point of a clicked word
+        //Test if was selected a single word
+        var word = range.toString().trim();
+        if (whitespace_regexp.test(word)) {
+            return;
+        }
+
+        // Finds start point of a clicked word
         while ((range.startOffset > 0) && range.toString().match(wordRegexp)) {
             range.setStart(node, (range.startOffset - 1));
         }
         if (!range.toString().match(wordRegexp)) {
-
             range.setStart(node, range.startOffset + 1);
         }
 
-        // Finds an end point of a clicked word
+        // Finds end point of a clicked word
         while ((range.endOffset < node.length) && range.toString().match(wordRegexp)) {
             range.setEnd(node, range.endOffset + 1);
         }
@@ -39,11 +44,11 @@ function getSelectedWord(hostElement) {
             }
         }
 
-        // Gets a word, removes selection
+        //Gets a word with set ranges
         var word = range.toString().trim();
-        if (word) {
-            addSpan(range);
-        }
+
+        //Highlights a word and removes selection
+        addSpan(range);
         window.getSelection().removeAllRanges();
 
         //Gets start position to draw translator window loading (right upon the clicked word)
