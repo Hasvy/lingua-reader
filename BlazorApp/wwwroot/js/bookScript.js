@@ -95,6 +95,7 @@ async function separateBookDocument(container) {
     body.style.position = "relative";
     body.style.columnGap = 0 + "px";
     body.style.columnFill = "balance";
+    body.style.textAlign = "justify";
 
     //const style = document.createElement("style");
     //style.textContent = `body { margin: 0; width: ${containerWidth * pagesCount}px; max-height: 100%; position: relative; text-align: justify;` +
